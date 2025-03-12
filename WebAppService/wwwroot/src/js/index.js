@@ -1,0 +1,14 @@
+﻿import "../../~/web/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js";
+import "../../~/web/assets/js/vendor.min.js";
+import "../../~/web/assets/libs/simplebar/dist/simplebar.min.js";
+import "../../~/web/assets/js/theme/theme.js";
+import "../../~/web/assets/js/theme/app.min.js";
+import "../../~/web/assets/libs/owl.carousel/dist/owl.carousel.min.js";
+import "../../~/web/assets/plug/data-table/tableexport.min.js";
+import "../../~/web/assets/plug/data-table/bootstrap-table.min.js";
+import "../../~/web/assets/plug/data-table/bootstrap-table-locale-all.min.js";
+import "../../~/web/assets/plug/data-table/bootstrap-table-export.min.js";
+import "../../~/web/assets/plug/data-table/bootstrap-table-vi-vn.js";
+import "../../~/web/assets/libs/sweetalert2/dist/sweetalert2.min.js";
+import "../../ajax/webappservice.settings.js";
+console.log("Webpack đã bundle thành công!");

@@ -1,0 +1,31 @@
+﻿<div class="offcanvas offcanvas-end shopping-cart" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+	<div class="offcanvas-header justify-content-between py-4">
+		<h5 class="offcanvas-title fs-5 fw-semibold" id="offcanvasRightLabel">
+			Hoạt động gần đây
+		</h5>
+		<span class="badge bg-primary rounded-4 px-3 py-1 lh-sm">Tài khoản</span>
+	</div>
+	<div class="offcanvas-body h-100 px-2 pt-0" >
+		<div class="simplebar-content" style="padding: 0px;" id="chatTemlate">
+		</div>
+	</div>
+</div>
+<script id="data-template_chat" type="x-tmpl-mustache">
+	<a href="javascript:void(0)" class="px-1 py-3 bg-hover-light-black d-flex align-items-start justify-content-between chat-user bg-light-subtle" id="chat_user_1" data-user-id="1">
+		<div class="d-flex align-items-center">
+			<span class="position-relative">
+				<img src="https://cdn-icons-png.flaticon.com/512/9187/9187604.png" alt="user1" width="48" height="48" class="rounded-circle">
+				<span class="position-absolute bottom-0 end-0 p-1 badge rounded-pill {{isOnline}}">
+					<span class="visually-hidden">New alerts</span>
+				</span>
+			</span>
+			<div class="ms-3 d-inline-block w-75">
+				<h6 class="mb-1 fw-semibold chat-title" data-username="James Anderson">
+					{{HoTen}}
+				</h6>
+				<span class="fs-1 text-truncate text-body-color d-block">{{Time}}</span>
+			</div>
+		</div>
+		<p class="fs-2 mb-0 text-muted">{{IpAdress}}</p>
+	</a>
+</script>

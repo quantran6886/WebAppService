@@ -1,0 +1,102 @@
+﻿@using WebAppService.Areas.Admin._Helper
+@using WebAppService.Models
+@{
+	var user = SessionHelper.GetUser(Context.Session) ?? null;
+	var data = new WebNguoiDungQuanTri
+	{
+		HoTen = user != null? user.HoTen : "",
+	};
+}
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-bs-theme="light" data-color-theme="Blue_Theme" data-layout="vertical">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="shortcut icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/9187/9187604.png" />
+	<link rel="stylesheet" href="~/assets/css/styles.css" />
+	<title>Phần mềm quản lý</title>
+	<link rel="stylesheet" href="~/assets/libs/owl.carousel/dist/~/web/assets/owl.carousel.min.css" />
+	<link href="~/assets/plug/bi-icon/bootstrap-icons.min.css" rel="stylesheet" />
+	<link href="~/assets/plug/data-table/bootstrap-table.min.css" rel="stylesheet" />
+	<link href="~/assets/libs/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" />
+	<link href="~/assets/css/custom.css" rel="stylesheet" />
+</head>
+
+<body>
+	<div class="preloader">
+		<img src="~/assets/images/logos/favicon.png" alt="loader" class="lds-ripple img-fluid" />
+	</div>
+	<div id="main-wrapper">
+		@Html.Partial("~/Areas/Admin/Views/Shared/_MoldunLeftSideBar.cshtml", data)
+		<div class="page-wrapper">
+			@Html.Partial("~/Areas/Admin/Views/Shared/_MoldunHeader.cshtml")
+			<div class="body-wrapper">
+				<div class="container-fluid mw-100">
+					@RenderBody()
+				</div>
+			</div>
+			<script>
+				function handleColorTheme(e) {
+				  document.documentElement.setAttribute("data-color-theme", e);
+				}
+			</script>
+			<button class="btn btn-primary p-3 rounded-circle d-flex align-items-center justify-content-center customizer-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+				<i class="icon ti ti-phone fs-7"></i>
+			</button>
+
+			<div class="offcanvas customizer offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+				<div class="d-flex align-items-center justify-content-between p-3 border-bottom">
+					<h4 class="offcanvas-title fw-semibold" id="offcanvasExampleLabel">
+						Hỗ trợ
+					</h4>
+					<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+				</div>
+
+			</div>
+		</div>
+
+		<!--  Search Bar -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-scrollable modal-lg">
+				<div class="modal-content rounded-1">
+					<div class="modal-header border-bottom">
+						<input type="search" class="form-control fs-3" placeholder="Search here" id="search" />
+						<a href="javascript:void(0)" data-bs-dismiss="modal" class="lh-1">
+							<i class="ti ti-x fs-5 ms-3"></i>
+						</a>
+					</div>
+					<div class="modal-body message-body" data-simplebar="">
+						<h5 class="mb-0 fs-5 p-1">Tìm kiếm gần đây</h5>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--  Shopping Cart -->
+		@Html.Partial("~/Areas/Admin/Views/Shared/_MoldunChat.cshtml")
+	</div>
+	<div class="dark-transparent sidebartoggler"></div>
+	<!-- Import Js Files -->
+	<script src="~/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/assets/js/vendor.min.js"></script>
+	<script src="~/assets/libs/simplebar/dist/simplebar.min.js"></script>
+	<script src="~/assets/js/theme/app.init.js"></script>
+	<script src="~/assets/js/theme/theme.js"></script>
+	<script src="~/assets/js/theme/app.min.js"></script>
+	<script src="~/assets/js/theme/sidebarmenu.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+	<script src="~/assets/libs/owl.carousel/dist/owl.carousel.min.js"></script>
+	<script src="~/assets/plug/data-table/tableexport.min.js"></script>
+	<script src="~/assets/plug/data-table/bootstrap-table.min.js"></script>
+	<script src="~/assets/plug/data-table/bootstrap-table-locale-all.min.js"></script>
+	<script src="~/assets/plug/data-table/bootstrap-table-export.min.js"></script>
+	<script src="~/assets/plug/data-table/bootstrap-table-vi-vn.js"></script>
+	<script src="~/assets/libs/sweetalert2/dist/sweetalert2.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+	<script src="~/assets/plug/mustache.js"></script>
+	<script src="~/assets/js/plugins/toastr-init.js"></script>
+	<script src="~/ajax/webappservice.settings.js"></script>
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

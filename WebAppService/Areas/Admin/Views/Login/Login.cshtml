@@ -1,0 +1,165 @@
+﻿@model WebAppService.Areas.Admin.Modals.LoginViewModel
+
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-bs-theme="light" data-color-theme="Blue_Theme" data-layout="vertical">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!-- Favicon icon-->
+	<link rel="shortcut icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/9187/9187604.png" />
+	<!-- Core Css -->
+	<link href="~/assets/css/styles.css" rel="stylesheet" />
+	<title>Đăng nhập hệ thống</title>
+	<style>
+		.radial-gradient::before {
+			content: "";
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			background-size: cover;
+			opacity: 0.9;
+			background-image: url("/assets/images/service/banner-bg-new.jpg");
+			animation: 15sease 0s infinite normal none running gradient;
+		}
+
+		.card {
+			--bs-card-spacer-y: 30px;
+			--bs-card-spacer-x: 30px;
+			--bs-card-title-spacer-y: 0.5rem;
+			--bs-card-title-color: #2a3547;
+			--bs-card-subtitle-color: var(--bs-body-color);
+			--bs-card-border-width: 0px;
+			--bs-card-border-color: #0b0e10;
+			--bs-card-border-radius: 7px;
+			--bs-card-box-shadow: rgba(145, 158, 171, 0.2) 0px 0px 2px 0px, rgb(202 202 202 / 70%) 0px 12px 24px -4px;
+			--bs-card-inner-border-radius: 7px;
+			--bs-card-cap-padding-y: 15px;
+			--bs-card-cap-padding-x: 30px;
+			--bs-card-cap-bg: rgba(var(--bs-body-color-rgb), 0.03);
+			--bs-card-bg: #2558b13d;
+			--bs-card-img-overlay-padding: 1rem;
+			--bs-card-group-margin: 12px;
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			min-width: 0;
+			height: var(--bs-card-height);
+			color: var(--bs-body-color);
+			word-wrap: break-word;
+			background-color: var(--bs-card-bg);
+			background-clip: border-box;
+			border: var(--bs-card-border-width) solid #090a0b;
+			border-radius: var(--bs-card-border-radius);
+			box-shadow: var(--bs-card-box-shadow);
+		}
+
+		.form-control {
+			display: block;
+			width: 100%;
+			padding: 8px 16px;
+			font-size: .875rem;
+			font-weight: 400;
+			line-height: 1.5;
+			color: #5a6a85;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			background-color: #564c4c12;
+			background-clip: padding-box;
+			border: var(--bs-border-width) solid #a0a3a7;
+			border-radius: 7px;
+			box-shadow: var(--bs-box-shadow-inset);
+			transition: border-color .15sease-in-out, box-shadow .15sease-in-out;
+		}
+
+		.bg-body {
+			--bs-bg-opacity: 1;
+			background-color: transparent !important;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- Preloader -->
+	<div class="preloader">
+		<img src="~/assets/images/logos/favicon.png" alt="loader" class="lds-ripple img-fluid" />
+	</div>
+	<div id="main-wrapper" class="auth-customizer-none">
+		<div class="position-relative overflow-hidden radial-gradient min-vh-100 w-100 d-flex align-items-center justify-content-center">
+			<div class="d-flex align-items-center justify-content-center w-100">
+				<div class="row justify-content-center w-100">
+					<div class="col-md-8 col-lg-6 col-xxl-3 auth-card">
+						<div class="card mb-0">
+							<div class="card-body">
+								<div class="d-flex align-items-center" style="justify-self: center;">
+									<div class="user-profile-img">
+										<img src="https://cdn-icons-png.flaticon.com/512/9187/9187604.png" class="rounded-circle" width="60" height="60" alt="modernize-img" />
+									</div>
+								</div>
+								<div class="position-relative text-center my-4">
+									<p class="mb-0 fs-6 px-3 d-inline-block bg-body text-white z-index-5 position-relative">
+										PHẦN MỀM ĐẤU GIÁ LẠC VIỆT
+									</p>
+									<span class="border-to text-whiteition-absolute top-50 start-50 translate-middle"></span>
+								</div>
+								@using (Html.BeginForm("Login", "Login", FormMethod.Post, new { @class = "form" }))
+								{
+									@Html.ValidationSummary(true, "", new { @class = "text-white" })
+									@Html.AntiForgeryToken()
+									<input type="hidden" name="returnUrl" value="@Context.Request.Query["ReturnUrl"]" />
+									<div class="mb-3">
+										@Html.LabelFor(m => m.UserName, "Tài khoản", new { @class = "form-label text-white" })
+										@Html.TextBoxFor(m => m.UserName, new { @class = "form-control text-white", placeholder = "Nhập tài khoản" })
+										@Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+									</div>
+
+									<div class="mb-4">
+										@Html.LabelFor(m => m.Password, "Mật khẩu", new { @class = "form-label text-white" })
+										@Html.PasswordFor(m => m.Password, new { @class = "form-control text-white", placeholder = "Nhập mật khẩu" })
+										@Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+									</div>
+
+									<div class="d-flex align-items-center justify-content-between mb-4">
+										<div class="form-check">
+											@Html.CheckBoxFor(m => m.RememberMe, new { @class = "form-check-input primary" })
+											@Html.LabelFor(m => m.RememberMe, "Ghi nhớ", new { @class = "form-check-label" })
+										</div>
+										<a class="text-white fw-medium" href="">
+											Quên mật khẩu ?
+										</a>
+									</div>
+									<button type="submit" class="btn btn-primary w-100 py-8 mb-4 rounded-2">Đăng nhập</button>
+
+									<div class="d-flex align-items-center justify-content-center">
+										<p class="fs-4 mb-0 fw-medium">Bạn chưa có tài khoản?</p>
+										<a class="text-white fw-medium ms-2" href="../main/authentication-register.html">
+											Tạo tài khoản
+										</a>
+									</div>
+								}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Import Js Files -->
+	<script src="~/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/assets/libs/simplebar/dist/simplebar.min.js"></script>
+	<script src="~/assets/js/theme/app.init.js"></script>
+	<script src="~/assets/js/theme/theme.js"></script>
+	<script src="~/assets/js/theme/app.min.js"></script>
+	<!-- solar icons -->
+	<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+</body>
+
+</html>
+

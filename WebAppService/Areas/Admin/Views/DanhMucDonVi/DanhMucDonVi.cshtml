@@ -1,0 +1,34 @@
+﻿@{
+	ViewData["Title"] = "DanhMucHeThong";
+    Layout = "~/Areas/Admin/Views/Shared/_ViewAdmin.cshtml";
+}
+@section Scripts {
+}
+<div class="card-body">
+	<div class="row">
+		<div class="col-lg-6 d-flex align-items-stretch">
+            <div class="card w-100 ">
+                <div class="card-body p-0">
+                    <div class="alert customize-alert p-1 alert-dismissible border-danger text-danger fade show remove-close-icon" role="alert">
+                        <div class="d-flex align-items-center p-0 me-3 me-md-0">
+                            <i class="ti ti-info-circle fs-5 me-2 text-danger"></i>
+                            Danh mục đơn vị
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 mb-4 mb-md-0">
+                            <div class="col-sm-12 b-3 p-2">
+                                <input type="text" class="form-control" id="input-search" placeholder="Tìm kiếm theo tên, mã đơn vị..." />
+                            </div>
+                        </div>
+                        <div class="col-sm-12 mb-4 mt-2 mb-md-0">
+                          
+                            <div id="treeview-searchable"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+
+	</div>
+</div>

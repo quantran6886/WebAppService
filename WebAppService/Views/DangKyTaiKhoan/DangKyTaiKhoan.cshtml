@@ -1,0 +1,158 @@
+﻿
+@{
+    ViewData["Title"] = "DangKyTaiKhoan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="checkout-page sign-up-one__form pt-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12">
+                <div class="billing_details">
+                    <div class="billing_title">
+                        <p>Bạn đã có tài khoản? <span>Đăng nhập ngay</span></p>
+                        <h2>Đăng ký tài khoản</h2>
+                    </div>
+                    <form class="billing_details_form">
+                        <div class="row bs-gutter-x-20">
+                            <div class="col-xl-4">
+                                <div class="billing_input_box">
+                                    <input type="text" name="first_name" value="" placeholder="Họ" required="">
+                                </div>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="billing_input_box">
+                                    <input type="text" name="last_name" value="" placeholder="Tên đệm" required="">
+                                </div>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="billing_input_box">
+                                    <input type="text" name="last_name" value="" placeholder="Tên" required="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="billing_input_box">
+                                    <input type="text" name="company_name" value="" placeholder="Tên đăng nhập">
+                                </div>
+                            </div>
+                            <div class="col-xl-12">
+                                <div class="billing_input_box">
+                                    <input type="text" name="Address" value="" placeholder="Mật khẩu">
+                                </div>
+                            </div>
+                            <div class="col-xl-12">
+                                <div class="billing_input_box">
+                                    <input type="text" name="company_name" value="" placeholder="Nhập lại mật khẩu">
+                                </div>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="billing_input_box">
+                                    <input type="text" name="Town/City" value="" placeholder="Email" required="">
+                                </div>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="billing_input_box">
+                                    <input type="text" name="Town/City" value="" placeholder="Số điện thoại" required="">
+                                </div>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="billing_input_box">
+                                    <div class="select-box">
+                                        <select class="wide" style="display: none;">
+                                            <option data-display=" -- Chọn giới tính --">
+                                                -- Chọn giới tính --
+                                            </option>
+                                            <option value="Nam">Nam</option>
+                                            <option value="Nữ">Nữ</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row bs-gutter-x-20">
+                            <div class="col-xl-4">
+                                <div class="billing_input_box">
+                                    <div class="select-box">
+                                        <select class="wide" style="display: none;">
+                                            <option >-- Chọn ngày sinh --</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="billing_input_box">
+                                    <div class="select-box">
+                                        <select class="wide" style="display: none;">
+                                            <option>-- Chọn tháng sinh --</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="billing_input_box">
+                                    <div class="select-box">
+                                        <select class="wide" style="display: none;">
+                                            <option>-- Chọn năm sinh --</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="billing_input_box">
+                                    <div class="select-box">
+                                        <select class="wide" style="display: none;">
+                                            <option>-- Chọn Tỉnh/Thành --</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="billing_input_box">
+                                    <div class="select-box">
+                                        <select class="wide" style="display: none;">
+                                            <option>-- Chọn Quận/Huyện --</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="billing_input_box">
+                                    <div class="select-box">
+                                        <select class="wide" style="display: none;">
+                                            <option>-- Chọn Xã/Phường --</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="billing_input_box">
+                                    <input name="form_zip" type="text" pattern="[0-9]*" placeholder="Zip code">
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="billing_input_box">
+                                    <input name="email" type="email" placeholder="Email address">
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="billing_input_box">
+                                    <input type="tel" name="form_phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required="" placeholder="Phone">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="checked-box">
+                                    <input type="checkbox" name="skipper1" id="skipper" checked="">
+                                    <label for="skipper"><span></span>Create an account?</label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
