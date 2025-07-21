@@ -1,0 +1,134 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thông tin bác sĩ</title>
+   <style>
+        .container_detail_doctor {
+            /* font-family: 'Manrope', sans-serif; */
+            margin: 0;
+            background-color: #f9fdfd;
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+        }
+
+
+        .profile-container {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            max-width:900px;
+        }
+
+        .profile-image {
+            position: relative;
+            text-align: center;
+        }
+
+            .profile-image img {
+                border-radius: 12px;
+                margin-top: 20px;
+            }
+
+        .degree-title {
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: #ff5b00;
+            font-weight: 600;
+            padding: 6px 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .profile-info {
+            max-width: 600px;
+        }
+
+        .name {
+            font-size: 28px;
+            font-weight: 800;
+            color: #2F4848;
+            margin-bottom: 8px;
+        }
+
+        .department {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ff5b00;
+            margin-bottom: 24px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .section {
+            margin-bottom: 20px;
+           
+        }
+
+            .section h3 {
+                font-size: 16px;
+                font-weight: 600;
+                margin-bottom: 6px;
+				font-family: 'Plus Jakarta Sans', sans-serif;
+            }
+
+            .section p,
+            .section ul {
+                font-size: 15px;
+                line-height: 1.6;
+                color: #333;
+                font-family: 'Inter', sans-serif;
+            }
+
+            .section ul {
+                padding-left: 20px;
+            }
+
+            .section li {
+                margin-bottom: 8px;
+            }
+
+        i {
+            margin-right: 6px;
+        }
+
+   </style>
+</head>
+
+<body>
+    <div class="container_detail_doctor">
+		<div class="profile-container">
+			<div class="profile-image">
+				<img src="~/images/_DSC2482-Photoroom.png" alt="Bác sĩ Lê Văn Đức" />
+				<div class="degree-title">Phó giáo sư - Tiến sĩ</div>
+			</div>
+			<div class="profile-info">
+				<h2 class="name">Lê Văn Đức</h2>
+				<h4 class="department">Khoa Cơ - Xương - Khớp Bệnh viện Đa khoa Sun Medical</h4>
+
+				<div class="section">
+					<h3><i class="fas fa-graduation-cap"></i> Bằng cấp – Học vị</h3>
+                    <p>Bác sĩ Lê Văn Đức tốt nghiệp Bác sĩ Đa khoa tại Trường Đại học Y Dược TP. Hồ Chí Minh và có học vị Thạc sĩ Y học, chuyên ngành Nội Cơ Xương Khớp. Với nền tảng chuyên môn vững chắc, bác sĩ Đức đã điều trị hiệu quả nhiều bệnh lý về xương khớp và luôn cập nhật các phương pháp điều trị hiện đại.</p>
+				</div>
+
+				<div class="section">
+                    <h3><i class="fas fa-globe"></i> Ngôn ngữ</h3>
+                    <p>Bác sĩ Lê Văn Đức sử dụng thành thạo tiếng Anh và tiếng Hàn, giúp giao tiếp hiệu quả với bệnh nhân nước ngoài và cập nhật nhanh các kiến thức y khoa quốc tế.</p>
+				</div>
+
+				<div class="section">
+                    <h3><i class="fas fa-user icon"></i> Kinh nghiệm làm việc</h3>
+					<ul>
+						<li>Bệnh viện Chợ Rẫy – Bác sĩ Nội Cơ Xương Khớp</li>
+						<li>Đại học Y Dược TP. HCM – Bác sĩ điều trị chuyên khoa</li>
+						<li>Bệnh viện Nhân dân 115 – Bác sĩ khám và điều trị bệnh lý xương khớp</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+    </div>
+    
+
+</body>
+</html>

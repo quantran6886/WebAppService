@@ -21,6 +21,7 @@
 	<link href="~/assets/plug/data-table/bootstrap-table.min.css" rel="stylesheet" />
 	<link href="~/assets/libs/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" />
 	<link href="~/assets/css/custom.css" rel="stylesheet" />
+	<link href="~/assets/plug/chosen/chosen.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -29,10 +30,10 @@
 	</div>
 	<div id="main-wrapper">
 		@Html.Partial("~/Areas/Admin/Views/Shared/_MoldunLeftSideBar.cshtml", data)
-		<div class="page-wrapper">
+		<div class="page-wrapper" style="display: block;overflow-y: scroll;height: 100%;">
 			@Html.Partial("~/Areas/Admin/Views/Shared/_MoldunHeader.cshtml")
 			<div class="body-wrapper">
-				<div class="container-fluid mw-100">
+				<div class="container w-100">
 					@RenderBody()
 				</div>
 			</div>
@@ -96,6 +97,16 @@
 	<script src="~/assets/plug/mustache.js"></script>
 	<script src="~/assets/js/plugins/toastr-init.js"></script>
 	<script src="~/ajax/webappservice.settings.js"></script>
+	<script src="~/assets/plug/chosen/chosen.jquery.js"></script>
+	<script>
+		$(document).ready(function() {
+		  $(".chosen-select").chosen({
+			no_results_text: "Không tìm thấy:",
+			allow_single_deselect: true,
+			width: "100%"
+		  });
+		});
+	</script>
 	@await RenderSectionAsync("Scripts", required: false)
 </body>
 

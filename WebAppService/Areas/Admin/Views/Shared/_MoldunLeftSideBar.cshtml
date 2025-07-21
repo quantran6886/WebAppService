@@ -6,10 +6,10 @@
 		<div class="brand-logo d-flex align-items-center justify-content-between p-0">
 			<a href="#" class="text-nowrap logo-img col-sm-12">
 				<div class="col-sm-12">
-					<div class="fixed-profile p-3 mx-0 mb-2 bg-secondary-subtle rounded mt-0">
+					<div class="fixed-profile p-3 pt-2 mx-0 mb-2 bg-secondary-subtle rounded mt-0">
 						<div class="hstack gap-3">
 							<div class="john-img">
-								<img src="~/assets/images/profile/user-1.jpg" class="rounded-circle" width="40" height="40" alt="modernize-img" />
+								<img src="~/root/icon.png" class="rounded-circle" width="40" height="40" alt="modernize-img" />
 							</div>
 							<div class="john-title">
 								<h6 class="mb-0 fs-4 fw-semibold">@Model.HoTen</h6>
@@ -49,41 +49,33 @@
 				<li class="sidebar-item">
 					<a class="sidebar-link" href="/Admin/Home/Index" id="get-url" aria-expanded="false">
 						<span>
-							<i class="ti ti-home"></i>
+							<iconify-icon icon="solar:home-2-linear" width="20px" height="20px"></iconify-icon>
 						</span>
 						<span class="hide-menu">Trang chủ</span>
 					</a>
 				</li>
 				<li class="sidebar-item">
-					<a class="sidebar-link" href="/Admin/TaiSanDauGia/TaiSanDauGia" id="get-url" aria-expanded="false">
+					<a class="sidebar-link" href="/Admin/DanhSachNhanSu/DanhSachNhanSu" id="get-url" aria-expanded="false">
 						<span>
-							<i class="ti ti-user"></i>
+							<iconify-icon icon="solar:users-group-rounded-line-duotone" class="text-primary" width="20px" height="20px"></iconify-icon>
 						</span>
-						<span class="hide-menu">Danh sách tham dự</span>
+						<span class="hide-menu">Danh sách nhân sự</span>
 					</a>
 				</li>
 				<li class="sidebar-item">
-					<a class="sidebar-link" href="" id="get-url" aria-expanded="false">
+					<a class="sidebar-link" href="/Admin/TinTucBaiViet/TinTucBaiViet" id="get-url" aria-expanded="false">
 						<span>
-							<i class="ti ti-clipboard"></i>
+							<iconify-icon icon="solar:pen-new-square-broken" class="text-primary" width="20px" height="20px"></iconify-icon>
 						</span>
-						<span class="hide-menu">Chương trình đấu giá</span>
+						<span class="hide-menu">Tin tức,Bài viết</span>
 					</a>
 				</li>
 				<li class="sidebar-item">
-					<a class="sidebar-link" href="" id="get-url" aria-expanded="false">
+					<a class="sidebar-link" href="/Admin/TinTucBaiViet/TinTucBaiViet" id="get-url" aria-expanded="false">
 						<span>
-							<i class="ti ti-calendar"></i>
+							<iconify-icon icon="solar:pen-new-square-broken" class="text-primary" width="20px" height="20px"></iconify-icon>
 						</span>
-						<span class="hide-menu">Lịch đấu giá</span>
-					</a>
-				</li>
-				<li class="sidebar-item">
-					<a class="sidebar-link" href="" id="get-url" aria-expanded="false">
-						<span>
-							<i class="ti ti-credit-card"></i>
-						</span>
-						<span class="hide-menu">Thanh toán</span>
+						<span class="hide-menu">FAQS</span>
 					</a>
 				</li>
 				@* <li class="sidebar-item">
@@ -97,18 +89,7 @@
 				<li class="sidebar-item">
 					<a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
 						<span class="d-flex">
-							<i class="ti ti-search"></i>
-						</span>
-						<span class="hide-menu">Tra cứu</span>
-					</a>
-					<ul aria-expanded="false" class="collapse first-level">
-						
-					</ul>
-				</li>
-				<li class="sidebar-item">
-					<a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
-						<span class="d-flex">
-							<i class="ti ti-settings"></i>
+							<iconify-icon icon="solar:settings-broken" class="text-danger" width="20px" height="20px"></iconify-icon>
 						</span>
 						<span class="hide-menu">Cài đặt</span>
 					</a>
@@ -122,19 +103,11 @@
 							</a>
 						</li>
 						<li class="sidebar-item">
-							<a href="/Admin/DanhMucDonVi/DanhMucDonVi" class="sidebar-link">
-								<div class="round-16 d-flex align-items-center justify-content-center">
-									<i class="ti ti-circle"></i>
-								</div>
-								<span class="hide-menu">Danh mục đơn vị</span>
-							</a>
-						</li>
-						<li class="sidebar-item">
 							<a href="../main/frontend-aboutpage.html" class="sidebar-link">
 								<div class="round-16 d-flex align-items-center justify-content-center">
 									<i class="ti ti-circle"></i>
 								</div>
-								<span class="hide-menu">Cán bộ & tài khoản</span>
+								<span class="hide-menu">Tài khoản</span>
 							</a>
 						</li>
 						<li class="sidebar-item">

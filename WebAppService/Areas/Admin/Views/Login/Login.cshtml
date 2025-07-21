@@ -16,7 +16,7 @@
 	<link rel="shortcut icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/9187/9187604.png" />
 	<!-- Core Css -->
 	<link href="~/assets/css/styles.css" rel="stylesheet" />
-	<title>Đăng nhập hệ thống</title>
+    <title>Đăng nhập hệ thống</title>
 	<style>
 		.radial-gradient::before {
 			content: "";
@@ -25,7 +25,7 @@
 			width: 100%;
 			background-size: cover;
 			opacity: 0.9;
-			background-image: url("/assets/images/service/banner-bg-new.jpg");
+			background-image: url("/root/medical-background.jpg");
 			animation: 15sease 0s infinite normal none running gradient;
 		}
 
@@ -53,7 +53,7 @@
 			height: var(--bs-card-height);
 			color: var(--bs-body-color);
 			word-wrap: break-word;
-			background-color: var(--bs-card-bg);
+			background-color: #00000078;
 			background-clip: border-box;
 			border: var(--bs-card-border-width) solid #090a0b;
 			border-radius: var(--bs-card-border-radius);
@@ -99,13 +99,13 @@
 						<div class="card mb-0">
 							<div class="card-body">
 								<div class="d-flex align-items-center" style="justify-self: center;">
-									<div class="user-profile-img">
-										<img src="https://cdn-icons-png.flaticon.com/512/9187/9187604.png" class="rounded-circle" width="60" height="60" alt="modernize-img" />
+                                    <div class="user-profile-img">
+										<img src="~/root/icon.png" class="rounded-circle" width="60" height="60" alt="modernize-img" />
 									</div>
 								</div>
 								<div class="position-relative text-center my-4">
 									<p class="mb-0 fs-6 px-3 d-inline-block bg-body text-white z-index-5 position-relative">
-										PHẦN MỀM ĐẤU GIÁ LẠC VIỆT
+										SUNMEDICAL CENTER
 									</p>
 									<span class="border-to text-whiteition-absolute top-50 start-50 translate-middle"></span>
 								</div>
@@ -116,20 +116,20 @@
 									<input type="hidden" name="returnUrl" value="@Context.Request.Query["ReturnUrl"]" />
 									<div class="mb-3">
 										@Html.LabelFor(m => m.UserName, "Tài khoản", new { @class = "form-label text-white" })
-										@Html.TextBoxFor(m => m.UserName, new { @class = "form-control text-white", placeholder = "Nhập tài khoản" })
+										@Html.TextBoxFor(m => m.UserName, new { @class = "form-control text-white", placeholder = "" })
 										@Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
 									</div>
 
 									<div class="mb-4">
 										@Html.LabelFor(m => m.Password, "Mật khẩu", new { @class = "form-label text-white" })
-										@Html.PasswordFor(m => m.Password, new { @class = "form-control text-white", placeholder = "Nhập mật khẩu" })
+										@Html.PasswordFor(m => m.Password, new { @class = "form-control text-white", placeholder = "" })
 										@Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
 									</div>
 
 									<div class="d-flex align-items-center justify-content-between mb-4">
 										<div class="form-check">
 											@Html.CheckBoxFor(m => m.RememberMe, new { @class = "form-check-input primary" })
-											@Html.LabelFor(m => m.RememberMe, "Ghi nhớ", new { @class = "form-check-label" })
+											@Html.LabelFor(m => m.RememberMe, "Ghi nhớ", new { @class = "form-check-label text-white" })
 										</div>
 										<a class="text-white fw-medium" href="">
 											Quên mật khẩu ?
@@ -138,7 +138,7 @@
 									<button type="submit" class="btn btn-primary w-100 py-8 mb-4 rounded-2">Đăng nhập</button>
 
 									<div class="d-flex align-items-center justify-content-center">
-										<p class="fs-4 mb-0 fw-medium">Bạn chưa có tài khoản?</p>
+										<p class="mb-0 fw-medium text-white">Bạn chưa có tài khoản?</p>
 										<a class="text-white fw-medium ms-2" href="../main/authentication-register.html">
 											Tạo tài khoản
 										</a>

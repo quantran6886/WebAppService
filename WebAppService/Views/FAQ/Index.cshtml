@@ -1,0 +1,272 @@
+﻿@* <!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FAQs - Câu hỏi thường gặp</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 40px;
+          background: #fff;
+          color: #333;
+        }
+
+        .faq-section {
+          max-width: 1100px;
+          margin: auto;
+        }
+
+        .faq-header {
+          text-align: center;
+          margin-bottom: 40px;
+        }
+
+        .faq-header small {
+          color: orange;
+          font-weight: bold;
+        }
+
+        .faq-header h1 {
+                font-size: 28px;
+                font-family: 'Plus Jakarta Sans', sans-serif;
+                font-weight:700;
+        }
+
+        .faq-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 20px;
+        }
+
+        .faq-column {
+          flex: 1;
+          min-width: 300px;
+        }
+
+        .faq-item {
+          background: #fff;
+          border-radius: 8px;
+          padding: 20px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+          margin-bottom: 20px;
+          transition: 0.3s;
+        }
+
+        .faq-item:hover {
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+          display: flex;
+          align-items: center;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            color: #2F4848;
+        }
+
+        .faq-question .plus-icon {
+          font-size: 18px;
+          margin-right: 10px;
+          color: #555;
+        }
+
+        .faq-answer {
+          margin-top: 10px;
+          color: #555;
+          line-height: 1.5;
+        }
+
+        .highlight {
+          color: #f60;
+          border-left: 3px solid #f60;
+          padding-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <section class="faq-section">
+        <div class="faq-header">
+            <small>FAQs</small>
+            <h1>Câu hỏi thường gặp</h1>
+        </div>
+
+        <div class="faq-container">
+            <!-- Column 1 -->
+            <div class="faq-column">
+                <div class="faq-item">
+                    <div class="faq-question highlight">Giờ làm việc của bệnh viện là khi nào?</div>
+                    <div class="faq-answer">
+                        Bệnh viện làm việc từ 7:00 sáng đến 17:00 chiều, từ Thứ Hai đến Thứ Bảy. Ngoài giờ hành chính, bệnh viện vẫn tiếp nhận khám cấp cứu 24/7.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question"><span class="plus-icon">+</span> Bệnh viện có khám bảo hiểm y tế không?</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question"><span class="plus-icon">+</span> Tôi muốn lấy kết quả xét nghiệm thì làm thế nào?</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question"><span class="plus-icon">+</span> Tôi cần liên hệ với bệnh viện thì gọi số nào?</div>
+                </div>
+            </div>
+
+            <!-- Column 2 -->
+            <div class="faq-column">
+                <div class="faq-item">
+                    <div class="faq-question"><span class="plus-icon">+</span> Tôi cần mang theo gì khi đến khám bệnh lần đầu?</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question"><span class="plus-icon">+</span> Làm sao để đăng ký khám bệnh online?</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question"><span class="plus-icon">+</span> Bệnh viện có dịch vụ khám ngoài giờ không?</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question"><span class="plus-icon">+</span> Bệnh viện có cấp giấy khám sức khỏe lái xe, đi học, đi làm không?</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
+ *@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQs</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff;
+            padding: 40px;
+            margin: 0;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+            .faq-header small {
+                color: orange;
+                font-weight: bold;
+            }
+
+            .faq-header h1 {
+                font-size: 28px;
+                font-weight: 700;
+                font-family: 'Plus Jakarta Sans', sans-serif;
+            }
+
+        .faq-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .faq-column {
+            display: grid;
+            grid-auto-rows: 50px;
+            gap: 20px;
+        }
+
+        .faq-item {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+            .faq-item:hover {
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
+
+        .faq-question {
+            font-weight: 600;
+            color: #2F4848;
+            display: flex;
+            align-items: center;
+        }
+
+            .faq-question .plus-icon {
+                margin-right: 10px;
+                color: #888;
+            }
+
+        .faq-answer {
+            margin-top: 10px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .highlight-question {
+            color: #f60;
+            border-left: 3px solid #f60;
+            padding-left: 10px;
+        }
+
+        .double-height {
+            grid-row: span 2;
+        }
+    </style>
+</head>
+<body>
+
+    <section class="faq-section">
+        <div class="faq-header">
+            <small>FAQs</small>
+            <h1>Câu hỏi thường gặp</h1>
+        </div>
+
+        <div class="faq-container">
+            <!-- Cột trái -->
+            <div class="faq-column">
+                <div class="faq-item double-height">
+                    <div class="faq-question highlight-question">Giờ làm việc của bệnh viện là khi nào?</div>
+                    <div class="faq-answer">
+                        Bệnh viện làm việc từ 7:00 sáng đến 17:00 chiều, từ Thứ Hai đến Thứ Bảy. Ngoài giờ hành chính, bệnh viện vẫn tiếp nhận khám cấp cứu 24/7.
+                    </div>
+                </div>
+                <div class="faq-item"><div class="faq-question"><span class="plus-icon">+</span> Bệnh viện có khám bảo hiểm y tế không?</div></div>
+                <div class="faq-item"><div class="faq-question"><span class="plus-icon">+</span> Tôi muốn lấy kết quả xét nghiệm thì làm thế nào?</div></div>
+                <div class="faq-item"><div class="faq-question"><span class="plus-icon">+</span> Tôi cần liên hệ với bệnh viện thì gọi số nào?</div></div>
+                <div class="faq-item"><div class="faq-question"><span class="plus-icon">+</span> Bệnh viện có khám bảo hiểm y tế không?</div></div>
+                <div class="faq-item"><div class="faq-question"><span class="plus-icon">+</span> Tôi muốn lấy kết quả xét nghiệm thì làm thế nào?</div></div>
+                <div class="faq-item"><div class="faq-question"><span class="plus-icon">+</span> Tôi cần liên hệ với bệnh viện thì gọi số nào?</div></div>
+            </div>
+
+            <!-- Cột phải -->
+            <div class="faq-column">
+                <div class="faq-item"><div class="faq-question"><span class="plus-icon">+</span> Tôi cần mang theo gì khi đến khám bệnh lần đầu?</div></div>
+                <div class="faq-item"><div class="faq-question"><span class="plus-icon">+</span> Làm sao để đăng ký khám bệnh online?</div></div>
+                <div class="faq-item"><div class="faq-question"><span class="plus-icon">+</span> Bệnh viện có dịch vụ khám ngoài giờ không?</div></div>
+                <div class="faq-item"><div class="faq-question"><span class="plus-icon">+</span> Bệnh viện có cấp giấy khám sức khỏe lái xe, đi học, đi làm không?</div></div>
+                <div class="faq-item"><div class="faq-question"><span class="plus-icon">+</span> Tôi đang mang thai, lịch khám thai định kỳ sẽ như thế nào?</div></div>
+                <div class="faq-item"><div class="faq-question"><span class="plus-icon">+</span> Bệnh viện có dịch vụ khám ngoài giờ không?</div></div>
+                <div class="faq-item"><div class="faq-question"><span class="plus-icon">+</span> Tôi đang mang thai, lịch khám thai định kỳ sẽ như thế nào?</div></div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

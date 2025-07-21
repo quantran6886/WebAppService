@@ -1,0 +1,242 @@
+﻿@media screen and (max-width: 768px) {
+    .hide-on-mobile {
+        display: none !important;
+    }
+
+    .img-head-1 {
+        height: auto !important;
+    }
+}
+
+.btn-orrange {
+    background-color: #F26522;
+    color: white !important;
+    border-radius: 3px;
+    padding: 8px 20px;
+    font-weight: 500;
+}
+
+    .btn-orrange:hover {
+        color: white !important;
+        background-color: red;
+        transition: 0.3s all;
+    }
+
+.loop-list-style2 {
+    max-height: 700px;
+    overflow-y: scroll;
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #00b5b8 transparent;
+}
+/* WebKit (Chrome, Edge, Safari) */
+.loop-list-style2 ::-webkit-scrollbar {
+    width: 6px;
+}
+
+.loop-list-style2 ::-webkit-scrollbar-thumb {
+    background-color: #00b5b8;
+    border-radius: 10px;
+}
+
+.loop-list-style2 ::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.loop-list-style2 ::-webkit-scrollbar-button:single-button {
+    display: none;
+    height: 0;
+    width: 0;
+}
+
+.loop-list-style::-webkit-scrollbar-button {
+    display: none !important;
+    width: 0;
+    height: 0;
+}
+
+.loop-list-style {
+    max-height: 470px;
+    overflow-y: scroll;
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #00b5b8 transparent;
+}
+
+    /* WebKit (Chrome, Edge, Safari) */
+    .loop-list-style::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .loop-list-style::-webkit-scrollbar-thumb {
+        background-color: #00b5b8;
+        border-radius: 10px;
+    }
+
+    .loop-list-style::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .loop-list-style::-webkit-scrollbar-button:single-button {
+        display: none;
+        height: 0;
+        width: 0;
+    }
+
+    .loop-list-style::-webkit-scrollbar-button {
+        display: none !important;
+        width: 0;
+        height: 0;
+    }
+
+.bagde-c-1 {
+    background: #F26522;
+    padding: 4px 10px;
+    border-radius: 2px;
+    font-weight: 600;
+    font-size: 14px;
+    font-family: 'Noto Sans', sans-serif;
+    font-style: normal;
+    line-height: 1.4;
+    letter-spacing: 0px;
+    text-transform: capitalize;
+}
+
+.text-c-0 {
+    font-family: 'Noto Sans',sans-serif;
+    color: #F26522;
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+.text-c-1 {
+    color: #2F4848;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 140%;
+    letter-spacing: 0%;
+    text-transform: capitalize;
+}
+
+.text-c-3 {
+    color: #302f2f !important;
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+.text-c-2 {
+    color: #555555;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.text-c-4 {
+    font-family: 'Montserrat', sans-serif;
+    color: #534d4d;
+    line-height: 1.5;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.text-c-5 {
+    font-family: 'Noto Sans',sans-serif;
+    color: #2F4848;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.text-c-6 {
+    font-family: 'Inter', sans-serif;
+    color: #999999;
+    font-size: 11px;
+    font-weight: 400;
+}
+.text-c-8 {
+    font-family: 'Inter', sans-serif;
+    color: #999999;
+    font-size: 9px;
+    font-weight: 400;
+}
+.text-c-9 {
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+}
+.text-c-10 {
+    font-family: 'Manrope', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+}
+.img-head-1 {
+    height: 200px;
+}
+
+.menu-icon {
+    width: 30px;
+    height: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    cursor: pointer;
+}
+
+    .menu-icon span {
+        height: 2px;
+        background-color: #555;
+        border-radius: 1px;
+        display: block;
+    }
+
+        .menu-icon span:nth-child(1) {
+            width: 30px;
+        }
+
+        .menu-icon span:nth-child(2) {
+            width: 30px;
+        }
+
+        .menu-icon span:nth-child(3) {
+            width: 20px;
+        }
+.social-icons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    background: #efffff; /* nền nhẹ màu xanh */
+    padding: 0px;
+}
+
+.social-box {
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+    .social-box i {
+        font-size: 20px;
+    }
+
+.fb i {
+    color: #1877f2;
+}
+
+.tw i {
+    color: #1da1f2;
+}
+
+.in i {
+    color: #0a66c2;
+}
+
+.social-box:hover {
+    transform: scale(1.1);
+}

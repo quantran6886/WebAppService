@@ -1,7 +1,7 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
-namespace WebAppService.Controllers
+namespace clinic_website.Controllers
 {
     public class HomeController : Controller
     {
@@ -21,5 +21,6 @@ namespace WebAppService.Controllers
         {
             return View();
         }
+
     }
 }

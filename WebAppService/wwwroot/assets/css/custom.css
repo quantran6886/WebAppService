@@ -3,11 +3,36 @@
 }
 
 #main-wrapper {
-    content: '';
-    background-repeat: no-repeat;
-    background-image: url('https://lh3.googleusercontent.com/proxy/mPL_1bkh-GTlwF2pgsFkAcMX8Yq-53X14wJhmMdDQ2QNycuPtriTDwhFgnzJxTqU8jwdaak1guJOv-lh9b-hkPVgKYuWJeZFVT4yvom92fPD7vpOotybxw8UxvFeUzgKCGMCtGNm6yniiCjLnCyBucZbC4I3NV7crg');
-    background-position-y: center;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
 }
+
+    #main-wrapper::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('/root/icon.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: right;
+        background-size: 30%;
+        filter: blur(8px);
+        z-index: 0;
+        opacity: 0.1;
+    }
+
+    #main-wrapper .content {
+        position: relative;
+        z-index: 1;
+        padding: 20px;
+        color: black;
+    }
+
 
 .table > :not(caption) > * > * {
     padding: 6px 9px;
@@ -27,8 +52,8 @@
     text-align: center;
     font-weight: 500;
     background-size: cover;
-    background-image: url(https://stemhouse.edu.vn/template/assets/images/sat-bg.png);
-    color: #ac9d9d;
+    color: white;
+    background: #485882c2
 }
 
 .btn {
@@ -49,7 +74,7 @@
     appearance: none;
     background-color: transparent;
     background-clip: padding-box;
-    border: var(--bs-border-width) solid #ebeef3;
+    border: var(--bs-border-width) solid #ced7df;
     border-radius: 11px;
     box-shadow: var(--bs-box-shadow-inset);
     transition: border-color .15sease-in-out, box-shadow .15sease-in-out;

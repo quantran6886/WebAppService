@@ -6,6 +6,7 @@ using WebAppService.Areas.Admin._Helper;
 namespace WebAppService.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

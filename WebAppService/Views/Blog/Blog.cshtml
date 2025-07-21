@@ -1,0 +1,188 @@
+﻿@{
+    ViewData["Title"] = "Blog";
+}
+<link href="~/assets/css/swiper-bundle.min.css" rel="stylesheet" />
+
+@section Scripts {
+    <script src="~/assets/js/swiper-bundle.min.js"></script>
+    <script src="~/assets/js/swiper-dom.js"></script>
+}
+<div class="entry-header entry-header-2 mb-0 mt-0 text-center">
+    <div class="thumb-overlay img-hover-slide border-radius-5 position-relative" style="background-image: url(/assets/imgs/farme.png)">
+    </div>
+</div>
+<div class="container px-30 py-2 p-20">
+    <div class="archive-header text-center mb-30 mt-10">
+        <div class="container">
+            <div class="breadcrumb">
+                <span class="no-arrow text-c-0">Bài viết</span>
+            </div>
+            <div>
+                <span class="text-head-breadcrumb text-c-5">Tin tức</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="row">
+                <div class="col-lg-7 col-md-12">
+                    <div class=" mb-0">
+                        <div class="widget-header position-relative mb-20">
+                            <div class="row">
+                                <div class="col-12">
+                                    <span class="post-in bagde-c-1 text-white">Nổi Bật</span> <span class="text-c-1">Trong Tháng</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="loop-list-style">
+                            <article class="p-0 background-white border-radius-10 mb-30 mr-15 wow fadeIn animated">
+                                <div class="d-flex">
+                                    <div class="media-body d-flex mr-15 border-radius-15 img-hover-scale">
+                                        <a class="color-white" href="single.html">
+                                            <img class="border-radius-15 img-head-1" src="~/assets/imgs/1865e15c9742db31e2ba5663896c58388b381c66.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="post-content media-body">
+                                        <div class="entry-meta mb-10 mt-1">
+                                            <span class="post-in background1 text-secondary font-x-small">Bảo vệ sức khỏe</span>
+                                        </div>
+                                        <div class="post-title mb-10 text-limit-3-row">
+                                            <a href="#" class="text-c-3">Ăn Gì Để Khỏe Mạnh Mỗi Ngày? Gợi Ý Thực Đơn Dinh Dưỡng Cân Bằng.</a>
+                                        </div>
+                                        <div class="entry-meta meta-1 flex-column font-x-small text-capitalize mb-10 hide-on-mobile">
+                                            <span class="text-c-6 m-0"> <i class="ti ti-calendar"></i> 07 Thg 07,2025</span>
+                                            <span class="mr-2 ml-2 text-c-6">|</span>
+                                            <span class="text-c-6"><i class="ti ti-timer"></i> 1 Ngày Trước</span>
+                                        </div>
+                                        <div class="">
+                                            <p class="post-exerpt text-c-2 text-limit-3-row hide-on-mobile">Khám phá cách xây dựng bữa ăn khoa học, bổ sung đầy đủ dưỡng chất giúp tăng cường hệ miễn dịch và duy trì cơ thể khỏe mạnh dài lâu.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="p-0 background-white border-radius-10 mb-30 mr-15 wow fadeIn animated">
+                                <div class="d-flex">
+                                    <div class="media-body d-flex mr-15 border-radius-15 img-hover-scale">
+                                        <a class="color-white" href="single.html">
+                                            <img class="border-radius-15 img-head-1" src="~/assets/imgs/1cbe79301c2c399c3dd8f8904850ff848a1c1d33.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="post-content media-body">
+                                        <div class="entry-meta mb-10 mt-1">
+                                            <span class="post-in background1 text-secondary font-x-small">Sự kiện phòng khám</span>
+                                        </div>
+                                        <div class="post-title mb-10 text-limit-3-row">
+                                            <a href="#" class="text-c-3">Ngủ Đủ Giấc – Bí Quyết Vàng Cho Sức Khỏe Toàn Diện.</a>
+                                        </div>
+                                        <div class="entry-meta meta-1 flex-column font-x-small text-capitalize mb-10 hide-on-mobile">
+                                            <span class="text-c-6 m-0"> <i class="ti ti-calendar"></i> 07 Thg 07,2025</span>
+                                            <span class="mr-2 ml-2 text-c-6">|</span>
+                                            <span class="text-c-6"><i class="ti ti-timer"></i> 1 Ngày Trước</span>
+                                        </div>
+                                        <div class="">
+                                            <p class="post-exerpt text-c-2 text-limit-3-row hide-on-mobile">Giấc ngủ chất lượng không chỉ giúp bạn tỉnh táo mà còn hỗ trợ điều hòa hormone, giảm stress và phòng ngừa nhiều bệnh lý nguy hiểm.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-12 sidebar-right pr-0">
+                    <div class="widget-header position-relative  mb-20">
+                        <div class="row">
+                            <div class="col-12">
+                                <span class="post-in bagde-c-1 text-white">Bài viết</span> <span class="text-c-1">Phổ Biến Đã Đăng</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar-widget">
+                        <div class="swiper" id="slider-content">
+                            <div class="swiper-wrapper mb-30">
+                            </div>
+                            <div class="swiper-pagination"></div>
+                            <div id="original-articles" style="display: none;">
+                                @for (int i = 0; i < 5; i++)
+                                {
+                                    <article class="p-0 background-white border-radius-10 mb-15 mr-15 wow fadeIn animated">
+                                        <div class="d-flex">
+                                            <div class="post-thumb d-flex mr-15 border-radius-5 img-hover-scale">
+                                                <a class="color-white" href="single.html">
+                                                    <img src="~/assets/imgs/777be068912ffb3767e6510c19baa27eb663d38b.png" width="145px" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="post-content media-body">
+                                                <div class="entry-meta mb-10 mt-1">
+                                                    <span class="post-in background1 text-secondary font-x-small">Công Nghệ y khoa mới</span>
+                                                </div>
+
+                                                <small class="post-title font-weight-500 mb-10 text-limit-2-row"><a href="#" class="text-c-4">Tập Thể Dục Nhẹ Mỗi Ngày Có Thật Sự Hiệu Quả?</a></small>
+                                                <div class="entry-meta meta-1 flex-column font-x-small text-capitalize mb-10">
+                                                    <span class="text-c-6 m-0"> <i class="ti ti-calendar"></i> 07 Thg 07,2025</span>
+                                                    <span class="mr-1 ml-1 text-c-6">|</span>
+                                                    <span class="text-c-6"><i class="ti ti-timer"></i> 1 Ngày Trước</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </article>
+                                }
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12">
+            <div class="widget-header position-relative mb-20">
+                <div class="row">
+                    <div class="col-12">
+                        <span class="post-in bagde-c-1 text-white">Cẩm nang</span> <span class="text-c-1">Sức khỏe toàn diện</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @for (int i = 0; i < 12; i++)
+                {
+                    <article class="col-lg-4 col-6 wow fadeIn  animated" style="visibility: visible; animation-name: fadeIn;">
+                        <div class="background-white border-radius-10 p-0 mb-30">
+                            <div class="post-thumb d-flex mb-15 border-radius-15 img-hover-scale">
+                                <a href="single.html">
+                                    <img class="border-radius-15" src="~/assets/imgs/32767f76132eb496c7d02db425652b886631fb30.png" alt="">
+                                </a>
+                            </div>
+                            <div class="pl-10 pr-10">
+                                <div class="entry-meta mb-10 mt-1">
+                                    <span class="post-in background1 text-secondary font-x-small">Bảo vệ sức khỏe</span>
+                                </div>
+                                <div class="post-title mb-10 text-limit-3-row">
+                                    <a href="#" class="text-c-3">Cách Phòng Bệnh Hiệu Quả Mùa Thay Đổi Thời Tiết</a>
+                                </div>
+                                <div class="entry-meta meta-1 flex-column font-x-small text-capitalize mb-10">
+                                    <span class="text-c-8 m-0"> <i class="ti ti-calendar"></i> 07 Thg 07,2025</span>
+                                    <span class="mr-0 ml-0 text-c-8">|</span>
+                                    <span class="text-c-8"><i class="ti ti-timer"></i> 1 Ngày Trước</span>
+                                </div>
+                                <div class="">
+                                    <p class="post-exerpt text-c-2 text-limit-3-row">Mỗi khi giao mùa, cơ thể rất dễ bị cảm lạnh, sốt, dị ứng… Bài viết này sẽ hướng dẫn bạn cách bảo vệ bản thân và gia đình hiệu quả.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                }
+            </div>
+            <div class="pagination-area mb-30">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-start">
+                        <li class="page-item active"><a class="page-link" href="#">01</a></li>
+                        <li class="page-item"><a class="page-link" href="#">02</a></li>
+                        <li class="page-item"><a class="page-link" href="#">03</a></li>
+                        <li class="page-item"><a class="page-link" href="#">04</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+

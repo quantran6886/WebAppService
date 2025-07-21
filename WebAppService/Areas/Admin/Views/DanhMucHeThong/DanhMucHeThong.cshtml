@@ -1,98 +1,90 @@
 ﻿@{
-	ViewData["Title"] = "DanhMucHeThong";
-	Layout = "~/Areas/Admin/Views/Shared/_ViewAdmin.cshtml";
+    ViewData["Title"] = "DanhMucHeThong";
+    Layout = "~/Areas/Admin/Views/Shared/_ViewAdmin.cshtml";
 }
 <style>
-	.select,
-	#locale {
-		width: 100%;
-	}
+    .select,
+    #locale {
+        width: 100%;
+    }
 
-	.like {
-		margin-right: 10px;
-	}
+    .like {
+        margin-right: 10px;
+    }
 </style>
 @section Scripts {
-	<script src="~/ajax/webappservice.danhmuchethong.js"></script>
+    <script src="~/ajax/webappservice.danhmuchethong.js"></script>
 }
 
-<div class="col-lg-12 d-flex align-items-stretch">
-	<nav aria-label="breadcrumb" class="mb-1 w-100">
-		<ol class="breadcrumb border border-primary bg-secondary-subtle px-1 py-1 rounded">
-			<li class="breadcrumb-item">
-				<a href="javascript:void(0)" class="text-primary fs-3"><i class="ti ti-list"></i> Danh mục hệ thống</a>
-			</li>
-		</ol>
-	</nav>
+<div class="card-header">
+    <h4 class="card-title">Danh mục hệ thống</h4>
 </div>
-
 <div class="card-body">
-	<div class="row">
-		<div class="col-lg-6 d-flex align-items-stretch">
-			<div class="card w-100 border position-relative overflow-hidden">
-				<div class="row p-2">
-					<div class="form-group col-sm-8">
-						<label class="form-label">Phân loại</label>
-						<select class="form-control" id="LoaiDanhMuc">
-							<option value="">-- Chọn phân loại --</option>
-							<option value="Danh mục giấy tờ">Danh mục giấy tờ</option>
-						</select>
-					</div>
-					<div class="form-group col-sm-4 ps-0">
-						<button type="button" class="btn border border-secondary bg-secondary-subtle text-secondary btn-sm p-2 w-100 bg-secondary-subtle text-secondary btn-sm p-2 w-100" style="margin-top:28px">
-							<i class="ti ti-plus fs-2"></i> Thêm mới
-						</button>
-					</div>
-				</div>
-				
-				<div class="card-body p-2 pt-0">
-					<table id="tableDanhMucHeThong"
-						   data-toggle="table"
-						   data-pagination="true"
-						   data-page-size="10"
-						   data-page-list="[5, 10, 15, all]"
-						   data-search="true">
-						<thead>
-							<tr>
-								<th data-field="thuTuTg" data-sortable="true">Số thứ tự</th>
-								<th data-field="tenGoi" data-sortable="true">Tên gọi</th>
-								<th data-field="ghiChu" data-sortable="true">Ghi chú</th>
-							</tr>
-						</thead>
-					</table>
-				</div>
-			</div>
-		</div>
-		<div class="col-lg-6 d-flex align-items-stretch">
-			<div class="card w-100 border position-relative overflow-hidden">
-				<div class="card-body p-0">
-					<div class="form-group p-2">
-						<button type="button" id="btnReset" class="btn bg-secondary-subtle text-secondary btn-sm p-2">
-							<i class="ti ti-plus fs-2"></i> Tạo mới
-						</button>
-						<button type="button" class="btn bg-info-subtle text-info btn-sm p-2">
-							<i class="ti ti-upload fs-2"></i> Cập nhập
-						</button>
-						<button type="button" class="btn bg-danger-subtle text-danger btn-sm p-2">
-							<i class="ti ti-trash fs-2"></i> Xóa
-						</button>
-					</div>
-					<div class="form-group p-3">
-						<div class="mb-3">
-							<label class="form-label">Số thứ tự</label>
-							<input type="text" class="form-control" placeholder="1,2,3..." id="" value="">
-						</div>
-						<div class="mb-3">
-							<label class="form-label">Tên gọi</label>
-							<input type="text" class="form-control" id="" value="">
-						</div>
-						<div class="mb-3">
-							<label class="form-label">Ghi chú</label>
-							<textarea type="text" class="form-control" placeholder="Nhập ghi chú nếu có ..." rows="5" id="" value=""></textarea>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="row">
+        <div class="col-lg-6 p-0 d-flex align-items-stretch">
+            <div class="card w-100 border position-relative overflow-hidden">
+                <div class="row p-2">
+                    <div class="form-group col-sm-8">
+                        <select class="form-control" id="LoaiDanhMuc">
+                            <option value="">-- Chọn phân loại --</option>
+                            <option value="Danh mục giấy tờ">Danh mục giấy tờ</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-4 ps-0">
+                        <button type="button" class="btn border-secondary w-100" style="margin-top:2px">
+                            <i class="ti ti-plus fs-2"></i> Thêm mới
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card-body p-2 pt-0">
+                    <table id="tableDanhMucHeThong"
+                           data-toggle="table"
+                           data-pagination="true"
+                           data-page-size="10"
+                           data-page-list="[5, 10, 15, all]"
+                           data-search="true">
+                        <thead>
+                            <tr>
+                                <th data-field="thuTuTg" data-sortable="true">Số thứ tự</th>
+                                <th data-field="tenGoi" data-sortable="true">Tên gọi</th>
+                                <th data-field="ghiChu" data-sortable="true">Ghi chú</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 p-0 d-flex align-items-stretch">
+            <div class="card w-100 border position-relative overflow-hidden">
+                <div class="card-body p-0">
+                    <div class="form-group p-2">
+                        <button type="button" id="btnReset" class="btn bg-secondary-subtle text-secondary btn-sm p-2">
+                            <i class="ti ti-plus fs-2"></i> Tạo mới
+                        </button>
+                        <button type="button" class="btn bg-info-subtle text-info btn-sm p-2">
+                            <i class="ti ti-upload fs-2"></i> Cập nhập
+                        </button>
+                        <button type="button" class="btn bg-danger-subtle text-danger btn-sm p-2">
+                            <i class="ti ti-trash fs-2"></i> Xóa
+                        </button>
+                    </div>
+                    <div class="form-group p-3">
+                        <div class="mb-3">
+                            <label class="form-label">Số thứ tự</label>
+                            <input type="text" class="form-control" placeholder="1,2,3..." id="" value="">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Tên gọi</label>
+                            <input type="text" class="form-control" id="" value="">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Ghi chú</label>
+                            <textarea type="text" class="form-control" placeholder="Nhập ghi chú nếu có ..." rows="5" id="" value=""></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

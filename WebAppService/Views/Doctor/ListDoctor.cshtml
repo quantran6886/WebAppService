@@ -1,0 +1,246 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Danh sách bác sĩ</title>
+    <style>
+
+        h2 {
+            color: #2F4848;
+            font-weight:600;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+
+        }
+
+        /* Filter Section */
+     /*    .filter {
+            background-color: rgba(61, 157, 241, 0.05);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            align-items: center;
+        }
+
+        .filter-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #fff;
+            padding: 8px 12px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        }
+
+            .filter-item select {
+                border: none;
+                font-size: 15px;
+                outline: none;
+                background: transparent;
+            } */
+        .filter {
+            
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; /* Cho responsive */
+            padding: 10px;
+            gap: 10px;
+        }
+
+            .filter h2 {
+                margin: 0;
+            }
+
+        .filter-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #fff;
+            padding: 8px 12px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        }
+
+            .filter-item select {
+                border: none;
+                font-size: 15px;
+                outline: none;
+                background: transparent;
+            }
+
+        .btn-search {
+            margin-left: 10px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .btn-search {
+            padding: 10px 20px;
+            font-size: 15px;
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Doctors Grid */
+        .doctors {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Mỗi hàng 3 cột */
+            gap: 25px;
+            justify-items: center;
+            margin-top:40px;
+        }
+
+        .doctor-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            font-weight:500;
+        }
+
+            .doctor-card img {
+                border-radius: 5px;
+                margin-bottom: 15px;
+            }
+
+            .doctor-card h3 {
+                margin: 0;
+                color: #2F4848;
+                font-size: 18px;
+                font-weight: 700;
+            }
+
+            .doctor-card p {
+                margin: 5px 0;
+                color: #555;
+            }
+
+            .doctor-card i {
+                margin-right: 6px;
+            }
+
+        .btn-detail {
+            margin-top: 10px;
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            padding: 8px 60px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .pagination {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.page {
+  width: 43px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  background-color: white;
+  color: #234A6B;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.page:hover {
+  background-color: #e0f7fa;
+}
+
+.page.active {
+  background-color: #00b7b7;
+  color: white;
+  border: none;
+}
+    </style>
+</head>
+
+<body>
+    <div >
+        <img style="width: 100%; height: auto" src="/images/Slide.png" />
+    </div>
+    <div class="container" style="padding:50px;background-color: rgba(61, 157, 241, 0.03);">
+			<div class="filter" >
+            <h2>Danh sách bác sĩ của chúng tôi</h2>
+            <div style="display:flex;gap: 10px;">
+				<div class="filter-item">
+                    <i style="color: #ff6600;" class="fas fa-map-marker-alt"></i>
+					<select>
+						<option>Chọn cơ sở</option>
+					</select>
+				</div>
+				<div class="filter-item">
+                    <i style="color: #ff6600;" class="fas fa-heartbeat"></i>
+					<select>
+						<option>Chọn chuyên khoa</option>
+					</select>
+				</div>
+				<button class="btn-search">
+					<i class="fas fa-search"></i> Tìm
+				</button>
+            </div>
+				
+			</div>
+        <div class="doctors">
+            <div class="doctor-card">
+                <img src="~/images/_DSC2482-Photoroom.png" alt="Ảnh bác sĩ" />
+                <h3>Lê Văn Đức</h3>
+                <p><i class="fas fa-graduation-cap"></i> Phó giáo sư - Tiến sĩ</p>
+                <p><i class="fas fa-house-medical"></i> Bệnh viện đa khoa Sun Medical</p>
+                <button class="btn-detail">Chi tiết</button>
+            </div>
+
+            <!-- Bạn có thể sao chép và thay đổi nội dung cho nhiều bác sĩ khác -->
+            <div class="doctor-card">
+                <img src="~/images/_DSC2482-Photoroom.png" alt="Ảnh bác sĩ" />
+                <h3>Lê Văn Đức</h3>
+                <p><i class="fas fa-graduation-cap"></i> Phó giáo sư - Tiến sĩ</p>
+                <p><i class="fas fa-house-medical"></i> Bệnh viện đa khoa Sun Medical</p>
+                <button class="btn-detail">Chi tiết</button>
+            </div>
+
+            <div class="doctor-card">
+                <img src="~/images/_DSC2482-Photoroom.png" alt="Ảnh bác sĩ" />
+                <h3>Lê Văn Đức</h3>
+                <p><i class="fas fa-graduation-cap"></i> Phó giáo sư - Tiến sĩ</p>
+                <p><i class="fas fa-house-medical"></i> Bệnh viện đa khoa Sun Medical</p>
+                <button class="btn-detail">Chi tiết</button>
+            </div>
+
+            <div class="doctor-card">
+                <img src="~/images/_DSC2482-Photoroom.png" alt="Ảnh bác sĩ" />
+                <h3>Lê Văn Đức</h3>
+                <p><i class="fas fa-graduation-cap"></i> Phó giáo sư - Tiến sĩ</p>
+                <p><i class="fas fa-house-medical"></i> Bệnh viện đa khoa Sun Medical</p>
+                <button class="btn-detail">Chi tiết</button>
+            </div>
+
+            <!-- Thêm nhiều card ở đây -->
+
+        </div>
+        <div class="pagination">
+            <button class="page active">1</button>
+            <button class="page">2</button>
+            <button class="page">3</button>
+            <button class="page">4</button>
+            <button class="page">5</button>
+        </div>
+
+        </div>
+</body>
+</html>

@@ -1,0 +1,281 @@
+﻿@{
+    ViewData["Title"] = "DanhMucHeThong";
+    Layout = "~/Areas/Admin/Views/Shared/_ViewAdmin.cshtml";
+}
+@section Scripts {
+    <script src="~/assets/plug/tinymce/js/tinymce/tinymce.min.js"></script>
+    <script>
+        function tinymceSettings() {
+                  tinymce.init({
+                      selector: '#editor',
+                      plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons accordion',
+                      editimage_cors_hosts: ['picsum.photos'],
+                      menubar: 'file edit view insert format tools table help',
+                      toolbar: "undo redo | accordion accordionremove | blocks fontfamily fontsize | bold italic underline strikethrough | align numlist bullist | link image | table media | lineheight outdent indent| forecolor backcolor removeformat | charmap emoticons | code fullscreen preview | save print | pagebreak anchor codesample | ltr rtl",
+                      autosave_ask_before_unload: true,
+                      autosave_interval: '30s',
+                      autosave_prefix: '{path}{query}-{id}-',
+                      autosave_restore_when_empty: false,
+                      autosave_retention: '2m',
+                      image_advtab: true,
+                      language: 'vi',
+                      importcss_append: true,
+                      file_picker_callback: (callback, value, meta) => {
+                          let input = document.createElement('input');
+
+                          if (meta.filetype === 'image') {
+                              input.setAttribute('type', 'file');
+                              input.setAttribute('accept', 'image/*');
+
+                              input.onchange = function () {
+                                  var file = this.files[0];
+                                  var reader = new FileReader();
+
+                                  reader.onload = function () {
+                                      callback(reader.result, { alt: file.name });
+                                  };
+                                  reader.readAsDataURL(file);
+                              };
+
+                              input.click();
+                          }
+                          else if (meta.filetype === 'media') {
+                              input.setAttribute('type', 'file');
+                              input.setAttribute('accept', 'video/*');
+
+                              input.onchange = function () {
+                                  var file = this.files[0];
+
+                                  if (file) {
+                                      var videoUrl = URL.createObjectURL(file);
+                                      callback(videoUrl, { source2: file.name });
+                                  }
+                              };
+
+                              input.click();
+                          }
+                      },
+                      height: 1000,
+                      image_caption: true,
+                      quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
+                      noneditable_class: 'mceNonEditable',
+                      toolbar_mode: 'sliding',
+                      contextmenu: 'link image table',
+                  });
+              };
+              tinymceSettings();
+    </script>
+    <script>
+        var files;
+        var myController = {
+            init:function () {
+                myController.Event();
+            },
+
+            Event: function () {
+                $("#btnNewForm").off("click").on("click", function () {
+                    myController.ResetForm();
+                    toastr.success("Mời bạn nhập thông tin","Thành công",{ showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                });
+                 $("#btnSaveData").off("click").on("click", function () {
+                    myController.SaveData();
+                });
+
+                $("#btnUpload").off('click').on('click', function () {
+                    $("#duong_dan_file").click();
+                    $("#duong_dan_file").off('change').on('change', function (e) {
+                        files = e.target.files;
+                        if (files.length > 0) {
+                            for (var x = 0; x < files.length; x++) {
+                                if (files[x].size >= 52428800) {
+                                    noti_Warning('Chỉ được upload file dưới 50mb');
+                                    $("#duong_dan_file").filestyle('clear');
+                                    $("#duong_dan_file").filestyle('placeholder', "Không có tệp đính kèm nào");
+                                    return;
+                                } else {
+                                    myController.readURL(this);
+                                }
+                            }
+                        }
+                    });
+                });
+            },
+            
+            readURL: function (input) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#imageHoSo').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            },
+
+            ResetForm: function () {
+                $("#ho_ten").val("");
+                $("#ngay_sinh").val("");
+                $("#chuc_danh").val("");
+                $("#co_so_lam_viec").val("");
+                $("#bang_cap_hoc_vi").val("");
+                $("#ngon_ngu").val("");
+                $("#kinh_nghiem_lam_viec").val("");
+            },
+
+            SaveData:function () {
+                var ho_ten = $("#ho_ten").val();
+                if (ho_ten == "") {
+                    toastr.error("Bạn chưa nhập họ tên", "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                    $("#ho_ten").focus();
+                    return;
+                }
+
+            },
+
+        };
+        myController.init();
+    </script>
+}
+
+<div class="card-header mt-2">
+    <h4 class="card-title">Danh sách nhân sự</h4>
+</div>
+<div class="card-body">
+    <div class="row">
+        <div class="col-lg-12 d-flex align-items-stretch">
+            <div class="card w-100 border position-relative overflow-hidden">
+                <div class="card-header p-1">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-info btn-sm" id="btnNewForm" data-bs-toggle="modal" data-bs-target="#bsHoSoCanBo">
+                            <i class="ti ti-plus fs-2"></i> Tạo mới bản ghi
+                        </button>
+                        <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editer">
+                            <i class="ti ti-search fs-2"></i> Lọc dữ liệu
+                        </button>
+                    </div>
+
+                </div>
+                <div class="card-body p-2">
+                    <table id="table"
+                           data-toggle="table"
+                           data-flat="true"
+                           data-search="true"
+                           data-url="">
+                        <thead>
+                            <tr>
+                                <th data-field="github.name" data-sortable="true">Họ và tên</th>
+                                <th data-field="github.count.stargazers" data-sortable="true">Ngày sinh</th>
+                                <th data-field="github.count.forks" data-sortable="true">Chức danh</th>
+                                <th data-field="github.description" data-sortable="true">Cơ sở làm việc</th>
+                                <th data-field="github.description" data-sortable="true">Bằng cấp - học vị</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="bsHoSoCanBo" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
+    <div class="modal-dialog modal-xl w-100">
+        <div class="modal-content">
+            <div class="modal-header d-flex align-items-center">
+                <h4 class="modal-title" id="myLargeModalLabel">
+                    Thông tin bác sỹ
+                </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-2 d-flex align-items-stretch" style="height: max-content;">
+                        <div class="card w-100 border position-relative overflow-hidden">
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <img src="~/root/Profile_avatar.png" id="imageHoSo" alt="ảnh đại diện" class="" width="150px" height="180px">
+                                    <input type="file" id="duong_dan_file" name="name" value="" hidden/>
+                                    <div class="d-flex align-items-center justify-content-center my-1 gap-1">
+                                        <button class="btn bg-danger text-white"><i class="ti ti-trash"></i></button>
+                                        <button class="btn btn-primary w-100" id="btnUpload"><i class="ti ti-upload"></i> Upload</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-10 d-flex align-items-stretch p-0">
+                        <div class="card w-100 border position-relative m-0 overflow-hidden">
+                            <div class="card-body p-3">
+                                <p class="card-subtitle text-primary mb-4">Thông tin cá nhân</p>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-6 mb-2">
+                                            <label class="fs-2 form-label m-0">Họ tên:<font class="text-danger">*</font> </label>
+                                            <input type="text" class="form-control" placeholder="Nhập họ tên ..." id="ho_ten" value="">
+                                        </div>
+                                        <div class="col-sm-6 mb-2">
+                                            <label class="fs-2 form-label m-0">Ngày sinh:<font class="text-danger">*</font></label>
+                                            <input type="date" class="form-control" placeholder="" id="ngay_sinh" value="">
+                                        </div>
+                                        <div class="col-sm-6 mb-2">
+                                            <label class="fs-2 form-label m-0">Chức danh:</label>
+                                            <select data-placeholder="Choose a Country..." class="form-control chosen-select" id="chuc_danh" tabindex="2">
+                                                <option value="">--Chọn chức danh--</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-6 mb-2">
+                                            <label class="fs-2 form-label m-0">Cơ sở làm việc:</label>
+                                            <input type="text" class="form-control" placeholder="Cơ sở làm việc ..." id="co_so_lam_viec" value="">
+                                        </div>
+                                        <div class="col-sm-12 mb-2">
+                                            <label class="fs-2 form-label m-0">Bằng cấp - Học vị:</label>
+                                            <textarea type="text" class="form-control" placeholder="Bằng cấp học vị ..." rows="2" id="bang_cap_hoc_vi" value=""></textarea>
+                                        </div>
+                                        <div class="col-sm-12 mb-2">
+                                            <label class="fs-2 form-label m-0">Ngôn ngữ:</label>
+                                            <textarea type="text" class="form-control" placeholder="Bằng cấp học vị ..." rows="2" id="ngon_ngu" value=""></textarea>
+                                        </div>
+                                        <div class="col-sm-12 mb-2">
+                                            <label class="fs-2 form-label m-0">Kinh nghiệm làm việc:</label>
+                                            <textarea type="text" class="form-control" placeholder="Bằng cấp học vị ..." rows="2" id="kinh_nghiem_lam_viec" value=""></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary waves-effect text-start" id="btnSaveData">
+                    Lưu và kết thúc
+                </button>
+                <button type="button" class="btn bg-danger-subtle text-danger  waves-effect text-start" data-bs-dismiss="modal">
+                    Đóng
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editer" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header d-flex align-items-center">
+                <h4 class="modal-title" id="myLargeModalLabel">
+                    Bài viết
+                </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <textarea id="editor"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary waves-effect text-start">
+                    Lưu và kết thúc
+                </button>
+                <button type="button" class="btn bg-danger-subtle text-danger  waves-effect text-start" data-bs-dismiss="modal">
+                    Đóng
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
