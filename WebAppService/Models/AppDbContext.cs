@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace WebAppService.Models;
+namespace WebAppService.Models.Updates;
 
 public partial class AppDbContext : DbContext
 {
@@ -26,6 +26,22 @@ public partial class AppDbContext : DbContext
     public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
 
     public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; }
+
+    public virtual DbSet<BrowerAnhTaiLieuDauGium> BrowerAnhTaiLieuDauGia { get; set; }
+
+    public virtual DbSet<BrowerDangKyDauGium> BrowerDangKyDauGia { get; set; }
+
+    public virtual DbSet<BrowerHomePage> BrowerHomePages { get; set; }
+
+    public virtual DbSet<BrowerKhachHangDoiTac> BrowerKhachHangDoiTacs { get; set; }
+
+    public virtual DbSet<BrowerTaiKhoanDangKy> BrowerTaiKhoanDangKies { get; set; }
+
+    public virtual DbSet<BrowerTaiSanDauGium> BrowerTaiSanDauGia { get; set; }
+
+    public virtual DbSet<BrowerTaiSanDinhKem> BrowerTaiSanDinhKems { get; set; }
+
+    public virtual DbSet<BrowerVanBanTaiLieu> BrowerVanBanTaiLieus { get; set; }
 
     public virtual DbSet<ViewUserOnline> ViewUserOnlines { get; set; }
 
@@ -115,6 +131,160 @@ public partial class AppDbContext : DbContext
             entity.HasKey(e => new { e.UserId, e.LoginProvider, e.Name });
 
             entity.HasOne(d => d.User).WithMany(p => p.AspNetUserTokens).HasForeignKey(d => d.UserId);
+        });
+
+        modelBuilder.Entity<BrowerAnhTaiLieuDauGium>(entity =>
+        {
+            entity.HasKey(e => e.IdFile);
+
+            entity.ToTable("Brower.AnhTaiLieuDauGia");
+
+            entity.Property(e => e.IdFile).ValueGeneratedNever();
+            entity.Property(e => e.NameFile)
+                .HasMaxLength(250)
+                .HasColumnName("nameFile");
+            entity.Property(e => e.UrlFile).HasColumnName("urlFile");
+
+            entity.HasOne(d => d.IdTaiSanNavigation).WithMany(p => p.BrowerAnhTaiLieuDauGia)
+                .HasForeignKey(d => d.IdTaiSan)
+                .HasConstraintName("FK_Brower.AnhTaiLieuDauGia_Brower.TaiSanDauGia");
+        });
+
+        modelBuilder.Entity<BrowerDangKyDauGium>(entity =>
+        {
+            entity.HasKey(e => e.IdDangKy);
+
+            entity.ToTable("Brower.DangKyDauGia");
+
+            entity.Property(e => e.MaTraGia).HasMaxLength(250);
+            entity.Property(e => e.SoLenh).HasMaxLength(60);
+            entity.Property(e => e.ThoiGianTra).HasColumnType("datetime");
+
+            entity.HasOne(d => d.IdTaiKhoanNavigation).WithMany(p => p.BrowerDangKyDauGia)
+                .HasForeignKey(d => d.IdTaiKhoan)
+                .HasConstraintName("FK_Brower.DangKyDauGia_Brower.TaiKhoanDangKy");
+
+            entity.HasOne(d => d.IdTaiSanNavigation).WithMany(p => p.BrowerDangKyDauGia)
+                .HasForeignKey(d => d.IdTaiSan)
+                .HasConstraintName("FK_Brower.DangKyDauGia_Brower.TaiSanDauGia");
+        });
+
+        modelBuilder.Entity<BrowerHomePage>(entity =>
+        {
+            entity.ToTable("Brower.HomePage");
+
+            entity.Property(e => e.Link).HasColumnType("text");
+            entity.Property(e => e.MoTaHienThi).HasColumnType("text");
+            entity.Property(e => e.PhanLoai).HasMaxLength(250);
+            entity.Property(e => e.Tag).HasMaxLength(250);
+            entity.Property(e => e.TenTieuDe).HasMaxLength(250);
+        });
+
+        modelBuilder.Entity<BrowerKhachHangDoiTac>(entity =>
+        {
+            entity.HasKey(e => e.IdKhachHang);
+
+            entity.ToTable("Brower.KhachHangDoiTac");
+
+            entity.Property(e => e.MoTa).HasColumnType("text");
+            entity.Property(e => e.NameFile)
+                .HasMaxLength(250)
+                .HasColumnName("nameFile");
+            entity.Property(e => e.UrlFile).HasColumnName("urlFile");
+        });
+
+        modelBuilder.Entity<BrowerTaiKhoanDangKy>(entity =>
+        {
+            entity.HasKey(e => e.IdTaiKhoan);
+
+            entity.ToTable("Brower.TaiKhoanDangKy");
+
+            entity.Property(e => e.ChiNhanNganHang).HasMaxLength(250);
+            entity.Property(e => e.ChucVu).HasMaxLength(150);
+            entity.Property(e => e.DiaChiChiTiet).HasMaxLength(250);
+            entity.Property(e => e.DiaChiDoanhNghiep).HasMaxLength(250);
+            entity.Property(e => e.Email).HasMaxLength(250);
+            entity.Property(e => e.Ho).HasMaxLength(150);
+            entity.Property(e => e.IsNhapSaiMk).HasColumnName("IsNhapSaiMK");
+            entity.Property(e => e.LoaiGioiTinh).HasMaxLength(150);
+            entity.Property(e => e.LoaiNganHang).HasMaxLength(250);
+            entity.Property(e => e.MaSoThue).HasMaxLength(150);
+            entity.Property(e => e.NameShMatSau)
+                .HasMaxLength(250)
+                .HasColumnName("nameShMatSau");
+            entity.Property(e => e.NameShMatTruoc)
+                .HasMaxLength(250)
+                .HasColumnName("nameShMatTruoc");
+            entity.Property(e => e.NameTaiLieu)
+                .HasMaxLength(250)
+                .HasColumnName("nameTaiLieu");
+            entity.Property(e => e.NoiCap).HasMaxLength(250);
+            entity.Property(e => e.NoiCapMst)
+                .HasMaxLength(250)
+                .HasColumnName("NoiCapMST");
+            entity.Property(e => e.SoDienThoai).HasMaxLength(150);
+            entity.Property(e => e.SoHieuGiayTo).HasMaxLength(250);
+            entity.Property(e => e.SoTaiKhoan).HasMaxLength(250);
+            entity.Property(e => e.Ten).HasMaxLength(150);
+            entity.Property(e => e.TenChuTaiKhoan).HasMaxLength(250);
+            entity.Property(e => e.TenDem).HasMaxLength(150);
+            entity.Property(e => e.TenToChuc).HasMaxLength(150);
+            entity.Property(e => e.UrlShMatSau).HasColumnName("urlShMatSau");
+            entity.Property(e => e.UrlShMatTruoc).HasColumnName("urlShMatTruoc");
+            entity.Property(e => e.UrlTaiLieu).HasColumnName("urlTaiLieu");
+            entity.Property(e => e.Username).HasMaxLength(150);
+        });
+
+        modelBuilder.Entity<BrowerTaiSanDauGium>(entity =>
+        {
+            entity.HasKey(e => e.IdTaiSan);
+
+            entity.ToTable("Brower.TaiSanDauGia");
+
+            entity.Property(e => e.DauGiaVien).HasMaxLength(250);
+            entity.Property(e => e.DiaChi).HasMaxLength(250);
+            entity.Property(e => e.DonViGia).HasMaxLength(150);
+            entity.Property(e => e.HinhThucDauGia).HasMaxLength(250);
+            entity.Property(e => e.MaTaiSan)
+                .HasMaxLength(250)
+                .IsUnicode(false);
+            entity.Property(e => e.NguoiCoTaiSan).HasMaxLength(250);
+            entity.Property(e => e.NoiXemTaiSan).HasMaxLength(250);
+            entity.Property(e => e.PhuongThucDauGia).HasMaxLength(150);
+            entity.Property(e => e.Tag).HasMaxLength(150);
+            entity.Property(e => e.TenTaiSan).HasMaxLength(250);
+            entity.Property(e => e.TextThoiGianXemTaiSan).HasMaxLength(250);
+            entity.Property(e => e.ThoiGianBatDauTraGia).HasColumnType("datetime");
+            entity.Property(e => e.ThoiGianDong).HasColumnType("datetime");
+            entity.Property(e => e.ThoiGianKetThucTraGia).HasColumnType("datetime");
+            entity.Property(e => e.ThoiGianMo).HasColumnType("datetime");
+            entity.Property(e => e.ToChucDauGia).HasMaxLength(250);
+        });
+
+        modelBuilder.Entity<BrowerTaiSanDinhKem>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToTable("Brower.TaiSanDinhKem");
+
+            entity.HasOne(d => d.IdNavigation).WithMany()
+                .HasForeignKey(d => d.Id)
+                .HasConstraintName("FK_Brower.TaiSanDinhKem_Brower.HomePage");
+
+            entity.HasOne(d => d.IdTaiSanNavigation).WithMany()
+                .HasForeignKey(d => d.IdTaiSan)
+                .HasConstraintName("FK_Brower.TaiSanDinhKem_Brower.TaiSanDauGia");
+        });
+
+        modelBuilder.Entity<BrowerVanBanTaiLieu>(entity =>
+        {
+            entity.HasKey(e => e.IdVanBan);
+
+            entity.ToTable("Brower.VanBanTaiLieu");
+
+            entity.Property(e => e.DuoiFile).HasMaxLength(50);
+            entity.Property(e => e.NameFile).HasMaxLength(250);
+            entity.Property(e => e.TenVanBan).HasMaxLength(250);
         });
 
         modelBuilder.Entity<ViewUserOnline>(entity =>
@@ -250,9 +420,9 @@ public partial class AppDbContext : DbContext
             entity.ToTable("Web.UserOnline");
 
             entity.Property(e => e.ComputerName).HasMaxLength(100);
-            entity.Property(e => e.UserName).HasMaxLength(100);
             entity.Property(e => e.IpAddress).HasMaxLength(50);
             entity.Property(e => e.LastActive).HasColumnType("datetime");
+            entity.Property(e => e.UserName).HasMaxLength(100);
         });
 
         OnModelCreatingPartial(modelBuilder);

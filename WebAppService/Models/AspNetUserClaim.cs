@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WebAppService.Models;
+namespace WebAppService.Models.Updates;
 
 public partial class AspNetUserClaim
 {

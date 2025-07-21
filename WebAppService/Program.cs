@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using NotificationLibrary.NotificationControl;
-using WebAppService.Models;
 using WebAppService.Models.Entities;
 
 var builder = WebApplication.CreateBuilder(args);

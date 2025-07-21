@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Shared\horizontal\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,6 +37,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WebAppService.Models\WebAppService.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Areas\Admin\Views\Shared\_MoldunLeftSideBar.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

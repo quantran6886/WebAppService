@@ -55,13 +55,28 @@
 	<link rel="stylesheet" href="~/web/assets/css/module-css/contact.css" />
 	<link rel="stylesheet" href="~/web/assets/css/module-css/pricing.css" />
 	<link rel="stylesheet" href="~/web/assets/css/module-css/blog.css" />
+	<link rel="stylesheet" href="~/web/assets/css/module-css/page-header.css" />
 	<link rel="stylesheet" href="~/web/assets/css/module-css/sliding-text.css" />
 	<link rel="stylesheet" href="~/web/assets/css/module-css/why-choose.css" />
 	<link rel="stylesheet" href="~/web/assets/css/module-css/shop.css">
-
 	<!-- template styles -->
 	<link rel="stylesheet" href="~/web/assets/css/style.css" />
 	<link rel="stylesheet" href="~/web/assets/css/responsive.css" />
+	<link href="~/web/assets/plug/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" />
+	<style>
+		.time-part1{
+			font-size: x-large;
+			color: #a32727;
+			font-family: 'icomoon';
+			font-weight: 600;
+		}
+
+		.date-part1{
+			font-size: smaller;
+			color: #646464;
+			font-weight: 400;
+		}
+	</style>
 </head>
 
 <body class="custom-cursor body-bg-color">
@@ -84,8 +99,8 @@
 					<div class="sidebar-info-contents">
 						<div class="content-inner">
 							<div class="logo">
-								<a href="index.html">
-									<img src="~/web/assets/images/resources/logo-1.png" alt="" />
+								<a href="/Home/Index">
+									<img src="https://diamondsoft.vn/media/251/content/logo-s.png" alt="" />
 								</a>
 							</div>
 							<div class="content-box">
@@ -136,7 +151,7 @@
 	<div class="page-wrapper">
 		<header class="main-header-three">
 			<div class="main-header-three__wrapper">
-				<div class="main-menu-three__top" style="background-color: #903232;">
+				<div class="main-menu-three__top" style="background-color: #03b7dd;">
 					<div class="container">
 						<div class="main-menu-three__top-inner">
 							<ul class="list-unstyled main-menu-three__contact-list">
@@ -174,12 +189,18 @@
 							<div class="main-menu-three__wrapper-inner">
 								<div class="main-menu-three__left">
 									<div class="main-header-three__logo">
-										<a href="index.html">
-											<img class="img-fluid" width="155" src="https://lacvietauction.vn/files/frontend/images/core/logo-dau-gia-lac-viet.png" alt="" />
+										<a href="/Home/Index">
+											<img class="img-fluid" width="80" src="https://diamondsoft.vn/media/251/content/logo-s.png" alt="" />
 										</a>
 									</div>
+
 								</div>
+								
 								<div class="main-menu-three__right">
+									<div class="text-center">
+										<div class="time-part1">00:52:32</div>
+										<div class="date-part1">Chu&#x309; Nh&#xE2;&#x323;t, 16/03/2025</div>
+									</div>
 									<div class="main-menu-three__main-menu-box">
 										<a href="#" class="mobile-nav__toggler">
 											<i class="fa fa-bars"></i>
@@ -188,12 +209,12 @@
 											<li class="dropdown scrollToLink">
 												<a href="#home">Tài sản đấu giá </a>
 												<ul>
-													<li><a href="index.html">Tài sản nhà nước</a></li>
-													<li><a href="index2.html">Bất động sản</a></li>
-													<li><a href="index3.html">Phượng tiện - Xe cộ</a></li>
-													<li><a href="index4.html">Sưu tầm  - Nghệ thuật</a></li>
-													<li><a href="index-dark.html">Hàng hiệu xa xỉ</a></li>
-													<li><a href="index-dark.html">Tài sản khác</a></li>
+													<li><a href="/DanhMucTaiSan/DanhMucTaiSan">Tài sản nhà nước</a></li>
+													<li><a href="/DanhMucTaiSan/DanhMucTaiSan">Bất động sản</a></li>
+													<li><a href="/DanhMucTaiSan/DanhMucTaiSan">Phượng tiện - Xe cộ</a></li>
+													<li><a href="/DanhMucTaiSan/DanhMucTaiSan">Sưu tầm  - Nghệ thuật</a></li>
+													<li><a href="/DanhMucTaiSan/DanhMucTaiSan">Hàng hiệu xa xỉ</a></li>
+													<li><a href="/DanhMucTaiSan/DanhMucTaiSan">Tài sản khác</a></li>
 												</ul>
 											</li>
 											<li class="scrollToLink">
@@ -203,14 +224,15 @@
 												<a href="#about">Tin tức</a>
 											</li>
 											<li class="scrollToLink">
-												<a href="#team">Giới thiệu</a>
+												<a href="/GioiThieu/GioiThieu">Giới thiệu</a>
 											</li>
 											<li class="scrollToLink">
-												<a href="#project">Liên hệ</a>
+												<a href="/LienHe/LienHe">Liên hệ</a>
 											</li>
 											<li class="scrollToLink">
-												<button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalLogin" onclick="">Đăng nhập</button>
+												<button class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#modalLogin" onclick=""><i class="fa fa-user"></i> Đăng nhập</button>
 											</li>
+											
 											@* <li class="dropdown scrollToLink">
 												<a href="#home"><i class="fa fa-user"></i> Trần Minh Quân </a>
 												<ul>
@@ -330,7 +352,7 @@
 
 			<div class="logo-box">
 				<a href="index.html" aria-label="logo image">
-					<img src="~/web/assets/images/resources/logo-1.png" width="135" alt="" />
+					<img src="https://diamondsoft.vn/media/251/content/logo-s.png" width="80" alt="" />
 				</a>
 			</div>
 			<!-- /.logo-box -->
@@ -382,40 +404,40 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="exampleModalLabel">Đăng nhập thệ thống</h1>
+					@* <h1 class="modal-title fs-5" id="exampleModalLabel">Đăng nhập thệ thống</h1> *@
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body p-0">
 					<div class="login-one__form">
-						<form id="login-one__form" name="Login-one_form" action="#" method="post">
+						<form id="login-one__form" name="Login-one_form" >
 							<div class="row">
-								<div style=" " class="loginLogoContainer mb-2">
-									<img class="img-fluid" width="300" src="https://lacvietauction.vn/files/frontend/images/core/logo-dau-gia-lac-viet.png" style="" class="loginLogo">
+								<div style="text-align-last: center; " class="loginLogoContainer mb-2">
+									<img class="img-fluid" width="100" src="https://diamondsoft.vn/media/251/content/logo-s.png" style="">
 								</div>
-								<div class="col-xl-12 mb-2">
+								<div class="col-xl-12">
 									<div class="form-group">
 										<label>Tài khoản</label>
 										<div class="input-box">
-											<input class="" type="email" name="form_email" id="formEmail" placeholder="Tài khoản ..." required="" value="">
+											<input class="" type="email" name="form_email" id="formEmail" placeholder="Tài khoản ..." value="">
 										</div>
 									</div>
 								</div>
-								<div class="col-xl-12 mb-2">
+								<div class="col-xl-12">
 									<div class="form-group">
 										<label>Mật khẩu</label>
 										<div class="input-box">
-											<input class="" type="text" name="form_password" id="formPassword" placeholder="Mật khẩu ..." required="" value="">
+											<input class="" type="password" name="form_password" id="formPassword" placeholder="Mật khẩu ..." value="">
 										</div>
 									</div>
 								</div>
 								<div class="col-xl-12 mb-1">
 									<div class="form-group">
-										<button class="btn thm-btn w-100 p-2" type="submit" data-loading-text="Please wait...">
+										<button class="btn thm-btn btn-sm w-100 p-2" type="button" onclick="Login()" data-loading-text="Please wait...">
 											Đăng nhập hệ thống
 										</button>
 									</div>
 								</div>
-								<div class="remember-forget row">
+								<div class="remember-forget row pt-0">
 									<div class="checked-box1">
 										<input type="checkbox" name="saveMyInfo" id="saveinfo" checked="">
 										<label for="saveinfo">
@@ -425,7 +447,7 @@
 									</div>
 								</div>
 
-								<div class="create-account text-center">
+								<div class="create-account text-center pt-0" style="font-size: smaller;">
 									<p>
 										Bạn chưa có tài khoản?
 										<a href="/DangKyTaiKhoan/DangKyTaiKhoan">Tạo tài khoản</a>/<a href="#">Quên mật khẩu</a>
@@ -470,5 +492,36 @@
 	<script src="~/web/assets/js/aos.js"></script>
 	<!-- template js -->
 	<script src="~/web/assets/js/script.js"></script>
+	<script src="~/web/assets/plug/sweetalert2/dist/sweetalert2.min.js"></script>
+	<script>
+		function updateTime() {
+			let now = new Date();
+			let hours = now.getHours().toString().padStart(2, '0');
+			let minutes = now.getMinutes().toString().padStart(2, '0');
+			let seconds = now.getSeconds().toString().padStart(2, '0');
+			document.getElementsByClassName("time-part1")[0].textContent = `${hours}:${minutes}:${seconds}`;
+			document.getElementsByClassName("time-part1")[1].textContent = `${hours}:${minutes}:${seconds}`;
+			let days = ["Chủ Nhật", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"];
+			let dayName = days[now.getDay()];
+			let date = now.getDate().toString().padStart(2, '0');
+			let month = (now.getMonth() + 1).toString().padStart(2, '0'); // Tháng bắt đầu từ 0 nên +1
+			let year = now.getFullYear();
+			document.getElementsByClassName("date-part1")[1].innerHTML = `${dayName}, ${date}/${month}/${year}`;
+		}
+		updateTime();
+		setInterval(updateTime, 1000);
+
+		// function Login(){
+		// 	  Swal.fire({
+		// 		title: "đăng nhập thành công!",
+		// 		text: "",
+		// 		icon: "success",
+		// 		timer: 2000,
+		// 		showconfirmbutton: false
+		// 	}).then(() => {
+		// 		window.location.href = "/DangKyTaiKhoan/DangKyTaiKhoan";
+		// 	});
+		// }
+	</script>
 </body>
 </html>
