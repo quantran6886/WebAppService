@@ -84,6 +84,4 @@ public partial class BrowerTaiKhoanDangKy
     public int? IsNhapSaiMk { get; set; }
 
     public bool? IsDongPhiThuongNien { get; set; }
-
-    public virtual ICollection<BrowerDangKyDauGium> BrowerDangKyDauGia { get; set; } = new List<BrowerDangKyDauGium>();
 }

@@ -67,19 +67,26 @@
     </script>
     <script>
         var files;
-        var myController = {
+        var myScripts = {
             init:function () {
-                myController.LoadData();
-                myController.Event();
+                myScripts.LoadData();
+                myScripts.Event();
             },
 
             Event: function () {
+
                 $("#btnNewForm").off("click").on("click", function () {
-                    myController.ResetForm();
+                    myScripts.ResetForm();
                     toastr.success("Mời bạn nhập thông tin","Thành công",{ showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
                 });
-                 $("#btnSaveData").off("click").on("click", function () {
-                    myController.SaveData();
+
+                $("#btnSaveData").off("click").on("click", function () {
+                    myScripts.SaveData();
+                });
+
+                $("#btnRemoveUpload").off("click").on("click", function () {
+                    $("#isThayDoi").val("false");
+                    $('#imageHoSo').attr('src', '/root/Profile_avatar.png');
                 });
 
                 $("#btnUpload").off('click').on('click', function () {
@@ -89,12 +96,12 @@
                         if (files.length > 0) {
                             for (var x = 0; x < files.length; x++) {
                                 if (files[x].size >= 52428800) {
-                                    noti_Warning('Chỉ được upload file dưới 50mb');
-                                    $("#duong_dan_file").filestyle('clear');
-                                    $("#duong_dan_file").filestyle('placeholder', "Không có tệp đính kèm nào");
+                                    toastr.error("Chỉ được upload file dưới 50mb", "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                                    $("#isThayDoi").val("false");
                                     return;
                                 } else {
-                                    myController.readURL(this);
+                                    myScripts.readURL(this);
+                                    $("#isThayDoi").val("true");
                                 }
                             }
                         }
@@ -118,9 +125,70 @@
                                 $("#ChucDanh").html(option);
                                 $("#ChucDanh").trigger('chosen:updated');
                             }
+                            myScripts.LoadTable();
                         }
                     },
                 });
+            },
+
+           LoadTable: function () {
+                $.ajax({
+                    url: '/Admin/DanhSachNhanSu/LoadTable',
+                    type: "GET",
+                    dataType: "json",
+                    data: {
+                    },
+                    success: function (response) {
+                        if (response.status == true) {
+                            var lstData = response.lstData;
+                            if (lstData != null && lstData.length > 0) {
+                                $("#tableDanhSachNhanSu").bootstrapTable('load', lstData);
+                            }
+                            else {
+                                $("#tableDanhSachNhanSu").bootstrapTable('removeAll');
+                            }
+                            $('[data-bs-toggle="tooltip"]').tooltip();
+                        }
+                    }
+                })
+            },
+
+            LoadDetail: function (idNhanSu) {
+                if (idNhanSu != "") {
+                    $.ajax({
+                        url: '/Admin/DanhSachNhanSu/LoadDetail',
+                        type: "GET",
+                        dataType: "json",
+                        data: {
+                            IdNhanSu: idNhanSu,
+                        },
+                        success: function (response) {
+                            if (response.status == true) {
+                                var lstData = response.lstData;
+
+                                if (lstData != null) {
+                                    $("#IdNhanSu").val(lstData.idNhanSu);
+                                    $("#HoTen").val(lstData.hoTen);
+                                    $("#NgaySinh").val(lstData.ngaySinh);
+                                    $("#ChucDanh").val(lstData.chucDanh).trigger('chosen:updated');
+                                    $("#DonViKhoa").val(lstData.donViKhoa);
+                                    $("#BangCapHocVi").val(lstData.bangCapHocVi);
+                                    $("#NgonNgu").val(lstData.ngonNgu);
+                                    $("#KinhNghiemLamViec").val(lstData.kinhNghiemLamViec);
+                                    if (lstData.urlImage != null && lstData.urlImage != "") {
+                                        $('#imageHoSo').attr('src', lstData.urlImage);
+                                    } else {
+                                        $('#imageHoSo').attr('src', '/root/Profile_avatar.png');
+                                    }
+                                    $("#isThayDoi").val("false");
+                                    $("#bsHoSoCanBo").modal('show');
+                                }
+                            } else {
+                                toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                            }
+                        }
+                    })
+                }
             },
 
             readURL: function (input) {
@@ -132,14 +200,16 @@
             },
 
             ResetForm: function () {
-                $("#IdNhanSu").val(0);
+                $("#IdNhanSu").val();
                 $("#HoTen").val("");
                 $("#NgaySinh").val("");
-                $("#ChucDanh").val("");
+                $("#ChucDanh").val("").trigger('chosen:updated');
                 $("#DonViKhoa").val("");
                 $("#BangCapHocVi").val("");
                 $("#NgonNgu").val("");
                 $("#KinhNghiemLamViec").val("");
+                $("#isThayDoi").val("false");
+                $('#imageHoSo').attr('src', '/root/Profile_avatar.png');
             },
 
             SaveData:function () {
@@ -157,7 +227,11 @@
                     $("#HoTen").focus();
                     return;
                 }
-
+                  if (NgaySinh == "") {
+                    toastr.error("Bạn chưa chọn ngày sinh", "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                    $("#NgaySinh").focus();
+                    return;
+                }
                 if (ChucDanh == "") {
                     toastr.error("Bạn chưa chọn chức danh", "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
                     $("#ChucDanh").focus();
@@ -165,7 +239,7 @@
                 }
 
                  var objdata = {
-                    IdNhanSu: IdNhanSu,
+                    IdNhanSu: IdNhanSu = IdNhanSu ? IdNhanSu : '00000000-0000-0000-0000-000000000000',
                     HoTen: HoTen,
                     NgaySinh: NgaySinh,
                     ChucDanh: ChucDanh,
@@ -179,8 +253,11 @@
                         var data = new FormData();
                         for (var x = 0; x < files.length; x++) {
                             data.append('files', files[x]);
+
                         }
                         data.append("strData", JSON.stringify(objdata));
+                        data.append('isThayDoi',  $("#isThayDoi").val());
+
                         $.ajax({
                             type: "POST",
                             url: '/Admin/DanhSachNhanSu/SaveData',
@@ -190,6 +267,8 @@
                             success: function (response) {
                                 if (response.status == true) {
                                     toastr.success("Cập nhập thành công", "Thành Công", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                                    myScripts.LoadTable();
+                                    $("#bsHoSoCanBo").modal('hide');
                                 } else {
                                     notify('error', 'Có Lỗi', response.message);
                                 }
@@ -213,6 +292,8 @@
                         success: function (response) {
                             if (response.status) {
                                toastr.success("Cập nhập thành công", "Thành Công", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                               myScripts.LoadTable();
+                               $("#bsHoSoCanBo").modal('hide');
                             }
                             else {
                                 toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
@@ -222,8 +303,63 @@
                 }
             },
 
+           DeleteData: function (idNhanSu) {
+
+            if (idNhanSu != "") {
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: "btn bg-secondary-subtle text-secondary",
+                        cancelButton: "me-6 btn bg-secondary-subtle text-secondary",
+                    },
+                    buttonsStyling: false,
+                });
+                swalWithBootstrapButtons
+                    .fire({
+                        title: "Xác nhận?",
+                        text: "Bạn có chắc chắn muốn xóa bản ghi này không?",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Đồng ý",
+                        cancelButtonText: "Hủy",
+                        reverseButtons: true,
+                    })
+                    .then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                type: "POST",
+                                url: "/Admin/DanhSachNhanSu/DeleteData",
+                                data: {
+                                    IdNhanSu: idNhanSu,
+                                },
+                                success: function (response) {
+                                    if (response.status == true) {
+                                        myScripts.LoadTable();
+                                        toastr.success("Xóa thành công 1 bản ghi", "Thành công", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                                    } else {
+                                        toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                                    }
+                                },
+                                error: function (response) {
+                                    toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                                }
+                            });
+                        }
+                    });
+            } else {
+                alert("Bạn chưa chọn bản ghi nào để xóa");
+            }
+        },
+
         };
-        myController.init();
+        myScripts.init();
+        function fm_editData(e, value, row, index) {
+            return [
+                '<div style="width: 100%">',
+                '<a href="javascript:myScripts.LoadDetail('+ "'" + value.idNhanSu + "'" + ')" class="hvr-shrink me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Sửa dữ liệu"><i class="ti ti-pencil text-primary fs-6"></i></a>' +
+                '<a href="javascript:myScripts.DeleteData(' + "'" + value.idNhanSu + "'" + ')" class="hvr-shrink" data-bs-toggle="tooltip" title="Xóa dữ liệu"><i class="ti ti-trash text-danger fs-6"></i> </a>' +
+                '</div>'
+            ].join('');
+        };
     </script>
 }
 
@@ -243,21 +379,22 @@
                             <i class="ti ti-search fs-2"></i> Lọc dữ liệu
                         </button>
                     </div>
-
                 </div>
                 <div class="card-body p-2">
-                    <table id="table"
+                    <table id="tableDanhSachNhanSu"
                            data-toggle="table"
                            data-flat="true"
                            data-search="true"
                            data-url="">
                         <thead>
                             <tr>
-                                <th data-field="github.name" data-sortable="true">Họ và tên</th>
-                                <th data-field="github.count.stargazers" data-sortable="true">Ngày sinh</th>
-                                <th data-field="github.count.forks" data-sortable="true">Chức danh</th>
-                                <th data-field="github.description" data-sortable="true">Cơ sở làm việc</th>
-                                <th data-field="github.description" data-sortable="true">Bằng cấp - học vị</th>
+                                <th data-formatter="fm_editData" data-sortable="true" data-width="5" data-width="5" class="text-center">Chức năng</th>
+                                <th data-field="hoTen" data-sortable="true">Họ và tên</th>
+                                <th data-field="ngaySinh" data-sortable="true">Ngày sinh</th>
+                                <th data-field="chucDanh" data-sortable="true">Chức danh</th>
+                                <th data-field="donViKhoa" data-sortable="true">Cơ sở làm việc</th>
+                                <th data-field="bangCapHocVi" data-sortable="true">Bằng cấp - học vị</th>
+                                <th data-field="ngonNgu" data-sortable="true">Bằng cấp - học vị</th>
                             </tr>
                         </thead>
                     </table>
@@ -284,8 +421,9 @@
                                 <div class="text-center">
                                     <img src="~/root/Profile_avatar.png" id="imageHoSo" alt="ảnh đại diện" class="" width="150px" height="180px">
                                     <input type="file" id="duong_dan_file" name="name" value="" hidden />
+                                    <input type="text" id="isThayDoi" hidden />
                                     <div class="d-flex align-items-center justify-content-center my-1 gap-1">
-                                        <button class="btn bg-danger text-white"><i class="ti ti-trash"></i></button>
+                                        <button class="btn bg-danger text-white" id="btnRemoveUpload"><i class="ti ti-trash"></i></button>
                                         <button class="btn btn-primary w-100" id="btnUpload"><i class="ti ti-upload"></i> Upload</button>
                                     </div>
                                 </div>
@@ -304,7 +442,7 @@
                                             <input type="text" class="form-control" placeholder="Nhập họ tên ..." id="HoTen" value="">
                                         </div>
                                         <div class="col-sm-6 mb-2">
-                                            <label class="fs-2 form-label m-0">Ngày sinh:</label>
+                                            <label class="fs-2 form-label m-0">Ngày sinh:<font class="text-danger">*</font></label>
                                             <input type="date" class="form-control" placeholder="" id="NgaySinh" value="">
                                         </div>
                                         <div class="col-sm-6 mb-2">

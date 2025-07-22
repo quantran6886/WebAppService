@@ -82,34 +82,37 @@
 <div class="card-header mt-2">
     <h4 class="card-title">Trang chủ</h4>
 </div>
-<div class="accordion accordion-flush" id="accordionFlushExample">
-    <div class="accordion-item" style="border:1px solid blue">
-        <h2 class="accordion-header" id="flush-headingOne">
-            <button class="bg-info text-white p-2 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
-                Giao diện 1
-            </button>
-        </h2>
-        <div id="flush-collapseOne" class="accordion-collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body p-0">
-                <div class="card-body">
-                    <textarea id="editor1"></textarea>
-                </div>
-            </div>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header p-2 text-bg-info d-flex align-items-center">
+            <h4 class="card-title text-white mb-0 fs-3">Giao diện 1</h4>
         </div>
-    </div>
-    <div class="accordion-item mt-3" style="border:1px solid blue">
-        <h2 class="accordion-header" id="flush-headingTwo">
-            <button class="bg-info text-white p-2 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="true" aria-controls="flush-collapseTwo">
-                Giao diện 2
-            </button>
-        </h2>
-        <div id="flush-collapseTwo" class="accordion-collapse " aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body p-0">
-                <div class="card-body">
-                    <textarea id="editor2"></textarea>
-                </div>
+        <div class="card-body p-0 collapse show">
+            <div class="card-body p-0">
+                <textarea id="editor1"></textarea>
+            </div>
+            <div class="text-end p-1" style="border-top:1px solid blue">
+                <button type="button" class="btn btn-primary waves-effect text-start z-100" id="btnSaveData">
+                    Lưu và kết thúc
+                </button>
             </div>
         </div>
     </div>
 </div>
-
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header p-2 text-bg-info d-flex align-items-center">
+            <h4 class="card-title text-white mb-0 fs-3">Giao diện 2</h4>
+        </div>
+        <div class="card-body p-0 collapse show">
+            <div class="card-body p-0">
+                <textarea id="editor1"></textarea>
+            </div>
+            <div class="text-end p-1" style="border-top:1px solid blue">
+                <button type="button" class="btn btn-primary waves-effect text-start z-100" id="btnSaveData">
+                    Lưu và kết thúc
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

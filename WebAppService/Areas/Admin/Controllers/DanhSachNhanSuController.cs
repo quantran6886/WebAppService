@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebAppService.Areas.Admin._Helper;
 using WebAppService.Models.Updates;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
@@ -48,11 +49,11 @@ namespace WebAppService.Areas.Admin.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> SaveData([FromForm] string strData, IFormFileCollection files)
+        public async Task<IActionResult> SaveData([FromForm] string strData, [FromForm] bool isThayDoi, IFormFileCollection files)
         {
             string duong_dan_tai_lieu = "";
             string ten_file = "";
-            var ClientData = System.Text.Json.JsonSerializer.Deserialize<BrowerKhachHangDoiTac>(strData);
+            var ClientData = System.Text.Json.JsonSerializer.Deserialize<WebNhanSu>(strData);
 
             try
             {
@@ -64,7 +65,7 @@ namespace WebAppService.Areas.Admin.Controllers
                         {
                             ten_file = file.FileName;
                             var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                            var pathName = Path.Combine("FilesUploads", ClientData.IdKhachHang.ToString().Trim() + "_" + DateTime.Now.ToString("yyyyMM"));
+                            var pathName = Path.Combine("FilesUploads", "NhanSu_" + DateTime.Now.ToString("yyyyMM"));
                             duong_dan_tai_lieu = Path.Combine(pathName, fileName);
 
                             var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", pathName);
@@ -81,55 +82,154 @@ namespace WebAppService.Areas.Admin.Controllers
                         }
                     }
                 }
-
-                //if (ClientData.IdCanBo == 0)
-                //{
-                //    ClientData.url_avatar = duong_dan_tai_lieu.Replace("\\", "/");
-                //    ClientData.name_avatar = ten_file;
-                //    _query.AspHoSoCanBo.Add(ClientData);
-                //    _query.SaveChanges();
-                //}
-                //else
-                //{
-                //    var _data = _query.AspHoSoCanBo.Find(ClientData.IdCanBo);
-                //    if (_data != null)
-                //    {
-                //        _data.cb_trang_thai_lam_viec = ClientData.cb_trang_thai_lam_viec;
-                //        _data.ngay_bat_dau_cong_tac = ClientData.ngay_bat_dau_cong_tac;
-                //        _data.chuc_vu = ClientData.chuc_vu;
-                //        _data.so_hieu_giay_to = ClientData.so_hieu_giay_to;
-                //        _data.ho_ten = ClientData.ho_ten;
-                //        _data.gioi_tinh = ClientData.gioi_tinh;
-                //        _data.ngay_sinh = ClientData.ngay_sinh;
-                //        _data.so_dien_thoai = ClientData.so_dien_thoai;
-                //        _data.email = ClientData.email;
-                //        _data.cb_ngan_hang = ClientData.cb_ngan_hang;
-                //        _data.so_tai_khoan = ClientData.so_tai_khoan;
-                //        _data.cb_tinh = ClientData.cb_tinh;
-                //        _data.cb_quan_huyen = ClientData.cb_quan_huyen;
-                //        _data.cb_xa_phuong = ClientData.cb_xa_phuong;
-                //        _data.dia_chi = ClientData.dia_chi;
-
-                //        if (!string.IsNullOrEmpty(duong_dan_tai_lieu))
-                //        {
-                //            _data.url_avatar = duong_dan_tai_lieu.Replace("\\", "/");
-                //            _data.name_avatar = ten_file;
-                //        }
-                //    }
-                //    _query.SaveChanges();
-                //}
-
-                return Json(new { code = true });
+                if (ClientData.IdNhanSu == Guid.Empty)
+                {
+                    ClientData.IdNhanSu = Guid.NewGuid();
+                    if (isThayDoi)
+                    {
+                        ClientData.UrlImage = "/" + duong_dan_tai_lieu.Replace("\\", "/");
+                        ClientData.NameImage = ten_file;
+                    }
+                    ClientData.HoTen = ClientData.HoTen;
+                    ClientData.NgaySinh = ClientData.NgaySinh;
+                    ClientData.ChucDanh = ClientData.ChucDanh;
+                    ClientData.DonViKhoa = ClientData.DonViKhoa;
+                    ClientData.BangCapHocVi = ClientData.BangCapHocVi;
+                    ClientData.NgonNgu = ClientData.NgonNgu;
+                    ClientData.KinhNghiemLamViec = ClientData.KinhNghiemLamViec;
+                    db.WebNhanSus.Add(ClientData);
+                }
+                else
+                {
+                    var existing = db.WebNhanSus.FirstOrDefault(x => x.IdNhanSu == ClientData.IdNhanSu);
+                    if (existing != null)
+                    {
+                        if (isThayDoi)
+                        {
+                            ClientData.UrlImage = "/" + duong_dan_tai_lieu.Replace("\\", "/");
+                            ClientData.NameImage = ten_file;
+                            existing.UrlImage = ClientData.UrlImage;
+                            existing.NameImage = ClientData.NameImage;
+                        }
+                        existing.HoTen = ClientData.HoTen;
+                        existing.NgaySinh = ClientData.NgaySinh;
+                        existing.ChucDanh = ClientData.ChucDanh;
+                        existing.DonViKhoa = ClientData.DonViKhoa;
+                        existing.BangCapHocVi = ClientData.BangCapHocVi;
+                        existing.NgonNgu = ClientData.NgonNgu;
+                        existing.KinhNghiemLamViec = ClientData.KinhNghiemLamViec;
+                        db.Entry(existing).State = EntityState.Modified;
+                    }
+                }
+                db.SaveChanges();
+                return Json(new { status = true });
             }
             catch (Exception ex)
             {
                 return Json(new
                 {
                     message = ex.Message,
-                    code = false
+                    status = false
                 });
             }
         }
 
+
+        [HttpGet]
+        public IActionResult LoadTable()
+        {
+            try
+            {
+                var lstData = db.WebNhanSus.AsEnumerable().Select(c => new
+                {
+                    c.IdNhanSu,
+                    c.HoTen,
+                    c.ChucDanh,
+                    c.DonViKhoa,
+                    c.BangCapHocVi,
+                    c.NgonNgu,
+                    NgaySinh = c.NgaySinh != null ? string.Format("{0:dd-MM-yyyy}",c.NgaySinh) : "",
+                }).ToList();
+
+                return new JsonResult(new
+                {
+                    lstData,
+                    status = true
+                });
+            }
+            catch (Exception ex)
+            {
+
+                return new JsonResult(new
+                {
+                    message = ex.Message,
+                    status = false
+                });
+            }
+        }
+
+        [HttpGet]
+        public IActionResult LoadDetail(Guid? IdNhanSu)
+        {
+            try
+            {
+                var lstData = db.WebNhanSus.AsEnumerable().Where(c => c.IdNhanSu == IdNhanSu).Select(c => new
+                {
+                    c.IdNhanSu,
+                    c.HoTen,
+                    c.ChucDanh,
+                    c.DonViKhoa,
+                    c.BangCapHocVi,
+                    c.NgonNgu,
+                    NgaySinh = c.NgaySinh != null ? string.Format("{0:yyyy-MM-dd}", c.NgaySinh) : "",
+                    c.UrlImage,
+                    c.NameImage,
+                }).FirstOrDefault();
+
+                return new JsonResult(new
+                {
+                    lstData,
+                    status = true
+                });
+            }
+            catch (Exception ex)
+            {
+
+                return new JsonResult(new
+                {
+                    message = ex.Message,
+                    status = false
+                });
+            }
+        }
+
+        [HttpPost]
+        public IActionResult DeleteData(Guid? IdNhanSu)
+        {
+            try
+            {
+                if (IdNhanSu != Guid.Empty)
+                {
+                    var find_data = db.WebNhanSus.Find(IdNhanSu);
+                    if (find_data != null)
+                    {
+                        db.WebNhanSus.Remove(find_data);
+                    }
+                    db.SaveChanges();
+                }
+                return Json(new
+                {
+                    status = true,
+                });
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    status = false,
+                    message = ex.Message
+                });
+            }
+        }
     }
 }

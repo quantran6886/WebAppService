@@ -27,23 +27,15 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; }
 
-    public virtual DbSet<BrowerAnhTaiLieuDauGium> BrowerAnhTaiLieuDauGia { get; set; }
-
-    public virtual DbSet<BrowerDangKyDauGium> BrowerDangKyDauGia { get; set; }
-
     public virtual DbSet<BrowerHomePage> BrowerHomePages { get; set; }
 
-    public virtual DbSet<BrowerKhachHangDoiTac> BrowerKhachHangDoiTacs { get; set; }
-
     public virtual DbSet<BrowerTaiKhoanDangKy> BrowerTaiKhoanDangKies { get; set; }
-
-    public virtual DbSet<BrowerTaiSanDauGium> BrowerTaiSanDauGia { get; set; }
-
-    public virtual DbSet<BrowerTaiSanDinhKem> BrowerTaiSanDinhKems { get; set; }
 
     public virtual DbSet<BrowerVanBanTaiLieu> BrowerVanBanTaiLieus { get; set; }
 
     public virtual DbSet<ViewUserOnline> ViewUserOnlines { get; set; }
+
+    public virtual DbSet<WebCauHinhTrang> WebCauHinhTrangs { get; set; }
 
     public virtual DbSet<WebChucNangQuanTri> WebChucNangQuanTris { get; set; }
 
@@ -55,43 +47,45 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<WebDanhMucXaPhuong> WebDanhMucXaPhuongs { get; set; }
 
+    public virtual DbSet<WebDichVu> WebDichVus { get; set; }
+
+    public virtual DbSet<WebFaq> WebFaqs { get; set; }
+
     public virtual DbSet<WebNguoiDungQuanTri> WebNguoiDungQuanTris { get; set; }
+
+    public virtual DbSet<WebNhanSu> WebNhanSus { get; set; }
 
     public virtual DbSet<WebPhanQuyenQuanTri> WebPhanQuyenQuanTris { get; set; }
 
+    public virtual DbSet<WebThongBao> WebThongBaos { get; set; }
+
+    public virtual DbSet<WebTinTucBaiViet> WebTinTucBaiViets { get; set; }
+
     public virtual DbSet<WebUserOnline> WebUserOnlines { get; set; }
+
+    public virtual DbSet<WebVideo> WebVideos { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-VU39D0Q;Initial Catalog=WebApp;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
+        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-VU39D0Q;Initial Catalog=WebMedical;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<AspNetRole>(entity =>
         {
-            entity.HasIndex(e => e.NormalizedName, "RoleNameIndex")
-                .IsUnique()
-                .HasFilter("([NormalizedName] IS NOT NULL)");
-
             entity.Property(e => e.Name).HasMaxLength(256);
             entity.Property(e => e.NormalizedName).HasMaxLength(256);
         });
 
         modelBuilder.Entity<AspNetRoleClaim>(entity =>
         {
-            entity.HasIndex(e => e.RoleId, "IX_AspNetRoleClaims_RoleId");
+            entity.Property(e => e.RoleId).HasMaxLength(450);
 
             entity.HasOne(d => d.Role).WithMany(p => p.AspNetRoleClaims).HasForeignKey(d => d.RoleId);
         });
 
         modelBuilder.Entity<AspNetUser>(entity =>
         {
-            entity.HasIndex(e => e.NormalizedEmail, "EmailIndex");
-
-            entity.HasIndex(e => e.NormalizedUserName, "UserNameIndex")
-                .IsUnique()
-                .HasFilter("([NormalizedUserName] IS NOT NULL)");
-
             entity.Property(e => e.Email).HasMaxLength(256);
             entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
             entity.Property(e => e.NormalizedUserName).HasMaxLength(256);
@@ -106,13 +100,12 @@ public partial class AppDbContext : DbContext
                     {
                         j.HasKey("UserId", "RoleId");
                         j.ToTable("AspNetUserRoles");
-                        j.HasIndex(new[] { "RoleId" }, "IX_AspNetUserRoles_RoleId");
                     });
         });
 
         modelBuilder.Entity<AspNetUserClaim>(entity =>
         {
-            entity.HasIndex(e => e.UserId, "IX_AspNetUserClaims_UserId");
+            entity.Property(e => e.UserId).HasMaxLength(450);
 
             entity.HasOne(d => d.User).WithMany(p => p.AspNetUserClaims).HasForeignKey(d => d.UserId);
         });
@@ -121,7 +114,7 @@ public partial class AppDbContext : DbContext
         {
             entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
 
-            entity.HasIndex(e => e.UserId, "IX_AspNetUserLogins_UserId");
+            entity.Property(e => e.UserId).HasMaxLength(450);
 
             entity.HasOne(d => d.User).WithMany(p => p.AspNetUserLogins).HasForeignKey(d => d.UserId);
         });
@@ -133,42 +126,6 @@ public partial class AppDbContext : DbContext
             entity.HasOne(d => d.User).WithMany(p => p.AspNetUserTokens).HasForeignKey(d => d.UserId);
         });
 
-        modelBuilder.Entity<BrowerAnhTaiLieuDauGium>(entity =>
-        {
-            entity.HasKey(e => e.IdFile);
-
-            entity.ToTable("Brower.AnhTaiLieuDauGia");
-
-            entity.Property(e => e.IdFile).ValueGeneratedNever();
-            entity.Property(e => e.NameFile)
-                .HasMaxLength(250)
-                .HasColumnName("nameFile");
-            entity.Property(e => e.UrlFile).HasColumnName("urlFile");
-
-            entity.HasOne(d => d.IdTaiSanNavigation).WithMany(p => p.BrowerAnhTaiLieuDauGia)
-                .HasForeignKey(d => d.IdTaiSan)
-                .HasConstraintName("FK_Brower.AnhTaiLieuDauGia_Brower.TaiSanDauGia");
-        });
-
-        modelBuilder.Entity<BrowerDangKyDauGium>(entity =>
-        {
-            entity.HasKey(e => e.IdDangKy);
-
-            entity.ToTable("Brower.DangKyDauGia");
-
-            entity.Property(e => e.MaTraGia).HasMaxLength(250);
-            entity.Property(e => e.SoLenh).HasMaxLength(60);
-            entity.Property(e => e.ThoiGianTra).HasColumnType("datetime");
-
-            entity.HasOne(d => d.IdTaiKhoanNavigation).WithMany(p => p.BrowerDangKyDauGia)
-                .HasForeignKey(d => d.IdTaiKhoan)
-                .HasConstraintName("FK_Brower.DangKyDauGia_Brower.TaiKhoanDangKy");
-
-            entity.HasOne(d => d.IdTaiSanNavigation).WithMany(p => p.BrowerDangKyDauGia)
-                .HasForeignKey(d => d.IdTaiSan)
-                .HasConstraintName("FK_Brower.DangKyDauGia_Brower.TaiSanDauGia");
-        });
-
         modelBuilder.Entity<BrowerHomePage>(entity =>
         {
             entity.ToTable("Brower.HomePage");
@@ -178,19 +135,6 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.PhanLoai).HasMaxLength(250);
             entity.Property(e => e.Tag).HasMaxLength(250);
             entity.Property(e => e.TenTieuDe).HasMaxLength(250);
-        });
-
-        modelBuilder.Entity<BrowerKhachHangDoiTac>(entity =>
-        {
-            entity.HasKey(e => e.IdKhachHang);
-
-            entity.ToTable("Brower.KhachHangDoiTac");
-
-            entity.Property(e => e.MoTa).HasColumnType("text");
-            entity.Property(e => e.NameFile)
-                .HasMaxLength(250)
-                .HasColumnName("nameFile");
-            entity.Property(e => e.UrlFile).HasColumnName("urlFile");
         });
 
         modelBuilder.Entity<BrowerTaiKhoanDangKy>(entity =>
@@ -235,47 +179,6 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.Username).HasMaxLength(150);
         });
 
-        modelBuilder.Entity<BrowerTaiSanDauGium>(entity =>
-        {
-            entity.HasKey(e => e.IdTaiSan);
-
-            entity.ToTable("Brower.TaiSanDauGia");
-
-            entity.Property(e => e.DauGiaVien).HasMaxLength(250);
-            entity.Property(e => e.DiaChi).HasMaxLength(250);
-            entity.Property(e => e.DonViGia).HasMaxLength(150);
-            entity.Property(e => e.HinhThucDauGia).HasMaxLength(250);
-            entity.Property(e => e.MaTaiSan)
-                .HasMaxLength(250)
-                .IsUnicode(false);
-            entity.Property(e => e.NguoiCoTaiSan).HasMaxLength(250);
-            entity.Property(e => e.NoiXemTaiSan).HasMaxLength(250);
-            entity.Property(e => e.PhuongThucDauGia).HasMaxLength(150);
-            entity.Property(e => e.Tag).HasMaxLength(150);
-            entity.Property(e => e.TenTaiSan).HasMaxLength(250);
-            entity.Property(e => e.TextThoiGianXemTaiSan).HasMaxLength(250);
-            entity.Property(e => e.ThoiGianBatDauTraGia).HasColumnType("datetime");
-            entity.Property(e => e.ThoiGianDong).HasColumnType("datetime");
-            entity.Property(e => e.ThoiGianKetThucTraGia).HasColumnType("datetime");
-            entity.Property(e => e.ThoiGianMo).HasColumnType("datetime");
-            entity.Property(e => e.ToChucDauGia).HasMaxLength(250);
-        });
-
-        modelBuilder.Entity<BrowerTaiSanDinhKem>(entity =>
-        {
-            entity
-                .HasNoKey()
-                .ToTable("Brower.TaiSanDinhKem");
-
-            entity.HasOne(d => d.IdNavigation).WithMany()
-                .HasForeignKey(d => d.Id)
-                .HasConstraintName("FK_Brower.TaiSanDinhKem_Brower.HomePage");
-
-            entity.HasOne(d => d.IdTaiSanNavigation).WithMany()
-                .HasForeignKey(d => d.IdTaiSan)
-                .HasConstraintName("FK_Brower.TaiSanDinhKem_Brower.TaiSanDauGia");
-        });
-
         modelBuilder.Entity<BrowerVanBanTaiLieu>(entity =>
         {
             entity.HasKey(e => e.IdVanBan);
@@ -301,6 +204,50 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.MaSoThue).HasMaxLength(100);
             entity.Property(e => e.SoDienThoai).HasMaxLength(100);
             entity.Property(e => e.UserName).HasMaxLength(256);
+        });
+
+        modelBuilder.Entity<WebCauHinhTrang>(entity =>
+        {
+            entity.HasKey(e => e.MaTrang).HasName("PK__WebCauHi__399828AFCE34751C");
+
+            entity.ToTable("WebCauHinhTrang");
+
+            entity.Property(e => e.MaTrang).HasDefaultValueSql("(newid())");
+            entity.Property(e => e.CbGiaoDien)
+                .HasMaxLength(50)
+                .HasColumnName("cbGiaoDien");
+            entity.Property(e => e.IsCard1).HasDefaultValue(false);
+            entity.Property(e => e.IsCard2).HasDefaultValue(false);
+            entity.Property(e => e.NoiDung).HasMaxLength(250);
+            entity.Property(e => e.ThoiGianCapNhap).HasColumnType("datetime");
+            entity.Property(e => e.ThoiGianTao)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.TieuDe).HasMaxLength(250);
+            entity.Property(e => e.TxtCard1)
+                .HasMaxLength(50)
+                .HasColumnName("txtCard1");
+            entity.Property(e => e.TxtCard21)
+                .HasMaxLength(50)
+                .HasColumnName("txtCard21");
+            entity.Property(e => e.TxtCard22)
+                .HasMaxLength(50)
+                .HasColumnName("txtCard22");
+            entity.Property(e => e.TxtCard31)
+                .HasMaxLength(50)
+                .HasColumnName("txtCard31");
+            entity.Property(e => e.TxtIcon1)
+                .HasMaxLength(50)
+                .HasColumnName("txtIcon1");
+            entity.Property(e => e.TxtIcon21)
+                .HasMaxLength(50)
+                .HasColumnName("txtIcon21");
+            entity.Property(e => e.TxtIcon23)
+                .HasMaxLength(50)
+                .HasColumnName("txtIcon23");
+            entity.Property(e => e.TxtIcon32)
+                .HasMaxLength(50)
+                .HasColumnName("txtIcon32");
         });
 
         modelBuilder.Entity<WebChucNangQuanTri>(entity =>
@@ -333,7 +280,7 @@ public partial class AppDbContext : DbContext
 
         modelBuilder.Entity<WebDanhMucQuanHuyen>(entity =>
         {
-            entity.HasKey(e => e.MaQuanHuyen).HasName("PK__Web.Danh__B86B827ABAB18191");
+            entity.HasKey(e => e.MaQuanHuyen).HasName("PK__Web.Danh__B86B827AE1718AC9");
 
             entity.ToTable("Web.DanhMucQuanHuyen");
 
@@ -345,7 +292,7 @@ public partial class AppDbContext : DbContext
 
             entity.HasOne(d => d.MaTinhThanhNavigation).WithMany(p => p.WebDanhMucQuanHuyens)
                 .HasForeignKey(d => d.MaTinhThanh)
-                .HasConstraintName("FK__Web.DanhM__MaTin__7D439ABD");
+                .HasConstraintName("FK__Web.DanhM__MaTin__10566F31");
         });
 
         modelBuilder.Entity<WebDanhMucTinhThanh>(entity =>
@@ -361,7 +308,7 @@ public partial class AppDbContext : DbContext
 
         modelBuilder.Entity<WebDanhMucXaPhuong>(entity =>
         {
-            entity.HasKey(e => e.MaXaPhuong).HasName("PK__Web.Danh__92E67F27D480320C");
+            entity.HasKey(e => e.MaXaPhuong).HasName("PK__Web.Danh__92E67F278CE2FB40");
 
             entity.ToTable("Web.DanhMucXaPhuong");
 
@@ -373,7 +320,41 @@ public partial class AppDbContext : DbContext
 
             entity.HasOne(d => d.MaQuanHuyenNavigation).WithMany(p => p.WebDanhMucXaPhuongs)
                 .HasForeignKey(d => d.MaQuanHuyen)
-                .HasConstraintName("FK__Web.DanhM__MaQua__02084FDA");
+                .HasConstraintName("FK__Web.DanhM__MaQua__114A936A");
+        });
+
+        modelBuilder.Entity<WebDichVu>(entity =>
+        {
+            entity.HasKey(e => e.IdDichVu).HasName("PK__WebDichV__C817D5DCEC638C83");
+
+            entity.ToTable("WebDichVu");
+
+            entity.Property(e => e.IdDichVu).HasDefaultValueSql("(newid())");
+            entity.Property(e => e.CbLoaiBaiDang)
+                .HasMaxLength(250)
+                .HasColumnName("cbLoaiBaiDang");
+            entity.Property(e => e.CbNhomBaiViet).HasMaxLength(250);
+            entity.Property(e => e.MoTaNgan).HasMaxLength(500);
+            entity.Property(e => e.NameImage).HasMaxLength(250);
+            entity.Property(e => e.NguoiTao).HasMaxLength(250);
+            entity.Property(e => e.ThoiGianCapNhap).HasColumnType("datetime");
+            entity.Property(e => e.ThoiGianTao)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.TieuDeBaiViet).HasMaxLength(500);
+            entity.Property(e => e.TieuDeNgan).HasMaxLength(250);
+            entity.Property(e => e.UrlImage).HasMaxLength(350);
+        });
+
+        modelBuilder.Entity<WebFaq>(entity =>
+        {
+            entity.HasKey(e => e.IdFaqs).HasName("PK__WebFAQS__1BFA1307410C0D53");
+
+            entity.ToTable("WebFAQS");
+
+            entity.Property(e => e.IdFaqs).HasDefaultValueSql("(newid())");
+            entity.Property(e => e.CauHoi).HasMaxLength(500);
+            entity.Property(e => e.GhiChu).HasMaxLength(250);
         });
 
         modelBuilder.Entity<WebNguoiDungQuanTri>(entity =>
@@ -398,6 +379,31 @@ public partial class AppDbContext : DbContext
                 .HasConstraintName("FK_Web.NguoiDungQuanTri_AspNetUsers");
         });
 
+        modelBuilder.Entity<WebNhanSu>(entity =>
+        {
+            entity.HasKey(e => e.IdNhanSu).HasName("PK__WebNhanS__876A20DBB2645F67");
+
+            entity.ToTable("WebNhanSu");
+
+            entity.Property(e => e.IdNhanSu).HasDefaultValueSql("(newid())");
+            entity.Property(e => e.BangCapHocVi).HasMaxLength(250);
+            entity.Property(e => e.CbGioiTinh)
+                .HasMaxLength(50)
+                .HasColumnName("cbGioiTinh");
+            entity.Property(e => e.ChucDanh).HasMaxLength(150);
+            entity.Property(e => e.ChucVu).HasMaxLength(150);
+            entity.Property(e => e.DonViKhoa).HasMaxLength(250);
+            entity.Property(e => e.HoTen).HasMaxLength(250);
+            entity.Property(e => e.NameImage).HasMaxLength(250);
+            entity.Property(e => e.NgaySinh).HasColumnType("datetime");
+            entity.Property(e => e.NgonNgu).HasMaxLength(250);
+            entity.Property(e => e.ThoiGianCapNhap).HasColumnType("datetime");
+            entity.Property(e => e.ThoiGianTao)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.UrlImage).HasMaxLength(350);
+        });
+
         modelBuilder.Entity<WebPhanQuyenQuanTri>(entity =>
         {
             entity.HasKey(e => e.IdPhanQuyen);
@@ -415,6 +421,57 @@ public partial class AppDbContext : DbContext
                 .HasConstraintName("FK_Web.PhanQuyenQuanTri_Web.ChucNangQuanTri");
         });
 
+        modelBuilder.Entity<WebThongBao>(entity =>
+        {
+            entity.HasKey(e => e.IdNoti).HasName("PK__WebThong__4B2ACFFA7B57E9D4");
+
+            entity.ToTable("WebThongBao");
+
+            entity.Property(e => e.IdNoti).HasDefaultValueSql("(newid())");
+            entity.Property(e => e.CbLoaiTin)
+                .HasMaxLength(100)
+                .HasColumnName("cbLoaiTin");
+            entity.Property(e => e.FileDinhKem).HasMaxLength(250);
+            entity.Property(e => e.IdNguoiGui)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.IdNguoiNhan)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.IsDaDoc).HasDefaultValue(false);
+            entity.Property(e => e.NoiDung).HasMaxLength(250);
+            entity.Property(e => e.ThoiGianCapNhap).HasColumnType("datetime");
+            entity.Property(e => e.ThoiGianTao)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.TieuDe).HasMaxLength(150);
+        });
+
+        modelBuilder.Entity<WebTinTucBaiViet>(entity =>
+        {
+            entity.HasKey(e => e.IdBaiViet).HasName("PK__WebTinTu__42161C7A6B926181");
+
+            entity.ToTable("WebTinTucBaiViet");
+
+            entity.Property(e => e.IdBaiViet).HasDefaultValueSql("(newid())");
+            entity.Property(e => e.CbLoaiBaiDang)
+                .HasMaxLength(250)
+                .HasColumnName("cbLoaiBaiDang");
+            entity.Property(e => e.CbNhomBaiViet).HasMaxLength(250);
+            entity.Property(e => e.IsBaiVietNoiBat).HasDefaultValue(false);
+            entity.Property(e => e.IsCongKhai).HasDefaultValue(true);
+            entity.Property(e => e.MoTaNgan).HasMaxLength(500);
+            entity.Property(e => e.NameImage).HasMaxLength(250);
+            entity.Property(e => e.NguoiTao).HasMaxLength(250);
+            entity.Property(e => e.ThoiGianCapNhap).HasColumnType("datetime");
+            entity.Property(e => e.ThoiGianTao)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.TieuDeBaiViet).HasMaxLength(500);
+            entity.Property(e => e.TieuDeNgan).HasMaxLength(250);
+            entity.Property(e => e.UrlImage).HasMaxLength(350);
+        });
+
         modelBuilder.Entity<WebUserOnline>(entity =>
         {
             entity.ToTable("Web.UserOnline");
@@ -423,6 +480,25 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.IpAddress).HasMaxLength(50);
             entity.Property(e => e.LastActive).HasColumnType("datetime");
             entity.Property(e => e.UserName).HasMaxLength(100);
+        });
+
+        modelBuilder.Entity<WebVideo>(entity =>
+        {
+            entity.HasKey(e => e.IdVideo).HasName("PK__WebVideo__54BA87FA9D8E57F2");
+
+            entity.ToTable("WebVideo");
+
+            entity.Property(e => e.IdVideo).HasDefaultValueSql("(newid())");
+            entity.Property(e => e.MoTaNgan).HasMaxLength(500);
+            entity.Property(e => e.NameImage).HasMaxLength(250);
+            entity.Property(e => e.NguoiTao).HasMaxLength(250);
+            entity.Property(e => e.ThoiGianCapNhap).HasColumnType("datetime");
+            entity.Property(e => e.ThoiGianTao)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.TieuDeBaiViet).HasMaxLength(500);
+            entity.Property(e => e.TieuDeNgan).HasMaxLength(250);
+            entity.Property(e => e.UrlImage).HasMaxLength(350);
         });
 
         OnModelCreatingPartial(modelBuilder);
