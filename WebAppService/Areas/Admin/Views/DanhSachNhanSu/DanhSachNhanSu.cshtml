@@ -69,6 +69,7 @@
         var files;
         var myController = {
             init:function () {
+                myController.LoadData();
                 myController.Event();
             },
 
@@ -100,7 +101,28 @@
                     });
                 });
             },
-            
+
+            LoadData: function () {
+                $.ajax({
+                    url: '/Admin/DanhSachNhanSu/LoadData',
+                    type: 'GET',
+                    datatype: 'json',
+                    success: function (response) {
+                        if (response.status) {
+                            var lstChucDanh = response.lstChucDanh;
+                            if (lstChucDanh != null) {
+                                var option = "<option value=''>Chọn chức danh</option>";
+                                $.each(lstChucDanh, function (index, val) {
+                                    option += "<option value='" + val.tenGoi + "'>" + val.tenGoi + "</option>";
+                                });
+                                $("#ChucDanh").html(option);
+                                $("#ChucDanh").trigger('chosen:updated');
+                            }
+                        }
+                    },
+                });
+            },
+
             readURL: function (input) {
                 var reader = new FileReader();
                 reader.onload = function (e) {
@@ -110,13 +132,14 @@
             },
 
             ResetForm: function () {
-                $("#ho_ten").val("");
-                $("#ngay_sinh").val("");
-                $("#chuc_danh").val("");
-                $("#co_so_lam_viec").val("");
-                $("#bang_cap_hoc_vi").val("");
-                $("#ngon_ngu").val("");
-                $("#kinh_nghiem_lam_viec").val("");
+                $("#IdNhanSu").val(0);
+                $("#HoTen").val("");
+                $("#NgaySinh").val("");
+                $("#ChucDanh").val("");
+                $("#DonViKhoa").val("");
+                $("#BangCapHocVi").val("");
+                $("#NgonNgu").val("");
+                $("#KinhNghiemLamViec").val("");
             },
 
             SaveData:function () {
@@ -128,7 +151,7 @@
                 var BangCapHocVi = $("#BangCapHocVi").val();
                 var NgonNgu = $("#NgonNgu").val();
                 var KinhNghiemLamViec = $("#KinhNghiemLamViec").val();
-              
+
                 if (HoTen == "") {
                     toastr.error("Bạn chưa nhập họ tên", "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
                     $("#HoTen").focus();
@@ -204,7 +227,7 @@
                             <div class="card-body p-2">
                                 <div class="text-center">
                                     <img src="~/root/Profile_avatar.png" id="imageHoSo" alt="ảnh đại diện" class="" width="150px" height="180px">
-                                    <input type="file" id="duong_dan_file" name="name" value="" hidden/>
+                                    <input type="file" id="duong_dan_file" name="name" value="" hidden />
                                     <div class="d-flex align-items-center justify-content-center my-1 gap-1">
                                         <button class="btn bg-danger text-white"><i class="ti ti-trash"></i></button>
                                         <button class="btn btn-primary w-100" id="btnUpload"><i class="ti ti-upload"></i> Upload</button>
