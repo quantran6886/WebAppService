@@ -13,7 +13,7 @@
     }
 </style>
 @section Scripts {
-    <script src="~/ajax/webappservice.danhmuchethong.js"></script>
+    <script src="~/ajax/webappservice.danhmuchethong.js?v=1.2"></script>
 }
 
 <div class="card-header">
@@ -21,22 +21,18 @@
 </div>
 <div class="card-body">
     <div class="row">
-        <div class="col-lg-6 p-0 d-flex align-items-stretch">
+        <div class="col-lg-6 d-flex align-items-stretch">
             <div class="card w-100 border position-relative overflow-hidden">
-                <div class="row p-2">
-                    <div class="form-group col-sm-8">
-                        <select class="form-control" id="LoaiDanhMuc">
-                            <option value="">-- Chọn phân loại --</option>
-                            <option value="Danh mục giấy tờ">Danh mục giấy tờ</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-sm-4 ps-0">
-                        <button type="button" class="btn border-secondary w-100" style="margin-top:2px">
-                            <i class="ti ti-plus fs-2"></i> Thêm mới
-                        </button>
-                    </div>
+                <div class="form-group col-sm-12 p-1">
+                    <label class="fs-2 form-label m-0">Phân loại:<font class="text-danger">*</font> </label>
+                    <select class="form-control" id="LoaiDanhMuc">
+                        <option value="">-- Chọn phân loại --</option>
+                        <option value="Danh mục chức danh">Danh mục chức danh</option>
+                        <option value="Danh mục nhóm bài viết">Danh mục nhóm bài viết</option>
+                        <option value="Danh mục bài đăng">Danh mục bài đăng</option>
+                        <option value="Danh mục loại câu hỏi">Danh mục loại câu hỏi</option>
+                    </select>
                 </div>
-
                 <div class="card-body p-2 pt-0">
                     <table id="tableDanhMucHeThong"
                            data-toggle="table"
@@ -62,25 +58,26 @@
                         <button type="button" id="btnReset" class="btn bg-secondary-subtle text-secondary btn-sm p-2">
                             <i class="ti ti-plus fs-2"></i> Tạo mới
                         </button>
-                        <button type="button" class="btn bg-info-subtle text-info btn-sm p-2">
+                        <button type="button" id="btnSaveData" class="btn bg-info-subtle text-info btn-sm p-2">
                             <i class="ti ti-upload fs-2"></i> Cập nhập
                         </button>
-                        <button type="button" class="btn bg-danger-subtle text-danger btn-sm p-2">
+                        <button type="button" id="btnRemoveData" class="btn bg-danger-subtle text-danger btn-sm p-2">
                             <i class="ti ti-trash fs-2"></i> Xóa
                         </button>
                     </div>
                     <div class="form-group p-3">
+                        <input type="hidden" id="IdHeThong"/>
                         <div class="mb-3">
                             <label class="form-label">Số thứ tự</label>
-                            <input type="text" class="form-control" placeholder="1,2,3..." id="" value="">
+                            <input type="number" id="ThuTuTG" class="form-control" placeholder="1,2,3...">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Tên gọi</label>
-                            <input type="text" class="form-control" id="" value="">
+                            <input type="text" id="TenGoi" class="form-control">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Ghi chú</label>
-                            <textarea type="text" class="form-control" placeholder="Nhập ghi chú nếu có ..." rows="5" id="" value=""></textarea>
+                            <textarea type="text" id="GhiChu" class="form-control" placeholder="Nhập ghi chú nếu có ..." rows="5"></textarea>
                         </div>
                     </div>
                 </div>

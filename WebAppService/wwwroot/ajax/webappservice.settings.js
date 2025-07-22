@@ -20,7 +20,6 @@
         .then((result) => {
             if (result.isConfirmed) {
                 // Lấy token từ form (nếu có)
-
                 $.ajax({
                     type: "POST",
                     url: "/Admin/Login/Logout",

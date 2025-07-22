@@ -164,6 +164,62 @@
                     return;
                 }
 
+                 var objdata = {
+                    IdNhanSu: IdNhanSu,
+                    HoTen: HoTen,
+                    NgaySinh: NgaySinh,
+                    ChucDanh: ChucDanh,
+                    DonViKhoa: DonViKhoa,
+                    BangCapHocVi: BangCapHocVi,
+                    NgonNgu: NgonNgu,
+                    KinhNghiemLamViec: KinhNghiemLamViec,
+                }
+                 if (files != undefined && files.length > 0) {
+                    if (window.FormData !== undefined) {
+                        var data = new FormData();
+                        for (var x = 0; x < files.length; x++) {
+                            data.append('files', files[x]);
+                        }
+                        data.append("strData", JSON.stringify(objdata));
+                        $.ajax({
+                            type: "POST",
+                            url: '/Admin/DanhSachNhanSu/SaveData',
+                            contentType: false,
+                            processData: false,
+                            data: data,
+                            success: function (response) {
+                                if (response.status == true) {
+                                    toastr.success("Cập nhập thành công", "Thành Công", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                                } else {
+                                    notify('error', 'Có Lỗi', response.message);
+                                }
+                            },
+                            error: function (response) {
+                                 toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                            }
+                        });
+                    } else {
+                        alert("Upload file thất bại!");
+                    }
+                }
+                else {
+                    $.ajax({
+                        type: 'Post',
+                        url: '/Admin/DanhSachNhanSu/SaveData',
+                        datatype: 'json',
+                        data: {
+                            strData: JSON.stringify(objdata),
+                        },
+                        success: function (response) {
+                            if (response.status) {
+                               toastr.success("Cập nhập thành công", "Thành Công", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                            }
+                            else {
+                                toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                            }
+                        },
+                    });
+                }
             },
 
         };
