@@ -120,10 +120,24 @@
             },
 
             SaveData:function () {
-                var ho_ten = $("#ho_ten").val();
-                if (ho_ten == "") {
+                var IdNhanSu = $("#IdNhanSu").val();
+                var HoTen = $("#HoTen").val();
+                var NgaySinh = $("#NgaySinh").val();
+                var ChucDanh = $("#ChucDanh").val();
+                var DonViKhoa = $("#DonViKhoa").val();
+                var BangCapHocVi = $("#BangCapHocVi").val();
+                var NgonNgu = $("#NgonNgu").val();
+                var KinhNghiemLamViec = $("#KinhNghiemLamViec").val();
+              
+                if (HoTen == "") {
                     toastr.error("Bạn chưa nhập họ tên", "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
-                    $("#ho_ten").focus();
+                    $("#HoTen").focus();
+                    return;
+                }
+
+                if (ChucDanh == "") {
+                    toastr.error("Bạn chưa chọn chức danh", "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                    $("#ChucDanh").focus();
                     return;
                 }
 
@@ -205,35 +219,36 @@
                                 <p class="card-subtitle text-primary mb-4">Thông tin cá nhân</p>
                                 <div class="form-group">
                                     <div class="row">
+                                        <input type="hidden" id="IdNhanSu" name="name" value="" />
                                         <div class="col-sm-6 mb-2">
                                             <label class="fs-2 form-label m-0">Họ tên:<font class="text-danger">*</font> </label>
-                                            <input type="text" class="form-control" placeholder="Nhập họ tên ..." id="ho_ten" value="">
+                                            <input type="text" class="form-control" placeholder="Nhập họ tên ..." id="HoTen" value="">
                                         </div>
                                         <div class="col-sm-6 mb-2">
-                                            <label class="fs-2 form-label m-0">Ngày sinh:<font class="text-danger">*</font></label>
-                                            <input type="date" class="form-control" placeholder="" id="ngay_sinh" value="">
+                                            <label class="fs-2 form-label m-0">Ngày sinh:</label>
+                                            <input type="date" class="form-control" placeholder="" id="NgaySinh" value="">
                                         </div>
                                         <div class="col-sm-6 mb-2">
-                                            <label class="fs-2 form-label m-0">Chức danh:</label>
-                                            <select data-placeholder="Choose a Country..." class="form-control chosen-select" id="chuc_danh" tabindex="2">
+                                            <label class="fs-2 form-label m-0">Chức danh:<font class="text-danger">*</font></label>
+                                            <select data-placeholder="Choose a Country..." class="form-control chosen-select" id="ChucDanh" tabindex="2">
                                                 <option value="">--Chọn chức danh--</option>
                                             </select>
                                         </div>
                                         <div class="col-sm-6 mb-2">
                                             <label class="fs-2 form-label m-0">Cơ sở làm việc:</label>
-                                            <input type="text" class="form-control" placeholder="Cơ sở làm việc ..." id="co_so_lam_viec" value="">
+                                            <input type="text" class="form-control" placeholder="Cơ sở làm việc ..." id="DonViKhoa" value="">
                                         </div>
                                         <div class="col-sm-12 mb-2">
                                             <label class="fs-2 form-label m-0">Bằng cấp - Học vị:</label>
-                                            <textarea type="text" class="form-control" placeholder="Bằng cấp học vị ..." rows="2" id="bang_cap_hoc_vi" value=""></textarea>
+                                            <textarea type="text" class="form-control" placeholder="Bằng cấp học vị ..." rows="2" id="BangCapHocVi" value=""></textarea>
                                         </div>
                                         <div class="col-sm-12 mb-2">
                                             <label class="fs-2 form-label m-0">Ngôn ngữ:</label>
-                                            <textarea type="text" class="form-control" placeholder="Bằng cấp học vị ..." rows="2" id="ngon_ngu" value=""></textarea>
+                                            <textarea type="text" class="form-control" placeholder="Bằng cấp học vị ..." rows="2" id="NgonNgu" value=""></textarea>
                                         </div>
                                         <div class="col-sm-12 mb-2">
                                             <label class="fs-2 form-label m-0">Kinh nghiệm làm việc:</label>
-                                            <textarea type="text" class="form-control" placeholder="Bằng cấp học vị ..." rows="2" id="kinh_nghiem_lam_viec" value=""></textarea>
+                                            <textarea type="text" class="form-control" placeholder="Kinh nghiệm làm việc ..." rows="2" id="KinhNghiemLamViec" value=""></textarea>
                                         </div>
                                     </div>
                                     <div class="row">

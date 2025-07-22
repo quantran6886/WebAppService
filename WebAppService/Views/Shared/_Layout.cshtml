@@ -9,6 +9,7 @@
     <link rel="icon" type="image/x-icon" href="~/web/images/icon_Group.png" />
     <link rel="stylesheet" href="~/web/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/web/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/web/clinic_website.styles.css" asp-append-version="true" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
@@ -43,7 +44,7 @@
             </div>
         </div>
     </div>
-    <div class="main-wrap">
+    <div class="main-wrap main-mobile">
         <aside id="sidebar-wrapper" class="custom-scrollbar offcanvas-sidebar position-right">
             <button class="off-canvas-close"><i class="ti-close"></i></button>
         </aside>
@@ -78,7 +79,7 @@
                                     <img class="logo-img d-inline" src="~/web/images/Group.png" alt="">
                                 </a>
                             </div>
-                            <div class="logo-mobile d-block d-md-none ml-3">
+                            <div class="logo-mobile d-block d-md-none">
                                 <a href="index.html">
                                     <img class="logo-img d-inline" src="~/web/images/Group.png" width="200" alt="">
                                 </a>
@@ -94,8 +95,16 @@
                                     <li class="cat-item cat-item-5"><a href="#">Bác Sĩ</a></li>
                                     <li class="cat-item cat-item-6"><a href="#">Tin Tức</a></li>
                                     <li class="cat-item cat-item-7"><a href="#">Liên Hệ</a></li>
-                                    <li class="cat-item cat-item-2"><a href="#">FAQ</a></li>
-                                    <li class="cat-item cat-item-2"><a href="#" class="main-menu d-none d-lg-inline btn-orrange ml-2">Đăng Nhập</a></li>
+                                    <li class="cat-item cat-item-8"><a href="#">FAQ</a></li>
+                                    <li class="cat-item cat-item-8" style="display: flex;font-size:13px!important;font-size: medium;font-family: Montserrat; font-weight: 600;color: white;">Chọn Ngôn Ngữ</li>
+                                    <li class="" style="display: flex;">
+                                        <img class="ml-3" src="https://flagcdn.com/vn.svg" alt="Vietnam Flag" width="40">
+                                        <img class="ml-3" src="https://flagcdn.com/jp.svg" alt="Japan Flag" width="40">
+                                        <img class="ml-3" src="https://flagcdn.com/tw.svg" alt="Taiwan Flag" width="40">
+                                        <img class="ml-3" src="https://flagcdn.com/gb.svg" alt="UK Flag" width="45">
+                                    </li>
+                                    <li class="mt-20"><a href="#" class="main-menu d-lg-inline btn-orrange ml-2" style="width:fit-content">Đăng Nhập tài khoản</a></li>
+
                                 </ul>
                                 <nav>
                                     <ul class="main-menu d-none d-lg-inline">
@@ -158,7 +167,7 @@
                                     <div class="footer-logo mb-20" style="justify-content: center;">
                                         <img src="~/web/images/Group.png" alt="Sun Medical Center" height="50" />
                                     </div>
-                                 
+
                                     <p class="footer-desc m-0 text-center">
                                         Mang đến dịch vụ y tế chất lượng cao với đội ngũ bác sĩ chuyên môn giỏi, trang thiết bị hiện đại và quy trình chăm sóc tận tâm. Chúng tôi cam kết bảo vệ sức khỏe của bạn và gia đình, cung cấp giải pháp y tế toàn diện từ phòng ngừa đến điều trị, giúp bạn an tâm và khỏe mạnh mỗi ngày.
                                     </p>
@@ -237,6 +246,16 @@
     <script src="~/web/assets/js/vendor/jquery.counterup.min.js"></script>
     <script src="~/web/assets/js/vendor/jquery.theia.sticky.js"></script>
     <script src="~/web/assets/js/main.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            const menuIcon = document.getElementById("menuToggle");
+          if (menuIcon) {
+            menuIcon.addEventListener("click", function () {
+              this.classList.toggle("active");
+            });
+          }
+        });
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

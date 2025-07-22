@@ -2,7 +2,7 @@
     var
     // default settings object.
         defaults = {
-            label: 'MENU',
+            label: '',
             duplicate: true,
             duration: 200,
             easingOpen: 'swing',
@@ -121,7 +121,7 @@
             [
                 '<div class="container">',
                 '<' + settings.parentTag + ' aria-haspopup="true" role="button" tabindex="0" class="' + prefix + '_btn ' + prefix + '_collapsed">',
-                '<div class="menu-icon">',
+                '<div class="menu-icon"  id="menuToggle">',
                 '<span></span>',
                 '<span></span>',
                 '<span></span>',
