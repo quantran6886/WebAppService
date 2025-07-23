@@ -4,90 +4,65 @@
 }
 @section Scripts {
     <script src="~/assets/plug/tinymce/js/tinymce/tinymce.min.js"></script>
+    <script src="~/ajax/webappservice.tinymcesetting.js?v=1.2"></script>
+    <script> tinymceSettings(['#editor'], 500); </script>
     <script>
-        function tinymceSettings() {
-                  tinymce.init({
-                      selector: '#editor',
-                      plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons accordion',
-                      editimage_cors_hosts: ['picsum.photos'],
-                      menubar: 'file edit view insert format tools table help',
-                      toolbar: "undo redo | accordion accordionremove | blocks fontfamily fontsize | bold italic underline strikethrough | align numlist bullist | link image | table media | lineheight outdent indent| forecolor backcolor removeformat | charmap emoticons | code fullscreen preview | save print | pagebreak anchor codesample | ltr rtl",
-                      autosave_ask_before_unload: true,
-                      autosave_interval: '30s',
-                      autosave_prefix: '{path}{query}-{id}-',
-                      autosave_restore_when_empty: false,
-                      autosave_retention: '2m',
-                      image_advtab: true,
-                      language: 'vi',
-                      importcss_append: true,
-                      file_picker_callback: (callback, value, meta) => {
-                          let input = document.createElement('input');
-
-                          if (meta.filetype === 'image') {
-                              input.setAttribute('type', 'file');
-                              input.setAttribute('accept', 'image/*');
-
-                              input.onchange = function () {
-                                  var file = this.files[0];
-                                  var reader = new FileReader();
-
-                                  reader.onload = function () {
-                                      callback(reader.result, { alt: file.name });
-                                  };
-                                  reader.readAsDataURL(file);
-                              };
-
-                              input.click();
-                          }
-                          else if (meta.filetype === 'media') {
-                              input.setAttribute('type', 'file');
-                              input.setAttribute('accept', 'video/*');
-
-                              input.onchange = function () {
-                                  var file = this.files[0];
-
-                                  if (file) {
-                                      var videoUrl = URL.createObjectURL(file);
-                                      callback(videoUrl, { source2: file.name });
-                                  }
-                              };
-
-                              input.click();
-                          }
-                      },
-                      height: 1000,
-                      image_caption: true,
-                      quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
-                      noneditable_class: 'mceNonEditable',
-                      toolbar_mode: 'sliding',
-                      contextmenu: 'link image table',
-                  });
-              };
-              tinymceSettings();
+        
     </script>
 }
 
 <div class="card-header mt-2">
-    <h4 class="card-title">Danh sách nhân sự</h4>
+    <h4 class="card-title">Tin tức,bài viết</h4>
 </div>
 <div class="card-body">
     <div class="row">
         <div class="col-lg-12 d-flex align-items-stretch">
-            <div class="card w-100 border h-100">
+            <div class="card w-100 border position-relative overflow-hidden">
                 <div class="card-header p-1">
                     <div class="form-group">
-                        <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#bsHoSoCanBo">
-                            <i class="ti ti-plus fs-2"></i> Tạo mới bản ghi
+                        <button type="button" class="btn btn-info btn-sm" id="btnNewForm" data-bs-toggle="modal"
+                            data-bs-target="#bsHoSoCanBo">
+                            <i class="ti ti-plus fs-2"></i> Viết bài
                         </button>
-                        <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editer">
+                        <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                            data-bs-target="#editer">
                             <i class="ti ti-search fs-2"></i> Lọc dữ liệu
                         </button>
                     </div>
-                 
                 </div>
-                <textarea id="editor" style="height:300px !important"></textarea>
+                <div class="card-body p-2">
+                    <div class="row">
+                        <div class="col-sm-6 mb-2">
+                            <label class="fs-2 form-label m-0">Tên tiêu đề:</label>
+                            <input type="text" class="form-control" placeholder="Tìm kiếm tên tiêu đề ..."
+                                id="txtSearchTieuDe" value="">
+                        </div>
+                        <div class="col-sm-6 mb-2">
+                            <label class="fs-2 form-label m-0">Loại bài viết:<font class="text-danger">*</font> </label>
+                            <select class="form-control" id="LoaiDanhMuc">
+                                <option value="">-- Chọn phân loại --</option>
+                                <option value="Danh mục chức danh">Bài viết nổi bật</option>
+                                <option value="Danh mục nhóm bài viết">Bài viết công khai</option>
+                                <option value="Danh mục bài đăng">Bài viết không công khai</option>
+                            </select>
+                        </div>
+                    </div>
+                    <table id="tableDanhSachNhanSu" data-toggle="table" data-flat="true" data-search="true" data-url="">
+                        <thead>
+                            <tr>
+                                <th data-formatter="fm_editData" data-sortable="true" data-width="5" data-width="5"
+                                    class="text-center">Chức năng</th>
+                                <th data-field="hoTen" data-sortable="true">Họ và tên</th>
+                                <th data-field="ngaySinh" data-sortable="true">Ngày sinh</th>
+                                <th data-field="chucDanh" data-sortable="true">Chức danh</th>
+                                <th data-field="donViKhoa" data-sortable="true">Cơ sở làm việc</th>
+                                <th data-field="bangCapHocVi" data-sortable="true">Bằng cấp - học vị</th>
+                                <th data-field="ngonNgu" data-sortable="true">Bằng cấp - học vị</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 </div>
-

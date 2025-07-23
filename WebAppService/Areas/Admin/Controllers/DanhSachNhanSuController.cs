@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebAppService.Areas.Admin._Helper;
 using WebAppService.Models.Updates;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace WebAppService.Areas.Admin.Controllers
 {

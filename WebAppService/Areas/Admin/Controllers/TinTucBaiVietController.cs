@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using WebAppService.Models.Updates;
 
 namespace WebAppService.Areas.Admin.Controllers
 {
@@ -11,5 +12,8 @@ namespace WebAppService.Areas.Admin.Controllers
         {
             return View();
         }
+        AppDbContext db = new AppDbContext();
+
+        
     }
 }

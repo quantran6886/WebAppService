@@ -14,15 +14,16 @@ namespace WebAppService.Areas.Admin.Controllers
         AppDbContext db = new AppDbContext();
 
         [HttpGet]
-        public IActionResult LoadTable(string LoaiDanhMuc)
+        public IActionResult LoadTable()
         {
             try
             {
-                var lstData = db.WebDanhMucHeThongs.Where(c => c.LoaiDanhMuc == LoaiDanhMuc).Select(c => new
+                var lstData = db.WebFaqs.Select(c => new
                 {
-                    c.IdHeThong,
-                    c.ThuTuTg,
-                    c.TenGoi,
+                    c.IdFaqs,
+                    c.SoThuTu,
+                    c.CauHoi,
+                    c.CauTraLoi,
                     c.GhiChu,
                 }).ToList();
 
@@ -44,16 +45,16 @@ namespace WebAppService.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public IActionResult LoadDetail(Int64? IdHeThong)
+        public IActionResult LoadDetail(Guid? IdFaqs)
         {
             try
             {
-                var lstData = db.WebDanhMucHeThongs.Where(c => c.IdHeThong == IdHeThong).Select(c => new
+                var lstData = db.WebFaqs.Where(c => c.IdFaqs == IdFaqs).Select(c => new
                 {
-                    c.IdHeThong,
-                    c.LoaiDanhMuc,
-                    c.ThuTuTg,
-                    c.TenGoi,
+                    c.IdFaqs,
+                    c.CauHoi,
+                    c.CauTraLoi,
+                    c.SoThuTu,
                     c.GhiChu,
                 }).FirstOrDefault();
 
@@ -75,16 +76,16 @@ namespace WebAppService.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteData(Int64? IdHeThong)
+        public IActionResult DeleteData(Guid? IdFaqs)
         {
             try
             {
-                if (IdHeThong > 0)
+                if (IdFaqs != Guid.Empty)
                 {
-                    var find_data = db.WebDanhMucHeThongs.Find(IdHeThong);
+                    var find_data = db.WebFaqs.Find(IdFaqs);
                     if (find_data != null)
                     {
-                        db.WebDanhMucHeThongs.Remove(find_data);
+                        db.WebFaqs.Remove(find_data);
                     }
                     db.SaveChanges();
                 }
@@ -104,11 +105,13 @@ namespace WebAppService.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult SaveData(Int64? IdHeThong, Int32 ThuTuTG, string TenGoi, string GhiChu, string LoaiDanhMuc)
+        public IActionResult SaveData(Guid? IdFaqs, Int32 SoThuTu, string CauHoi, string CauTraLoi, string GhiChu)
         {
             try
             {
-                var check_so_thu_tu = db.WebDanhMucHeThongs.Where(c => IdHeThong == 0 ? (c.ThuTuTg == ThuTuTG && c.LoaiDanhMuc == LoaiDanhMuc) : (c.IdHeThong != IdHeThong && c.ThuTuTg == ThuTuTG && c.LoaiDanhMuc == LoaiDanhMuc)).Count();
+                var check_so_thu_tu = db.WebFaqs.Where(c => IdFaqs == Guid.Empty ?
+                (c.SoThuTu == SoThuTu ) :
+                (c.IdFaqs != IdFaqs && c.SoThuTu == SoThuTu)).Count();
                 if (check_so_thu_tu > 0)
                 {
                     return Json(new
@@ -117,25 +120,26 @@ namespace WebAppService.Areas.Admin.Controllers
                         message = "Số thứ tự bạn nhập đã bị trùng với dữ liệu khác.",
                     });
                 }
-                if (IdHeThong == 0)
+                if (IdFaqs == Guid.Empty )
                 {
-                    db.WebDanhMucHeThongs.Add(new WebDanhMucHeThong
+                    db.WebFaqs.Add(new WebFaq
                     {
-                        ThuTuTg = ThuTuTG,
-                        TenGoi = TenGoi,
-                        LoaiDanhMuc = LoaiDanhMuc,
+                        IdFaqs = Guid.NewGuid(),
+                        SoThuTu = SoThuTu,
+                        CauHoi = CauHoi,
+                        CauTraLoi = CauTraLoi,
                         GhiChu = GhiChu,
                     });
                     db.SaveChanges();
                 }
                 else
                 {
-                    var find_data = db.WebDanhMucHeThongs.Find(IdHeThong);
+                    var find_data = db.WebFaqs.Find(IdFaqs);
                     if (find_data != null)
                     {
-                        find_data.ThuTuTg = ThuTuTG;
-                        find_data.TenGoi = TenGoi;
-                        find_data.LoaiDanhMuc = LoaiDanhMuc;
+                        find_data.SoThuTu = SoThuTu;
+                        find_data.CauHoi = CauHoi;
+                        find_data.CauTraLoi = CauTraLoi;
                         find_data.GhiChu = GhiChu;
                     }
                     db.SaveChanges();
