@@ -1,5 +1,6 @@
 ﻿var myScripts = {
     init: function myfunction() {
+        myScripts.ResetForm();
         myScripts.RegesterEvent();
         myScripts.LoadData();
     },
@@ -61,7 +62,7 @@
     DeleteData: function () {
         var IdFaqs = $("#IdFaqs").val();
 
-        if (IdFaqs != "" && IdFaqs != null) {
+        if (IdFaqs != "" || IdFaqs != null) {
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
                     confirmButton: "btn bg-secondary-subtle text-secondary",
@@ -138,6 +139,7 @@
             success: function (response) {
                 if (response.status == true) {
                     myScripts.LoadTable();
+                    myScripts.ResetForm();
                     toastr.success("Cập nhập thành công", "Thành công", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
                 } else {
                     toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
@@ -150,7 +152,7 @@
     },
 
     LoadDetail: function (idFaqs) {
-        if (idFaqs > 0) {
+        if (idFaqs != "" || idFaqs != null) {
             $.ajax({
                 url: '/Admin/FAQS/LoadDetail',
                 type: "GET",

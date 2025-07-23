@@ -415,57 +415,58 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-lg-2 d-flex align-items-stretch" style="height: max-content;">
-                        <div class="card w-100 border position-relative overflow-hidden">
-                            <div class="card-body p-2">
-                                <div class="text-center">
-                                    <img src="~/root/Profile_avatar.png" id="imageHoSo" alt="ảnh đại diện" class="" width="150px" height="180px">
-                                    <input type="file" id="duong_dan_file" name="name" value="" hidden />
-                                    <input type="text" id="isThayDoi" hidden />
-                                    <div class="d-flex align-items-center justify-content-center my-1 gap-1">
-                                        <button class="btn bg-danger text-white" id="btnRemoveUpload"><i class="ti ti-trash"></i></button>
-                                        <button class="btn btn-primary w-100" id="btnUpload"><i class="ti ti-upload"></i> Upload</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-10 d-flex align-items-stretch p-0">
+                    <div class="col-lg-12 d-flex align-items-stretch p-0">
                         <div class="card w-100 border position-relative m-0 overflow-hidden">
                             <div class="card-body p-3">
-                                <p class="card-subtitle text-primary mb-4">Thông tin cá nhân</p>
                                 <div class="form-group">
                                     <div class="row">
                                         <input type="hidden" id="IdNhanSu" name="name" value="" />
-                                        <div class="col-sm-6 mb-2">
-                                            <label class="fs-2 form-label m-0">Họ tên:<font class="text-danger">*</font> </label>
-                                            <input type="text" class="form-control" placeholder="Nhập họ tên ..." id="HoTen" value="">
+                                        <div class="col-sm-2 d-flex align-items-stretch" style="height: max-content;">
+                                            <div class="card w-100 border position-relative overflow-hidden">
+                                                <div class="card-body p-2">
+                                                    <div class="text-center">
+                                                        <img src="~/root/Profile_avatar.png" id="imageHoSo" alt="ảnh đại diện" class="" width="150px" height="180px">
+                                                        <input type="file" id="duong_dan_file" name="name" value="" hidden />
+                                                        <input type="text" id="isThayDoi" hidden />
+                                                        <div class="d-flex align-items-center justify-content-center my-1 gap-1">
+                                                            <button class="btn bg-danger text-white" id="btnRemoveUpload"><i class="ti ti-trash"></i></button>
+                                                            <button class="btn btn-primary w-100" id="btnUpload"><i class="ti ti-upload"></i> Upload</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-sm-6 mb-2">
-                                            <label class="fs-2 form-label m-0">Ngày sinh:<font class="text-danger">*</font></label>
-                                            <input type="date" class="form-control" placeholder="" id="NgaySinh" value="">
-                                        </div>
-                                        <div class="col-sm-6 mb-2">
-                                            <label class="fs-2 form-label m-0">Chức danh:<font class="text-danger">*</font></label>
-                                            <select data-placeholder="Choose a Country..." class="form-control chosen-select" id="ChucDanh" tabindex="2">
-                                                <option value="">--Chọn chức danh--</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-6 mb-2">
-                                            <label class="fs-2 form-label m-0">Cơ sở làm việc:</label>
-                                            <input type="text" class="form-control" placeholder="Cơ sở làm việc ..." id="DonViKhoa" value="">
-                                        </div>
-                                        <div class="col-sm-12 mb-2">
-                                            <label class="fs-2 form-label m-0">Bằng cấp - Học vị:</label>
-                                            <textarea type="text" class="form-control" placeholder="Bằng cấp học vị ..." rows="2" id="BangCapHocVi" value=""></textarea>
-                                        </div>
-                                        <div class="col-sm-12 mb-2">
-                                            <label class="fs-2 form-label m-0">Ngôn ngữ:</label>
-                                            <textarea type="text" class="form-control" placeholder="Bằng cấp học vị ..." rows="2" id="NgonNgu" value=""></textarea>
-                                        </div>
-                                        <div class="col-sm-12 mb-2">
-                                            <label class="fs-2 form-label m-0">Kinh nghiệm làm việc:</label>
-                                            <textarea type="text" class="form-control" placeholder="Kinh nghiệm làm việc ..." rows="2" id="KinhNghiemLamViec" value=""></textarea>
+                                        <div class="col-sm-10 row">
+                                            <div class="col-sm-6 mb-2">
+                                                <label class="fs-2 form-label m-0">Họ tên:<font class="text-danger">*</font> </label>
+                                                <input type="text" class="form-control" placeholder="Nhập họ tên ..." id="HoTen" value="">
+                                            </div>
+                                            <div class="col-sm-6 mb-2">
+                                                <label class="fs-2 form-label m-0">Ngày sinh:<font class="text-danger">*</font></label>
+                                                <input type="date" class="form-control" placeholder="" id="NgaySinh" value="">
+                                            </div>
+                                            <div class="col-sm-6 mb-2">
+                                                <label class="fs-2 form-label m-0">Chức danh:<font class="text-danger">*</font></label>
+                                                <select data-placeholder="Choose a Country..." class="form-control chosen-select" id="ChucDanh" tabindex="2">
+                                                    <option value="">--Chọn chức danh--</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-6 mb-2">
+                                                <label class="fs-2 form-label m-0">Cơ sở làm việc:</label>
+                                                <input type="text" class="form-control" placeholder="Cơ sở làm việc ..." id="DonViKhoa" value="">
+                                            </div>
+                                            <div class="col-sm-12 mb-2">
+                                                <label class="fs-2 form-label m-0">Bằng cấp - Học vị:</label>
+                                                <textarea type="text" class="form-control" placeholder="Bằng cấp học vị ..." rows="2" id="BangCapHocVi" value=""></textarea>
+                                            </div>
+                                            <div class="col-sm-12 mb-2">
+                                                <label class="fs-2 form-label m-0">Ngôn ngữ:</label>
+                                                <textarea type="text" class="form-control" placeholder="Bằng cấp học vị ..." rows="2" id="NgonNgu" value=""></textarea>
+                                            </div>
+                                            <div class="col-sm-12 mb-2">
+                                                <label class="fs-2 form-label m-0">Kinh nghiệm làm việc:</label>
+                                                <textarea type="text" class="form-control" placeholder="Kinh nghiệm làm việc ..." rows="2" id="KinhNghiemLamViec" value=""></textarea>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">

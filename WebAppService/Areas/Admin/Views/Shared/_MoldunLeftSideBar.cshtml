@@ -2,91 +2,93 @@
 @model WebNguoiDungQuanTri
 
 <aside class="left-sidebar with-vertical">
-	<div>
-		<div class="brand-logo d-flex align-items-center justify-content-between p-0">
-			<a href="#" class="text-nowrap logo-img col-sm-12">
-				<div class="col-sm-12">
-					<div class="fixed-profile p-3 pt-2 mx-0 mb-2 bg-secondary-subtle rounded mt-0">
-						<div class="hstack gap-3">
-							<div class="john-img">
-								<img src="~/root/icon.png" class="rounded-circle" width="40" height="40" alt="modernize-img" />
-							</div>
-							<div class="john-title">
-								<h6 class="mb-0 fs-4 fw-semibold">@Model.HoTen</h6>
-								@if (User.IsInRole("Admin"))
-								{
-									<span class="badge text-bg-danger text-white fs-2 me-9 mt-2 px-2 fw-semibold">
-										Quyền Admin
-									</span>
-								}else{
-									<span class="fs-2">Chưa xác thực</span>
-								}
-							</div>
-							<button class="border-0 bg-transparent text-primary ms-auto" onclick="ServiceLogout()" tabindex="0" type="button" aria-label="logout" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="logout">
-								<i class="ti ti-power fs-6"></i>
-							</button>
-						</div>
-					</div>
-				</div>
-			</a>
+    <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between p-0">
+            <a href="#" class="text-nowrap logo-img col-sm-12">
+                <div class="col-sm-12">
+                    <div class="fixed-profile p-3 pt-2 mx-0 mb-2 bg-secondary-subtle rounded mt-0">
+                        <div class="hstack gap-3">
+                            <div class="john-img">
+                                <img src="~/root/icon.png" class="rounded-circle" width="40" height="40" alt="modernize-img" />
+                            </div>
+                            <div class="john-title">
+                                <h6 class="mb-0 fs-4 fw-semibold">@Model.HoTen</h6>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <span class="badge text-bg-danger text-white fs-2 me-9 mt-2 px-2 fw-semibold">
+                                        Quyền Admin
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="fs-2">Chưa xác thực</span>
+                                }
+                            </div>
+                            <button class="border-0 bg-transparent text-primary ms-auto" onclick="ServiceLogout()" tabindex="0" type="button" aria-label="logout" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="logout">
+                                <i class="ti ti-power fs-6"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </a>
 
-			<a href="javascript:void(0)" class="sidebartoggler ms-auto text-decoration-none fs-5 d-block d-xl-none">
-				<i class="ti ti-x"></i>
-			</a>
-		</div>
-		<nav class="sidebar-nav scroll-sidebar" data-simplebar>
+            <a href="javascript:void(0)" class="sidebartoggler ms-auto text-decoration-none fs-5 d-block d-xl-none">
+                <i class="ti ti-x"></i>
+            </a>
+        </div>
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar>
 
-			<ul id="sidebarnav">
-				<li class="nav-small-cap m-0">
-					<i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-					<span class="hide-menu">Chức năng </span>
-				</li>
-				<li class="sidebar-item" hidden>
-					<a class="sidebar-link" href="/Home/Index" id="get-url" aria-expanded="false">
-						<span class="hide-menu"></span>
-					</a>
-				</li>
-				<li class="sidebar-item">
-					<a class="sidebar-link" href="/Admin/Home/Index" id="get-url" aria-expanded="false">
-						<span>
-							<iconify-icon icon="solar:home-2-linear" width="20px" height="20px"></iconify-icon>
-						</span>
-						<span class="hide-menu">Trang chủ</span>
-					</a>
-				</li>
-				<li class="sidebar-item">
-					<a class="sidebar-link" href="/Admin/DanhSachNhanSu/DanhSachNhanSu" id="get-url" aria-expanded="false">
-						<span>
-							<iconify-icon icon="solar:users-group-rounded-line-duotone" class="text-primary" width="20px" height="20px"></iconify-icon>
-						</span>
-						<span class="hide-menu">Danh sách nhân sự</span>
-					</a>
-				</li>
-				<li class="sidebar-item">
-					<a class="sidebar-link" href="/Admin/TinTucBaiViet/TinTucBaiViet" id="get-url" aria-expanded="false">
-						<span>
-							<iconify-icon icon="solar:pen-new-square-broken" class="text-primary" width="20px" height="20px"></iconify-icon>
-						</span>
-						<span class="hide-menu">Tin tức,Bài viết</span>
-					</a>
-				</li>
-				<li class="sidebar-item"></li>
-					<a class="sidebar-link" href="/Admin/DichVu/DichVu" id="get-url" aria-expanded="false">
-						<span>
-							<iconify-icon icon="solar:pen-new-square-broken" class="text-primary" width="20px" height="20px"></iconify-icon>
-						</span>
-						<span class="hide-menu">Dịch vụ</span>
-					</a>
-				</li>
-				<li class="sidebar-item">
-					<a class="sidebar-link" href="/Admin/FAQS/FAQS" id="get-url" aria-expanded="false">
-						<span>
-							<iconify-icon icon="solar:pen-new-square-broken" class="text-primary" width="20px" height="20px"></iconify-icon>
-						</span>
-						<span class="hide-menu">FAQS</span>
-					</a>
-				</li>
-				@* <li class="sidebar-item">
+            <ul id="sidebarnav">
+                <li class="nav-small-cap m-0">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">Chức năng </span>
+                </li>
+                <li class="sidebar-item" hidden>
+                    <a class="sidebar-link" href="/Home/Index" id="get-url" aria-expanded="false">
+                        <span class="hide-menu"></span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/Admin/Home/Index" id="get-url" aria-expanded="false">
+                        <span>
+                            <iconify-icon icon="solar:home-2-linear" width="20px" height="20px"></iconify-icon>
+                        </span>
+                        <span class="hide-menu">Trang chủ</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/Admin/DanhSachNhanSu/DanhSachNhanSu" id="get-url" aria-expanded="false">
+                        <span>
+                            <iconify-icon icon="solar:users-group-rounded-line-duotone" class="text-primary" width="20px" height="20px"></iconify-icon>
+                        </span>
+                        <span class="hide-menu">Danh sách nhân sự</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/Admin/TinTucBaiViet/TinTucBaiViet" id="get-url" aria-expanded="false">
+                        <span>
+                            <iconify-icon icon="solar:pen-new-square-broken" class="text-primary" width="20px" height="20px"></iconify-icon>
+                        </span>
+                        <span class="hide-menu">Tin tức,Bài viết</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/Admin/DichVu/DichVu" id="get-url" aria-expanded="false">
+                        <span>
+                            <iconify-icon icon="solar:pen-new-square-broken" class="text-primary" width="20px" height="20px"></iconify-icon>
+                        </span>
+                        <span class="hide-menu">Dịch vụ</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/Admin/FAQS/FAQS" id="get-url" aria-expanded="false">
+                        <span>
+                            <iconify-icon icon="solar:pen-new-square-broken" class="text-primary" width="20px" height="20px"></iconify-icon>
+                        </span>
+                        <span class="hide-menu">FAQS</span>
+                    </a>
+                </li>
+                @* <li class="sidebar-item">
 					<a class="sidebar-link" href="/Admin/HoSoCanBo/HoSoCanBo" id="get-url" aria-expanded="false">
 						<span>
 							<i class="ti ti-user"></i>
@@ -94,49 +96,49 @@
 						<span class="hide-menu">Hồ sơ cán bộ</span>
 					</a>
 				</li> *@
-				<li class="sidebar-item">
-					<a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
-						<span class="d-flex">
-							<iconify-icon icon="solar:settings-broken" class="text-danger" width="20px" height="20px"></iconify-icon>
-						</span>
-						<span class="hide-menu">Cài đặt</span>
-					</a>
-					<ul aria-expanded="false" class="collapse first-level">
-						<li class="sidebar-item">
-							<a href="/Admin/DanhMucHeThong/DanhMucHeThong" class="sidebar-link">
-								<div class="round-16 d-flex align-items-center justify-content-center">
-									<i class="ti ti-circle"></i>
-								</div>
-								<span class="hide-menu">Danh mục hệ thống</span>
-							</a>
-						</li>
-						<li class="sidebar-item">
-							<a href="../main/frontend-aboutpage.html" class="sidebar-link">
-								<div class="round-16 d-flex align-items-center justify-content-center">
-									<i class="ti ti-circle"></i>
-								</div>
-								<span class="hide-menu">Tài khoản</span>
-							</a>
-						</li>
-						<li class="sidebar-item">
-							<a href="../main/frontend-contactpage.html" class="sidebar-link">
-								<div class="round-16 d-flex align-items-center justify-content-center">
-									<i class="ti ti-circle"></i>
-								</div>
-								<span class="hide-menu">Phân quyền truy cập</span>
-							</a>
-						</li>
-						<li class="sidebar-item">
-							<a href="../main/frontend-blogpage.html" class="sidebar-link">
-								<div class="round-16 d-flex align-items-center justify-content-center">
-									<i class="ti ti-circle"></i>
-								</div>
-								<span class="hide-menu">Cấu hình hệ thống</span>
-							</a>
-						</li>
-					</ul>
-				</li>
-			</ul>
-		</nav>
-	</div>
+                <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
+                        <span class="d-flex">
+                            <iconify-icon icon="solar:settings-broken" class="text-danger" width="20px" height="20px"></iconify-icon>
+                        </span>
+                        <span class="hide-menu">Cài đặt</span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse first-level">
+                        <li class="sidebar-item">
+                            <a href="/Admin/DanhMucHeThong/DanhMucHeThong" class="sidebar-link">
+                                <div class="round-16 d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-circle"></i>
+                                </div>
+                                <span class="hide-menu">Danh mục hệ thống</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="../main/frontend-aboutpage.html" class="sidebar-link">
+                                <div class="round-16 d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-circle"></i>
+                                </div>
+                                <span class="hide-menu">Tài khoản</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="../main/frontend-contactpage.html" class="sidebar-link">
+                                <div class="round-16 d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-circle"></i>
+                                </div>
+                                <span class="hide-menu">Phân quyền truy cập</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="../main/frontend-blogpage.html" class="sidebar-link">
+                                <div class="round-16 d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-circle"></i>
+                                </div>
+                                <span class="hide-menu">Cấu hình hệ thống</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
 </aside>
