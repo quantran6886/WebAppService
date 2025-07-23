@@ -27,7 +27,7 @@ namespace WebAppService.Areas.Admin.Controllers
                     c.ThuTuTg,
                     c.TenGoi,
                     c.GhiChu,
-                });
+                }).ToList();
 
                 return new JsonResult(new
                 {
@@ -45,7 +45,6 @@ namespace WebAppService.Areas.Admin.Controllers
                 });
             }
         }
-
 
         [HttpPost]
         public async Task<IActionResult> SaveData([FromForm] string strData, [FromForm] bool isThayDoi, IFormFileCollection files)

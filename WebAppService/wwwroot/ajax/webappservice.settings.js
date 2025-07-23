@@ -45,7 +45,11 @@
                 });
             }
         });
-}
+};
+
+function fm_formatDate(value, row, index) {
+    return value ? dayjs(value).format('DD/MM/YYYY') : '';
+};
 
 var connection = new signalR.HubConnectionBuilder()
     .withUrl("/userStatusHub")
