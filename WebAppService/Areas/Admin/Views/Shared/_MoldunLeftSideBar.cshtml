@@ -49,12 +49,38 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/Admin/Home/Index" id="get-url" aria-expanded="false">
-                        <span>
-                            <iconify-icon icon="solar:home-2-linear" width="20px" height="20px"></iconify-icon>
+                    <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
+                        <span class="d-flex">
+                            <iconify-icon icon="solar:home-2-linear" class="text-danger" width="20px" height="20px"></iconify-icon>
                         </span>
-                        <span class="hide-menu">Trang chủ</span>
+                        <span class="hide-menu">Cấu hình trang chính</span>
                     </a>
+                    <ul aria-expanded="false" class="collapse first-level">
+                        <li class="sidebar-item">
+                            <a href="/Admin/Home/Index" class="sidebar-link">
+                                <div class="round-16 d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-circle"></i>
+                                </div>
+                                <span class="hide-menu">Giao diện seo 1</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="/Admin/Home/Index" class="sidebar-link">
+                                <div class="round-16 d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-circle"></i>
+                                </div>
+                                <span class="hide-menu">Giao diện seo 2</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="/Admin/Home/Index" class="sidebar-link">
+                                <div class="round-16 d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-circle"></i>
+                                </div>
+                                <span class="hide-menu">Dịch vụ đặc biệt</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/Admin/DanhSachNhanSu/DanhSachNhanSu" id="get-url" aria-expanded="false">
@@ -112,7 +138,7 @@
                                 <span class="hide-menu">Danh mục hệ thống</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
+                    @*     <li class="sidebar-item">
                             <a href="../main/frontend-aboutpage.html" class="sidebar-link">
                                 <div class="round-16 d-flex align-items-center justify-content-center">
                                     <i class="ti ti-circle"></i>
@@ -135,7 +161,7 @@
                                 </div>
                                 <span class="hide-menu">Cấu hình hệ thống</span>
                             </a>
-                        </li>
+                        </li> *@
                     </ul>
                 </li>
             </ul>

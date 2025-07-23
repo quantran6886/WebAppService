@@ -1,0 +1,129 @@
+﻿h2 {
+    color: #2F4848;
+    font-weight: 600;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 24px;
+}
+.filter {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+    .filter h2 {
+        margin: 0;
+    }
+
+.filter-item {
+    display: inline-flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 8px 12px;
+}
+
+    .filter-item select {
+        border: none;
+        font-size: 15px;
+        outline: none;
+        background: transparent;
+    }
+
+.btn-search {
+    margin-left: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.btn-search {
+    padding: 10px 20px;
+    font-size: 15px;
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Doctors Grid */
+    .doctors {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Mỗi hàng 3 cột */
+    gap: 25px;
+    justify-items: center;
+    margin-top: 40px;
+}
+
+.doctor-card {
+    background-color: #F8FFFF;
+    padding: 36px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    font-weight: 500;
+    width: 320px;
+}
+
+    .doctor-card img {
+        border-radius: 5px;
+        margin-bottom: 15px;
+    }
+
+    .doctor-card h3 {
+        margin: 0;
+        color: #2F4848;
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .doctor-card p {
+        margin: 5px 0;
+        color: #555;
+    }
+
+    .doctor-card i {
+        margin-right: 6px;
+    }
+
+.btn-detail {
+    margin-top: 10px;
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    padding: 8px 60px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.nice-select {
+    -webkit-tap-highlight-color: transparent;
+    background-color: #fff;
+    border-radius: 5px;
+     border: none; 
+    box-sizing: border-box;
+    clear: both;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: normal;
+    height: 30px;
+    line-height: 30px;
+    outline: none;
+    padding-left: 18px;
+    padding-right: 30px;
+    position: relative;
+    text-align: left !important;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    white-space: nowrap;
+    width: auto;
+}

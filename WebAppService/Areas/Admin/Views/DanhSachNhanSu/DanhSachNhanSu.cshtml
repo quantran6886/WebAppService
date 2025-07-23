@@ -200,7 +200,7 @@
             },
 
             ResetForm: function () {
-                $("#IdNhanSu").val();
+                $("#IdNhanSu").val(0);
                 $("#HoTen").val("");
                 $("#NgaySinh").val("");
                 $("#ChucDanh").val("").trigger('chosen:updated');
@@ -239,7 +239,7 @@
                 }
 
                  var objdata = {
-                    IdNhanSu: IdNhanSu = IdNhanSu ? IdNhanSu : '00000000-0000-0000-0000-000000000000',
+                    IdNhanSu: IdNhanSu != 0 ? IdNhanSu : '00000000-0000-0000-0000-000000000000',
                     HoTen: HoTen,
                     NgaySinh: NgaySinh,
                     ChucDanh: ChucDanh,

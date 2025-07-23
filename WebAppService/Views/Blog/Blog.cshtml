@@ -6,6 +6,63 @@
 @section Scripts {
     <script src="~/assets/js/swiper-bundle.min.js"></script>
     <script src="~/assets/js/swiper-dom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dot/doT.min.js"></script>
+    <script>
+        var myClient = {
+            currentPage: 1,
+            pageSize: 6,
+
+            init: function(){
+                myClient.Event();
+                myClient.LoadData();
+            },
+
+             Event: function () {
+                $(document).on('click', '.page-link', function () {
+                    var page = $(this).data("page");
+                    myClient.currentPage = page;
+                    myClient.LoadData();
+                });
+            },
+
+             LoadData: function () {
+                $.ajax({
+                    url: '/Blog/LoadData',
+                    type: "GET",
+                    data: {
+                        page: myClient.currentPage,
+                        pageSize: myClient.pageSize
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.status == true) {
+
+                            if (data.lstData != null) {
+                                var template = doT.template($("#news-template").html());
+                                $("#list_bai_viet").html(template({ newsList: data.lstData }));
+                            }
+
+                            // Phân trang
+                            var totalPages = Math.ceil(data.totalRow / myClient.pageSize);
+                            myClient.RenderPagination(totalPages);
+                        }
+                    }
+                });
+            },
+            
+            RenderPagination: function (totalPages) {
+                var pagination = '';
+                for (var i = 1; i <= totalPages; i++) {
+                    pagination += '<li class="page-item ' + (i === myClient.currentPage ? 'active' : '') + '">' +
+                        '<a class="page-link" href="javascript:void(0)" data-page="' + i + '">' + i + '</a></li>';
+                }
+                $("#pagination").html('<ul class="pagination justify-content-center">' + pagination + '</ul>');
+            },
+
+        }
+        myClient.init();
+
+    </script>
 }
 <div class="entry-header entry-header-2 mb-0 mt-0 text-center">
     <div class="thumb-overlay img-hover-slide border-radius-5 position-relative" style="background-image: url(/assets/imgs/farme.png)">
@@ -158,7 +215,7 @@
                                         <div class="d-flex">
                                             <div class="post-thumb d-flex mr-15 border-radius-5 img-hover-scale">
                                                 <a class="color-white" href="single.html">
-                                                    <img src="~/assets/imgs/777be068912ffb3767e6510c19baa27eb663d38b.png" width="145px" height="115px" alt="">
+                                                    <img src="/assets/imgs/777be068912ffb3767e6510c19baa27eb663d38b.png" width="145px" height="115px" alt="">
                                                 </a>
                                             </div>
                                             <div class="post-content media-body">
@@ -192,14 +249,24 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                @for (int i = 0; i < 12; i++)
-                {
-                    <article class="col-lg-4 col-6 wow fadeIn  animated" style="visibility: visible; animation-name: fadeIn;">
+            <div class="row" id="list_bai_viet">
+            </div>
+            <div class="pagination-area mb-30">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center" id="pagination">
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="news-template" type="text/x-dot-template">
+    {{ for(var i = 0; i < it.newsList.length; i++) { }}
+            <article class="col-lg-4 col-6 wow fadeIn  animated" style="visibility: visible; animation-name: fadeIn;">
                         <div class="background-white border-radius-10 p-0 mb-30">
                             <div class="post-thumb d-flex mb-15 border-radius-5 img-hover-scale">
                                 <a href="single.html">
-                                    <img class="border-radius-5" src="~/assets/imgs/32767f76132eb496c7d02db425652b886631fb30.png" alt="">
+                                    <img class="border-radius-5" src="{{=it.newsList[i].urlImage}}" alt="">
                                 </a>
                             </div>
                             <div class="pl-10 pr-10">
@@ -210,7 +277,7 @@
                                     <a href="#" class="text-c-3">Cách Phòng Bệnh Hiệu Quả Mùa Thay Đổi Thời Tiết</a>
                                 </div>
                                 <div class="entry-meta meta-1 flex-column font-x-small text-capitalize mb-10">
-                                    <span class="text-c-8 m-0"> <i class="ti ti-calendar"></i> 07 Thg 07,2025</span>
+                                <span class="text-c-8 m-0"> <i class="ti ti-calendar"></i> 07 Thg 07,2025</span>
                                     <span class="mr-0 ml-0 text-c-8">|</span>
                                     <span class="text-c-8"><i class="ti ti-timer"></i> 1 Ngày Trước</span>
                                 </div>
@@ -219,20 +286,6 @@
                                 </div>
                             </div>
                         </div>
-                    </article>
-                }
-            </div>
-            <div class="pagination-area mb-30">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-start">
-                        <li class="page-item active"><a class="page-link" href="#">01</a></li>
-                        <li class="page-item"><a class="page-link" href="#">02</a></li>
-                        <li class="page-item"><a class="page-link" href="#">03</a></li>
-                        <li class="page-item"><a class="page-link" href="#">04</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
-</div>
-
+            </article>
+    {{ } }}
+</script>

@@ -1,246 +1,120 @@
-﻿<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Danh sách bác sĩ</title>
-    <style>
+﻿<link href="~/web/assets/css/doctor.css" rel="stylesheet" />
+<style>
+    .orane_color {
+        color: #ff6600;
+    }
+</style>
 
-        h2 {
-            color: #2F4848;
-            font-weight:600;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/dot/doT.min.js"></script>
+    <script>
+        var myClient = {
+            currentPage: 1,
+            pageSize: 6,
+
+            init: function(){
+                myClient.Event();
+                myClient.LoadData();
+            },
+
+             Event: function () {
+                $(document).on('click', '.page-link', function () {
+                    var page = $(this).data("page");
+                    myClient.currentPage = page;
+                    myClient.LoadData();
+                });
+            },
+
+             LoadData: function () {
+                $.ajax({
+                    url: '/Doctor/LoadData',
+                    type: "GET",
+                    data: {
+                        page: myClient.currentPage,
+                        pageSize: myClient.pageSize
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.status == true) {
+
+                            if (data.lstData != null) {
+                                var template = doT.template($("#news-template").html());
+                                $("#list_bai_viet").html(template({ newsList: data.lstData }));
+                            }
+
+                            // Phân trang
+                            var totalPages = Math.ceil(data.totalRow / myClient.pageSize);
+                            myClient.RenderPagination(totalPages);
+                        }
+                    }
+                });
+            },
+
+            RenderPagination: function (totalPages) {
+                var pagination = '';
+                for (var i = 1; i <= totalPages; i++) {
+                    pagination += '<li class="page-item ' + (i === myClient.currentPage ? 'active' : '') + '">' +
+                        '<a class="page-link" href="javascript:void(0)" data-page="' + i + '">' + i + '</a></li>';
+                }
+                $("#pagination").html('<ul class="pagination justify-content-center">' + pagination + '</ul>');
+            },
 
         }
+        myClient.init();
 
-        /* Filter Section */
-     /*    .filter {
-            background-color: rgba(61, 157, 241, 0.05);
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 40px;
-            align-items: center;
-        }
-
-        .filter-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background-color: #fff;
-            padding: 8px 12px;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-        }
-
-            .filter-item select {
-                border: none;
-                font-size: 15px;
-                outline: none;
-                background: transparent;
-            } */
-        .filter {
-            
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap; /* Cho responsive */
-            padding: 10px;
-            gap: 10px;
-        }
-
-            .filter h2 {
-                margin: 0;
-            }
-
-        .filter-item {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background-color: #fff;
-            padding: 8px 12px;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-        }
-
-            .filter-item select {
-                border: none;
-                font-size: 15px;
-                outline: none;
-                background: transparent;
-            }
-
-        .btn-search {
-            margin-left: 10px;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-
-        .btn-search {
-            padding: 10px 20px;
-            font-size: 15px;
-            background-color: #ff6600;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* Doctors Grid */
-        .doctors {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* Mỗi hàng 3 cột */
-            gap: 25px;
-            justify-items: center;
-            margin-top:40px;
-        }
-
-        .doctor-card {
-            background-color: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            text-align: center;
-            font-weight:500;
-        }
-
-            .doctor-card img {
-                border-radius: 5px;
-                margin-bottom: 15px;
-            }
-
-            .doctor-card h3 {
-                margin: 0;
-                color: #2F4848;
-                font-size: 18px;
-                font-weight: 700;
-            }
-
-            .doctor-card p {
-                margin: 5px 0;
-                color: #555;
-            }
-
-            .doctor-card i {
-                margin-right: 6px;
-            }
-
-        .btn-detail {
-            margin-top: 10px;
-            background-color: #ff6600;
-            color: white;
-            border: none;
-            padding: 8px 60px;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        .pagination {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 0;
+    </script>
 }
-
-.page {
-  width: 43px;
-  height: 40px;
-  border-radius: 8px;
-  border: 1px solid #e0e0e0;
-  background-color: white;
-  color: #234A6B;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
-.page:hover {
-  background-color: #e0f7fa;
-}
-
-.page.active {
-  background-color: #00b7b7;
-  color: white;
-  border: none;
-}
-    </style>
-</head>
-
-<body>
-    <div >
-        <img style="width: 100%; height: auto" src="/images/Slide.png" />
+<div class="entry-header entry-header-2 mb-0 mt-0 text-center">
+    <div class="thumb-overlay img-hover-slide border-radius-5 position-relative" style="background-image: url(/web/assets/imgs/farme.png)">
     </div>
-    <div class="container" style="padding:50px;background-color: rgba(61, 157, 241, 0.03);">
-			<div class="filter" >
+</div>
+<div class="container container-mobile">
+    <div class="row mt-5">
+        <div class="col-sm-5 d-flex align-items-center">
             <h2>Danh sách bác sĩ của chúng tôi</h2>
-            <div style="display:flex;gap: 10px;">
-				<div class="filter-item">
-                    <i style="color: #ff6600;" class="fas fa-map-marker-alt"></i>
-					<select>
-						<option>Chọn cơ sở</option>
-					</select>
-				</div>
-				<div class="filter-item">
-                    <i style="color: #ff6600;" class="fas fa-heartbeat"></i>
-					<select>
-						<option>Chọn chuyên khoa</option>
-					</select>
-				</div>
-				<button class="btn-search">
-					<i class="fas fa-search"></i> Tìm
-				</button>
-            </div>
-				
-			</div>
-        <div class="doctors">
-            <div class="doctor-card">
-                <img src="~/images/_DSC2482-Photoroom.png" alt="Ảnh bác sĩ" />
-                <h3>Lê Văn Đức</h3>
-                <p><i class="fas fa-graduation-cap"></i> Phó giáo sư - Tiến sĩ</p>
-                <p><i class="fas fa-house-medical"></i> Bệnh viện đa khoa Sun Medical</p>
-                <button class="btn-detail">Chi tiết</button>
-            </div>
-
-            <!-- Bạn có thể sao chép và thay đổi nội dung cho nhiều bác sĩ khác -->
-            <div class="doctor-card">
-                <img src="~/images/_DSC2482-Photoroom.png" alt="Ảnh bác sĩ" />
-                <h3>Lê Văn Đức</h3>
-                <p><i class="fas fa-graduation-cap"></i> Phó giáo sư - Tiến sĩ</p>
-                <p><i class="fas fa-house-medical"></i> Bệnh viện đa khoa Sun Medical</p>
-                <button class="btn-detail">Chi tiết</button>
-            </div>
-
-            <div class="doctor-card">
-                <img src="~/images/_DSC2482-Photoroom.png" alt="Ảnh bác sĩ" />
-                <h3>Lê Văn Đức</h3>
-                <p><i class="fas fa-graduation-cap"></i> Phó giáo sư - Tiến sĩ</p>
-                <p><i class="fas fa-house-medical"></i> Bệnh viện đa khoa Sun Medical</p>
-                <button class="btn-detail">Chi tiết</button>
-            </div>
-
-            <div class="doctor-card">
-                <img src="~/images/_DSC2482-Photoroom.png" alt="Ảnh bác sĩ" />
-                <h3>Lê Văn Đức</h3>
-                <p><i class="fas fa-graduation-cap"></i> Phó giáo sư - Tiến sĩ</p>
-                <p><i class="fas fa-house-medical"></i> Bệnh viện đa khoa Sun Medical</p>
-                <button class="btn-detail">Chi tiết</button>
-            </div>
-
-            <!-- Thêm nhiều card ở đây -->
-
         </div>
-        <div class="pagination">
-            <button class="page active">1</button>
-            <button class="page">2</button>
-            <button class="page">3</button>
-            <button class="page">4</button>
-            <button class="page">5</button>
+        <div class="col-sm-7 align-items-center">
+            <div class="filter" style="background:white">
+                <div style="display:flex;gap: 10px;">
+                    <div class="filter-item">
+                        <i class="fas fa-heartbeat orane_color"></i>
+                        <select>
+                            <option>Chọn cơ sở</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <i class="fas fa-heartbeat orane_color"></i>
+                        <select>
+                            <option>Chọn chuyên khoa</option>
+                        </select>
+                    </div>
+                    <div class="form-group mt-3">
+                        <a href="#" class="main-menu d-none d-lg-inline btn-sm btn-orrange ml-2 mt-2">Tìm kiếm</a>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
+
+    <div class="doctors" id="list_bai_viet">
+    </div>
+    <div class="pagination-area mt-30 mb-30">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center" id="pagination">
+            </ul>
+        </nav>
+    </div>
+</div>
+<script id="news-template" type="text/x-dot-template">
+    {{ for(var i = 0; i < it.newsList.length; i++) { }}
+          <div class="doctor-card">
+            <img src="{{=it.newsList[i].urlImage}}" alt="Ảnh bác sĩ" width="308px" />
+            <h3>{{=it.newsList[i].hoTen}}</h3>
+            <p><i class="fas fa-graduation-cap"></i> {{=it.newsList[i].chucDanh}}</p>
+            <p><i class="fas fa-house-medical"></i> {{=it.newsList[i].donViKhoa}}</p>
+            <button class="btn-detail">Chi tiết</button>
         </div>
-</body>
-</html>
+    {{ } }}
+</script>
