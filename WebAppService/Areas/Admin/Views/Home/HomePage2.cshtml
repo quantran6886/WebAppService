@@ -4,28 +4,105 @@
 }
 @section Scripts {
     <script src="~/assets/plug/tinymce/js/tinymce/tinymce.min.js"></script>
-    <script src="~/ajax/webappservice.tinymcesetting2.js?v=1.2"></script>
-    <script> tinymceSettings(['#editor1'], 700); </script>
+    <script src="~/ajax/webappservice.tinymcesetting2.js?v=1.3"></script>
+    <script> tinymceSettings(['#editor'], 550); </script>
     <script>
+         var files;
+        var myScripts = {
+            init:function () {
+                myScripts.LoadDetail();
+                myScripts.Event();
+            },
 
+            Event: function () {
+                $("#btnSaveData").off("click").on("click", function () {
+                    myScripts.SaveData();
+                });
+            },
+
+            LoadDetail: function (CbGiaoDien) {
+              $.ajax({
+                        url: '/Admin/Home/LoadDetail',
+                        type: "GET",
+                        dataType: "json",
+                        data: {
+                            CbGiaoDien: "2",
+                        },
+                        success: function (response) {
+                            if (response.status == true) {
+                                var lstData = response.lstData;
+
+                                if (lstData != null) {
+                                    $("#IsCongKhai").prop("checked",lstData.isCongKhai);
+                                     if (lstData.noiDung != null) {
+                                           let waitEditor = setInterval(function () {
+                                                            if (tinymce.get('editor')) {
+                                                                tinymce.get('editor').setContent(lstData.noiDung);
+                                                                clearInterval(waitEditor);
+                                                            }
+                                                        }, 100);
+                                    } else {
+                                        tinymce.get('editor').setContent("");
+                                    }
+                                }
+                            } else {
+                                toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                            }
+                        }
+                    })
+            },
+
+
+            SaveData:function () {
+                var editor = encodeURIComponent(tinymce.get('editor').getContent());
+
+                 $.ajax({
+                        type: 'Post',
+                        url: '/Admin/Home/SaveData',
+                        datatype: 'json',
+                        data: {
+                            CbGiaoDien: "2",
+                            NoiDung: editor,
+                            IsCongKhai : $("#IsCongKhai").prop("checked"),
+                        },
+                        success: function (response) {
+                            if (response.status) {
+                               toastr.success("Cập nhập thành công", "Thành Công", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                               myScripts.LoadDetail();
+                               $("#bsBaiViet").modal('hide');
+                            }
+                            else {
+                                toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                            }
+                        },
+                 });
+            },
+        };
+        myScripts.init();
     </script>
 }
-<div class="card-header mt-2">
-    <h4 class="card-title">Trang chủ</h4>
-</div>
 <div class="col-md-12">
     <div class="card">
         <div class="card-header p-2 text-bg-info d-flex align-items-center">
-            <h4 class="card-title text-white mb-0 fs-3">Giao diện khung 2</h4>
+            <h4 class="card-title text-white mb-0 fs-3">Giao diện seo 2</h4>
         </div>
         <div class="card-body p-0 collapse show">
             <div class="card-body p-0">
-                <textarea id="editor1"></textarea>
-            </div>
-            <div class="text-end p-1" style="border-top:1px solid blue">
-                <button type="button" class="btn btn-primary waves-effect text-start z-100" id="btnSaveData">
-                    Lưu và kết thúc
-                </button>
+                <textarea id="editor"></textarea>
+                <div class="row form-group px-3">
+                    <div class="col-sm-6 p-1">
+                        <input class="form-check-input ml-6" type="checkbox" value="" id="IsCongKhai">
+                        <label class="form-check-label" for="IsCongKhai">
+                            Chế độ công khai
+                        </label>
+                    </div>
+                    <div class="col-sm-6 text-end p-1">
+                        <button type="button" class="btn btn-primary waves-effect text-end z-100" id="btnSaveData">
+                            Lưu và kết thúc
+                        </button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebAppService.Models.Updates;
 
@@ -10,7 +11,6 @@ public partial class WebCauHinhTrang
     public string? CbGiaoDien { get; set; }
 
     public string? TieuDe { get; set; }
-
     public string? NoiDung { get; set; }
 
     public bool? IsCard1 { get; set; }

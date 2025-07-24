@@ -74,8 +74,8 @@
                                 $.each(lstDanhMucBaiDang, function (index, val) {
                                     option += "<option value='" + val.tenGoi + "'>" + val.tenGoi + "</option>";
                                 });
-                                $("#cbLoaiBaiDang").html(option);
-                                $("#cbLoaiBaiDang").trigger('chosen:updated');
+                                $("#CbLoaiBaiDang").html(option);
+                                $("#CbLoaiBaiDang").trigger('chosen:updated');
                             }
                             myScripts.LoadTable();
                         }
@@ -120,13 +120,14 @@
 
                                 if (lstData != null) {
                                     $("#IdBaiViet").val(lstData.idBaiViet);
+                                    $("#SapXep").val(lstData.sapXep);
                                     $("#TieuDeBaiViet").val(lstData.tieuDeBaiViet);
                                     $("#MoTaNgan").val(lstData.moTaNgan);
-                                    $("#TieuDeNgan").val(lstData.TieuDeNgan);
+                                    $("#TieuDeNgan").val(lstData.tieuDeNgan);
                                     $("#IsCongKhai").prop("checked",lstData.isCongKhai);
                                     $("#IsBaiVietNoiBat").prop("checked",lstData.isBaiVietNoiBat);
-                                    $("#CbNhomBaiViet").val(lstData.CbNhomBaiViet).trigger('chosen:updated');
-                                    $("#cbLoaiBaiDang").val(lstData.cbLoaiBaiDang).trigger('chosen:updated');
+                                    $("#CbNhomBaiViet").val(lstData.cbNhomBaiViet).trigger('chosen:updated');
+                                    $("#CbLoaiBaiDang").val(lstData.cbLoaiBaiDang).trigger('chosen:updated');
                                     if (lstData.urlImage != null && lstData.urlImage != "") {
                                         $('#imageHoSo').attr('src', lstData.urlImage);
                                     } else {
@@ -162,7 +163,7 @@
                 $("#MoTaNgan").val("");
                 $("#CbNhomBaiViet").val("").trigger('chosen:updated');
                 $("#TieuDeNgan").val("");
-                $("#cbLoaiBaiDang").val("").trigger('chosen:updated');
+                $("#CbLoaiBaiDang").val("").trigger('chosen:updated');
                 $("#IsBaiVietNoiBat").prop("checked",false);
                 $("#IsCongKhai").prop("checked",false);
                 $("#isThayDoi").val("false");
@@ -172,11 +173,12 @@
 
             SaveData:function () {
                 var IdBaiViet = $("#IdBaiViet").val();
+                var SapXep = $("#SapXep").val();
                 var TieuDeBaiViet = $("#TieuDeBaiViet").val();
                 var MoTaNgan = $("#MoTaNgan").val();
                 var CbNhomBaiViet = $("#CbNhomBaiViet").val();
                 var TieuDeNgan = $("#TieuDeNgan").val();
-                var cbLoaiBaiDang = $("#cbLoaiBaiDang").val();
+                var CbLoaiBaiDang = $("#cbLoaiBaiDang").val();
                 var IsBaiVietNoiBat = $("#IsBaiVietNoiBat").prop("checked");
                 var IsCongKhai = $("#IsCongKhai").prop("checked");
                 var editor = encodeURIComponent(tinymce.get('editor').getContent());
@@ -195,6 +197,9 @@
                     IsBaiVietNoiBat: IsBaiVietNoiBat,
                     IsCongKhai: IsCongKhai,
                     NoiDung:editor,
+                    TieuDeNgan:TieuDeNgan,
+                    CbLoaiBaiDang:CbLoaiBaiDang,
+
                 }
                  if (files != undefined && files.length > 0) {
                     if (window.FormData !== undefined) {
@@ -401,6 +406,8 @@
                                     class="text-center">Chức năng</th>
                                 <th data-field="urlImage" data-width="8" data-formatter="fm_Image" data-sortable="true">Ảnh</th>
                                 <th data-field="tieuDeBaiViet" data-sortable="true">Tên tiêu đề</th>
+                                <th data-field="tieuDeBaiViet" data-sortable="true">Nhóm bài viết</th>
+                                <th data-field="tieuDeBaiViet" data-sortable="true">Danh mục</th>
                                 <th data-field="moTaNgan" data-sortable="true">Mô tả ngắn</th>
                                 <th data-field="isBaiVietNoiBat" data-width="8" data-formatter="fm_editBVNB" data-sortable="true">Nổi bật</th>
                                 <th data-field="isCongKhai" data-width="8" data-formatter="fm_editBVCK" data-sortable="true">Công khai</th>
@@ -450,29 +457,25 @@
                                                 <label class="fs-2 form-label m-0">Tên tiêu đề:<font class="text-danger">*</font> </label>
                                                 <input type="text" class="form-control" placeholder="Nhập tiêu đề ..." id="TieuDeBaiViet" value="">
                                             </div>
-                                             <div class="col-sm-3 mb-2"></div>
-                                                <label class="form-label">Sắp xếp:</label>
-                                                <input type="number" id="SapXep" class="form-control" placeholder="1,2,3...">
-                                            </div>
-                                            <div class="col-sm-3 mb-2">
+                                            <div class="col-sm-6 mb-2">
                                                 <label class="form-label">Nhóm bài viết:</label>
                                                 <select data-placeholder="Choose a Country..." class="form-control chosen-select" id="CbNhomBaiViet" tabindex="2">
                                                     <option value="">--Chọn nhóm bài viết--</option>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-3 mb-2">
+                                            <div class="col-sm-6 mb-2">
                                                 <label class="form-label">Loại danh mục:</label>
-                                                <select data-placeholder="Choose a Country..." class="form-control chosen-select" id="cbLoaiBaiDang" tabindex="2">
+                                                <select data-placeholder="Choose a Country..." class="form-control chosen-select" id="CbLoaiBaiDang" tabindex="2">
                                                     <option value="">--Chọn danh mục--</option>
                                                 </select>
                                             </div>
-                                           <div class="col-sm-3 mb-2">
-                                                <label class="fs-2 form-label m-0">Tiêu đề loại danh mục(nếu có):</label>
+                                           <div class="col-sm-12 mb-2">
+                                                <label class="form-label">Tiêu đề loại danh mục(nếu có):</label>
                                                 <input type="text" class="form-control" placeholder="" id="TieuDeNgan" value="">
                                             </div>
                                             <div class="col-sm-12 mb-2">
                                                 <label class="fs-2 form-label m-0">Mô tả:</label>
-                                                <textarea type="text" class="form-control" placeholder="Mô tả ..." rows="5" id="MoTaNgan" value=""></textarea>
+                                                <textarea type="text" class="form-control" placeholder="Mô tả ..." rows="2" id="MoTaNgan" value=""></textarea>
                                             </div>
                                             <div class="mb-2 row">
                                                 <div class=" col-sm-3">

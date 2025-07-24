@@ -1,0 +1,479 @@
+﻿@{
+    ViewData["Title"] = "DanhMucHeThong";
+    Layout = "~/Areas/Admin/Views/Shared/_ViewAdmin.cshtml";
+}
+<link rel="stylesheet" href="~/assets/libs/magnific-popup/dist/magnific-popup.css">
+@section Scripts {
+    <script src="~/assets/libs/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+    <script src="~/assets/js/plugins/meg.init.js"></script>
+    <script src="~/assets/plug/tinymce/js/tinymce/tinymce.min.js"></script>
+    <script src="~/ajax/webappservice.tinymcesetting.js?v=1.2"></script>
+    <script> tinymceSettings(['#editor'], 200); </script>
+    <script>
+         var files;
+        var myScripts = {
+            init:function () {
+                myScripts.LoadData();
+                myScripts.Event();
+            },
+
+            Event: function () {
+                $("#btnNewForm").off("click").on("click", function () {
+                    myScripts.ResetForm();
+                    toastr.success("Mời bạn nhập thông tin","Thành công",{ showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                });
+
+                $("#btnSaveData").off("click").on("click", function () {
+                    myScripts.SaveData();
+                });
+
+                $("#btnRemoveUpload").off("click").on("click", function () {
+                    $("#isThayDoi").val("false");
+                    $('#imageHoSo').attr('src', '/root/unnamed.png');
+                });
+
+                $("#btnUpload").off('click').on('click', function () {
+                    $("#duong_dan_file").click();
+                    $("#duong_dan_file").off('change').on('change', function (e) {
+                        files = e.target.files;
+                        if (files.length > 0) {
+                            for (var x = 0; x < files.length; x++) {
+                                if (files[x].size >= 52428800) {
+                                    toastr.error("Chỉ được upload file dưới 50mb", "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                                    $("#isThayDoi").val("false");
+                                    return;
+                                } else {
+                                    myScripts.readURL(this);
+                                    $("#isThayDoi").val("true");
+                                }
+                            }
+                        }
+                    });
+                });
+            },
+
+            LoadData: function () {
+                $.ajax({
+                    url: '/Admin/DichVuDacBiet/LoadData',
+                    type: 'GET',
+                    datatype: 'json',
+                    success: function (response) {
+                        if (response.status) {
+                            var lstNhomBaiViet = response.lstNhomBaiViet;
+                            if (lstNhomBaiViet != null) {
+                                var option = "<option value=''>Chọn nhóm bài viết</option>";
+                                $.each(lstNhomBaiViet, function (index, val) {
+                                    option += "<option value='" + val.tenGoi + "'>" + val.tenGoi + "</option>";
+                                });
+                                $("#CbNhomBaiViet").html(option);
+                                $("#CbNhomBaiViet").trigger('chosen:updated');
+                            }
+                            myScripts.LoadTable();
+                        }
+                    },
+                });
+            },
+
+           LoadTable: function () {
+                $.ajax({
+                    url: '/Admin/DichVuDacBiet/LoadTable',
+                    type: "GET",
+                    dataType: "json",
+                    data: {
+                    },
+                    success: function (response) {
+                        if (response.status == true) {
+                            var lstData = response.lstData;
+                            if (lstData != null && lstData.length > 0) {
+                                $("#tableDichVuDacBiet").bootstrapTable('load', lstData);
+                            }
+                            else {
+                                $("#tableDichVuDacBiet").bootstrapTable('removeAll');
+                            }
+                            $('[data-bs-toggle="tooltip"]').tooltip();
+                        }
+                    }
+                })
+            },
+
+            LoadDetail: function (idDichVu) {
+                if (idDichVu != "") {
+                    $.ajax({
+                        url: '/Admin/DichVuDacBiet/LoadDetail',
+                        type: "GET",
+                        dataType: "json",
+                        data: {
+                            IdDichVu: idDichVu,
+                        },
+                        success: function (response) {
+                            if (response.status == true) {
+                                var lstData = response.lstData;
+
+                                if (lstData != null) {
+                                    $("#IdDichVu").val(lstData.idDichVu);
+                                    $("#TieuDeBaiViet").val(lstData.tieuDeBaiViet);
+                                    $("#MoTaNgan").val(lstData.moTaNgan);
+                                    $("#IsCongKhai").prop("checked",lstData.isCongKhai);
+                                    $("#IsBaiVietNoiBat").prop("checked",lstData.isBaiVietNoiBat);
+                                    $("#CbNhomBaiViet").val(lstData.CbNhomBaiViet).trigger('chosen:updated');
+                                    if (lstData.urlImage != null && lstData.urlImage != "") {
+                                        $('#imageHoSo').attr('src', lstData.urlImage);
+                                    } else {
+                                        $('#imageHoSo').attr('src', '/root/unnamed.png');
+                                    }
+                                     if (lstData.noiDung != null) {
+                                        tinymce.get('editor').setContent(lstData.noiDung);
+                                    } else {
+                                        tinymce.get('editor').setContent("");
+                                    }
+                                    $("#isThayDoi").val("false");
+                                    $("#bsBaiViet").modal('show');
+                                }
+                            } else {
+                                toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                            }
+                        }
+                    })
+                }
+            },
+
+            readURL: function (input) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#imageHoSo').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            },
+
+            ResetForm: function () {
+                $("#IdDichVu").val(0);
+                $("#TieuDeBaiViet").val("");
+                $("#MoTaNgan").val("");
+                $("#CbNhomBaiViet").val("").trigger('chosen:updated');
+                $("#IsBaiVietNoiBat").prop("checked",false);
+                $("#IsCongKhai").prop("checked",false);
+                $("#isThayDoi").val("false");
+                tinymce.get('editor').setContent("");
+                $('#imageHoSo').attr('src', '/root/unnamed.png');
+            },
+
+            SaveData:function () {
+                var IdDichVu = $("#IdDichVu").val();
+                var TieuDeBaiViet = $("#TieuDeBaiViet").val();
+                var MoTaNgan = $("#MoTaNgan").val();
+                var CbNhomBaiViet = $("#CbNhomBaiViet").val();
+                var CbNhomBaiViet = $("#CbNhomBaiViet").val();
+                var IsBaiVietNoiBat = $("#IsBaiVietNoiBat").prop("checked");
+                var IsCongKhai = $("#IsCongKhai").prop("checked");
+                var editor = encodeURIComponent(tinymce.get('editor').getContent());
+
+                if (TieuDeBaiViet == "") {
+                    toastr.error("Bạn chưa nhập tên tiêu đề", "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                    $("#TieuDeBaiViet").focus();
+                    return;
+                }
+
+                 var objdata = {
+                    IdDichVu: IdDichVu != 0 ? IdDichVu : '00000000-0000-0000-0000-000000000000',
+                    TieuDeBaiViet: TieuDeBaiViet,
+                    MoTaNgan: MoTaNgan,
+                    CbNhomBaiViet: CbNhomBaiViet,
+                    IsBaiVietNoiBat: IsBaiVietNoiBat,
+                    IsCongKhai: IsCongKhai,
+                    NoiDung:editor,
+                }
+                 if (files != undefined && files.length > 0) {
+                    if (window.FormData !== undefined) {
+                        var data = new FormData();
+                        for (var x = 0; x < files.length; x++) {
+                            data.append('files', files[x]);
+
+                        }
+                        data.append("strData", JSON.stringify(objdata));
+                        data.append('isThayDoi',  $("#isThayDoi").val());
+
+                        $.ajax({
+                            type: "POST",
+                            url: '/Admin/DichVuDacBiet/SaveData',
+                            contentType: false,
+                            processData: false,
+                            data: data,
+                            success: function (response) {
+                                if (response.status == true) {
+                                    toastr.success("Cập nhập thành công", "Thành Công", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                                    myScripts.LoadTable();
+                                    $("#bsBaiViet").modal('hide');
+                                } else {
+                                    notify('error', 'Có Lỗi', response.message);
+                                }
+                            },
+                            error: function (response) {
+                                 toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                            }
+                        });
+                    } else {
+                        alert("Upload file thất bại!");
+                    }
+                }
+                else {
+                    $.ajax({
+                        type: 'Post',
+                        url: '/Admin/DichVuDacBiet/SaveData',
+                        datatype: 'json',
+                        data: {
+                            strData: JSON.stringify(objdata),
+                        },
+                        success: function (response) {
+                            if (response.status) {
+                               toastr.success("Cập nhập thành công", "Thành Công", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                               myScripts.LoadTable();
+                               $("#bsBaiViet").modal('hide');
+                            }
+                            else {
+                                toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                            }
+                        },
+                    });
+                }
+            },
+
+           DeleteData: function (idDichVu) {
+            if (idDichVu != "") {
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: "btn bg-secondary-subtle text-secondary",
+                        cancelButton: "me-6 btn bg-secondary-subtle text-secondary",
+                    },
+                    buttonsStyling: false,
+                });
+                swalWithBootstrapButtons
+                    .fire({
+                        title: "Xác nhận?",
+                        text: "Bạn có chắc chắn muốn xóa bản ghi này không?",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Đồng ý",
+                        cancelButtonText: "Hủy",
+                        reverseButtons: true,
+                    })
+                    .then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                type: "POST",
+                                url: "/Admin/DichVuDacBiet/DeleteData",
+                                data: {
+                                    IdDichVu: idDichVu,
+                                },
+                                success: function (response) {
+                                    if (response.status == true) {
+                                        myScripts.LoadTable();
+                                        toastr.success("Xóa thành công 1 bản ghi", "Thành công", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                                    } else {
+                                        toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                                    }
+                                },
+                                error: function (response) {
+                                    toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                                }
+                            });
+                        }
+                    });
+            } else {
+                alert("Bạn chưa chọn bản ghi nào để xóa");
+            }
+        },
+        };
+        myScripts.init();
+        function fm_Image(e, value, row, index) {
+            if (value.urlImage != "") {
+                return [
+                    '<div style="width:40px;justify-self: center;" class="">',
+                        '<a class="image-popup-vertical-fit" target="_blank" href="' + value.urlImage + '">',
+                        ' <img class="d-block position-relative w-100" src="' + value.urlImage + '" width="100" />',
+                        ' </a>',
+                    '</div>'
+                ].join('');
+            } else {
+                return [
+                    '<div style="width: 100%">',
+
+                    '</div>'
+                ].join('');
+            }
+        };
+
+        function fm_editBVNB(e, value, row, index) {
+            if (value.isBaiVietNoiBat == true) {
+                return [
+                    '<div style="width: 100%;text-align: center;">',
+                    '<iconify-icon icon="solar:verified-check-bold-duotone" class="text-success" width="35px" height="35px"></iconify-icon>',
+                    '</div>'
+                ].join('');
+            } else {
+                return [
+                    '<div style="width: 100%;text-align: center;">',
+                    '<iconify-icon icon="solar:close-circle-bold-duotone" class="text-danger" width="35px" height="35px"></iconify-icon>',
+                    '</div>'
+                ].join('');
+            }
+        };
+
+        function fm_editBVCK(e, value, row, index) {
+            if (value.isCongKhai == true) {
+                return [
+                    '<div style="width: 100%;text-align: center;">',
+                    '<iconify-icon icon="solar:verified-check-bold-duotone" class="text-success" width="35px" height="35px"></iconify-icon>',
+                    '</div>'
+                ].join('');
+            } else {
+                return [
+                   '<div style="width: 100%;text-align: center;">',
+                    '<iconify-icon icon="solar:close-circle-bold-duotone" class="text-danger" width="35px" height="35px"></iconify-icon>',
+                    '</div>'
+                ].join('');
+            }
+        };
+        function fm_editData(e, value, row, index) {
+            return [
+                '<div style="width: 100%">',
+                '<a href="javascript:myScripts.LoadDetail('+ "'" + value.idDichVu + "'" + ')" class="hvr-shrink me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Sửa dữ liệu"><iconify-icon icon="solar:gallery-edit-line-duotone" class="text-primary" width="23px" height="23px"></iconify-icon></a>' +
+                '<a href="javascript:myScripts.DeleteData(' + "'" + value.idDichVu + "'" + ')" class="hvr-shrink" data-bs-toggle="tooltip" title="Xóa dữ liệu"><iconify-icon icon="solar:trash-bin-trash-outline" class="text-danger" width="25px" height="25px"></iconify-icon></a>' +
+                '</div>'
+            ].join('');
+        };
+    </script>
+}
+
+<div class="card-header mt-2">
+    <h4 class="card-title">Danh sách video</h4>
+</div>
+<div class="card-body">
+    <div class="row">
+        <div class="col-lg-12 d-flex align-items-stretch">
+            <div class="card w-100 border position-relative overflow-hidden">
+                <div class="card-header p-1">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-info btn-sm" id="btnNewForm" data-bs-toggle="modal"
+                                data-bs-target="#bsBaiViet">
+                            <i class="ti ti-plus fs-2"></i> Tạo mới video
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body p-2">
+                    <table id="tableDichVuDacBiet" data-toggle="table" data-flat="true" data-search="true" data-url="">
+                        <thead>
+                            <tr>
+                                <th data-formatter="fm_editData" data-sortable="true" data-width="5" data-width="5"
+                                    class="text-center">Chức năng</th>
+                                <th data-field="urlImage" data-width="8" data-formatter="fm_Image" data-sortable="true">Ảnh</th>
+                                <th data-field="tieuDeBaiViet" data-sortable="true">Tên tiêu đề</th>
+                                <th data-field="moTaNgan" data-sortable="true">Mô tả ngắn</th>
+                                <th data-field="isBaiVietNoiBat" data-width="8" data-formatter="fm_editBVNB" data-sortable="true">Nổi bật</th>
+                                <th data-field="isCongKhai" data-width="8" data-formatter="fm_editBVCK" data-sortable="true">Công khai</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="bsBaiViet" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
+    <div class="modal-dialog modal-xl w-100">
+        <div class="modal-content">
+            <div class="modal-header d-flex align-items-center">
+                <h4 class="modal-title" id="myLargeModalLabel">
+                    Viết bài
+                </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12 d-flex align-items-stretch p-0">
+                        <div class="card w-100 border position-relative m-0 overflow-hidden">
+                            <div class="card-body p-3">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <input type="hidden" id="IdDichVu" name="name" value="" />
+                                        <div class="col-sm-2 d-flex align-items-stretch" style="height: max-content;">
+                                            <div class="card w-100 border position-relative overflow-hidden">
+                                                <div class="card-body p-2">
+                                                    <div class="text-center">
+                                                        <img src="~/root/unnamed.png" id="imageHoSo" alt="ảnh đại diện" class="" width="100%" height="150px">
+                                                        <input type="file" id="duong_dan_file" name="name" value="" hidden />
+                                                        <input type="text" id="isThayDoi" hidden />
+                                                        <div class="d-flex align-items-center justify-content-center my-1 gap-1">
+                                                            <button class="btn bg-danger text-white" id="btnRemoveUpload"><i class="ti ti-trash"></i></button>
+                                                            <button class="btn btn-primary w-100" id="btnUpload"><i class="ti ti-upload"></i> Upload</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-10 row">
+                                            <div class="col-sm-12 mb-2">
+                                                <label class="fs-2 form-label m-0">Tên tiêu đề:<font class="text-danger">*</font> </label>
+                                                <input type="text" class="form-control" placeholder="Nhập tiêu đề ..." id="TieuDeBaiViet" value="">
+                                            </div>
+                                            <div class="col-sm-6 mb-2" hidden>
+                                                <label class="form-label">Nhóm bài viết:</label>
+                                                <select data-placeholder="Choose a Country..." class="form-control chosen-select" id="CbNhomBaiViet" tabindex="2">
+                                                    <option value="">--Chọn nhóm bài viết--</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-6 mb-2" hidden>
+                                                <label class="form-label">Loại danh mục:</label>
+                                                <select data-placeholder="Choose a Country..." class="form-control chosen-select" id="CbLoaiBaiDang" tabindex="2">
+                                                    <option value="">--Chọn danh mục--</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-12 mb-2" hidden>
+                                                <label class="form-label">Tiêu đề loại danh mục(nếu có):</label>
+                                                <input type="text" class="form-control" placeholder="" id="TieuDeNgan" value="">
+                                            </div>
+                                            <div class="col-sm-12 mb-2">
+                                                <label class="fs-2 form-label m-0">Mô tả:</label>
+                                                <textarea type="text" class="form-control" placeholder="Mô tả ..." rows="2" id="MoTaNgan" value=""></textarea>
+                                            </div>
+                                            <div class="col-sm-12 mb-2">
+                                                <label class="form-label">Tải video:</label>
+                                                <input class="form-control" type="file" id="formFile">
+                                            </div>
+                                            <div class="mb-2 row">
+                                                <div class=" col-sm-3">
+                                                    <input class="form-check-input" type="checkbox" value="" id="IsBaiVietNoiBat">
+                                                    <label class="form-check-label" for="IsBaiVietNoiBat">
+                                                        Video nổi bật
+                                                    </label>
+                                                </div>
+                                                <div class=" col-sm-3">
+                                                    <input class="form-check-input" type="checkbox" value="" id="IsCongKhai">
+                                                    <label class="form-check-label" for="IsCongKhai">
+                                                        Video công khai
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <textarea id="editor"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary waves-effect text-start" id="btnSaveData">
+                    Lưu và kết thúc
+                </button>
+                <button type="button" class="btn bg-danger-subtle text-danger  waves-effect text-start" data-bs-dismiss="modal">
+                    Đóng
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

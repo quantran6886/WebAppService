@@ -142,6 +142,7 @@ namespace WebAppService.Areas.Admin.Controllers
                 var lstData = db.WebTinTucBaiViets.Where(c => c.IdBaiViet == IdBaiViet).Select(x => new
                 {
                     x.IdBaiViet,
+                    x.SapXep,
                     x.TieuDeBaiViet,
                     x.NguoiTao,
                     x.NoiDung,
@@ -155,6 +156,7 @@ namespace WebAppService.Areas.Admin.Controllers
                 }).ToList().Select(x => new
                 {
                     x.IdBaiViet,
+                    x.SapXep,
                     x.TieuDeBaiViet,
                     x.NguoiTao,
                     x.IsCongKhai,

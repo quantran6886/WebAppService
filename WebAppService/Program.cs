@@ -60,6 +60,7 @@ app.UseAuthorization();
 
 // Thêm SignalR Hub
 app.MapHub<UserStatusHub>("/userStatusHub");
+app.MapHub<NotificationHub>("/notificationHub");
 
 app.UseEndpoints(endpoints =>
 {
