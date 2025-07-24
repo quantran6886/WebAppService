@@ -14,7 +14,8 @@ namespace WebAppService.Areas.Admin.Controllers
         {
             return View();
         }
-        AppDbContext db = new AppDbContext();
+     
+         AppDbContext db = new AppDbContext();
 
         [HttpGet]
         public IActionResult LoadData()
@@ -29,9 +30,18 @@ namespace WebAppService.Areas.Admin.Controllers
                     c.GhiChu,
                 }).OrderBy(c => c.TenGoi).ToList();
 
+                var lstDanhMucBaiDang = db.WebDanhMucHeThongs.Where(c => c.LoaiDanhMuc == "Danh mục bài đăng").Select(c => new
+                {
+                    c.IdHeThong,
+                    c.ThuTuTg,
+                    c.TenGoi,
+                    c.GhiChu,
+                }).OrderBy(c => c.TenGoi).ToList();
+
                 return new JsonResult(new
                 {
                     lstNhomBaiViet,
+                    lstDanhMucBaiDang,
                     status = true
                 });
             }
@@ -51,11 +61,9 @@ namespace WebAppService.Areas.Admin.Controllers
         {
             try
             {
-                var lstData = db.WebTinTucBaiViets.AsEnumerable()
-                .OrderByDescending(x => x.ThoiGianTao)
-                .Select(x => new
+                var lstData = db.WebDichVus.OrderByDescending(x => x.ThoiGianTao).Select(x => new
                 {
-                    x.IdBaiViet,
+                    x.IdDichVu,
                     x.UrlImage,
                     x.NameImage,
                     x.TieuDeBaiViet,
@@ -63,8 +71,24 @@ namespace WebAppService.Areas.Admin.Controllers
                     x.NguoiTao,
                     x.IsCongKhai,
                     x.IsBaiVietNoiBat,
+                    x.CbLoaiBaiDang,
+                    x.TieuDeNgan,
+                    x.ThoiGianTao,
+                }).ToList().Select(x => new
+                {
+                    x.IdDichVu,
+                    x.UrlImage,
+                    x.NameImage,
+                    x.TieuDeBaiViet,
+                    x.MoTaNgan,
+                    x.NguoiTao,
+                    x.IsCongKhai,
+                    x.IsBaiVietNoiBat,
+                    x.CbLoaiBaiDang,
+                    x.TieuDeNgan,
                     ThoiGianTao =  x.ThoiGianTao != null ? string.Format("{0:dd-MM-yyyy}",x.ThoiGianTao) : "",
-                }).ToList();
+                });
+
                 return new JsonResult(new
                 {
                     lstData,
@@ -83,16 +107,16 @@ namespace WebAppService.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteData(Guid? IdBaiViet)
+        public IActionResult DeleteData(Guid? IdDichVu)
         {
             try
             {
-                if (IdBaiViet != Guid.Empty)
+                if (IdDichVu != Guid.Empty)
                 {
-                    var find_data = db.WebTinTucBaiViets.Find(IdBaiViet);
+                    var find_data = db.WebDichVus.Find(IdDichVu);
                     if (find_data != null)
                     {
-                        db.WebTinTucBaiViets.Remove(find_data);
+                        db.WebDichVus.Remove(find_data);
                     }
                     db.SaveChanges();
                 }
@@ -112,13 +136,13 @@ namespace WebAppService.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public IActionResult LoadDetail(Guid? IdBaiViet)
+        public IActionResult LoadDetail(Guid? IdDichVu)
         {
             try
             {
-                var lstData = db.WebTinTucBaiViets.Where(c => c.IdBaiViet == IdBaiViet).Select(x => new
+                var lstData = db.WebDichVus.Where(c => c.IdDichVu == IdDichVu).Select(x => new
                 {
-                    x.IdBaiViet,
+                    x.IdDichVu,
                     x.TieuDeBaiViet,
                     x.NguoiTao,
                     x.NoiDung,
@@ -126,10 +150,12 @@ namespace WebAppService.Areas.Admin.Controllers
                     x.IsBaiVietNoiBat,
                     x.CbNhomBaiViet,
                     x.UrlImage,
-                    x.MoTaNgan
+                    x.MoTaNgan,
+                    x.CbLoaiBaiDang,
+                    x.TieuDeNgan,
                 }).ToList().Select(x => new
                 {
-                    x.IdBaiViet,
+                    x.IdDichVu,
                     x.TieuDeBaiViet,
                     x.NguoiTao,
                     x.IsCongKhai,
@@ -137,7 +163,9 @@ namespace WebAppService.Areas.Admin.Controllers
                     x.NoiDung,
                     x.CbNhomBaiViet,
                     x.UrlImage,
-                    x.MoTaNgan
+                    x.MoTaNgan,
+                    x.CbLoaiBaiDang,
+                    x.TieuDeNgan,
                 }).FirstOrDefault();
 
                 return new JsonResult(new
@@ -158,13 +186,13 @@ namespace WebAppService.Areas.Admin.Controllers
         }
 
 
-        [HttpPost]
+          [HttpPost]
         public async Task<IActionResult> SaveData([FromForm] string strData, [FromForm] bool isThayDoi, IFormFileCollection files)
         {
             string decodedContent = "";
             string duong_dan_tai_lieu = "";
             string ten_file = "";
-            var ClientData = System.Text.Json.JsonSerializer.Deserialize<WebTinTucBaiViet>(strData);
+            var ClientData = System.Text.Json.JsonSerializer.Deserialize<WebDichVu>(strData);
             if (!string.IsNullOrEmpty(ClientData.NoiDung))
             {
                 decodedContent = HttpUtility.UrlDecode(ClientData.NoiDung);
@@ -196,9 +224,9 @@ namespace WebAppService.Areas.Admin.Controllers
                         }
                     }
                 }
-                if (ClientData.IdBaiViet == Guid.Empty)
+                if (ClientData.IdDichVu == Guid.Empty)
                 {
-                    ClientData.IdBaiViet = Guid.NewGuid();
+                    ClientData.IdDichVu = Guid.NewGuid();
                     if (isThayDoi)
                     {
                         ClientData.UrlImage = "/" + duong_dan_tai_lieu.Replace("\\", "/");
@@ -215,11 +243,11 @@ namespace WebAppService.Areas.Admin.Controllers
                     ClientData.CbNhomBaiViet = ClientData.CbNhomBaiViet;
                     ClientData.NguoiTao = User.Identity.Name;
                     ClientData.ThoiGianTao = DateTime.Now;  
-                    db.WebTinTucBaiViets.Add(ClientData);
+                    db.WebDichVus.Add(ClientData);
                 }
                 else
                 {
-                    var existing = db.WebTinTucBaiViets.FirstOrDefault(x => x.IdBaiViet == ClientData.IdBaiViet);
+                    var existing = db.WebDichVus.FirstOrDefault(x => x.IdDichVu == ClientData.IdDichVu);
                     if (existing != null)
                     {
                         if (isThayDoi)

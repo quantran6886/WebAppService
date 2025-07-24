@@ -60,6 +60,7 @@
                     success: function (response) {
                         if (response.status) {
                             var lstNhomBaiViet = response.lstNhomBaiViet;
+                            var lstDanhMucBaiDang = response.lstDanhMucBaiDang;
                             if (lstNhomBaiViet != null) {
                                 var option = "<option value=''>Chọn nhóm bài viết</option>";
                                 $.each(lstNhomBaiViet, function (index, val) {
@@ -67,6 +68,14 @@
                                 });
                                 $("#CbNhomBaiViet").html(option);
                                 $("#CbNhomBaiViet").trigger('chosen:updated');
+                            }
+                            if (lstDanhMucBaiDang != null) {
+                                var option = "<option value=''>Chọn danh mục bài đăng</option>";
+                                $.each(lstDanhMucBaiDang, function (index, val) {
+                                    option += "<option value='" + val.tenGoi + "'>" + val.tenGoi + "</option>";
+                                });
+                                $("#cbLoaiBaiDang").html(option);
+                                $("#cbLoaiBaiDang").trigger('chosen:updated');
                             }
                             myScripts.LoadTable();
                         }
@@ -113,9 +122,11 @@
                                     $("#IdBaiViet").val(lstData.idBaiViet);
                                     $("#TieuDeBaiViet").val(lstData.tieuDeBaiViet);
                                     $("#MoTaNgan").val(lstData.moTaNgan);
+                                    $("#TieuDeNgan").val(lstData.TieuDeNgan);
                                     $("#IsCongKhai").prop("checked",lstData.isCongKhai);
                                     $("#IsBaiVietNoiBat").prop("checked",lstData.isBaiVietNoiBat);
                                     $("#CbNhomBaiViet").val(lstData.CbNhomBaiViet).trigger('chosen:updated');
+                                    $("#cbLoaiBaiDang").val(lstData.cbLoaiBaiDang).trigger('chosen:updated');
                                     if (lstData.urlImage != null && lstData.urlImage != "") {
                                         $('#imageHoSo').attr('src', lstData.urlImage);
                                     } else {
@@ -150,6 +161,8 @@
                 $("#TieuDeBaiViet").val("");
                 $("#MoTaNgan").val("");
                 $("#CbNhomBaiViet").val("").trigger('chosen:updated');
+                $("#TieuDeNgan").val("");
+                $("#cbLoaiBaiDang").val("").trigger('chosen:updated');
                 $("#IsBaiVietNoiBat").prop("checked",false);
                 $("#IsCongKhai").prop("checked",false);
                 $("#isThayDoi").val("false");
@@ -162,7 +175,8 @@
                 var TieuDeBaiViet = $("#TieuDeBaiViet").val();
                 var MoTaNgan = $("#MoTaNgan").val();
                 var CbNhomBaiViet = $("#CbNhomBaiViet").val();
-                var CbNhomBaiViet = $("#CbNhomBaiViet").val();
+                var TieuDeNgan = $("#TieuDeNgan").val();
+                var cbLoaiBaiDang = $("#cbLoaiBaiDang").val();
                 var IsBaiVietNoiBat = $("#IsBaiVietNoiBat").prop("checked");
                 var IsCongKhai = $("#IsCongKhai").prop("checked");
                 var editor = encodeURIComponent(tinymce.get('editor').getContent());
@@ -432,19 +446,29 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-9 row">
-                                            <div class="col-sm-6 mb-2">
+                                            <div class="col-sm-12 mb-2">
+                                                <label class="fs-2 form-label m-0">Tên tiêu đề:<font class="text-danger">*</font> </label>
+                                                <input type="text" class="form-control" placeholder="Nhập tiêu đề ..." id="TieuDeBaiViet" value="">
+                                            </div>
+                                             <div class="col-sm-3 mb-2"></div>
                                                 <label class="form-label">Sắp xếp:</label>
                                                 <input type="number" id="SapXep" class="form-control" placeholder="1,2,3...">
                                             </div>
-                                            <div class="col-sm-6 mb-2">
+                                            <div class="col-sm-3 mb-2">
                                                 <label class="form-label">Nhóm bài viết:</label>
                                                 <select data-placeholder="Choose a Country..." class="form-control chosen-select" id="CbNhomBaiViet" tabindex="2">
                                                     <option value="">--Chọn nhóm bài viết--</option>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-12 mb-2">
-                                                <label class="fs-2 form-label m-0">Tên tiêu đề:<font class="text-danger">*</font> </label>
-                                                <input type="text" class="form-control" placeholder="Nhập tiêu đề ..." id="TieuDeBaiViet" value="">
+                                            <div class="col-sm-3 mb-2">
+                                                <label class="form-label">Loại danh mục:</label>
+                                                <select data-placeholder="Choose a Country..." class="form-control chosen-select" id="cbLoaiBaiDang" tabindex="2">
+                                                    <option value="">--Chọn danh mục--</option>
+                                                </select>
+                                            </div>
+                                           <div class="col-sm-3 mb-2">
+                                                <label class="fs-2 form-label m-0">Tiêu đề loại danh mục(nếu có):</label>
+                                                <input type="text" class="form-control" placeholder="" id="TieuDeNgan" value="">
                                             </div>
                                             <div class="col-sm-12 mb-2">
                                                 <label class="fs-2 form-label m-0">Mô tả:</label>

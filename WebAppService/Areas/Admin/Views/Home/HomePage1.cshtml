@@ -1,0 +1,92 @@
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_ViewAdmin.cshtml";
+}
+@section Scripts {
+    <script src="~/assets/plug/tinymce/js/tinymce/tinymce.min.js"></script>
+    <script src="~/ajax/webappservice.tinymcesetting2.js?v=1.2"></script>
+    <script> tinymceSettings(['#editor1'], 700); </script>
+    <script>
+        var myScript = {
+            init: function () {
+                myScript.Event();
+            },
+            Event: function () {
+                $("#btnSaveData").off("click").on("click", function () {
+                    myScripts.SaveData();
+                });
+            },
+
+            SaveData: function () {
+                var editor = encodeURIComponent(tinymce.get('editor').getContent());
+                $.ajax({
+                    type: 'Post',
+                    url: '/Admin/Home/SaveData',
+                    datatype: 'json',
+                    data: {
+                        CbGiaoDien: "1",
+                        NoiDung: editor,
+                    },
+                    success: function (response) {
+                        if (response.status) {
+                            toastr.success("Cập nhập thành công", "Thành Công", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                            myScripts.RenderPage();
+                        }
+                        else {
+                            toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                        }
+                    },
+                });
+            },
+
+            RenderPage: function(){
+                $.ajax({
+                    url: '/Admin/Home/LoadDetail',
+                    type: "GET",
+                    dataType: "json",
+                    data: {
+                        CbGiaoDien: "1",
+                    },
+                    success: function (response) {
+                        if (response.status == true) {
+                            var lstData = response.lstData;
+
+                            if (lstData != null) {
+                                $("#IdBaiViet").val(lstData.idBaiViet);
+                                    if (lstData.noiDung != null) {
+                                    tinymce.get('editor').setContent(lstData.noiDung);
+                                } else {
+                                    tinymce.get('editor').setContent("");
+                                }
+                            }
+                        } else {
+                            toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                        }
+                    }
+                })
+            },
+        };
+        myScript.init();
+    </script>
+}
+<div class="card-header mt-2">
+    <h4 class="card-title">Trang chủ</h4>
+</div>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header p-2 text-bg-info d-flex align-items-center">
+            <h4 class="card-title text-white mb-0 fs-3">Khung giao diện 1</h4>
+        </div>
+        <div class="card-body p-0 collapse show">
+            <input type="text" id="MaTrang" hidden>
+            <div class="card-body p-0">
+                <textarea id="editor1"></textarea>
+            </div>
+            <div class="text-end p-1" style="border-top:1px solid blue">
+                <button type="button" class="btn btn-primary waves-effect text-start z-100" id="btnSaveData">
+                    Lưu và kết thúc
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

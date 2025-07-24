@@ -29,9 +29,18 @@ namespace WebAppService.Areas.Admin.Controllers
                     c.GhiChu,
                 }).OrderBy(c => c.TenGoi).ToList();
 
+                var lstDanhMucBaiDang = db.WebDanhMucHeThongs.Where(c => c.LoaiDanhMuc == "Danh mục bài đăng").Select(c => new
+                {
+                    c.IdHeThong,
+                    c.ThuTuTg,
+                    c.TenGoi,
+                    c.GhiChu,
+                }).OrderBy(c => c.TenGoi).ToList();
+
                 return new JsonResult(new
                 {
                     lstNhomBaiViet,
+                    lstDanhMucBaiDang,
                     status = true
                 });
             }
@@ -51,9 +60,7 @@ namespace WebAppService.Areas.Admin.Controllers
         {
             try
             {
-                var lstData = db.WebTinTucBaiViets.AsEnumerable()
-                .OrderByDescending(x => x.ThoiGianTao)
-                .Select(x => new
+                var lstData = db.WebTinTucBaiViets.OrderByDescending(x => x.ThoiGianTao).Select(x => new
                 {
                     x.IdBaiViet,
                     x.UrlImage,
@@ -63,8 +70,24 @@ namespace WebAppService.Areas.Admin.Controllers
                     x.NguoiTao,
                     x.IsCongKhai,
                     x.IsBaiVietNoiBat,
+                    x.CbLoaiBaiDang,
+                    x.TieuDeNgan,
+                    x.ThoiGianTao,
+                }).ToList().Select(x => new
+                {
+                    x.IdBaiViet,
+                    x.UrlImage,
+                    x.NameImage,
+                    x.TieuDeBaiViet,
+                    x.MoTaNgan,
+                    x.NguoiTao,
+                    x.IsCongKhai,
+                    x.IsBaiVietNoiBat,
+                    x.CbLoaiBaiDang,
+                    x.TieuDeNgan,
                     ThoiGianTao =  x.ThoiGianTao != null ? string.Format("{0:dd-MM-yyyy}",x.ThoiGianTao) : "",
-                }).ToList();
+                });
+
                 return new JsonResult(new
                 {
                     lstData,
@@ -126,7 +149,9 @@ namespace WebAppService.Areas.Admin.Controllers
                     x.IsBaiVietNoiBat,
                     x.CbNhomBaiViet,
                     x.UrlImage,
-                    x.MoTaNgan
+                    x.MoTaNgan,
+                    x.CbLoaiBaiDang,
+                    x.TieuDeNgan,
                 }).ToList().Select(x => new
                 {
                     x.IdBaiViet,
@@ -137,7 +162,9 @@ namespace WebAppService.Areas.Admin.Controllers
                     x.NoiDung,
                     x.CbNhomBaiViet,
                     x.UrlImage,
-                    x.MoTaNgan
+                    x.MoTaNgan,
+                    x.CbLoaiBaiDang,
+                    x.TieuDeNgan,
                 }).FirstOrDefault();
 
                 return new JsonResult(new
@@ -161,10 +188,10 @@ namespace WebAppService.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> SaveData([FromForm] string strData, [FromForm] bool isThayDoi, IFormFileCollection files)
         {
-            string decodedContent = "";
             string duong_dan_tai_lieu = "";
             string ten_file = "";
             var ClientData = System.Text.Json.JsonSerializer.Deserialize<WebTinTucBaiViet>(strData);
+            string decodedContent = "";
             if (!string.IsNullOrEmpty(ClientData.NoiDung))
             {
                 decodedContent = HttpUtility.UrlDecode(ClientData.NoiDung);
