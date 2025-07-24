@@ -15,7 +15,7 @@ namespace WebAppService.Areas.Admin.Controllers
             return View();
         }
      
-         AppDbContext db = new AppDbContext();
+        AppDbContext db = new AppDbContext();
 
         [HttpGet]
         public IActionResult LoadData()
@@ -61,7 +61,7 @@ namespace WebAppService.Areas.Admin.Controllers
         {
             try
             {
-                var lstData = db.WebDichVus.OrderByDescending(x => x.ThoiGianTao).Select(x => new
+                var lstData = db.WebDichVus.Where(c => c.IsBaiVietNoiBat != true).OrderByDescending(x => x.ThoiGianTao).Select(x => new
                 {
                     x.IdDichVu,
                     x.UrlImage,

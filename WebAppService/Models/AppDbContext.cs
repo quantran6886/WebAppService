@@ -218,7 +218,6 @@ public partial class AppDbContext : DbContext
                 .HasColumnName("cbGiaoDien");
             entity.Property(e => e.IsCard1).HasDefaultValue(false);
             entity.Property(e => e.IsCard2).HasDefaultValue(false);
-            entity.Property(e => e.NoiDung).HasMaxLength(250);
             entity.Property(e => e.ThoiGianCapNhap).HasColumnType("datetime");
             entity.Property(e => e.ThoiGianTao)
                 .HasDefaultValueSql("(getdate())")

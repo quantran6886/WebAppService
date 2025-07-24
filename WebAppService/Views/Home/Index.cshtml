@@ -35,7 +35,49 @@
             margin-bottom: 10px;
         }
 </style>
-<div class="entry-header entry-header-2 mt-0 text-center" id="LayoutHome1">
+
+@section Scripts {
+    <script>
+        var myClient = {
+
+            init: function(){
+                myClient.Event();
+                myClient.LoadDetail();
+            },
+
+             Event: function () {
+              
+            },
+
+            LoadDetail: function () {
+              $.ajax({
+                        url: '/Admin/Home/LoadDetail',
+                        type: "GET",
+                        dataType: "json",
+                        data: {
+                            CbGiaoDien: "1",
+                        },
+                        success: function (response) {
+                            if (response.status == true) {
+                                var lstData = response.lstData;
+
+                                if (lstData != null && lstData.noiDung != null) {
+                                   $("#seo_1").html(lstData.noiDung);
+                                }
+                            } else {
+                                toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                            }
+                        }
+              })
+            },
+        }
+        myClient.init();
+
+    </script>
+
+}
+<div id="seo_1" style="background:#e1f3f3"></div>
+@* <div class="entry-header entry-header-2 mt-0 text-center" id="LayoutHome1">
     <div class=" position-relative" style="/* background-image: url(/root/home1.png) */background:#e1f3f3 ;height:524px">
         <div class="container p-0">
             <div class="author-bio border-radius-10 p-30 mb-40">
@@ -52,7 +94,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> *@
 <div class="floating-box-wrapper" style="margin-bottom:100px">
     <div class="floating-box container row">
         <div class="box-item col-sm-4">

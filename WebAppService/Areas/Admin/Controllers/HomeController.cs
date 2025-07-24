@@ -52,7 +52,7 @@ namespace WebAppService.Areas.Admin.Controllers
                     {
                         WebCauHinhTrang _ch = new WebCauHinhTrang();
                         _ch.CbGiaoDien = "1";
-                        _ch.NoiDung = NoiDung;
+                        _ch.NoiDung = decodedContent;
                         _ch.IsCongKhai = IsCongKhai;
                         db.WebCauHinhTrangs.Add(_ch);
                     }
@@ -68,7 +68,7 @@ namespace WebAppService.Areas.Admin.Controllers
                     {
                         WebCauHinhTrang _ch = new WebCauHinhTrang();
                         _ch.CbGiaoDien = "2";
-                        _ch.NoiDung = NoiDung;
+                        _ch.NoiDung = decodedContent;
                         _ch.IsCongKhai = IsCongKhai;
                         db.WebCauHinhTrangs.Add(_ch);
                     }
