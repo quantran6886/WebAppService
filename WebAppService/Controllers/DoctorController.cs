@@ -9,10 +9,18 @@ namespace clinic_website.Controllers
 		{
 			return View();
 		}
-		public IActionResult DoctorDetail()
-		{
-			return View();
-		}
+	
+
+        [HttpGet]
+        public IActionResult DoctorDetail(string? id)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return BadRequest("Không tìm thấy thông tin.");
+            }
+            var  record = db.WebNhanSus.FirstOrDefault(c => c.IdNhanSu.ToString() == id);
+            return View(record);
+        }
 
         AppDbContext db = new AppDbContext();
 

@@ -7,12 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\assets\libs\datatables.net-bs5\node_modules\**" />
+    <Content Remove="wwwroot\assets\libs\datatables.net-bs5\node_modules\**" />
+    <EmbeddedResource Remove="wwwroot\assets\libs\datatables.net-bs5\node_modules\**" />
+    <None Remove="wwwroot\assets\libs\datatables.net-bs5\node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="webpack.config.js~RF4b5ebc2.TMP" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Properties\launchSettings.json" />
-    <Content Include="wwwroot\assets\libs\datatables.net-bs5\node_modules\datatables.net\License.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,12 +34,6 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Shared\horizontal\" />
     <Folder Include="wwwroot\FilesUploads\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\assets\libs\datatables.net-bs5\node_modules\datatables.net\js\jquery.dataTables.min.js" />
-    <None Include="wwwroot\assets\libs\datatables.net-bs5\node_modules\datatables.net\js\jquery.dataTables.min.mjs" />
-    <None Include="wwwroot\assets\libs\datatables.net-bs5\node_modules\datatables.net\js\jquery.dataTables.mjs" />
   </ItemGroup>
 
   <ItemGroup>

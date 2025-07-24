@@ -1,0 +1,110 @@
+﻿.container_detail_doctor {
+    /* font-family: 'Manrope', sans-serif; */
+    margin: 0;
+    background-color: #f9fdfd;
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+
+
+.profile-container {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    max-width: 900px;
+}
+
+.profile-image {
+    position: relative;
+    text-align: center;
+}
+
+    .profile-image img {
+        border-radius: 12px;
+        margin-top: 20px;
+    }
+
+.degree-title {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #ff5b00;
+    font-weight: 600;
+    padding: 6px 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.profile-info {
+    max-width: 600px;
+}
+
+.name {
+    font-size: 28px;
+    font-weight: 800;
+    color: #2F4848;
+    margin-bottom: 8px;
+}
+
+.department {
+    font-size: 16px;
+    font-weight: 700;
+    color: #F26522;
+    margin-bottom: 24px;
+    font-family: 'Inter', sans-serif;
+}
+
+.section {
+    margin-bottom: 20px;
+}
+
+    .section h3 {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 6px;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .section p,
+    .section ul {
+        font-size: 15px;
+        line-height: 1.6;
+        color: #333;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .section ul {
+        padding-left: 20px;
+    }
+
+    .section li {
+        margin-bottom: 8px;
+    }
+
+i {
+    margin-right: 6px;
+}
+.degree-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #F26522;
+    font-family: 'Inter', sans-serif;   
+}
+.name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 40px;
+}
+.profile-photo {
+    width: 300px;
+    height: auto;
+}
+h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #5E5B5B;
+}
+@media screen and (max-width: 768px) {
+    .profile-photo {
+        width: 200px;
+        height: auto;
+    }
+}
