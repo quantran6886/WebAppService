@@ -1,7 +1,18 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+
 <style>
+    .layout-home {
+        background: #e1f3f3;
+        height: 524px;
+    }
+
+    .layout-home-white {
+        background: white;
+        height: 524px;
+    }
+
     .floating-box-wrapper {
         position: relative;
         height: 0;
@@ -9,7 +20,7 @@
 
     .floating-box {
         position: absolute;
-        top: -60px; /* chen vào phần giữa */
+        top: -60px;
         left: 50%;
         transform: translateX(-50%);
         background: #ffffff;
@@ -23,121 +34,357 @@
         height: 138px;
     }
 
-        .floating-box .box-item {
-            flex: 1;
-            text-align: center;
-            padding: 10px;
-        }
+    .box-item {
+        flex: 1;
+        text-align: center;
+        padding: 10px;
+    }
 
-        .floating-box .icon {
+        .box-item .icon {
             width: 40px;
             height: 40px;
             margin-bottom: 10px;
         }
+
+    .bg-hover-green:hover {
+        background: #009F9C;
+        color: #ffffff;
+    }
+
+    .author-img-circle {
+        background: #009f9c;
+        border-radius: 50%;
+        width: 454px;
+        height: 444px;
+        text-align: center;
+    }
+
+    .author-info-text {
+        font-size: 50px;
+        font-family: Montserrat;
+    }
+
+    .author-info-small-text {
+        color: #999999;
+    }
+
+    .service-card {
+        background: #ffffff;
+        border-radius: 25.91px;
+        padding: 40px 10px;
+        margin-bottom: 30px;
+    }
+
+    .service-img-wrapper {
+        background: #F6F9FE;
+        width: 110px;
+        height: 110px;
+        border-radius: 25.91px;
+        align-content: center;
+        text-align-last: center;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    /* tại sao chọn chúng tôi*/
+    .bg-info-gradient{
+        background: linear-gradient(101deg, #D2FFFE, #009F9C);
+        color: #ffffff;
+    }
+    .form-section-wrapper {
+        position: relative;
+        background-color: #e0f7fa;
+        background-image: linear-gradient(101deg, #FFFFFF, #E4FFFE);
+        width: 340px;
+        height: 310px;
+        border-radius: 0px;
+    }
+
+    .doctor-overlay-wrapper {
+        position: absolute;
+        left: 5px;
+        bottom: 0;
+        z-index: 10;
+    }
+
+    .doctor-overlay {
+        width: 240px;
+        object-fit: contain;
+    }
+
+
+    .form-section {
+        background-color: #e0f7fa;
+        padding: 0rem;
+        border-radius: 10px;
+    }
+
+    .map-section iframe {
+        width: 100%;
+        height: 400px;
+        border: none;
+    }
+
+    .doctor-img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+    .z-100{
+        z-index: 100;
+    }
+    .tranform-x{
+        transform: translateX(110px);
+        white-space: nowrap;
+    }
 </style>
 
+
 @section Scripts {
-    <script>
-        var myClient = {
-
-            init: function(){
-                myClient.Event();
-                myClient.LoadDetail();
-            },
-
-             Event: function () {
-              
-            },
-
-            LoadDetail: function () {
-              $.ajax({
-                        url: '/Admin/Home/LoadDetail',
-                        type: "GET",
-                        dataType: "json",
-                        data: {
-                            CbGiaoDien: "1",
-                        },
-                        success: function (response) {
-                            if (response.status == true) {
-                                var lstData = response.lstData;
-
-                                if (lstData != null && lstData.noiDung != null) {
-                                   $("#seo_1").html(lstData.noiDung);
-                                }
-                            } else {
-                                toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
-                            }
-                        }
-              })
-            },
-        }
-        myClient.init();
-
-    </script>
-
 }
-<div id="seo_1" style="background:#e1f3f3"></div>
-@* <div class="entry-header entry-header-2 mt-0 text-center" id="LayoutHome1">
-    <div class=" position-relative" style="/* background-image: url(/root/home1.png) */background:#e1f3f3 ;height:524px">
+
+<!-- Banner chính -->
+<div class="entry-header entry-header-2 mt-0 text-center" id="LayoutHome1">
+    <div class="position-relative layout-home">
         <div class="container p-0">
-            <div class="author-bio border-radius-10 p-30 mb-40">
-                <div class="col-sm-7 author-info" style="align-content: center;">
-                    <h3><span class="vcard author"><span class="fn"><a href="author.html" title="" rel="author" style="font-size:50px;font-family:Montserrat">Bệnh viện hiện đại Dịch vụ chuẩn quốc tế</a></span></span></h3>
-                    <div class="author-description" style="color:#999999">Ứng dụng công nghệ tiên tiến, đội ngũ y bác sĩ hàng đầu, cam kết mang đến trải nghiệm chăm sóc sức khỏe toàn diện và chất lượng quốc tế </div>
-                    <a href="#" class="main-menu d-none d-lg-inline btn-orrange">Xem thêm</a>
+            <div class="author-bio border-radius-10 p-30 mb-40 d-flex">
+                <div class="col-sm-7 author-info d-flex flex-column justify-content-center">
+                    <h3>
+                        <span class="vcard author">
+                            <span class="fn">
+                                <a href="author.html" title="" rel="author" class="author-info-text">Bệnh viện hiện đại Dịch vụ chuẩn quốc tế</a>
+                            </span>
+                        </span>
+                    </h3>
+                    <div class="author-info-small-text">
+                        Ứng dụng công nghệ tiên tiến, đội ngũ y bác sĩ hàng đầu, cam kết mang đến trải nghiệm chăm sóc sức khỏe toàn diện và chất lượng quốc tế
+                    </div>
+                    <div class="mt-10">
+                        <a href="#" class="main-menu d-none d-lg-inline btn-orrange">Xem thêm</a>
+                    </div>
                 </div>
-                <div class="col-sm-5 mb-30" style="text-align:center">
-                    <div style="background:#009f9c; border-radius:50%;width:453.98px;height:443.88px">
-                        <a href="author.html"><img src="~/root/doctor1 1.png" alt="" class="avatar"></a>
+                <div class="col-sm-5 mb-30">
+                    <div class="author-img-circle">
+                        <a href="author.html"><img src="~/root/doctor1 1.png" alt="" class="avatar" /></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div> *@
-<div class="floating-box-wrapper" style="margin-bottom:100px">
+</div>
+
+<!-- Hộp nổi dịch vụ -->
+<div class="floating-box-wrapper">
     <div class="floating-box container row">
-        <div class="box-item col-sm-4">
+        <div class="box-item col-sm-4 d-flex">
             <div class="col-sm-4">
                 <img src="/icon-call.png" class="icon" />
-
             </div>
             <div class="col-sm-8">
                 <h5>Gọi tổng đài</h5>
-                <p>Liên hệ .</p>
+                <p>Liên hệ.</p>
             </div>
         </div>
         <div class="box-item col-sm-4">
             <img src="/icon-calendar.png" class="icon" />
             <h5>Đặt lịch khám</h5>
-            <p>Đặt lịch khám .</p>
+            <p>Đặt lịch khám.</p>
         </div>
         <div class="box-item col-sm-4">
             <img src="/icon-result.png" class="icon" />
             <h5>Tra cứu kết quả</h5>
-            <p>Xem nhanh kết .</p>
+            <p>Xem nhanh kết.</p>
         </div>
     </div>
 </div>
+
+<!-- Phần giới thiệu dịch vụ đặc biệt -->
 <div class="entry-header entry-header-2 mb-0 text-center" id="LayoutHome2">
-    <div class=" position-relative" style="/* background-image: url(/root/home1.png) */background:white ;height:524px">
+    <div class="position-relative layout-home-white">
         <div class="container p-0 mt-5">
-            <div class="author-bio border-radius-10 p-30 mb-40">
-                <div class="col-sm-5 mb-30" style="text-align:center">
+            <div class="author-bio border-radius-10 p-30 mb-40 d-flex">
+                <div class="col-sm-5 mb-30 text-center">
                     <div style="width:453.98px;height:443.88px">
                         <a href="author.html"><img src="~/root/group 4.png" alt="" class="avatar"></a>
                     </div>
                 </div>
-                <div class="col-sm-7 author-info" style="align-content: center;">
+                <div class="col-sm-7 author-info d-flex flex-column justify-content-center">
                     <span class="no-arrow text-c-0">Sun Medical</span>
-                    <h3><span class="vcard author"><span class="fn"><a href="author.html" title="" rel="author" style="font-size:35px;font-family:Montserrat">Dịch vụ đặc biệt tại Sun Medical</a></span></span></h3>
-                    <div class="author-description" style="color:#999999">
-                        Tại Sun Medical, chúng tôi không ngừng mở rộng và nâng tầm dịch vụ nhằm đáp ứng nhu cầu chăm sóc sức khỏe toàn diện và chuyên sâu cho từng khách hàng. Bên cạnh các dịch vụ khám chữa bệnh thông thường, Sun Medical đặc biệt chú trọng phát triển các lĩnh vực y tế cao cấp như nha khoa thẩm mỹ, da liễu thẩm mỹ và lưu trữ tế bào gốc – những dịch vụ tiên tiến kết hợp giữa công nghệ hiện đại và tiêu chuẩn quốc tế.
-                        Với đội ngũ chuyên gia giàu kinh nghiệm cùng hệ thống trang thiết bị tiên tiến, các dịch vụ đặc biệt tại Sun Medical không chỉ mang lại hiệu quả điều trị vượt trội mà còn đảm bảo tính cá nhân hóa cao, phù hợp với từng thể trạng và nhu cầu riêng biệt của khách hàng. Chúng tôi tự hào là điểm đến đáng tin cậy cho những ai đang tìm kiếm giải pháp chăm sóc sức khỏe kết hợp giữa y học hiện đại và yếu tố thẩm mỹ tinh tế.
+                    <h3>
+                        <span class="vcard author">
+                            <span class="fn">
+                                <a href="author.html" title="" rel="author" style="font-size:35px;font-family:Montserrat">Dịch vụ đặc biệt tại Sun Medical</a>
+                            </span>
+                        </span>
+                    </h3>
+                    <div class="author-info-small-text">
+                        Tại Sun Medical, chúng tôi không ngừng mở rộng và nâng tầm dịch vụ nhằm đáp ứng nhu cầu chăm sóc sức khỏe toàn diện và chuyên sâu cho từng khách hàng...
                     </div>
-                    <a href="#" class="main-menu d-none d-lg-inline btn-orrange">Xem thêm</a>
+                    <div class="mt-10">
+                        <a href="#" class="main-menu d-none d-lg-inline btn-orrange">Xem thêm</a>
+                    </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- Danh sách dịch vụ -->
+<div class="service-card-y" style="background:#F5FFFFCC">
+    <div class="container px-30 py-2 container-mobile">
+        <div class="archive-header text-center mb-30 mt-10">
+            <div class="container">
+                <div>
+                    <span class="text-head-breadcrumb text-c-5">Dịch Vụ đặc biệt</span>
+                </div>
+                <p class="text-muted mb-4 text-center">
+                    Chúng tôi tự hào là nơi hội tụ đội ngũ y bác sĩ tận tâm, trang thiết bị hiện đại và quy trình chăm sóc đạt chuẩn quốc tế – mang đến cho bạn sự an tâm tuyệt đối trong suốt hành trình bảo vệ và chăm sóc sức khỏe.
+                </p>
+            </div>
+        </div>
+        <div class="row" id="">
+            <article class="col-lg-4 p-30">
+                <div class="service-card bg-hover-green">
+                    <div class="post-thumb d-flex mb-15 img-hover-scale justify-content-center">
+                        <a href="single.html" class="service-img-wrapper">
+                            <img class="border-radius-15" src="~/root/pill-emoji-clipart-md.png" width="50" height="50" alt="">
+                        </a>
+                    </div>
+                    <div>
+                        <h5 class="post-title mb-15 text-center">
+                            <a href="single.html">Thuốc</a>
+                        </h5>
+                        <div class="meta-1 color-grey mb-10 text-center">
+                            <span class="post-by">Cung cấp thuốc chất lượng, an toàn và phù hợp</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article class="col-lg-4 p-30">
+                <div class="service-card bg-hover-green">
+                    <div class="post-thumb d-flex mb-15 img-hover-scale justify-content-center">
+                        <a href="single.html" class="service-img-wrapper">
+                            <img class="border-radius-15" src="~/root/imagesgen.png" width="50" height="50" alt="">
+                        </a>
+                    </div>
+                    <div>
+                        <h5 class="post-title mb-15 text-center">
+                            <a href="single.html">Khám tổng quát</a>
+                        </h5>
+                        <div class="meta-1 color-grey mb-10 text-center">
+                            <span class="post-by">Tầm soát sức khỏe toàn diện, phát hiện sớm nguy cơ bệnh lý</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article class="col-lg-4 p-30">
+                <div class="service-card bg-hover-green">
+                    <div class="post-thumb d-flex mb-15 img-hover-scale justify-content-center">
+                        <a href="single.html" class="service-img-wrapper">
+                            <img class="border-radius-15" src="~/root/imagesgen.png" width="50" height="50" alt="">
+                        </a>
+                    </div>
+                    <div>
+                        <h5 class="post-title mb-15 text-center">
+                            <a href="single.html">Thuốc</a>
+                        </h5>
+                        <div class="meta-1 color-grey mb-10 text-center">
+                            <span class="post-by">Cung cấp thuốc chất lượng, an toàn và phù hợp</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <div class="pagination-area mb-30">
+            Xem thêm
+        </div>
+    </div>
+</div>
+
+<!-- tại sao chọn chúng tôi -->
+<div class="question-doctor" style="background:#F9FCFF">
+    <div class="container pt-30 pb-100">
+        <div class="row align-items-center">
+            <!-- Bên trái: nội dung lý do -->
+            <div class="col-md-12">
+                <div class="text-center">
+                    <span class="text-head-breadcrumb text-c-5">Tại sao <span class="text-primary">chọn chúng tôi</span></span>
+                </div>
+                <p class="text-muted mb-4 text-center">
+                    Chúng tôi tự hào là nơi hội tụ đội ngũ y bác sĩ tận tâm, trang thiết bị hiện đại và quy trình chăm sóc đạt chuẩn quốc tế – mang đến cho bạn sự an tâm tuyệt đối trong suốt hành trình bảo vệ và chăm sóc sức khỏe.
+                </p>
+            </div>
+            <div class="col-lg-7 col-md-12">
+                <!-- Lý do 1 -->
+                <div class="d-flex mb-4">
+                    <div class="me-3">
+                        <div class="rounded-circle bg-info text-white fw-bold d-flex justify-content-center align-items-center bg-info-gradient" style="width: 40px; height: 40px;">1</div>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold mb-1">Đội ngũ y bác sĩ chuyên môn cao, tận tâm</h5>
+                        <p class="text-muted mb-0">
+                            Chúng tôi quy tụ các chuyên gia đầu ngành với nhiều năm kinh nghiệm, luôn đặt y đức và sự an toàn của người bệnh lên hàng đầu.
+                        </p>
+                    </div>
+                </div>
+                <!-- Lý do 2 -->
+                <div class="d-flex mb-4">
+                    <div class="me-3">
+                        <div class="rounded-circle bg-info text-white fw-bold d-flex justify-content-center align-items-center bg-info-gradient" style="width: 40px; height: 40px;">2</div>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold mb-1">Trang thiết bị hiện đại, công nghệ tiên tiến</h5>
+                        <p class="text-muted mb-0">
+                            Bệnh viện đầu tư hệ thống máy móc và công nghệ chẩn đoán – điều trị đạt chuẩn quốc tế, giúp nâng cao hiệu quả khám chữa bệnh.
+                        </p>
+                    </div>
+                </div>
+                <!-- Lý do 3 -->
+                <div class="d-flex">
+                    <div class="me-3">
+                        <div class="rounded-circle bg-info text-white fw-bold d-flex justify-content-center align-items-center bg-info-gradient" style="width: 40px; height: 40px;">3</div>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold mb-1">Y tế toàn diện, lấy bệnh nhân làm trung tâm</h5>
+                        <p class="text-muted mb-0">
+                            Từ tiếp nhận, thăm khám đến điều trị và chăm sóc hậu kỳ, mọi quy trình đều được xây dựng để phục vụ tốt nhất cho người bệnh và người nhà.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Bên phải: hình ảnh bác sĩ -->
+            <div class="col-lg-5 col-md-12 text-center mt-4 mt-lg-0">
+                <div class="form-section-wrapper mb-30">
+                    <div class="doctor-overlay-wrapper">
+                        <img src="@Url.Content("~/root/hometsc.png")" alt="Doctor" class="doctor-overlay">
+                    </div>
+
+                    <div class="position-absolute z-100 bottom-0 start-0 mb-3 ms-3 bg-white px-3 py-2 d-flex align-items-center shadow-sm tranform-x">
+                        <span class="text-danger fw-bold me-2">★</span>
+                        <span class="text-orange fw-semibold small">Best Certified Team of Specialists</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Câu chuyện của khách hàng -->
+<div class="message-client">
+    <div class="container px-30 py-2 container-mobile">
+        <div class="archive-header text-center mb-30 mt-10">
+            <div class="container">
+                <div>
+                    <span class="text-head-breadcrumb text-c-5">Câu chuyện của khách hàng</span>
+                </div>
+                <p class="text-muted mb-4 text-center">
+                    Khám phá sự khác biệt mà chúng tôi tạo ra thông qua tiếng nói của những người chúng tôi đã phục vụ.
+                </p>
+            </div>
+        </div>
+        <div class="row" id="">
+           
         </div>
     </div>
 </div>
