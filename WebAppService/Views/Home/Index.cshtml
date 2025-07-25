@@ -138,10 +138,111 @@
         transform: translateX(110px);
         white-space: nowrap;
     }
+    /* Khách hàng nói gì về chúng tôi*/
+    .client-img-wrapper {
+        background: #F6F9FE;
+        width: 80px;
+        height: 80px;
+        align-content: center;
+        text-align-last: center;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .img-client-boder {
+        border-radius: 25.91px;
+    }
+    .related-services {
+        margin: 0 auto;
+        padding: 20px 70px;
+        position: relative;
+    }
+
+        .related-services h2 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+    .slider-container {
+        display: flex;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        gap: 20px;
+        padding-bottom: 10px;
+    }
+
+    .service-card {
+        flex: 0 0 300px;
+        background: #fff;
+        overflow: hidden;
+    }
+
+    .service-content {
+        padding: 15px;
+    }
+
+        .service-content h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .service-content p {
+            font-size: 14px;
+            color: #555;
+        }
+
+    .nav-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: orange;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 1;
+    }
+
+    .bottom-line{
+        border-bottom: 1px solid #E9EFF5;
+    }
+
+    .justify-items-center {
+        justify-items: center;
+        align-items: center;
+    }
+
+    .nav-left {
+        left: 10px;
+    }
+
+    .nav-right {
+        right: -10px;
+    }
+
+    .slider-container::-webkit-scrollbar {
+        display: none;
+    }
 </style>
 
 
 @section Scripts {
+    <script>
+        function scrollSlider(direction) {
+            const slider = document.getElementById('slider');
+            const scrollAmount = 320; // dịch theo chiều ngang ~ 1 card
+            slider.scrollBy({
+                left: scrollAmount * direction,
+                behavior: 'smooth'
+            });
+        }
+    </script>
 }
 
 <!-- Banner chính -->
@@ -384,7 +485,88 @@
             </div>
         </div>
         <div class="row" id="">
-           
+            <div class="related-services">
+                <button class="nav-button nav-left" onclick="scrollSlider(-1)">❮</button>
+                <button class="nav-button nav-right" onclick="scrollSlider(1)">❯</button>
+                <div class="slider-container" id="slider">
+                    <!-- 1 -->
+                    <div class="service-card justify-items-center">
+                        <a href="single.html" class="client-img-wrapper img-client-boder">
+                            <img src="~/root/img-client.png" class="img-client-boder" alt="">
+                        </a>
+                        <div class="service-content text-center">
+                            <div class="bottom-line mb-10">
+                                <h3>Linda Ngo</h3>
+                            </div>
+                            <p>“Sau ca phẫu thuật đầu gối, sự tiện lợi của dịch vụ tư vấn trực tuyến đã giúp quá trình hồi phục của tôi diễn ra suôn sẻ hơn tôi tưởng.”</p>
+                            <div class="">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 1 -->
+                    <div class="service-card justify-items-center">
+                        <a href="single.html" class="client-img-wrapper img-client-boder">
+                            <img src="~/root/img-client.png" class="img-client-boder" alt="">
+                        </a>
+                        <div class="service-content text-center">
+                            <div class="bottom-line mb-10">
+                                <h3>Linda Ngo</h3>
+                            </div>
+                            <p>“Sau ca phẫu thuật đầu gối, sự tiện lợi của dịch vụ tư vấn trực tuyến đã giúp quá trình hồi phục của tôi diễn ra suôn sẻ hơn tôi tưởng.”</p>
+                            <div class="">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 1 -->
+                    <div class="service-card justify-items-center">
+                        <a href="single.html" class="client-img-wrapper img-client-boder">
+                            <img src="~/root/img-client.png" class="img-client-boder" alt="">
+                        </a>
+                        <div class="service-content text-center">
+                            <div class="bottom-line mb-10">
+                                <h3>Linda Ngo</h3>
+                            </div>
+                            <p>“Sau ca phẫu thuật đầu gối, sự tiện lợi của dịch vụ tư vấn trực tuyến đã giúp quá trình hồi phục của tôi diễn ra suôn sẻ hơn tôi tưởng.”</p>
+                            <div class="">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 1 -->
+                    <div class="service-card justify-items-center">
+                        <a href="single.html" class="client-img-wrapper img-client-boder">
+                            <img src="~/root/img-client.png" class="img-client-boder" alt="">
+                        </a>
+                        <div class="service-content text-center">
+                            <div class="bottom-line mb-10">
+                                <h3>Linda Ngo</h3>
+                            </div>
+                            <p>“Sau ca phẫu thuật đầu gối, sự tiện lợi của dịch vụ tư vấn trực tuyến đã giúp quá trình hồi phục của tôi diễn ra suôn sẻ hơn tôi tưởng.”</p>
+                            <div class="">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

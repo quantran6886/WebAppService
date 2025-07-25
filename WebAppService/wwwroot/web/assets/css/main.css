@@ -2,6 +2,10 @@
 .pagination {
     JUSTIFY-CONTENT: CENTER!important;
 }
+
+.color-orrange {
+    background-color: #F26522;
+}
 .btn-orrange {
     background-color: #F26522;
     color: white !important;

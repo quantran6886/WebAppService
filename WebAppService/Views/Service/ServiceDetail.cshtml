@@ -1,0 +1,311 @@
+﻿
+@{
+    ViewData["Title"] = "ServiceDetail";
+}
+@section Scripts{
+    <script>
+        function scrollSlider(direction) {
+            const slider = document.getElementById('slider');
+            const scrollAmount = 320; // dịch theo chiều ngang ~ 1 card
+            slider.scrollBy({
+                left: scrollAmount * direction,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.7;
+        margin: 0;
+        padding: 40px 20px;
+    }
+
+    .container {
+        margin: 0 auto;
+        background-color: white;
+        padding: 20px 40px;
+    }
+
+    .section-label {
+        color: #f15a24;
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 4px;
+        text-align: center;
+    }
+
+    .main-title {
+        font-size: 28px;
+        font-weight: bold;
+        color: #2F4848;
+        margin-top: 0;
+        text-align: center;
+    }
+
+    .sub-heading {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+
+    .content-image {
+        width: 100%;
+        border-radius: 4px;
+        margin: 20px 0;
+    }
+
+    .number-title {
+        font-weight: bold;
+        margin-top: 30px;
+    }
+
+    p {
+        margin-bottom: 15px;
+    }
+
+    .related-services {
+        margin: 0 auto;
+        padding: 20px 70px;
+        position: relative;
+    }
+
+        .related-services h2 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+    .slider-container {
+        display: flex;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        gap: 20px;
+        padding-bottom: 10px;
+    }
+
+    .service-card {
+        flex: 0 0 300px;
+        background: #fff;
+        overflow: hidden;
+    }
+
+        .service-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+    .service-content {
+        padding: 15px;
+    }
+
+        .service-content h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .service-content p {
+            font-size: 14px;
+            color: #555;
+        }
+
+    .nav-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: orange;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 1;
+    }
+
+    .nav-left {
+        left: 10px;
+    }
+
+    .nav-right {
+        right: -10px;
+    }
+
+    /* Hide scrollbar */
+    .slider-container::-webkit-scrollbar {
+        display: none;
+    }
+</style>
+<div class="container">
+    <div class="section-label">Dịch vụ của chúng tôi</div>
+    <h1 class="main-title">Dược phẩm chính hãng</h1>
+
+    <p>
+        SunMedical cam kết cung cấp thuốc chính hãng, đầy đủ nguồn gốc xuất xứ, đạt tiêu chuẩn chất lượng của Bộ Y tế.
+        Với quy trình cấp phát thuốc khoa học, đội ngũ được sự chuyên môn cao và hệ thống bảo quản đạt chuẩn GPP,
+        chúng tôi không chỉ bán thuốc, mà còn đồng hành cùng người bệnh trong suốt quá trình điều trị.
+        SunMedical luôn tư vấn chi tiết, hướng dẫn sử dụng đúng liều – đúng cách – đúng người, giúp khách hàng an tâm sử dụng thuốc hiệu quả và an toàn tuyệt đối.
+    </p>
+
+    <h2 class="sub-heading">Cung Cấp Thuốc Chính Hãng – An Tâm Đồng Hành Cùng SunMedical</h2>
+    <img src="~/images/Frame 48095586.png" alt="Thuốc viên" class="content-image" />
+
+    <h3 class="number-title">1. Thuốc chính hãng: yếu tố sống còn trong điều trị</h3>
+    <p>
+        Thuốc chính hãng là loại thuốc được sản xuất bởi các công ty dược phẩm có uy tín, được cấp phép lưu hành, có bao bì – tem nhãn – hướng dẫn sử dụng rõ ràng, và được bảo quản đúng quy chuẩn.
+        Trong điều trị y khoa, việc sử dụng thuốc không đảm bảo nguồn gốc hoặc thuốc trôi nổi trên thị trường không chỉ làm giảm hiệu quả chữa bệnh mà còn có thể gây ra những biến chứng nghiêm trọng như hỏng thuốc, ngộ độc hoặc dị ứng nguy hiểm.
+    </p>
+    <p>
+        Hiểu rõ điều đó, SunMedical xây dựng hệ thống cung cấp thuốc chính hãng, đảm bảo bệnh nhân và khách hàng được tiếp cận dược phẩm chất lượng, phù hợp với nhu cầu điều trị cụ thể.
+    </p>
+
+    <img src="~/images/Frame 48095587.png" alt="Nhà nghiên cứu dược" class="content-image">
+    <h3 class="number-title">2. Dịch vụ cung cấp thuốc tại SunMedical có gì khác biệt?</h3>
+    <p>
+        Tại SunMedical, việc cung cấp thuốc không chỉ là bán hàng, mà là một phần trong hành trình chăm sóc sức khỏe toàn diện.
+        Chúng tôi triển khai đầy đủ các loại thuốc:
+    </p>
+    <ul>
+        <li>Thuốc kê đơn theo chỉ định của bác sĩ điều trị tại bệnh viện hoặc bác sĩ ngoài</li>
+        <li>Thuốc không kê đơn (OTC) dùng trong các trường hợp cảm cúm, đau đầu, đau bụng, dị ứng, đau dạ dày,...</li>
+        <li>Nhóm thuốc hỗ trợ sức khỏe như vitamin, khoáng chất, men tiêu hóa, sản phẩm hỗ trợ miễn dịch,...</li>
+    </ul>
+    <p>
+        Tất cả các loại thuốc đều được nhập từ các công ty phân phối chính hãng, có hóa đơn – chứng từ rõ ràng,
+        và được lưu trữ trong điều kiện đạt chuẩn về nhiệt độ, độ ẩm, ánh sáng theo quy định của Bộ Y tế.
+    </p>
+
+    <h3 class="number-title">3. Tư vấn sử dụng thuốc đúng người – đúng liều</h3>
+    <p>
+        Một trong những điểm nổi bật được người bệnh đánh giá cao tại SunMedical là dịch vụ tư vấn sử dụng thuốc trước và sau khi mua.
+        Đội ngũ dược sĩ tại đây không chỉ cấp phát thuốc đúng theo đơn, mà còn trực tiếp hướng dẫn người bệnh về:
+    </p>
+    <ul>
+        <li>Liều lượng sử dụng theo độ tuổi và tình trạng sức khỏe</li>
+        <li>Thời điểm dùng thuốc hiệu quả nhất trong ngày</li>
+        <li>Các tương tác có thể xảy ra giữa các nhóm thuốc</li>
+        <li>Dấu hiệu cần theo dõi trong quá trình dùng thuốc</li>
+        <li>Cách bảo quản thuốc an toàn tại nhà</li>
+    </ul>
+    <p>
+        Chúng tôi luôn khuyến khích khách hàng hỏi rõ bất kỳ thắc mắc nào liên quan đến thuốc,
+        để đảm bảo việc sử dụng đạt hiệu quả tối ưu và tránh tác dụng phụ không mong muốn.
+    </p>
+
+    <h3 class="number-title">4. Quy trình mua và nhận thuốc nhanh chóng – minh bạch</h3>
+    <p>
+        Khách hàng có thể đến trực tiếp tại nhà thuốc của SunMedical sau khi được khám và chỉ định điều trị,
+        hoặc mang theo toa thuốc từ nơi khác. Quy trình được tối ưu theo hướng thuận tiện:
+    </p>
+    <ul>
+        <li>Tiếp nhận đơn thuốc và kiểm tra</li>
+        <li>Tư vấn rõ ràng từng loại thuốc trước khi phát</li>
+        <li>Ghi chú cách sử dụng và lưu ý trên bao bì</li>
+        <li>Cung cấp hóa đơn, thông tin lô thuốc rõ ràng</li>
+        <li>Hỗ trợ giao thuốc tận nhà nếu khách hàng có nhu cầu</li>
+    </ul>
+    <p>
+        Toàn bộ quá trình đều được giám sát chất lượng chặt chẽ, đảm bảo người dùng nhận được thuốc đúng, đủ và đúng thời điểm.
+    </p>
+
+    <h3 class="number-title">5. Lý do nên lựa chọn SunMedical khi cần mua thuốc</h3>
+    <p>
+        SunMedical không chỉ là nơi khám chữa bệnh, mà còn là địa chỉ cung cấp dược phẩm chính hãng,
+        an toàn và đáng tin cậy. Chúng tôi đặt yếu tố minh bạch, chuyên nghiệp và đồng hành lên hàng đầu trong mọi hoạt động cấp phát thuốc.
+    </p>
+    <ul>
+        <li>Chỉ phân phối thuốc đã được Bộ Y tế cấp phép</li>
+        <li>Có đội ngũ dược sĩ túc trực tư vấn tận tình</li>
+        <li>Cam kết không cung cấp thuốc trôi nổi, hàng xách tay</li>
+        <li>Cập nhật giá thuốc minh bạch, niêm yết rõ ràng</li>
+        <li>Có hỗ trợ theo dõi sau sử dụng thuốc nếu người bệnh cần</li>
+    </ul>
+
+</div>
+
+<div class="related-services">
+    <h2>Dịch vụ liên quan</h2>
+
+    <button class="nav-button nav-left" onclick="scrollSlider(-1)">❮</button>
+    <button class="nav-button nav-right" onclick="scrollSlider(1)">❯</button>
+
+    <div class="slider-container" id="slider">
+
+        <!-- 1 -->
+        <div class="service-card">
+            <img src="~/web/images/Frame 48095586.png" alt="Khám lái xe">
+            <div class="service-content">
+                <h3>Khám lái xe</h3>
+                <p>Khám sức khỏe lái xe theo đúng quy định của Bộ Y tế, quy trình nhanh chóng – chính xác – cấp giấy chứng nhận hợp lệ.</p>
+            </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="service-card">
+            <img src="~/web/images/frame 37831 (1).png" alt="Y học tái tạo">
+            <div class="service-content">
+                <h3>Y học tái tạo</h3>
+                <p>Xu hướng y tế hiện đại: tế bào gốc, PRP và sinh học điều trị hiệu quả các bệnh lý.</p>
+            </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="service-card">
+            <img src="~/web/images/frame 37831 (1).png" alt="Vaccine">
+            <div class="service-content">
+                <h3>Vaccine</h3>
+                <p>Tiêm chủng là bảo vệ hôm nay, đầu tư cho sức khỏe lâu dài. Đồng hành cùng bạn.</p>
+            </div>
+        </div>
+
+        <!-- 4 -->
+        <div class="service-card">
+            <img src="~/web/images/frame 37831 (1).png" alt="Khám tổng quát">
+            <div class="service-content">
+                <h3>Khám tổng quát</h3>
+                <p>Bảo vệ sức khỏe toàn diện, phát hiện bệnh sớm. Khám định kỳ mỗi năm một lần.</p>
+            </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="service-card">
+            <img src="~/web/images/frame 37831 (1).png" alt="Khám định kỳ">
+            <div class="service-content">
+                <h3>Khám định kỳ</h3>
+                <p>Phát hiện bệnh lý tiềm ẩn, theo dõi sức khỏe chủ động. Khám định kỳ hiệu quả.</p>
+            </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="service-card">
+            <img src="~/web/images/frame 37831 (1).png" alt="Tim mạch">
+            <div class="service-content">
+                <h3>Tim mạch</h3>
+                <p>Trái tim khỏe – cuộc sống vui. Khám định kỳ để bảo vệ tim mạch ngay hôm nay.</p>
+            </div>
+        </div>
+        <div class="service-card">
+            <img src="~/web/images/frame 37831 (1).png" alt="Khám định kỳ">
+            <div class="service-content">
+                <h3>Khám định kỳ</h3>
+                <p>Phát hiện bệnh lý tiềm ẩn, theo dõi sức khỏe chủ động. Khám định kỳ hiệu quả.</p>
+            </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="service-card">
+            <img src="~/web/images/frame 37831 (1).png" alt="Tim mạch">
+            <div class="service-content">
+                <h3>Tim mạch</h3>
+                <p>Trái tim khỏe – cuộc sống vui. Khám định kỳ để bảo vệ tim mạch ngay hôm nay.</p>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
