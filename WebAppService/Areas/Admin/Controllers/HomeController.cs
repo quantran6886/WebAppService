@@ -123,5 +123,42 @@ namespace WebAppService.Areas.Admin.Controllers
                 });
             }
         }
+
+        [HttpGet]
+        public IActionResult GetListNotification()
+        {
+            try
+            {
+                var lstData = db.WebThongBaos.Select(x => new
+                {
+                    x.IdNoti,
+                    x.IsDaDoc,
+                    x.TieuDe,
+                    x.NoiDung,
+                    x.ThoiGianTao,
+                }).ToList().Select(x => new
+                {
+                    x.IdNoti,
+                    x.IsDaDoc,
+                    x.TieuDe,
+                    x.NoiDung,
+                    ThoiGianTao = x.ThoiGianTao != null ? string.Format("{0:{dd/MM/yyy HH:ss}}",x.ThoiGianTao) : "",
+                }).OrderBy(c => c.ThoiGianTao).Take(50).ToList();
+
+                return new JsonResult(new
+                {
+                    lstData,
+                    status = true
+                });
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult(new
+                {
+                    message = ex.Message,
+                    status = false
+                });
+            }
+        }
     }
 }

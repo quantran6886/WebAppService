@@ -1,242 +1,12 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
-<style>
-    .layout-home {
-        background: #e1f3f3;
-        height: 524px;
-    }
-
-    .layout-home-white {
-        background: white;
-        height: 524px;
-    }
-
-    .floating-box-wrapper {
-        position: relative;
-        height: 0;
-    }
-
-    .floating-box {
-        position: absolute;
-        top: -60px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #ffffff;
-        border-radius: 12px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        padding: 0px;
-        gap: 10px;
-        justify-content: center;
-        z-index: 10;
-        width: 752px;
-        height: 138px;
-    }
-
-    .box-item {
-        flex: 1;
-        text-align: center;
-        padding: 10px;
-    }
-
-        .box-item .icon {
-            width: 40px;
-            height: 40px;
-            margin-bottom: 10px;
-        }
-
-    .bg-hover-green:hover {
-        background: #009F9C;
-        color: #ffffff;
-    }
-
-    .author-img-circle {
-        background: #009f9c;
-        border-radius: 50%;
-        width: 454px;
-        height: 444px;
-        text-align: center;
-    }
-
-    .author-info-text {
-        font-size: 50px;
-        font-family: Montserrat;
-    }
-
-    .author-info-small-text {
-        color: #999999;
-    }
-
-    .service-card {
-        background: #ffffff;
-        border-radius: 25.91px;
-        padding: 40px 10px;
-        margin-bottom: 30px;
-    }
-
-    .service-img-wrapper {
-        background: #F6F9FE;
-        width: 110px;
-        height: 110px;
-        border-radius: 25.91px;
-        align-content: center;
-        text-align-last: center;
-        padding: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    /* tại sao chọn chúng tôi*/
-    .bg-info-gradient{
-        background: linear-gradient(101deg, #D2FFFE, #009F9C);
-        color: #ffffff;
-    }
-    .form-section-wrapper {
-        position: relative;
-        background-color: #e0f7fa;
-        background-image: linear-gradient(101deg, #FFFFFF, #E4FFFE);
-        width: 340px;
-        height: 310px;
-        border-radius: 0px;
-    }
-
-    .doctor-overlay-wrapper {
-        position: absolute;
-        left: 5px;
-        bottom: 0;
-        z-index: 10;
-    }
-
-    .doctor-overlay {
-        width: 240px;
-        object-fit: contain;
-    }
-
-
-    .form-section {
-        background-color: #e0f7fa;
-        padding: 0rem;
-        border-radius: 10px;
-    }
-
-    .map-section iframe {
-        width: 100%;
-        height: 400px;
-        border: none;
-    }
-
-    .doctor-img {
-        width: 100%;
-        height: auto;
-        object-fit: contain;
-    }
-    .z-100{
-        z-index: 100;
-    }
-    .tranform-x{
-        transform: translateX(110px);
-        white-space: nowrap;
-    }
-    /* Khách hàng nói gì về chúng tôi*/
-    .client-img-wrapper {
-        background: #F6F9FE;
-        width: 80px;
-        height: 80px;
-        align-content: center;
-        text-align-last: center;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .img-client-boder {
-        border-radius: 25.91px;
-    }
-    .related-services {
-        margin: 0 auto;
-        padding: 20px 70px;
-        position: relative;
-    }
-
-        .related-services h2 {
-            text-align: center;
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
-
-    .slider-container {
-        display: flex;
-        overflow-x: auto;
-        scroll-behavior: smooth;
-        gap: 20px;
-        padding-bottom: 10px;
-    }
-
-    .service-card {
-        flex: 0 0 300px;
-        background: #fff;
-        overflow: hidden;
-    }
-
-    .service-content {
-        padding: 15px;
-    }
-
-        .service-content h3 {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
-        .service-content p {
-            font-size: 14px;
-            color: #555;
-        }
-
-    .nav-button {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: orange;
-        border: none;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        color: white;
-        font-size: 20px;
-        cursor: pointer;
-        z-index: 1;
-    }
-
-    .bottom-line{
-        border-bottom: 1px solid #E9EFF5;
-    }
-
-    .justify-items-center {
-        justify-items: center;
-        align-items: center;
-    }
-
-    .nav-left {
-        left: 10px;
-    }
-
-    .nav-right {
-        right: -10px;
-    }
-
-    .slider-container::-webkit-scrollbar {
-        display: none;
-    }
-</style>
-
-
+<link href="~/web/assets/css/home.css" rel="stylesheet" />
 @section Scripts {
     <script>
         function scrollSlider(direction) {
             const slider = document.getElementById('slider');
-            const scrollAmount = 320; // dịch theo chiều ngang ~ 1 card
+            const scrollAmount = 320;
             slider.scrollBy({
                 left: scrollAmount * direction,
                 behavior: 'smooth'
@@ -564,6 +334,189 @@
                                 <i class="fa fa-star"></i>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* báo chí nói về sun medical *@
+<div class="about-sunmedical" style="background:#E7E7E7">
+    <div class="container pt-30 pb-100">
+        <div class="row align-items-center">
+            <!-- Bên trái: nội dung lý do -->
+            <div class="col-md-12">
+                <div class="text-start">
+                    <span class="text-head-breadcrumb text-c-5">Báo chí <span class="text-primary">nói gì về Sun Medical</span></span>
+                </div>
+            </div>
+            <div class="row mt-30">
+                <div class="col-lg-4">
+                    <article class="col-lg-12 wow fadeIn  animated" style="visibility: visible; animation-name: fadeIn;">
+                        <div class="border-radius-10 p-0 mb-30">
+                            <div class="post-thumb d-flex mb-15 border-radius-5 img-hover-scale">
+                                <a href="single.html">
+                                    <img class="border-radius-5" src="~/root/seo.png" alt="">
+                                </a>
+                            </div>
+                            <div class="pl-10 pr-10">
+                                <div class="post-title mb-10 text-limit-3-row">
+                                    <a href="#" class="text-c-3">10 Reasons to invest in SEO copywriting services</a>
+                                </div>
+                                <div class="">
+                                    <p class="post-exerpt text-c-2 text-limit-3-row">Agency life. We’ve all seen the photos posted on social media – the cool....</p>
+                                </div>
+                                <div>
+                                    <a href="single.html" class="read-more">Xem thêm</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-lg-8 row">
+                    <article class="col-lg-4 wow fadeIn  animated" style="visibility: visible; animation-name: fadeIn;">
+                        <div class="border-radius-10 p-0 mb-30">
+                            <div class="post-thumb d-flex mb-15 border-radius-5 img-hover-scale">
+                                <a href="single.html">
+                                    <img class="border-radius-5" src="~/root/seo1.png" alt="">
+                                </a>
+                            </div>
+                            <div class="pl-10 pr-10">
+                                <div class="post-title mb-10 text-limit-3-row">
+                                    <a href="#" class="text-c-3">10 Reasons to invest in SEO copywriting services</a>
+                                </div>
+                                <div class="">
+                                    <p class="post-exerpt text-c-2 text-limit-3-row">Agency life. We’ve all seen the photos posted on social media – the cool....</p>
+                                </div>
+                                <div>
+                                    <a href="single.html" class="read-more">Xem thêm</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="col-lg-4 wow fadeIn  animated" style="visibility: visible; animation-name: fadeIn;">
+                        <div class="border-radius-10 p-0 mb-30">
+                            <div class="post-thumb d-flex mb-15 border-radius-5 img-hover-scale">
+                                <a href="single.html">
+                                    <img class="border-radius-5" src="~/root/seo1.png" alt="">
+                                </a>
+                            </div>
+                            <div class="pl-10 pr-10">
+                                <div class="post-title mb-10 text-limit-3-row">
+                                    <a href="#" class="text-c-3">10 Reasons to invest in SEO copywriting services</a>
+                                </div>
+                                <div class="">
+                                    <p class="post-exerpt text-c-2 text-limit-3-row">Agency life. We’ve all seen the photos posted on social media – the cool....</p>
+                                </div>
+                                <div>
+                                    <a href="single.html" class="read-more">Xem thêm</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="col-lg-4 wow fadeIn  animated" style="visibility: visible; animation-name: fadeIn;">
+                        <div class="border-radius-10 p-0 mb-30">
+                            <div class="post-thumb d-flex mb-15 border-radius-5 img-hover-scale">
+                                <a href="single.html">
+                                    <img class="border-radius-5" src="~/root/seo1.png" alt="">
+                                </a>
+                            </div>
+                            <div class="pl-10 pr-10">
+                                <div class="post-title mb-10 text-limit-3-row">
+                                    <a href="#" class="text-c-3">10 Reasons to invest in SEO copywriting services</a>
+                                </div>
+                                <div class="">
+                                    <p class="post-exerpt text-c-2 text-limit-3-row">Agency life. We’ve all seen the photos posted on social media – the cool....</p>
+                                </div>
+                                <div>
+                                    <a href="single.html" class="read-more">Xem thêm</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* // Video của tôi *@
+<div class="video-sunmedical" style="background:white">
+    <div class="container pt-30 pb-100">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="text-start">
+                    <span class="text-head-breadcrumb text-c-5">Video nổi bật</span>
+                </div>
+            </div>
+            <div class="row mt-30">
+                <div class="col-lg-6">
+                    <div class="slider-single col-12 p-0 position-relative">
+                        <div class="img-hover-scale border-radius-10 position-relative overflow-hidden">
+                            <a href="single.html">
+                                <img class="border-radius-10 w-100" src="~/root/imgservice.png" height="100%" alt="post-slider">
+                            </a>
+                            <div class="play_btn play_btn_small position-absolute top-50 start-50 translate-middle">
+                                <a class="play-video" href="https://vimeo.com/333834999">
+                                    <i class="fa fa-play"></i>
+                                </a>
+                            </div>
+                            <div class="video-caption position-absolute bottom-0 start-0 w-100 text-white px-3 py-2">
+                                <p class="mb-0 fw-semibold text-white">
+                                    Ăn Gì Để Khỏe Mạnh Mỗi Ngày? Gợi Ý Thực Đơn Dinh Dưỡng Cân Bằng
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 row">
+                    <div class="col-lg-12">
+                        <article class="p-0 background-white border-radius-10 mb-15 mr-15 wow fadeIn animated">
+                            <div class="d-flex">
+                                <div class="post-thumb d-flex border-radius-5 p-0 img-hover-scale col-sm-6">
+                                    <div class="img-hover-scale border-radius-10 position-relative overflow-hidden">
+                                        <a href="single.html">
+                                            <img class="border-radius-10 w-100" src="~/root/imgserve2.png" height="150px" style="width:100%" alt="post-slider">
+                                        </a>
+                                        <div class="play_btn play_btn_small position-absolute top-50 start-50 translate-middle">
+                                            <a class="play-video" href="https://vimeo.com/333834999">
+                                                <i class="fa fa-play"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="post-content media-body col-sm-6 p-0">
+                                    <small class="post-title font-weight-500 mb-10 text-limit-2-row"><a href="#" class="text-c-4">Cách Phòng Bệnh Hiệu Quả Mùa Thay Đổi Thời Tiết</a></small>
+                                    <div class="entry-meta meta-1 flex-column font-x-small text-capitalize mb-10">
+                                        <span class="mr-1 ml-1 text-c-2  text-limit-3-row ">Mỗi khi giao mùa, cơ thể rất dễ bị cảm lạnh, sốt, dị ứng… Bài viết này sẽ hướng dẫn bạn cách bảo vệ bản thân và gia đình hiệu quả.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-lg-12">
+                        <article class="p-0 background-white border-radius-10 mb-15 mr-15 wow fadeIn animated">
+                            <div class="d-flex">
+                                <div class="post-thumb d-flex border-radius-5 p-0 img-hover-scale col-sm-6">
+                                    <div class="img-hover-scale border-radius-10 position-relative overflow-hidden">
+                                        <a href="single.html">
+                                            <img class="border-radius-10 w-100" src="~/root/imgserve2.png" height="150px" alt="post-slider">
+                                        </a>
+                                        <div class="play_btn play_btn_small position-absolute top-50 start-50 translate-middle">
+                                            <a class="play-video" href="https://vimeo.com/333834999">
+                                                <i class="fa fa-play"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="post-content media-body col-sm-6 p-0">
+                                    <small class="post-title font-weight-500 mb-10 text-limit-2-row"><a href="#" class="text-c-4">Cách Phòng Bệnh Hiệu Quả Mùa Thay Đổi Thời Tiết</a></small>
+                                    <div class="entry-meta meta-1 flex-column font-x-small text-capitalize mb-10">
+                                        <span class="mr-1 ml-1 text-c-2  text-limit-3-row ">Mỗi khi giao mùa, cơ thể rất dễ bị cảm lạnh, sốt, dị ứng… Bài viết này sẽ hướng dẫn bạn cách bảo vệ bản thân và gia đình hiệu quả.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
                     </div>
                 </div>
             </div>
