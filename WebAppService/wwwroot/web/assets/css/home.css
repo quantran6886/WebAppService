@@ -54,6 +54,13 @@
     background: #009F9C;
     color: #ffffff;
 }
+    .bg-hover-green:hover  .post-by {
+        color: #F7FFFF;
+    }
+    .bg-hover-green:hover h5 {
+        color: #F7FFFF;
+    }                 
+
 
 .author-img-circle {
     background: #009f9c;
@@ -77,6 +84,7 @@
     border-radius: 25.91px;
     padding: 40px 10px;
     margin-bottom: 30px;
+
 }
 
 .service-img-wrapper {
@@ -294,6 +302,12 @@
 #sp_sv article {
     padding: 20px;
 }
+.text-primary {
+    background: linear-gradient(90deg, #009688, #00BCD4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
 @media (max-width: 576px) {
     /* CSS dành cho mobile */
     .box-item {
@@ -302,69 +316,80 @@
         text-align: center;
         margin-top: 5px;
     }
+
     .icon_box {
         font-size: 16px;
         margin-top: 10px;
     }
+
     .author-info {
         margin-top: 45px;
         margin-bottom: 20px;
     }
-   
+
 
     .author-info-text {
         text-align: left;
         font-size: 25px;
         font-weight: 700;
     }
+
     .author-img-circle {
         text-align: center;
         width: 300px;
         height: 300px;
-
     }
+
     .avatar {
         height: 320px;
         position: relative;
         top: -25px;
     }
-    .avatar2{
-        width:100%;
-        height:100%;
+
+    .avatar2 {
+        width: 100%;
+        height: 100%;
     }
+
     .author-bio {
         text-align: center;
     }
-    .LayoutHome{
-        height:530px;
+
+    .LayoutHome {
+        height: 530px;
     }
+
     #LayoutHome1 {
         margin-bottom: 50px;
     }
+
     .floating-box {
         width: 375px;
         height: 131px;
-        margin-left:1px;
+        margin-left: 1px;
     }
 
 
-    .box_item_text{
-        margin-top:10px;
+    .box_item_text {
+        margin-top: 10px;
     }
-    .box_item_text h5 {
-        margin-top: 0px;
-    }
-   
+
+        .box_item_text h5 {
+            margin-top: 0px;
+        }
+
     .img_avt2 {
         height: 300px;
         width: 329px;
     }
+
     .t_mb {
         font-family: 'Inter', sans-serif;
         color: #F26522;
         font-size: 12px;
         font-weight: 600;
     }
+
     .t_mb2 {
         font-family: 'Montserrat', sans-serif;
         color: #2F4848;
@@ -373,13 +398,20 @@
         line-height: 120%;
         margin-bottom: 10px;
     }
-  /*  .title h3,span{
+    /*  .title h3,span{
         display:none;
     }*/
     .btn_sv {
-        text-align: center; 
-        margin-top:20px;
+        text-align: center;
+        margin-top: 20px;
     }
+
     #sp_sv article {
         padding: 3px;
     }
+    .text-head-breadcrumb {
+        font-size: 20px;
+        font-weight: 700;
+
+    }
+}
