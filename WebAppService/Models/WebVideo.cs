@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WebAppService.Models.Updates;
+namespace WebAppService.Models;
 
 public partial class WebVideo
 {
@@ -18,6 +18,10 @@ public partial class WebVideo
     public string? UrlImage { get; set; }
 
     public string? NameImage { get; set; }
+
+    public string? NameVideo { get; set; }
+
+    public string? UrlVideo { get; set; }
 
     public int? SapXep { get; set; }
 

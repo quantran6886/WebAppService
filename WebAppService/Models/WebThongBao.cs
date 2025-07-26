@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WebAppService.Models.Updates;
+namespace WebAppService.Models;
 
 public partial class WebThongBao
 {
@@ -14,6 +14,16 @@ public partial class WebThongBao
     public string? TieuDe { get; set; }
 
     public string? NoiDung { get; set; }
+
+    public string? Email { get; set; }
+
+    public string? LoiNhan { get; set; }
+
+    public string? GioiTinh { get; set; }
+
+    public string? SoDienThoai { get; set; }
+
+    public string? HoTenNguoiGui { get; set; }
 
     public string? FileDinhKem { get; set; }
 

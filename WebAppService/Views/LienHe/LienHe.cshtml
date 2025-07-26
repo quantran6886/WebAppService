@@ -1,105 +1,106 @@
 ﻿@{
     ViewData["Title"] = "LienHe";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/web/assets/css/lienhe.css" rel="stylesheet" />
 
 @section Scripts {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
-    <script src="~/ajax/webappservice.realtimenotify.js"></script>
-    <script type="text/javascript">
-            function SendForm() {
-            var loi_nhan = $("#loi_nhan").val();
-            var ho_ten = $("#ho_ten").val();
-            
-            $.ajax({
-                type: "POST",
-                url: "/LienHe/GuiThongBao",
-                data: {
-                    loi_nhan: loi_nhan ,
-                    ho_ten: ho_ten ,
-                },
-                success: function () {
-                    alert("Đã gửi!");
-                    $("#loi_nhan").val('');
-                }
-            });
-        }
-    </script>
+    <script src="~/ajax/webappclient.lienhe.js"></script>
 }
 
-<!-- Banner hoặc hình nền đầu trang -->
-<div class="entry-header entry-header-2 mb-0 mt-0 text-center">
-    <div class="thumb-overlay img-hover-slide border-radius-5 position-relative" style="background-image: url(/web/assets/imgs/farme.png); height: 300px; background-size: cover; background-position: center;">
+<div class="entry-header entry-header-2 mb-3 mt-0 text-center">
+    <div class="thumb-overlay img-hover-slide position-relative" style="background-image: url(/web/assets/imgs/farme.png)">
     </div>
 </div>
 
-<!-- Nội dung trang -->
-<div class="container mt-50">
-
-    <!-- Thông tin liên hệ -->
+<div class="container container-mobile mx-main">
     <div class="row">
-        <div class="col-md-6">
-            <h4><strong>CÔNG TY CỔ PHẦN BỆNH VIỆN ĐA KHOA SUN MEDICAL VIỆT NAM</strong></h4>
-            <p>
-                Giấy phép hoạt động: Giấy phép hoạt động cơ sở khám chữa bệnh số 00123/HNO - CCHN. Ngày cấp: 16/05/2017<br>
+        <div class="col-md-5">
+            <div class="txt-c-0"><strong>CÔNG TY CỔ PHẦN BỆNH VIỆN ĐA KHOA SUN MEDICAL VIỆT NAM</strong> </div>
+            <p class="txt-c-1 color-black mt-3">
+                Giấy phép hoạt động: Giấy phép hoạt động cơ sở khám chữa bệnh số 00123/HNO - CCHN. Ngày cấp: 16/05/2017
+            </p>
+            <p class="txt-c-1 color-black mt-2">
                 Mã số thuế: 0107486806
             </p>
-            <button class="btn contact-btn">Liên hệ</button>
+            <div class="col-md-12 p-0 mt-3">
+                <a href="#" class="btn main-menu d-none d-lg-inline btn-orrange px-5 py-2" style=" padding: 0px 67px;font-weight: 700;font-family: 'Montserrat'">Liên hệ</a>
+            </div>
         </div>
-        <div class="col-md-6">
-            <p>
-                Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn. Nếu bạn có bất kỳ câu hỏi nào về dịch vụ khám chữa bệnh, đặt lịch hẹn, hoặc cần được tư vấn...
-            </p>
-            <p>
-                📞 123.456.7890<br>
-                📧 info@loremipsum.com<br>
-                📍 Tòa nhà Times Tower, 35 D. Lê Văn Lương, Nhân Chính, Thanh Xuân, Hà Nội
-            </p>
-        </div>
-    </div>
-
-    <!-- Đăng ký khám -->
-    <div class="form-section-wrapper mt-100 mb-30">
-        <div class="doctor-overlay-wrapper">
-            <img src="@Url.Content("~/root/imglh.png")" alt="Doctor" class="doctor-overlay">
-        </div>
-
-        <div class="form-box">
-            <h5><strong>Đăng ký khám, nhận thông tin mới từ chúng tôi!</strong></h5>
-            <div>
-                <div class="mb-3">
-                    <label class="me-3"><input type="radio" name="gender" checked> Ông</label>
-                    <label><input type="radio" name="gender"> Bà</label>
+        <div class="col-md-7">
+            <div class="pl-md-5">
+                <div class="col-md-12 p-0">
+                    <p style="font-family:Inter;font-size:14px;margin-bottom: 0px;">
+                        Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn. Nếu bạn có bất kỳ câu hỏi nào về dịch vụ khám chữa bệnh, đặt lịch hẹn, hoặc cần được tư vấn, vui lòng liên hệ với chúng tôi qua thông tin bên dưới. Đội ngũ nhân viên của bệnh viện sẽ phản hồi trong thời gian sớm nhất để đảm bảo bạn nhận được sự chăm sóc kịp thời và tận tâm.
+                    </p>
                 </div>
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" id="ho_ten" placeholder="Nhập tên của bạn...">
-                    </div>
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" placeholder="Số điện thoại của bạn">
-                    </div>
-                    <div class="col-md-6">
-                        <input type="email" class="form-control" placeholder="Nhập email của bạn...">
-                    </div>
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" id="loi_nhan" placeholder="Nhập lời nhắn...">
-                    </div>
+                <div class="col-md-12 mt-3 p-0">
+                    <span class="txt-c-1 color-black mr-3"><i class="color-orrange fa fa-volume-control-phone"></i> 123.456.7890 </span>
+                    <span class="txt-c-1 color-black"><i class="color-orrange fa fa-envelope"></i> info@loremipsum.com </span>
                 </div>
-                <div class="mt-3">
-                    <button type="button" id="btnGuiDuLieu" onclick="SendForm()" class="btn contact-btn">Gửi</button>
+                <div class="col-md-12 mt-3 p-0">
+                    <span class="txt-c-1 color-black mr-3"><i class="color-orrange fa fa-map-marker"></i> Tòa nhà Times Tower, 35 D. Lê Văn Lương, Nhân Chính, Thanh Xuân, Hà Nội </span>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Bản đồ -->
-    <div class="map-section mt-5">
-        <h5><strong>Vị trí của Bệnh viện Sun Medical</strong></h5>
-        <p>Vui lòng xem bản đồ dưới đây để xác định vị trí chính xác của Bệnh viện Sun Medical.</p>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.858109795675!2d105.80054021531389!3d21.036238792915985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab6ee9d816fd%3A0x93b2549b3593cc5a!2sTimes%20Tower!5e0!3m2!1sen!2s!4v1650289940599"
-                allowfullscreen=""
-                loading="lazy">
-        </iframe>
+        <!-- Nút gửi để dưới toàn form -->
+        <div class="form-group col-md-12 p-0  d-block d-md-none">
+            <a href="#" class="form-group col-md-12 p-30 pt-10 m-0 d-block d-md-none" style="padding:20px">Liên hệ</a>
+        </div>
+        <div class="question-doctor mt-120" >
+            <div class="container pl-md-0">
+                <div class="">
+                    <div class="form-section-wrapper mb-30 row">
+                        <div class="form-section-wrapper mb-30  hide-on-mobile">
+                            <div class="doctor-overlay-wrapper">
+                                <img src="@Url.Content("~/root/imglh.png")" alt="Doctor" class="doctor-overlay">
+                            </div>
+                        </div>
+                        <div class="form col-md-8 position-absolute tranform-x  px-form bg-form">
+                            <div class="txt-dkk">Đăng ký khám, nhận thông tin mới từ chúng tôi!</div>
+                            <div class="mt-30 row">
+                                <div class="col-md-6 p-0">
+                                    <div class="col-md-12 form-group">
+                                        <span class="me-3"><input type="radio" name="gender" checked> Ông</span>
+                                        <span><input type="radio" name="gender"> Bà</span>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <input type="text" class="form-control" id="ho_ten" placeholder="Nhập tên của bạn...">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <input type="email" class="form-control" id="email" placeholder="Nhập email của bạn...">
+                                    </div>
+                                    <div class="form-group col-md-6 hide-on-mobile" style="margin-top:30px">
+                                        <a href="#" onclick="SendForm()" class="btn main-menu border-radius-5 d-lg-inline btn-orrange py-2 w-100" style=" padding: 0px 67px;font-weight: 700;font-family: 'Montserrat'">Gửi</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-form p-0">
+                                    <div class="form-group col-md-12">
+                                        <input type="text" class="form-control" id="so_dien_thoai" placeholder="Số điện thoại của bạn">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <textarea class="form-control" id="loi_nhan" rows="5" placeholder="Nhập lời nhắn...">
+                                    </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Nút gửi để dưới toàn form -->
+                            <div class="form-group col-md-12 p-0  d-block d-md-none">
+                                <a href="#" onclick="SendForm()" class="btn main-menu btn-orrange w-100" style="padding:20px">Gửi</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bản đồ -->
+        <div class="map-section mx-map">
+            <h5 class="fx-Montserrat"><strong>Vị trí của Bệnh viện Sun Medical</strong></h5>
+            <p style="font-family:Inter;font-size:14px;margin-bottom: 0px;">Vui lòng xem bản đồ dưới đây để xác định vị trí chính xác của Bệnh viện Sun Medical.</p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.858109795675!2d105.80054021531389!3d21.036238792915985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab6ee9d816fd%3A0x93b2549b3593cc5a!2sTimes%20Tower!5e0!3m2!1sen!2s!4v1650289940599"
+                    allowfullscreen=""
+                    loading="lazy">
+            </iframe>
+        </div>
     </div>
 </div>

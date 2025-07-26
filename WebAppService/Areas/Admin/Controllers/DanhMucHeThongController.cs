@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebAppService.Models.Updates;
+using WebAppService.Models;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace WebAppService.Areas.Admin.Controllers

@@ -1,49 +1,44 @@
-﻿.contact-btn {
-    background-color: #f97316;
-    color: white;
-    border: none;
+﻿
+.txt-c-0 {
+    font-size: 20px;
+    font-weight: 700;
+    font-family: Montserrat
+}
+.txt-c-1 {
+    font-family: Inter;
+    font-size: 13px;
+    margin-bottom: 0px;
+}
+.color-black {
+    color: #000000;
+    font-weight:600
 }
 
-.contact-wrapper {
-    background-color: #e0f7fa;
-    padding: 3rem 2rem 2rem 12rem; /* chừa chỗ bên trái cho bác sĩ */
-    position: relative;
-    overflow: hidden;
-    border-radius: 12px;
+
+
+/* tại sao chọn chúng tôi*/
+.bg-info-gradient {
+    background: linear-gradient(101deg, #D2FFFE, #009F9C);
+    color: #ffffff;
 }
 
 .form-section-wrapper {
     position: relative;
-    background-color: #e0f7fa;
-    padding: 3rem 2rem 2rem 2rem;
-    border-radius: 12px;
+    background-color: #EDFFFF;
+    height: 350px;
+    padding: 0;
 }
 
-/* Ảnh bác sĩ nằm trên toàn bộ form */
 .doctor-overlay-wrapper {
     position: absolute;
-    left: -60px;
+    left: 0px;
     bottom: 0;
     z-index: 10;
 }
 
 .doctor-overlay {
-    height: 420px;
+    width: 442px;
     object-fit: contain;
-}
-
-.form-box {
-    position: relative;
-    z-index: 5;
-    margin-left: 300px;
-    max-width: 590px;
-}
-
-.contact-btn {
-    background-color: #f97316;
-    color: white;
-    border: none;
-    font-weight: bold;
 }
 
 
@@ -62,17 +57,70 @@
 .doctor-img {
     width: 100%;
     height: auto;
-    max-height: 450px;
     object-fit: contain;
 }
 
-.bg-in-contact {
-    background-color: #e0f7fa;
-    padding: 0rem;
-    border-radius: 10px;
-    margin-top: 3rem;
+.z-100 {
+    z-index: 100;
 }
 
-.mt-25 {
-    margin-top: 3rem;
+.tranform-x {
+    transform: translateX(345px);
+    white-space: nowrap;
+}
+
+.text-inter {
+    font-family: 'Inter', sans-serif;
+}
+
+.text-Montserrat {
+    font-family: 'Montserrat', sans-serif;
+}
+.txt-dkk {
+    font-size: 25px;
+    font-weight: 700;
+    font-family: Montserrat
+}
+.mt-form {
+    margin-top: 40px;
+}
+.px-form {
+    padding: 30px !important;
+}
+.mx-map {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.mx-main{
+    margin-top: 50px;
+}
+@media screen and (max-width: 768px) {
+    .tranform-x {
+        transform: translateX(0px);
+        white-space: normal;
+    }
+    .mt-120 {
+        margin-top: 10px!important;
+    }
+    .mx-map {
+        margin-top: 140px;
+        margin-bottom: 20px;
+    }
+    .txt-dkk {
+        font-size: 18px;
+        font-weight: 700;
+        font-family: Montserrat
+    }
+    .px-form {
+        padding: 10px !important;
+    }
+    .mt-form {
+        margin-top: 0 !important;
+    }
+    .bg-form {
+         background-color: #EDFFFF; 
+    }
+    .mx-main {
+        margin-top: 10px;
+    }
 }

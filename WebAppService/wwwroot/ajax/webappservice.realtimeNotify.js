@@ -5,9 +5,10 @@
         dataType: "json",
         success: function (response) {
             if (response.status == true) {
-                var lstData = response.lstData;
-                if (lstData != null) {
-
+                var data = response.lstData;
+                if (data.length > 0) {
+                    var template = doT.template($("#news-template").html());
+                    $("#message_noti").html(template({ newsList: data }));
                 }
             } else {
                 toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
@@ -15,14 +16,14 @@
         }
     });
 };
-Noification();
 const connectionNoti = new signalR.HubConnectionBuilder()
     .withUrl("/notificationHub")
     .build();
 
 connectionNoti.on("ReceiveNotification", function (message) {
-    Noification();
-    toastr.error("Bạn có thông báo mới", "info", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+    toastr.info("Bạn có thông báo mới từ " + message, "info", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 3000 });
+    NotiFication();
 });
 
 connectionNoti.start();
+NotiFication();

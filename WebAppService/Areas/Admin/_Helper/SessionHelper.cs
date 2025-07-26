@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using WebAppService.Models.Updates;
+using WebAppService.Models;
 
 namespace WebAppService.Areas.Admin._Helper
 {

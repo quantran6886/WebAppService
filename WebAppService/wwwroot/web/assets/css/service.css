@@ -1,0 +1,116 @@
+﻿.orane_color {
+    color: #ff6600;
+}
+
+h2 {
+    color: #2F4848;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+}
+
+.btn-search {
+    margin-left: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.btn-search {
+    padding: 10px 20px;
+    font-size: 15px;
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.container-mobile {
+    padding-left: 10px;
+    padding-right: 30px;
+}
+
+.pxs-3 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.text-media {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    color: #2F4848;
+    font-weight: 800;
+}
+
+.img-respone-service {
+    height: 235px;
+    width: 100%;
+}
+
+.text-limit-c-row {
+    overflow: hidden !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical;
+}
+
+.card-active {
+    background: #00B9B5;
+    color: #ffffff !important;
+}
+
+.card-active a,
+.card-active p,
+.card-active .post-title {
+    color: #ffffff !important;
+}
+
+.card-hover:hover {
+    background: #00B9B5;
+    color: #ffffff !important;
+}
+
+.card-hover:hover a,
+.card-hover:hover p,
+.card-hover:hover .post-title {
+    color: #ffffff !important;
+}
+
+@media (max-width: 768px) {
+    .container-mobile {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .pxs-3 {
+        padding-left: 0rem;
+        padding-right: 0rem;
+    }
+
+    .psi-1 {
+        padding-left: 8px;
+    }
+
+    .text-media {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 20px;
+        color: #2F4848;
+        font-weight: 800;
+    }
+
+    .img-respone-service {
+        height: 130px;
+        width: 100%;
+    }
+
+    .text-limit-c-row {
+        margin: 0px;
+        overflow: hidden !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical;
+    }
+}

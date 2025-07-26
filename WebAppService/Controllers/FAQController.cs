@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebAppService.Models.Updates;
+using WebAppService.Models;
 
 namespace clinic_website.Controllers
 {
@@ -22,10 +22,10 @@ namespace clinic_website.Controllers
                 var lstData = allData.Select(c => new
                 {
                     c.IdFaqs,
-                    c.CauHoi,
-                    c.CauTraLoi,
-
-                })
+                    c.SoThuTu,
+                    CauHoi = string.IsNullOrEmpty(c.CauHoi) ? "" : c.CauHoi ,
+                    CauTraLoi = string.IsNullOrEmpty(c.CauTraLoi) ? "" : c.CauTraLoi,
+                }).OrderBy(c => c.SoThuTu)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToList();

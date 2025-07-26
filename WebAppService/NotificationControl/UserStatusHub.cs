@@ -5,7 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.SignalR;
-using WebAppService.Models.Updates;
+using WebAppService.Models;
 
 namespace NotificationLibrary.NotificationControl
 {

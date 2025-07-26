@@ -3,7 +3,7 @@ using System.Web;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebAppService.Areas.Admin._Helper;
-using WebAppService.Models.Updates;
+using WebAppService.Models;
 
 namespace WebAppService.Areas.Admin.Controllers
 {
@@ -135,15 +135,17 @@ namespace WebAppService.Areas.Admin.Controllers
                     x.IsDaDoc,
                     x.TieuDe,
                     x.NoiDung,
+                    x.HoTenNguoiGui,
                     x.ThoiGianTao,
                 }).ToList().Select(x => new
                 {
                     x.IdNoti,
                     x.IsDaDoc,
                     x.TieuDe,
+                    x.HoTenNguoiGui,
                     x.NoiDung,
-                    ThoiGianTao = x.ThoiGianTao != null ? string.Format("{0:{dd/MM/yyy HH:ss}}",x.ThoiGianTao) : "",
-                }).OrderBy(c => c.ThoiGianTao).Take(50).ToList();
+                    ThoiGianTao = x.ThoiGianTao != null ? string.Format("{0:dd/MM/yyy HH:ss}",x.ThoiGianTao) : "",
+                }).OrderBy(c => c.ThoiGianTao).Take(20).ToList();
 
                 return new JsonResult(new
                 {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebAppService.Models.Updates;
+using WebAppService.Models;
 
 namespace WebAppService.Areas.Admin.Controllers
 {

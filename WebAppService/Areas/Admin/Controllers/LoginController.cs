@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using NotificationLibrary.NotificationControl;
 using WebAppService.Areas.Admin._Helper;
 using WebAppService.Areas.Admin.Modals;
-using WebAppService.Models.Updates;
+using WebAppService.Models;
 
 namespace WebAppService.Areas.Admin.Controllers
 {

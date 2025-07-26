@@ -59,20 +59,8 @@
                                     <h5 class="mb-0 fs-5 fw-semibold"></h5>
                                     <span class="badge text-bg-primary rounded-4 px-3 py-1 lh-sm">Thông báo</span>
                                 </div>
-                                <div class="message-body" data-simplebar>
-                                    <a href="javascript:void(0)" class="py-2 px-2  d-flex align-items-center dropdown-item">
-                                        <span class="me-3">
-                                            <img src="~/root/apple_messages-512.png" alt="user" class="rounded-circle" width="30" height="30">
-                                        </span>
-                                        <div class="w-100">
-                                            <h6 class="mb-1 fw-semibold lh-base"><small class="text-primary"> Nhận từ:</small> Nguyễn Tiến Đạt</h6>
-                                            <div class="fs-2 d-table" style="white-space: normal;">
-                                                <small class="text-primary"> Nội dung:</small>
-                                                Bác sỹ cho tôi hỏi là bao giờ mới có lịch khám em đang bị đau đầu ạ
-                                            </div>
-                                            <small class="text-body-secondary text-body-secondary">12:30 20/10/2023</small>
-                                        </div>
-                                    </a>
+                                <div class="message-body" id="message_noti" data-simplebar style="height:600px;overflow: auto;">
+                                  
                                 </div>
                                 <div class="py-6 px-7 mb-1">
                                     <button class="btn btn-outline-primary w-100">Xem tất cả</button>
@@ -93,7 +81,7 @@
                                         <h5 class="mb-0 fs-5 fw-semibold">Thông tin cá nhân</h5>
                                     </div>
                                     <div class="d-flex align-items-center py-9 mx-7 border-bottom">
-                                        <img src="~/assets/images/profile/user-1.jpg" class="rounded-circle" width="80" height="80" alt="modernize-img" />
+                                        <img src="~/root/Profile_avatar.png" class="rounded-circle" width="80" height="80" alt="modernize-img" />
                                         <div class="ms-3">
                                             <h5 class="mb-1 fs-3">Trần Minh Quân</h5>
                                             <span class="mb-1 d-block">Quản trị viên</span>
@@ -151,3 +139,18 @@
         </div>
     </div>
 </header>
+<script id="news-template" type="text/x-dot-template">
+    {{ for(var i = 0; i < it.newsList.length; i++) { }}
+        <a href="javascript:void(0)" class="py-2 px-2  d-flex align-items-center dropdown-item">
+                     <span class="me-3">
+                <img src="/root/apple_messages-512.png" alt="user" class="rounded-circle" width="30" height="30">
+            </span>
+            <div class="w-100">
+                <h6 class="mb-1 fw-semibold lh-base">{{=it.newsList[i].hoTenNguoiGui}}</h6>
+                <div class="fs-2 d-table" style="white-space: normal;">
+                    {{=it.newsList[i].noiDung}}
+                </div>
+            </div>
+       </a>
+    {{ } }}
+</script>

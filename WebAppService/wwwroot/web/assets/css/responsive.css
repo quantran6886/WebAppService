@@ -108,7 +108,7 @@
 	.single-social-share.float-right{float:left!important;}
 	.mb-sm-30{margin-bottom:30px!important;}
 	.entry-header-3 .img-hover-slide{min-height:480px;}
-	.img-hover-slide{min-height:unset;}
+	.img-hover-slide{min-height:200px;width:100%}
 	.loop-list-style-1 .post-thumb.post-thumb-big img{width:unset;height:unset;}
 	.loop-list-style-1 .post-thumb.post-thumb-big{margin:0 0 15px 0!important;}
 }
