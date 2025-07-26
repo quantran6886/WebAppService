@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NotificationLibrary.NotificationControl;
-using WebAppService.Models.Updates;
+using WebAppService.Models;
 
 namespace WebAppService.Areas.Admin.Controllers
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WebAppService.Models.Updates;
+namespace WebAppService.Models;
 
 public partial class AspNetRole
 {

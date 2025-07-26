@@ -1,0 +1,100 @@
+﻿.text-inter {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    margin-bottom: 0px;
+}
+
+.title-montserrat {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.text-c-1 {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.container-mobile {
+    padding-left: 40px;
+    padding-right: 50px;
+}
+
+.content-section {
+    margin-bottom: 40px;
+}
+/* tại sao chọn chúng tôi*/
+.bg-info-gradient {
+    background: linear-gradient(101deg, #D2FFFE, #009F9C);
+    color: #ffffff;
+}
+
+.form-section-wrapper {
+    position: relative;
+    background-color: #e0f7fa;
+    background-image: linear-gradient(101deg, #FFFFFF, #E4FFFE);
+    width: 340px;
+    height: 310px;
+    border-radius: 10px;
+    border: 2px solid #ffeee6;
+    box-shadow: 1px 1px 5px -2px #343a4094;
+}
+
+.doctor-overlay-wrapper {
+    position: absolute;
+    left: 5px;
+    bottom: 0;
+    z-index: 10;
+}
+
+.doctor-overlay {
+    width: 240px;
+    object-fit: contain;
+}
+
+
+.form-section {
+    background-color: #e0f7fa;
+    padding: 0rem;
+    border-radius: 10px;
+}
+
+.map-section iframe {
+    width: 100%;
+    height: 400px;
+    border: none;
+}
+
+.doctor-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.z-100 {
+    z-index: 100;
+}
+
+.tranform-x {
+    transform: translateX(110px);
+    white-space: nowrap;
+}
+.text-inter {
+    font-family: 'Inter', sans-serif;
+}
+.text-Montserrat {
+    font-family: 'Montserrat', sans-serif;
+}
+.text-primary-grd {
+    background: linear-gradient(to right, #00B9B5, #9EFFFD);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color-interpolation: inherit;
+}
+@media (max-width: 768px) {
+    .container-mobile {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+}

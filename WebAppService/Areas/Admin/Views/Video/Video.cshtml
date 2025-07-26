@@ -11,6 +11,7 @@
     <script> tinymceSettings(['#editor'], 200); </script>
     <script>
          var files;
+         var videos;
         var myScripts = {
             init:function () {
                 myScripts.LoadData();
@@ -50,11 +51,25 @@
                         }
                     });
                 });
+                $("#duong_dan_video").off('change').on('change', function (e) {
+                    videos = e.target.files;
+                    if (videos.length > 0) {
+                        for (var x = 0; x < videos.length; x++) {
+                            if (videos[x].size >= 52428800) {
+                                toastr.error("Chỉ được upload file dưới 50mb", "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                                $("#isThayDoi2").val("false");
+                                return;
+                            } else {
+                                $("#isThayDoi2").val("true");
+                            }
+                        }
+                    }
+                });
             },
 
             LoadData: function () {
                 $.ajax({
-                    url: '/Admin/DichVuDacBiet/LoadData',
+                    url: '/Admin/Video/LoadData',
                     type: 'GET',
                     datatype: 'json',
                     success: function (response) {
@@ -76,7 +91,7 @@
 
            LoadTable: function () {
                 $.ajax({
-                    url: '/Admin/DichVuDacBiet/LoadTable',
+                    url: '/Admin/Video/LoadTable',
                     type: "GET",
                     dataType: "json",
                     data: {
@@ -85,10 +100,10 @@
                         if (response.status == true) {
                             var lstData = response.lstData;
                             if (lstData != null && lstData.length > 0) {
-                                $("#tableDichVuDacBiet").bootstrapTable('load', lstData);
+                                $("#tableVideo").bootstrapTable('load', lstData);
                             }
                             else {
-                                $("#tableDichVuDacBiet").bootstrapTable('removeAll');
+                                $("#tableVideo").bootstrapTable('removeAll');
                             }
                             $('[data-bs-toggle="tooltip"]').tooltip();
                         }
@@ -96,25 +111,25 @@
                 })
             },
 
-            LoadDetail: function (idDichVu) {
-                if (idDichVu != "") {
+            LoadDetail: function (IdVideo) {
+                if (IdVideo != "") {
                     $.ajax({
-                        url: '/Admin/DichVuDacBiet/LoadDetail',
+                        url: '/Admin/Video/LoadDetail',
                         type: "GET",
                         dataType: "json",
                         data: {
-                            IdDichVu: idDichVu,
+                            IdVideo: IdVideo,
                         },
                         success: function (response) {
                             if (response.status == true) {
                                 var lstData = response.lstData;
 
                                 if (lstData != null) {
-                                    $("#IdDichVu").val(lstData.idDichVu);
+                                    $("#IdVideo").val(lstData.idVideo);
                                     $("#TieuDeBaiViet").val(lstData.tieuDeBaiViet);
                                     $("#MoTaNgan").val(lstData.moTaNgan);
                                     $("#IsCongKhai").prop("checked",lstData.isCongKhai);
-                                    $("#IsBaiVietNoiBat").prop("checked",lstData.isBaiVietNoiBat);
+                                    $("#IsVideoNoiBat").prop("checked",lstData.isVideoNoiBat);
                                     $("#CbNhomBaiViet").val(lstData.CbNhomBaiViet).trigger('chosen:updated');
                                     if (lstData.urlImage != null && lstData.urlImage != "") {
                                         $('#imageHoSo').attr('src', lstData.urlImage);
@@ -127,6 +142,7 @@
                                         tinymce.get('editor').setContent("");
                                     }
                                     $("#isThayDoi").val("false");
+                                    $("#isThayDoi2").val("false");
                                     $("#bsBaiViet").modal('show');
                                 }
                             } else {
@@ -146,24 +162,25 @@
             },
 
             ResetForm: function () {
-                $("#IdDichVu").val(0);
+                $("#IdVideo").val(0);
                 $("#TieuDeBaiViet").val("");
                 $("#MoTaNgan").val("");
                 $("#CbNhomBaiViet").val("").trigger('chosen:updated');
-                $("#IsBaiVietNoiBat").prop("checked",false);
+                $("#IsVideoNoiBat").prop("checked",false);
                 $("#IsCongKhai").prop("checked",false);
                 $("#isThayDoi").val("false");
+                $("#isThayDoi2").val("false");
                 tinymce.get('editor').setContent("");
                 $('#imageHoSo').attr('src', '/root/unnamed.png');
             },
 
             SaveData:function () {
-                var IdDichVu = $("#IdDichVu").val();
+                var IdVideo = $("#IdVideo").val();
                 var TieuDeBaiViet = $("#TieuDeBaiViet").val();
                 var MoTaNgan = $("#MoTaNgan").val();
                 var CbNhomBaiViet = $("#CbNhomBaiViet").val();
                 var CbNhomBaiViet = $("#CbNhomBaiViet").val();
-                var IsBaiVietNoiBat = $("#IsBaiVietNoiBat").prop("checked");
+                var IsVideoNoiBat = $("#IsVideoNoiBat").prop("checked");
                 var IsCongKhai = $("#IsCongKhai").prop("checked");
                 var editor = encodeURIComponent(tinymce.get('editor').getContent());
 
@@ -174,27 +191,29 @@
                 }
 
                  var objdata = {
-                    IdDichVu: IdDichVu != 0 ? IdDichVu : '00000000-0000-0000-0000-000000000000',
+                    IdVideo: IdVideo != 0 ? IdVideo : '00000000-0000-0000-0000-000000000000',
                     TieuDeBaiViet: TieuDeBaiViet,
                     MoTaNgan: MoTaNgan,
                     CbNhomBaiViet: CbNhomBaiViet,
-                    IsBaiVietNoiBat: IsBaiVietNoiBat,
+                    IsVideoNoiBat: IsVideoNoiBat,
                     IsCongKhai: IsCongKhai,
                     NoiDung:editor,
                 }
-                 if (files != undefined && files.length > 0) {
+                 if ((files != undefined && files.length > 0) || (videos != undefined && videos.length > 0) ) {
                     if (window.FormData !== undefined) {
                         var data = new FormData();
                         for (var x = 0; x < files.length; x++) {
                             data.append('files', files[x]);
-
+                        }
+                        for (var x = 0; x < videos.length; x++) {
+                            data.append('videos', videos[x]);
                         }
                         data.append("strData", JSON.stringify(objdata));
                         data.append('isThayDoi',  $("#isThayDoi").val());
-
+                        data.append('isThayDoi2',  $("#isThayDoi2").val());
                         $.ajax({
                             type: "POST",
-                            url: '/Admin/DichVuDacBiet/SaveData',
+                            url: '/Admin/Video/SaveData',
                             contentType: false,
                             processData: false,
                             data: data,
@@ -218,7 +237,7 @@
                 else {
                     $.ajax({
                         type: 'Post',
-                        url: '/Admin/DichVuDacBiet/SaveData',
+                        url: '/Admin/Video/SaveData',
                         datatype: 'json',
                         data: {
                             strData: JSON.stringify(objdata),
@@ -237,8 +256,8 @@
                 }
             },
 
-           DeleteData: function (idDichVu) {
-            if (idDichVu != "") {
+           DeleteData: function (IdVideo) {
+            if (IdVideo != "") {
                 const swalWithBootstrapButtons = Swal.mixin({
                     customClass: {
                         confirmButton: "btn bg-secondary-subtle text-secondary",
@@ -260,9 +279,9 @@
                         if (result.isConfirmed) {
                             $.ajax({
                                 type: "POST",
-                                url: "/Admin/DichVuDacBiet/DeleteData",
+                                url: "/Admin/Video/DeleteData",
                                 data: {
-                                    IdDichVu: idDichVu,
+                                    IdVideo: IdVideo,
                                 },
                                 success: function (response) {
                                     if (response.status == true) {
@@ -303,7 +322,7 @@
         };
 
         function fm_editBVNB(e, value, row, index) {
-            if (value.isBaiVietNoiBat == true) {
+            if (value.isVideoNoiBat == true) {
                 return [
                     '<div style="width: 100%;text-align: center;">',
                     '<iconify-icon icon="solar:verified-check-bold-duotone" class="text-success" width="35px" height="35px"></iconify-icon>',
@@ -336,8 +355,8 @@
         function fm_editData(e, value, row, index) {
             return [
                 '<div style="width: 100%">',
-                '<a href="javascript:myScripts.LoadDetail('+ "'" + value.idDichVu + "'" + ')" class="hvr-shrink me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Sửa dữ liệu"><iconify-icon icon="solar:gallery-edit-line-duotone" class="text-primary" width="23px" height="23px"></iconify-icon></a>' +
-                '<a href="javascript:myScripts.DeleteData(' + "'" + value.idDichVu + "'" + ')" class="hvr-shrink" data-bs-toggle="tooltip" title="Xóa dữ liệu"><iconify-icon icon="solar:trash-bin-trash-outline" class="text-danger" width="25px" height="25px"></iconify-icon></a>' +
+                '<a href="javascript:myScripts.LoadDetail('+ "'" + value.idVideo + "'" + ')" class="hvr-shrink me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Sửa dữ liệu"><iconify-icon icon="solar:gallery-edit-line-duotone" class="text-primary" width="23px" height="23px"></iconify-icon></a>' +
+                '<a href="javascript:myScripts.DeleteData(' + "'" + value.idVideo + "'" + ')" class="hvr-shrink" data-bs-toggle="tooltip" title="Xóa dữ liệu"><iconify-icon icon="solar:trash-bin-trash-outline" class="text-danger" width="25px" height="25px"></iconify-icon></a>' +
                 '</div>'
             ].join('');
         };
@@ -360,7 +379,7 @@
                     </div>
                 </div>
                 <div class="card-body p-2">
-                    <table id="tableDichVuDacBiet" data-toggle="table" data-flat="true" data-search="true" data-url="">
+                    <table id="tableVideo" data-toggle="table" data-flat="true" data-search="true" data-url="">
                         <thead>
                             <tr>
                                 <th data-formatter="fm_editData" data-sortable="true" data-width="5" data-width="5"
@@ -368,7 +387,7 @@
                                 <th data-field="urlImage" data-width="8" data-formatter="fm_Image" data-sortable="true">Ảnh</th>
                                 <th data-field="tieuDeBaiViet" data-sortable="true">Tên tiêu đề</th>
                                 <th data-field="moTaNgan" data-sortable="true">Mô tả ngắn</th>
-                                <th data-field="isBaiVietNoiBat" data-width="8" data-formatter="fm_editBVNB" data-sortable="true">Nổi bật</th>
+                                <th data-field="IdVideo" data-width="8" data-formatter="fm_editBVNB" data-sortable="true">Nổi bật</th>
                                 <th data-field="isCongKhai" data-width="8" data-formatter="fm_editBVCK" data-sortable="true">Công khai</th>
                             </tr>
                         </thead>
@@ -395,7 +414,7 @@
                             <div class="card-body p-3">
                                 <div class="form-group">
                                     <div class="row">
-                                        <input type="hidden" id="IdDichVu" name="name" value="" />
+                                        <input type="hidden" id="IdVideo" name="name" value="" />
                                         <div class="col-sm-2 d-flex align-items-stretch" style="height: max-content;">
                                             <div class="card w-100 border position-relative overflow-hidden">
                                                 <div class="card-body p-2">
@@ -438,12 +457,13 @@
                                             </div>
                                             <div class="col-sm-12 mb-2">
                                                 <label class="form-label">Tải video:</label>
-                                                <input class="form-control" type="file" id="formFile">
+                                                <input class="form-control" type="file" id="duong_dan_video">
+                                                <input type="text" id="isThayDoi2" hidden />
                                             </div>
                                             <div class="mb-2 row">
                                                 <div class=" col-sm-3">
-                                                    <input class="form-check-input" type="checkbox" value="" id="IsBaiVietNoiBat">
-                                                    <label class="form-check-label" for="IsBaiVietNoiBat">
+                                                    <input class="form-check-input" type="checkbox" value="" id="IsVideoNoiBat">
+                                                    <label class="form-check-label" for="IsVideoNoiBat">
                                                         Video nổi bật
                                                     </label>
                                                 </div>
@@ -457,7 +477,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row" hidden>
                                         <textarea id="editor"></textarea>
                                     </div>
                                 </div>

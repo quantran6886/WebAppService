@@ -1,9 +1,114 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "ServiceList";
 }
+<link href="~/web/assets/css/service.css" rel="stylesheet" />
 
-<div class="entry-header entry-header-2 mb-3 mt-3 text-center">
-    <div class="thumb-overlay img-hover-slide border-radius-5 position-relative" style="background-image: url(/web/assets/imgs/farme.png)">
+<div class="entry-header entry-header-2 mb-3 mt-0 text-center">
+    <div class="thumb-overlay img-hover-slide position-relative" style="background-image: url(/web/assets/imgs/farme.png)">
+    </div>
+</div>
+<div class="container px-30 py-2 container-mobile">
+    <div class="row mt-5 pxs-3">
+        <div class="col-md-7 align-items-center">
+            <div class="breadcrumb col-md-12">
+                <span class="no-arrow text-c-0 p-0">Chuyên khoa</span>
+            </div>
+            <div>
+                <span class="text-media">Chuyên khoa tại Sun Medical</span>
+            </div>
+        </div>
+        <div class="col-sm-5 align-items-center">
+
+            <div class="row bg-white">
+                <div class="col-8" style="display:flex">
+                    <i class="fas fa-heartbeat orane_color mt-20"></i>
+                    <input type="text" class="form-control w-100 border-0 pb-0" placeholder="Tìm dịch vụ ..." name="name" value="" />
+                </div>
+                <div class="col-4 " style="padding:15px 0px">
+                    <a href="#" class="main-menu btn-sm btn-orrange font-weight-bold w-100"><i class="fa fa-search"></i> Tìm kiếm</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid-servide">
+        <div class="col-lg-12 col-md-12 pxs-3">
+            <div class="row mt-3" id="list_bai_viet">
+                <article class="col-lg-4 col-6 mb-4 psi-1 wow fadeIn animated" style="visibility: visible; animation-name: fadeIn;">
+                    <div class="background-white p-0 pb-10 mb-5 box-shadow-img card-hover card-active">
+                        <div class="post-thumb d-flex mb-15 img-hover-scale">
+                            <a href="single.html">
+                                <img src="/root/imgservice.png" class="img-fluid img-respone-service" alt="" />
+                            </a>
+                        </div>
+                        <div class="pl-10 pr-10">
+                            <div class="post-title mb-5 text-limit-c-row">
+                                <a href="/Service/ServiceDetail" class="text-c-3">Dược phẩm chính hãng</a>
+                            </div>
+                            <div class="">
+                                <p class="post-exerpt text-c-2 text-limit-c-row">Cung cấp thuốc đúng chuẩn, đúng toa, đúng người. SunMedical – đồng hành cùng bạn trong từng đơn thuốc.</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="col-lg-4 col-6 mb-4 psi-1 wow fadeIn animated" style="visibility: visible; animation-name: fadeIn;">
+                    <div class="background-white p-0 pb-10 mb-5 box-shadow-img card-hover">
+                        <div class="post-thumb d-flex mb-15 img-hover-scale">
+                            <a href="single.html">
+                                <img src="/root/img122.png" class="img-fluid img-respone-service" alt="" />
+                            </a>
+                        </div>
+                        <div class="pl-10 pr-10">
+                            <div class="post-title mb-5 text-limit-c-row">
+                                <a href="#" class="text-c-3">Dược phẩm chính hãng</a>
+                            </div>
+                            <div class="">
+                                <p class="post-exerpt text-c-2 text-limit-c-row">Cung cấp thuốc đúng chuẩn, đúng toa, đúng người. SunMedical – đồng hành cùng bạn trong từng đơn thuốc.</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="col-lg-4 col-6 mb-4 psi-1 wow fadeIn animated " style="visibility: visible; animation-name: fadeIn;">
+                    <div class="background-white p-0 pb-10 mb-5 box-shadow-img card-hover">
+                        <div class="post-thumb d-flex mb-15 img-hover-scale">
+                            <a href="single.html">
+                                <img src="/root/imgserve2.png" class="img-fluid img-respone-service" alt="" />
+                            </a>
+                        </div>
+                        <div class="pl-10 pr-10">
+                            <div class="post-title mb-5 text-limit-c-row">
+                                <a href="#" class="text-c-3">Dược phẩm chính hãng</a>
+                            </div>
+                            <div class="">
+                                <p class="post-exerpt text-c-2 text-limit-c-row">Cung cấp thuốc đúng chuẩn, đúng toa, đúng người. SunMedical – đồng hành cùng bạn trong từng đơn thuốc.</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="col-lg-4 col-6 mb-4 psi-1 wow fadeIn animated" style="visibility: visible; animation-name: fadeIn;">
+                    <div class="background-white p-0 pb-10 mb-5 box-shadow-img card-hover">
+                        <div class="post-thumb d-flex mb-15 img-hover-scale">
+                            <a href="single.html">
+                                <img src="/root/imgservice.png" class="img-fluid img-respone-service" alt="" />
+                            </a>
+                        </div>
+                        <div class="pl-10 pr-10">
+                            <div class="post-title mb-5 text-limit-c-row">
+                                <a href="#" class="text-c-3">Dược phẩm chính hãng</a>
+                            </div>
+                            <div class="">
+                                <p class="post-exerpt text-c-2 text-limit-c-row">Cung cấp thuốc đúng chuẩn, đúng toa, đúng người. SunMedical – đồng hành cùng bạn trong từng đơn thuốc.</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+              
+            </div>
+            <div class="pagination-area mb-30">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center" id="pagination">
+                    </ul>
+                </nav>
+            </div>
+        </div>
     </div>
 </div>

@@ -1,134 +1,11 @@
-﻿@* <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" /> *@
-<style>
-    .collapsed{
-        color: #2F4848;
-        font-size: 18px;
-        font-weight: 600;
-        font-family: 'Montserrat', sans-serif;
-    }
-
-    .accordion-body {
-		font-size: 16px;
-		color: #363049;
-        font-weight: 400;
-        font-family: 'Inter', sans-serif;
-    }
-
-    .accordion-button::after {
-        flex-shrink: 0;
-        width: 1.25rem;
-        height: 1.25rem;
-        margin-left: auto;
-        content: "";
-        background-image: url();
-        background-repeat: no-repeat;
-        background-size: 1.25rem;
-        transition: transform .2s ease-in-out;
-    }
-
-    .accordion-button:not(.collapsed)::after {
-        background-image: url();
-        transform: rotate(-180deg);
-    }
-
-    .accordion-button::before {
-        content: "";
-        display: inline-block;
-        width: 1.25rem;
-        height: 1.25rem;
-        margin-right: 0.75rem;
-        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%232F4848' d='M8 4a.5.5 0 0 1 .5.5V7.5H11.5a.5.5 0 0 1 0 1H8.5V11.5a.5.5 0 0 1-1 0V8.5H4.5a.5.5 0 0 1 0-1H7.5V4.5A.5.5 0 0 1 8 4z'/%3E%3C/svg%3E");
-        background-repeat: no-repeat;
-        background-size: contain;
-    }
-
-    .accordion-button:not(.collapsed)::before {
-        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23F26522' d='M4 7.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5z'/%3E%3C/svg%3E");
-    }
-    .accordion-button:not(.collapsed) {
-        position: relative;
-        display: flex;
-        align-items: center;
-        width: 100%;
-        padding: 1rem 1.25rem;
-        font-size: 1rem;
-        text-align: left;
-        background-color: #fff;
-        border: 0;
-        border-radius: 0;
-        color: #2F4848;
-        font-size: 18px;
-        font-weight: 600;
-     
-        transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out, border-radius .15s ease;
-    }
-
-
-    
-</style>
+﻿<link href="~/web/assets/css/faqs.css" rel="stylesheet" />
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dot/doT.min.js"></script>
-    
-    <script>
-        var myClient = {
-            currentPage: 1,
-            pageSize: 16,
-
-            init: function(){
-                myClient.Event();
-                myClient.LoadData();
-            },
-
-             Event: function () {
-                $(document).on('click', '.page-link', function () {
-                    var page = $(this).data("page");
-                    myClient.currentPage = page;
-                    myClient.LoadData();
-                });
-            },
-
-             LoadData: function () {
-                $.ajax({
-                    url: '/FAQ/LoadData',
-                    type: "GET",
-                    data: {
-                        page: myClient.currentPage,
-                        pageSize: myClient.pageSize
-                    },
-                    dataType: "json",
-                    success: function (data) {
-                        if (data.status == true) {
-
-                            if (data.lstData != null) {
-                                var template = doT.template($("#news-template").html());
-                                $("#list_bai_viet").html(template({ newsList: data.lstData }));
-                            }
-
-                            // Phân trang
-                            var totalPages = Math.ceil(data.totalRow / myClient.pageSize);
-                            myClient.RenderPagination(totalPages);
-                        }
-                    }
-                });
-            },
-
-            RenderPagination: function (totalPages) {
-                var pagination = '';
-                for (var i = 1; i <= totalPages; i++) {
-                    pagination += '<li class="page-item ' + (i === myClient.currentPage ? 'active' : '') + '">' +
-                        '<a class="page-link" href="javascript:void(0)" data-page="' + i + '">' + i + '</a></li>';
-                }
-                $("#pagination").html('<ul class="pagination justify-content-center">' + pagination + '</ul>');
-            },
-
-        }
-        myClient.init();
-
-    </script>
+    <script src="~/ajax/webappclient.faqs.js"></script>
 }
-<div class="entry-header entry-header-2 mb-3 mt-3 text-center">
-    <div class="thumb-overlay img-hover-slide border-radius-5 position-relative" style="background-image: url(/web/assets/imgs/farme.png)">
+<div class="entry-header entry-header-2 mb-3 mt-0 text-center">
+    <div class="thumb-overlay img-hover-slide position-relative" style="background-image: url(/web/assets/imgs/farme.png)">
     </div>
 </div>
 <div class="container px-30 py-2 container-mobile">
@@ -150,6 +27,54 @@
             </ul>
         </nav>
     </div>
+
+    <div class="question-doctor mt-120">
+        <div class="container pl-md-0">
+            <div class="">
+                <div class="form-section-wrapper mb-30 row">
+                    <div class="form-section-wrapper mb-30  hide-on-mobile">
+                        <div class="doctor-overlay-wrapper">
+                            <img src="@Url.Content("~/root/imglh.png")" alt="Doctor" class="doctor-overlay">
+                        </div>
+                    </div>
+                    <div class="form col-md-8 position-absolute tranform-x  px-form bg-form">
+                        <div class="txt-dkk">Đăng ký khám, nhận thông tin mới từ chúng tôi!</div>
+                        <div class="mt-30 row">
+                            <div class="col-md-6 p-0">
+                                <div class="col-md-12 form-group">
+                                    <span class="me-3"><input type="radio" name="gender" checked> Ông</span>
+                                    <span><input type="radio" name="gender"> Bà</span>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <input type="text" class="form-control" id="ho_ten" placeholder="Nhập tên của bạn...">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <input type="email" class="form-control" id="email" placeholder="Nhập email của bạn...">
+                                </div>
+                                <div class="form-group col-md-12  hide-on-mobile">
+                                    <a href="#" onclick="SendForm()" class="btn main-menu  d-lg-inline btn-orrange px-5 py-2">Gửi</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mt-form p-0">
+                                <div class="form-group col-md-12">
+                                    <input type="text" class="form-control" id="so_dien_thoai" placeholder="Số điện thoại của bạn">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <textarea class="form-control" id="loi_nhan" rows="5" placeholder="Nhập lời nhắn...">
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Nút gửi để dưới toàn form -->
+                        <div class="form-group col-md-12 p-0  d-block d-md-none">
+                            <a href="#" onclick="SendForm()" class="btn main-menu btn-orrange w-100" style="padding:20px">Gửi</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
  <script id="news-template" type="text/x-dot-template">
@@ -158,11 +83,12 @@
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed shadow-sm p-3" type="button" data-bs-toggle="collapse" data-bs-target="#{{=it.newsList[i].idFaqs}}">
+                        <p class="fx-Montserrat"></p>
                         {{=it.newsList[i].cauHoi}}
                     </button>
                 </h2>
                 <div id="{{=it.newsList[i].idFaqs}}" class="accordion-collapse collapse shadow ">
-                    <div class="accordion-body">
+                    <div class="accordion-body" style="font-family:Inter;font-size:14px;margin-bottom: 0px;color:#363049">
                         {{=it.newsList[i].cauTraLoi}}
                     </div>
                 </div>

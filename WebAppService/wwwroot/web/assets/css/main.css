@@ -1,11 +1,16 @@
 ﻿
+.box-shadow-img {
+    box-shadow: 1px 2px 5px 0px #e7e4e4;
+}
+
 .pagination {
-    JUSTIFY-CONTENT: CENTER!important;
+    JUSTIFY-CONTENT: CENTER !important;
 }
 
 .color-orrange {
-    background-color: #F26522;
+    color: #F26522;
 }
+
 .btn-orrange {
     background-color: #F26522;
     color: white !important;
@@ -14,25 +19,30 @@
     font-weight: 500;
 }
 
-    .btn-orrange:hover {
-        color: white !important;
-        background-color: red;
-        transition: 0.3s all;
-    }
+.btn-orrange:hover {
+    color: white !important;
+    background-color: red;
+    transition: 0.3s all;
+}
+
 .fx-Montserrat {
     font-family: 'Montserrat', sans-serif !important;
 }
+
 .fx-Inter {
     font-family: 'Inter', sans-serif !important;
 }
+
 .fx-bold {
     font-weight: 700 !important;
     font-size: 18px;
 }
+
 .fx-content {
     font-weight: 400 !important;
     font-size: 16px;
 }
+
 .loop-list-style2 {
     max-height: 900px;
     overflow-y: scroll;
@@ -72,31 +82,31 @@
     scrollbar-color: #00b5b8 transparent;
 }
 
-    /* WebKit (Chrome, Edge, Safari) */
-    .loop-list-style::-webkit-scrollbar {
-        width: 6px;
-    }
+/* WebKit (Chrome, Edge, Safari) */
+.loop-list-style::-webkit-scrollbar {
+    width: 6px;
+}
 
-    .loop-list-style::-webkit-scrollbar-thumb {
-        background-color: #00b5b8;
-        border-radius: 10px;
-    }
+.loop-list-style::-webkit-scrollbar-thumb {
+    background-color: #00b5b8;
+    border-radius: 10px;
+}
 
-    .loop-list-style::-webkit-scrollbar-track {
-        background: transparent;
-    }
+.loop-list-style::-webkit-scrollbar-track {
+    background: transparent;
+}
 
-    .loop-list-style::-webkit-scrollbar-button:single-button {
-        display: none;
-        height: 0;
-        width: 0;
-    }
+.loop-list-style::-webkit-scrollbar-button:single-button {
+    display: none;
+    height: 0;
+    width: 0;
+}
 
-    .loop-list-style::-webkit-scrollbar-button {
-        display: none !important;
-        width: 0;
-        height: 0;
-    }
+.loop-list-style::-webkit-scrollbar-button {
+    display: none !important;
+    width: 0;
+    height: 0;
+}
 
 .bagde-c-1 {
     background: #F26522;
@@ -149,6 +159,7 @@
     font-size: 14px;
     font-weight: 600;
 }
+
 .text-c-4-1 {
     font-family: 'Montserrat', sans-serif;
     color: #534d4d;
@@ -177,6 +188,7 @@
     font-size: 12px;
     font-weight: 400;
 }
+
 .text-c-8-1 {
     font-family: 'Inter', sans-serif;
     color: #999999;
@@ -382,7 +394,7 @@
 
     .text-c-3 {
         color: #302f2f !important;
-        font-size: 14px!important;
+        font-size: 14px !important;
         font-weight: bolder;
     }
 

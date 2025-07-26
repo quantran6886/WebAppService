@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace WebAppService.Models.Updates;
+namespace WebAppService.Models;
 
 public partial class AppDbContext : DbContext
 {
@@ -34,6 +34,8 @@ public partial class AppDbContext : DbContext
     public virtual DbSet<BrowerVanBanTaiLieu> BrowerVanBanTaiLieus { get; set; }
 
     public virtual DbSet<ViewUserOnline> ViewUserOnlines { get; set; }
+
+    public virtual DbSet<WebAbousU> WebAbousUs { get; set; }
 
     public virtual DbSet<WebCauHinhTrang> WebCauHinhTrangs { get; set; }
 
@@ -67,7 +69,7 @@ public partial class AppDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=ANHPHAMVIET\\SQLEXPRESS;Initial Catalog=WebMedical;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
+        => optionsBuilder.UseSqlServer("Server=DESKTOP-VU39D0Q;Database=WebMedical;Trusted_Connection=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -204,6 +206,13 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.MaSoThue).HasMaxLength(100);
             entity.Property(e => e.SoDienThoai).HasMaxLength(100);
             entity.Property(e => e.UserName).HasMaxLength(256);
+        });
+
+        modelBuilder.Entity<WebAbousU>(entity =>
+        {
+            entity.HasKey(e => e.IdAbousUs);
+
+            entity.Property(e => e.IdAbousUs).ValueGeneratedNever();
         });
 
         modelBuilder.Entity<WebCauHinhTrang>(entity =>
@@ -430,7 +439,10 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.CbLoaiTin)
                 .HasMaxLength(100)
                 .HasColumnName("cbLoaiTin");
+            entity.Property(e => e.Email).HasMaxLength(150);
             entity.Property(e => e.FileDinhKem).HasMaxLength(250);
+            entity.Property(e => e.GioiTinh).HasMaxLength(150);
+            entity.Property(e => e.HoTenNguoiGui).HasMaxLength(150);
             entity.Property(e => e.IdNguoiGui)
                 .HasMaxLength(100)
                 .IsUnicode(false);
@@ -438,7 +450,9 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false);
             entity.Property(e => e.IsDaDoc).HasDefaultValue(false);
+            entity.Property(e => e.LoiNhan).HasMaxLength(150);
             entity.Property(e => e.NoiDung).HasMaxLength(250);
+            entity.Property(e => e.SoDienThoai).HasMaxLength(150);
             entity.Property(e => e.ThoiGianCapNhap).HasColumnType("datetime");
             entity.Property(e => e.ThoiGianTao)
                 .HasDefaultValueSql("(getdate())")
@@ -490,6 +504,7 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.IdVideo).HasDefaultValueSql("(newid())");
             entity.Property(e => e.MoTaNgan).HasMaxLength(500);
             entity.Property(e => e.NameImage).HasMaxLength(250);
+            entity.Property(e => e.NameVideo).HasMaxLength(250);
             entity.Property(e => e.NguoiTao).HasMaxLength(250);
             entity.Property(e => e.ThoiGianCapNhap).HasColumnType("datetime");
             entity.Property(e => e.ThoiGianTao)
@@ -498,6 +513,7 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.TieuDeBaiViet).HasMaxLength(500);
             entity.Property(e => e.TieuDeNgan).HasMaxLength(250);
             entity.Property(e => e.UrlImage).HasMaxLength(350);
+            entity.Property(e => e.UrlVideo).HasMaxLength(350);
         });
 
         OnModelCreatingPartial(modelBuilder);
