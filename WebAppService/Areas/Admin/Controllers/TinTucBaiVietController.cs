@@ -70,10 +70,11 @@ namespace WebAppService.Areas.Admin.Controllers
                     x.NguoiTao,
                     x.IsCongKhai,
                     x.IsBaiVietNoiBat,
+                    x.CbNhomBaiViet,
                     x.CbLoaiBaiDang,
                     x.TieuDeNgan,
                     x.ThoiGianTao,
-                }).ToList().Select(x => new
+                }).OrderByDescending(c => c.ThoiGianTao).ToList().Select(x => new
                 {
                     x.IdBaiViet,
                     x.UrlImage,
@@ -83,6 +84,7 @@ namespace WebAppService.Areas.Admin.Controllers
                     x.NguoiTao,
                     x.IsCongKhai,
                     x.IsBaiVietNoiBat,
+                    x.CbNhomBaiViet,
                     x.CbLoaiBaiDang,
                     x.TieuDeNgan,
                     ThoiGianTao =  x.ThoiGianTao != null ? string.Format("{0:dd-MM-yyyy}",x.ThoiGianTao) : "",

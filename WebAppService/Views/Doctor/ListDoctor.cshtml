@@ -1,11 +1,4 @@
 ﻿<link href="~/web/assets/css/doctor.css" rel="stylesheet" />
-<style>
-    .orane_color {
-        color: #ff6600;
-    }
-</style>
-
-
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/dot/doT.min.js"></script>
     <script>
@@ -65,54 +58,82 @@
 
     </script>
 }
-<div class="entry-header entry-header-2 mb-0 mt-0 text-center">
-    <div class="thumb-overlay img-hover-slide border-radius-5 position-relative" style="background-image: url(/web/assets/imgs/farme.png)">
+<div class="entry-header entry-header-2 mb-3 mt-0 text-center">
+    <div class="thumb-overlay img-hover-slide position-relative" style="background-image: url(/web/assets/imgs/farme.png)">
     </div>
 </div>
-<div class="container container-mobile">
-    <div class="row mt-5">
-        <div class="col-sm-5 d-flex align-items-center">
-            <h2>Danh sách bác sĩ của chúng tôi</h2>
+
+<div class="container px-30 py-2 container-mobile">
+    <div class="row mt-5 pxs-3">
+        <div class="col-md-7 align-items-center">
+            <div style="margin-top: 8px;">
+                <span class="text-media">Danh sách bác sĩ của chúng tôi</span>
+            </div>
         </div>
-        <div class="col-sm-7 align-items-center">
-            <div class="filter" style="background:white">
-                <div style="display:flex;gap: 10px;">
-                    <div class="filter-item">
-                        <i class="fas fa-heartbeat orane_color"></i>
-                        <select>
-                            <option>Chọn cơ sở</option>
-                        </select>
-                    </div>
-                    <div class="filter-item">
-                        <i class="fas fa-heartbeat orane_color"></i>
-                        <select>
-                            <option>Chọn chuyên khoa</option>
-                        </select>
-                    </div>
-                    <div class="form-group mt-3">
-                        <a href="#" class="main-menu d-none d-lg-inline btn-sm btn-orrange ml-2 mt-2">Tìm kiếm</a>
-                    </div>
+        <div class="col-sm-5 align-items-center">
+
+            <div class="row bg-white">
+                <div class="col-9" style="display:flex">
+                    <i class="fas fa-map-marker orane_color mt-20 mr-1"></i>
+                    <select class="w-100 border-0 p-0  pr-20" style="font-size: small;">
+                        <option value="">Chọn cơ sở</option>
+                    </select>
+                    <i class="fas fa-heartbeat orane_color mt-20 mr-1"></i>
+                    <select class="w-100 border-0 p-0 pr-20" style="font-size: small;">
+                        <option value="">Chọn chuyên khoa</option>
+                    </select>
+                </div>
+                <div class="col-3" style="padding:13px 0px;text-align: right;">
+                    <a href="#" class="main-menu btn-sm btn-orrange font-weight-bold w-100"><i class="fa fa-search"></i> <span class="hide-on-mobile">Tìm</span></a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="doctors" id="list_bai_viet">
-    </div>
-    <div class="pagination-area mt-30 mb-30">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center" id="pagination">
-            </ul>
-        </nav>
+    <div class="grid-servide">
+        <div class="col-lg-12 col-md-12 pxs-3">
+            <div class="row mt-3" id="list_bai_viet">
+            </div>
+            <div class="pagination-area mb-30">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center" id="pagination">
+                    </ul>
+                </nav>
+            </div>
+        </div>
     </div>
 </div>
 <script id="news-template" type="text/x-dot-template">
     {{ for(var i = 0; i < it.newsList.length; i++) { }}
-          <div class="doctor-card">
-            <img src="{{=it.newsList[i].urlImage}}" alt="Ảnh bác sĩ" width="308px" />
-            <h3>{{=it.newsList[i].hoTen}}</h3>
-            <p><i class="fas fa-graduation-cap"></i> {{=it.newsList[i].chucDanh}}</p>
-            <p><i class="fas fa-house-medical"></i> {{=it.newsList[i].donViKhoa}}</p>
-            <button class="btn-detail" 	onclick="window.location.href = '/Doctor/DoctorDetail/{{=it.newsList[i].idNhanSu}}'">Chi tiết</button>
-        </div>
+          <article class="col-lg-4 col-12 mb-4 psi-1 wow fadeIn animated" style="visibility: visible; animation-name: fadeIn;">
+                    <div class="bg-doctor p-0  mb-5 box-shadow-img card-hover card-active">
+                        <div class="row p-0">
+                            <div class="col-md-12 col-5 pr-mobile-0">
+                                <div class="post-thumb d-flex img-hover-scale doctor-avartar">
+                                    <a href="/Doctor/DoctorDetail/{{=it.newsList[i].idNhanSu}}">
+                                        <img src="{{=it.newsList[i].urlImage}}" class="img-fluid img-respone-service" alt="" />
+                                    </a>
+                                </div>
+                            </div>
+                              <div class="col-md-12 col-7 pl-mobile-0">
+                               <div class="pl-10 pr-10 bg-white">
+                                <div class="post-title mb-5 p-10 pt-20 text-center">
+                                    <p class="text-d-1 mb-2">
+                                        <a href="/Doctor/DoctorDetail/{{=it.newsList[i].idNhanSu}}">{{=it.newsList[i].hoTen}}</a>
+                                    </p>
+                                    <p class="text-d-2 mb-2">
+                                        <i class="fas fa-graduation-cap"></i> {{=it.newsList[i].chucDanh}}
+                                    </p>
+                                    <p class="text-d-3">
+                                        <i class="fas fa-house-medical"></i> {{=it.newsList[i].donViKhoa}}
+                                    </p>
+                                    <div class="mb-10">
+                                      <a href="/Doctor/DoctorDetail/{{=it.newsList[i].idNhanSu}}" class="main-menu btn-orrange btn-detail">Chi tiết</a>
+                                    </div>
+                                </div>
+                        </div>
+                            </div>
+                        </div>
+                    </div>
+           </article>
     {{ } }}
 </script>

@@ -1,4 +1,4 @@
-function tinymceSettings(selectors ,height) {
+function tinymceSettings(selectors ,height ,assets = "") {
     selectors.forEach(selector => {
         tinymce.init({
             selector: selector,
@@ -24,7 +24,8 @@ function tinymceSettings(selectors ,height) {
             ,"/web/assets/css/widgets.css"
             ,"/web/assets/css/color.css"
             ,"/web/assets/css/responsive.css"
-            ,"/web/assets/css/main.css"
+            , "/web/assets/css/main.css"
+            , assets
             ],
             content_style: "",
             file_picker_callback: (callback, value, meta) => {

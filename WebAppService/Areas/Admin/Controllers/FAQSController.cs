@@ -25,7 +25,7 @@ namespace WebAppService.Areas.Admin.Controllers
                     c.CauHoi,
                     c.CauTraLoi,
                     c.GhiChu,
-                }).ToList();
+                }).OrderBy(c => c.SoThuTu).ToList();
 
                 return new JsonResult(new
                 {
