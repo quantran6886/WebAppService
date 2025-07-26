@@ -5,7 +5,8 @@
 
 .layout-home-white {
     background: white;
-    height: 524px;
+   /* height: 524px;*/
+   height:max-content;
 }
 
 .floating-box-wrapper {
@@ -13,6 +14,14 @@
     height: 0;
 }
 
+.meta-1 {
+    max-height: 344px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
+}
 .floating-box {
     position: absolute;
     top: -60px;
@@ -22,7 +31,7 @@
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     padding: 0px;
-    gap: 10px;
+    
     justify-content: center;
     z-index: 10;
     width: 752px;
@@ -233,3 +242,144 @@
     background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
     font-size: 14px;
 }
+/*.car_img_circle {
+    margin: 0px;
+    padding: 0px;
+}*/
+.author-info{
+    text-align:left;
+}
+
+.box-item i {
+    display: inline-block; /* hoặc block */
+    width: 100%;
+    height: 100%;
+    color: #00B9B5
+}
+.bi-telephone-fill::before {
+    content: "\f5b4";
+    height: 27px;
+    width: 27px;
+}
+.box_item_text p {
+    text-align: left;
+    font-family: 'Inter', sans-serif;
+    color: #757575;
+    font-size: 10px;
+}
+.icon_box {
+    height: 30px;
+    width: 30px;
+    font-size: 30px;
+    margin-top: 35px;
+
+}
+.box_item_text h5 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    text-align: left;
+    font-size: 12px;
+    margin-top: 35px;
+}
+
+.avatar2 {
+    width: 453.98px;
+    height: 443.88px
+}
+.box-item {
+    page-break-inside: avoid;
+    icon_box break-inside: avoid;
+    text-align: center;
+}
+#sp_sv article {
+    padding: 20px;
+}
+@media (max-width: 576px) {
+    /* CSS dành cho mobile */
+    .box-item {
+        page-break-inside: avoid;
+        break-inside: avoid;
+        text-align: center;
+        margin-top: 5px;
+    }
+    .icon_box {
+        font-size: 16px;
+        margin-top: 10px;
+    }
+    .author-info {
+        margin-top: 45px;
+        margin-bottom: 20px;
+    }
+   
+
+    .author-info-text {
+        text-align: left;
+        font-size: 25px;
+        font-weight: 700;
+    }
+    .author-img-circle {
+        text-align: center;
+        width: 300px;
+        height: 300px;
+
+    }
+    .avatar {
+        height: 320px;
+        position: relative;
+        top: -25px;
+    }
+    .avatar2{
+        width:100%;
+        height:100%;
+    }
+    .author-bio {
+        text-align: center;
+    }
+    .LayoutHome{
+        height:530px;
+    }
+    #LayoutHome1 {
+        margin-bottom: 50px;
+    }
+    .floating-box {
+        width: 375px;
+        height: 131px;
+        margin-left:1px;
+    }
+
+
+    .box_item_text{
+        margin-top:10px;
+    }
+    .box_item_text h5 {
+        margin-top: 0px;
+    }
+   
+    .img_avt2 {
+        height: 300px;
+        width: 329px;
+    }
+    .t_mb {
+        font-family: 'Inter', sans-serif;
+        color: #F26522;
+        font-size: 12px;
+        font-weight: 600;
+    }
+    .t_mb2 {
+        font-family: 'Montserrat', sans-serif;
+        color: #2F4848;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 120%;
+        margin-bottom: 10px;
+    }
+  /*  .title h3,span{
+        display:none;
+    }*/
+    .btn_sv {
+        text-align: center; 
+        margin-top:20px;
+    }
+    #sp_sv article {
+        padding: 3px;
+    }
