@@ -186,7 +186,7 @@ namespace WebAppService.Areas.Admin.Controllers
         }
 
 
-          [HttpPost]
+        [HttpPost]
         public async Task<IActionResult> SaveData([FromForm] string strData, [FromForm] bool isThayDoi, IFormFileCollection files)
         {
             string decodedContent = "";
