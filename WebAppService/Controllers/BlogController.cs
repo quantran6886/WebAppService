@@ -4,15 +4,70 @@ using WebAppService.Models;
 
 namespace clinic_website.Controllers
 {
+    public class BaiVietItemViewModel
+    {
+        public Guid IdBaiViet { get; set; }
+        public string UrlImage { get; set; }
+        public bool? IsBaiVietNoiBat { get; set; }
+        public string TieuDeBaiViet { get; set; }
+        public string MoTaNgan { get; set; }
+        public string NguoiTao { get; set; }
+        public string CbNhomBaiViet { get; set; }
+        public string CbLoaiBaiDang { get; set; }
+        public string TieuDeNgan { get; set; }
+        public string NgayDang { get; set; }    
+        public string ThoiGianCapNhap { get; set; }
+    }
+    public class ListDetailViewModel
+    {
+        public WebTinTucBaiViet? Record { get; set; }
+        public List<BaiVietItemViewModel>? ListData { get; set; }
+    }
     public class BlogController : Controller
     {
         public IActionResult Blog()
         {
             return View();
         }
-        public IActionResult BlogDetail()
+        public IActionResult BlogDetail(string? id)
         {
-            return View();
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return BadRequest("Không tìm thấy thông tin.");
+            }
+
+            var record = db.WebTinTucBaiViets.FirstOrDefault(c => c.IdBaiViet.ToString() == id);
+            if (record == null)
+            {
+                return NotFound("Không tìm thấy dịch vụ.");
+            }
+
+            var listData = db.WebTinTucBaiViets
+                           .Where(c => c.IdBaiViet != record.IdBaiViet && c.IsCongKhai == true)
+                           .ToList()
+                           .Select(c => new BaiVietItemViewModel
+                           {
+                               IdBaiViet = c.IdBaiViet,
+                               UrlImage = c.UrlImage,
+                               IsBaiVietNoiBat = c.IsBaiVietNoiBat,
+                               TieuDeBaiViet = c.TieuDeBaiViet,
+                               MoTaNgan = c.MoTaNgan,
+                               NguoiTao = c.NguoiTao,
+                               CbNhomBaiViet = string.IsNullOrEmpty(c.CbNhomBaiViet) ? "" : c.CbNhomBaiViet,
+                               CbLoaiBaiDang = string.IsNullOrEmpty(c.CbLoaiBaiDang) ? "" : c.CbLoaiBaiDang,
+                               TieuDeNgan = c.TieuDeNgan,
+                               NgayDang = c.ThoiGianCapNhap?.ToString("dd/MM/yyyy"),
+                               ThoiGianCapNhap = c.ThoiGianCapNhap.HasValue ? TimeAgo.GetTime(c.ThoiGianCapNhap.Value) : "Chưa xác định"
+                           }).ToList();
+
+
+            var viewModel = new ListDetailViewModel
+            {
+                Record = record,
+                ListData = listData
+            };
+
+            return View(viewModel);
         }
         AppDbContext db = new AppDbContext();
 
@@ -29,25 +84,28 @@ namespace clinic_website.Controllers
                     c.TieuDeBaiViet,
                     c.MoTaNgan,
                     c.NguoiTao,
-                    c.CbNhomBaiViet,
-                    c.CbLoaiBaiDang,
+                    CbNhomBaiViet = string.IsNullOrEmpty(c.CbNhomBaiViet) ? "" : c.CbNhomBaiViet,
+                    CbLoaiBaiDang = string.IsNullOrEmpty(c.CbLoaiBaiDang) ? "" : c.CbLoaiBaiDang,
                     c.TieuDeNgan,
                     ThoiGianCapNhap = c.ThoiGianCapNhap != null ? c.ThoiGianCapNhap : DateTime.Now,
                 }).ToList();
 
-                var bvnbTrongThang = ListAllData.Where(c => c.ThoiGianCapNhap?.Month == DateTime.Now.Month && c.ThoiGianCapNhap?.Year == DateTime.Now.Year && c.IsBaiVietNoiBat == true).Select(c => new
+                var bvnbTrongThangRaw = ListAllData
+                    .Where(c => c.ThoiGianCapNhap?.Month == DateTime.Now.Month &&
+                                c.ThoiGianCapNhap?.Year == DateTime.Now.Year &&
+                                c.IsBaiVietNoiBat == true)
+                    .ToList();
+
+                if (!bvnbTrongThangRaw.Any())
                 {
-                    c.IdBaiViet,
-                    c.UrlImage,
-                    c.IsBaiVietNoiBat,
-                    c.TieuDeBaiViet,
-                    c.MoTaNgan,
-                    c.NguoiTao,
-                    c.CbNhomBaiViet,
-                    c.CbLoaiBaiDang,
-                    c.TieuDeNgan,
-                    c.ThoiGianCapNhap,
-                }).ToList().Select(c => new
+                    bvnbTrongThangRaw = ListAllData
+                        .Where(c => c.IsBaiVietNoiBat == true)
+                        .OrderByDescending(c => c.ThoiGianCapNhap)
+                        .Take(5)
+                        .ToList();
+                }
+
+                var bvnbTrongThang = bvnbTrongThangRaw.Select(c => new
                 {
                     c.IdBaiViet,
                     c.UrlImage,
@@ -59,10 +117,10 @@ namespace clinic_website.Controllers
                     c.CbLoaiBaiDang,
                     c.TieuDeNgan,
                     NgayDang = c.ThoiGianCapNhap?.ToString("dd/MM/yyyy"),
-                    ThoiGianCapNhap = TimeAgo.GetTime(c.ThoiGianCapNhap.Value)
+                    ThoiGianCapNhap = TimeAgo.GetTime(c.ThoiGianCapNhap ?? DateTime.Now)
                 }).ToList();
 
-                var bvPhoBien = ListAllData.Where(C => C.CbLoaiBaiDang == "Bài viết").Select(c => new
+                var bvPhoBien = ListAllData.Where(C => C.CbLoaiBaiDang == "Bài  viết" || C.CbLoaiBaiDang == "Bài viết").Select(c => new
                 {
                     c.IdBaiViet,
                     c.UrlImage,

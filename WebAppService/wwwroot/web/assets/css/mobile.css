@@ -1,0 +1,36 @@
+﻿.txt-mobile {
+    font-family: Montserrat;
+}
+.langue-mobile {
+    display: flex;
+    font-size: 13px !important;
+    font-size: medium;
+    font-family: Montserrat;
+    font-weight: 600;
+    color: white;
+    margin-left: 9px;
+    height: 46px;
+}
+.icon-langue {
+    width: 40px;
+    height: 26px;
+}
+.icon-langue2 {
+    width: 40px;
+    height: 27px;
+}
+.icon-langue3 {
+    width: 50px;
+    height: 25px;
+}
+.logo-mobile {
+    float: inline-start;
+    z-index: 500;
+    position: relative;
+}
+
+@media screen and (max-width: 768px) {
+    .bg-mobile {
+        background: #009f9c
+    }
+}

@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <Content Remove="Views\AboutUs\AboutUsCopy.cshtml" />
+    <Content Remove="Views\Home\Index - Copy.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,6 +42,7 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Views\Shared\horizontal\" />
     <Folder Include="wwwroot\FilesUploads\" />
+    <Folder Include="wwwroot\FilesUploads\Video_202507\" />
   </ItemGroup>
 
   <ItemGroup>

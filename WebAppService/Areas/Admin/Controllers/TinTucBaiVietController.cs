@@ -55,6 +55,39 @@ namespace WebAppService.Areas.Admin.Controllers
             }
         }
 
+        
+        [HttpGet]
+        public IActionResult changeDanhMuc(string CbLoaiBaiDang)
+        {
+            try
+            {
+
+                var lstDanhMucBaiDang = db.WebDanhMucHeThongs.Where(c => c.LoaiDanhMuc == "Danh mục bài đăng" && c.TenGoi == CbLoaiBaiDang).Select(c => new
+                {
+                    c.IdHeThong,
+                    c.ThuTuTg,
+                    c.TenGoi,
+                    c.GhiChu,
+                }).FirstOrDefault();
+
+                return new JsonResult(new
+                {
+                    tieuDeNgan = lstDanhMucBaiDang?.GhiChu,
+                    lstDanhMucBaiDang,
+                    status = true
+                });
+            }
+            catch (Exception ex)
+            {
+
+                return new JsonResult(new
+                {
+                    message = ex.Message,
+                    status = false
+                });
+            }
+        }
+
         [HttpGet]
         public IActionResult LoadTable()
         {
@@ -246,6 +279,7 @@ namespace WebAppService.Areas.Admin.Controllers
                     ClientData.CbNhomBaiViet = ClientData.CbNhomBaiViet;
                     ClientData.NguoiTao = User.Identity.Name;
                     ClientData.ThoiGianTao = DateTime.Now;  
+                    ClientData.ThoiGianCapNhap = DateTime.Now;
                     db.WebTinTucBaiViets.Add(ClientData);
                 }
                 else

@@ -94,7 +94,7 @@
 	.single-header-3.single-header-2 .entry-header-1{padding:30px 15px;}
 	.single-header-2 .entry-header-1 h1{font-size:1.5rem}
 	.single-header-2 .single-thumnail{min-height:340px;}
-	ul.slicknav_nav{-webkit-column-count:2;-moz-column-count:2;column-count:2;}
+	ul.slicknav_nav{-webkit-column-count:1;-moz-column-count:1;column-count:1;}
 	.main-header-navigation{position:fixed;}
 	.header-style-2 .off-canvas-toggle-cover{top:0;}
 	.tools-icon{margin-left:80px!important;}

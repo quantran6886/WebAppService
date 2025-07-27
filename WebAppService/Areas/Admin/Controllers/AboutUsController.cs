@@ -56,6 +56,34 @@ namespace WebAppService.Areas.Admin.Controllers
             }
         }
 
+        [HttpPost]
+        public IActionResult GetSeo()
+        {
+            try
+            {
+                var data_find = db.WebAbousUs.FirstOrDefault();
+                if (data_find != null)
+                {
+                    var vbtl = db.BrowerVanBanTaiLieus.Where(c => c.TenVanBan == "3").FirstOrDefault();
+                    data_find.NoiDung = vbtl.UrlFile;
+                }
+                db.SaveChanges();
+                return new JsonResult(new
+                {
+                    status = true
+                });
+            }
+            catch (Exception ex)
+            {
+
+                return new JsonResult(new
+                {
+                    message = ex.Message,
+                    status = false
+                });
+            }
+        }
+
         [HttpGet]
         public IActionResult LoadDetail()
         {

@@ -2,6 +2,7 @@
     ViewData["Title"] = "Blog";
 }
 <link href="~/web/assets/css/swiper-bundle.min.css" rel="stylesheet" />
+<link href="~/web/assets/css/blog.css" rel="stylesheet" />
 @section Scripts {
     <script src="~/web/assets/js/swiper-bundle.min.js"></script>
     <script src="~/web/assets/js/swiper-dom.js"></script>
@@ -36,11 +37,20 @@
                     success: function (data) {
                         if (data.status == true) {
 
-                            if (data.lstData != null) {
+                            if (data.lstData.length > 0) {
                                 var template = doT.template($("#news-template").html());
                                 $("#list_bai_viet").html(template({ newsList: data.lstData }));
                             }
 
+                            if (data.bvnbTrongThang.length > 0) {
+                                var template = doT.template($("#news-templatem").html());
+                                $("#list_bai_viet0").html(template({ newsListm: data.bvnbTrongThang }));
+                            }
+                            if (data.bvPhoBien.length > 0) {
+                                var template = doT.template($("#news-templatex").html());
+                                $("#original-articles").html(template({ newsListx: data.bvPhoBien }));
+                            }
+                            InitSwiperPopularArticles()
                             // Phân trang
                             var totalPages = Math.ceil(data.totalRow / myClient.pageSize);
                             myClient.RenderPagination(totalPages);
@@ -67,7 +77,7 @@
     <div class="thumb-overlay img-hover-slide position-relative" style="background-image: url(/web/assets/imgs/farme.png)">
     </div>
 </div>
-<div class="container px-30 py-2 ">
+<div class="container px-30 py-2 container-mobile">
     <div class="archive-header text-center mb-30 mt-10">
         <div class="container">
             <div class="breadcrumb">
@@ -90,107 +100,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="loop-list-style">
-                            <article class="p-0 background-white border-radius-10 mb-30 mr-15 wow fadeIn animated">
-                                <div class="d-flex">
-                                    <div class="media-body d-flex mr-15 border-radius-5 img-hover-scale">
-                                        <a class="color-white" href="single.html">
-                                            <img class="border-radius-5 img-head-1" src="~/web/assets/imgs/1865e15c9742db31e2ba5663896c58388b381c66.png" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="post-content media-body">
-                                        <div class="entry-meta mb-10 mt-1">
-                                            <span class="post-in background1 text-secondary font-x-small">Bảo vệ sức khỏe</span>
-                                        </div>
-                                        <div class="post-title mb-10 text-limit-3-row">
-                                            <a href="#" class="text-c-3">Ăn Gì Để Khỏe Mạnh Mỗi Ngày? Gợi Ý Thực Đơn Dinh Dưỡng Cân Bằng.</a>
-                                        </div>
-                                        <div class="entry-meta meta-1 flex-column font-x-small text-capitalize mb-10 hide-on-mobile">
-                                            <span class="text-c-6 m-0"> <i class="ti ti-calendar"></i> 07 Thg 07,2025</span>
-                                            <span class="mr-2 ml-2 text-c-6">|</span>
-                                            <span class="text-c-6"><i class="ti ti-timer"></i> 1 Ngày Trước</span>
-                                        </div>
-                                        <div class="">
-                                            <p class="post-exerpt text-c-2 text-limit-3-row hide-on-mobile">Khám phá cách xây dựng bữa ăn khoa học, bổ sung đầy đủ dưỡng chất giúp tăng cường hệ miễn dịch và duy trì cơ thể khỏe mạnh dài lâu.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="p-0 background-white border-radius-10 mb-30 mr-15 wow fadeIn animated">
-                                <div class="d-flex">
-                                    <div class="media-body d-flex mr-15 border-radius-5 img-hover-scale">
-                                        <a class="color-white" href="single.html">
-                                            <img class="border-radius-5 img-head-1" src="~/web/assets/imgs/1cbe79301c2c399c3dd8f8904850ff848a1c1d33.png" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="post-content media-body">
-                                        <div class="entry-meta mb-10 mt-1">
-                                            <span class="post-in background1 text-secondary font-x-small">Sự kiện phòng khám</span>
-                                        </div>
-                                        <div class="post-title mb-10 text-limit-3-row">
-                                            <a href="#" class="text-c-3">Ngủ Đủ Giấc – Bí Quyết Vàng Cho Sức Khỏe Toàn Diện.</a>
-                                        </div>
-                                        <div class="entry-meta meta-1 flex-column font-x-small text-capitalize mb-10 hide-on-mobile">
-                                            <span class="text-c-6 m-0"> <i class="ti ti-calendar"></i> 07 Thg 07,2025</span>
-                                            <span class="mr-2 ml-2 text-c-6">|</span>
-                                            <span class="text-c-6"><i class="ti ti-timer"></i> 1 Ngày Trước</span>
-                                        </div>
-                                        <div class="">
-                                            <p class="post-exerpt text-c-2 text-limit-3-row hide-on-mobile">Giấc ngủ chất lượng không chỉ giúp bạn tỉnh táo mà còn hỗ trợ điều hòa hormone, giảm stress và phòng ngừa nhiều bệnh lý nguy hiểm.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="p-0 background-white border-radius-10 mb-30 mr-15 wow fadeIn animated">
-                                <div class="d-flex">
-                                    <div class="media-body d-flex mr-15 border-radius-5 img-hover-scale">
-                                        <a class="color-white" href="single.html">
-                                            <img class="border-radius-5 img-head-1" src="~/web/assets/imgs/1865e15c9742db31e2ba5663896c58388b381c66.png" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="post-content media-body">
-                                        <div class="entry-meta mb-10 mt-1">
-                                            <span class="post-in background1 text-secondary font-x-small">Bảo vệ sức khỏe</span>
-                                        </div>
-                                        <div class="post-title mb-10 text-limit-3-row">
-                                            <a href="#" class="text-c-3">Ăn Gì Để Khỏe Mạnh Mỗi Ngày? Gợi Ý Thực Đơn Dinh Dưỡng Cân Bằng.</a>
-                                        </div>
-                                        <div class="entry-meta meta-1 flex-column font-x-small text-capitalize mb-10 hide-on-mobile">
-                                            <span class="text-c-6 m-0"> <i class="ti ti-calendar"></i> 07 Thg 07,2025</span>
-                                            <span class="mr-2 ml-2 text-c-6">|</span>
-                                            <span class="text-c-6"><i class="ti ti-timer"></i> 1 Ngày Trước</span>
-                                        </div>
-                                        <div class="">
-                                            <p class="post-exerpt text-c-2 text-limit-3-row hide-on-mobile">Khám phá cách xây dựng bữa ăn khoa học, bổ sung đầy đủ dưỡng chất giúp tăng cường hệ miễn dịch và duy trì cơ thể khỏe mạnh dài lâu.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="p-0 background-white border-radius-10 mb-30 mr-15 wow fadeIn animated">
-                                <div class="d-flex">
-                                    <div class="media-body d-flex mr-15 border-radius-5 img-hover-scale">
-                                        <a class="color-white" href="single.html">
-                                            <img class="border-radius-5 img-head-1" src="~/web/assets/imgs/1cbe79301c2c399c3dd8f8904850ff848a1c1d33.png" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="post-content media-body">
-                                        <div class="entry-meta mb-10 mt-1">
-                                            <span class="post-in background1 text-secondary font-x-small">Sự kiện phòng khám</span>
-                                        </div>
-                                        <div class="post-title mb-10 text-limit-3-row">
-                                            <a href="#" class="text-c-3">Ngủ Đủ Giấc – Bí Quyết Vàng Cho Sức Khỏe Toàn Diện.</a>
-                                        </div>
-                                        <div class="entry-meta meta-1 flex-column font-x-small text-capitalize mb-10 hide-on-mobile">
-                                            <span class="text-c-6 m-0"> <i class="ti ti-calendar"></i> 07 Thg 07,2025</span>
-                                            <span class="mr-2 ml-2 text-c-6">|</span>
-                                            <span class="text-c-6"><i class="ti ti-timer"></i> 1 Ngày Trước</span>
-                                        </div>
-                                        <div class="">
-                                            <p class="post-exerpt text-c-2 text-limit-3-row hide-on-mobile">Giấc ngủ chất lượng không chỉ giúp bạn tỉnh táo mà còn hỗ trợ điều hòa hormone, giảm stress và phòng ngừa nhiều bệnh lý nguy hiểm.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
+                        <div class="loop-list-style" id="list_bai_viet0">
+                          
                         </div>
                     </div>
                 </div>
@@ -204,34 +115,11 @@
                     </div>
                     <div class="sidebar-widget">
                         <div class="swiper" id="slider-content">
-                            <div class="swiper-wrapper mb-30">
+                            <div class="swiper-wrapper mb-30" id="list_bai_viet1">
                             </div>
                             <div class="swiper-pagination"></div>
                             <div id="original-articles" style="display: none;">
-                                @for (int i = 0; i < 5; i++)
-                                {
-                                    <article class="p-0 background-white border-radius-10 mb-15 mr-15 wow fadeIn animated">
-                                        <div class="d-flex">
-                                            <div class="post-thumb d-flex mr-15 border-radius-5 img-hover-scale">
-                                                <a class="color-white" href="single.html">
-                                                    <img src="~/web/assets/imgs/777be068912ffb3767e6510c19baa27eb663d38b.png" width="145px" height="115px" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="post-content media-body">
-                                                <div class="entry-meta mb-10 mt-1">
-                                                    <span class="post-in background1 text-secondary font-x-small">Công Nghệ y khoa mới</span>
-                                                </div>
-
-                                                <small class="post-title font-weight-500 mb-10 text-limit-2-row"><a href="#" class="text-c-4">Tập Thể Dục Nhẹ Mỗi Ngày Có Thật Sự Hiệu Quả?</a></small>
-                                                <div class="entry-meta meta-1 flex-column font-x-small text-capitalize mb-10">
-                                                    <span class="text-c-6 m-0"> <i class="ti ti-calendar"></i> 07 Thg 07,2025</span>
-                                                    <span class="mr-1 ml-1 text-c-6">|</span>
-                                                    <span class="text-c-6"><i class="ti ti-timer"></i> 1 Ngày Trước</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </article>
-                                }
+                              
                             </div>
                         </div>
                     </div>
@@ -259,30 +147,86 @@
 </div>
 <script id="news-template" type="text/x-dot-template">
     {{ for(var i = 0; i < it.newsList.length; i++) { }}
-            <article class="col-lg-4 col-6 wow fadeIn  animated" style="visibility: visible; animation-name: fadeIn;">
+            <article class="col-lg-4 col-6 psi-1 wow fadeIn  animated" style="visibility: visible; animation-name: fadeIn;">
                         <div class="background-white border-radius-10 p-0 mb-30">
-                            <div class="post-thumb d-flex mb-15 border-radius-5 img-hover-scale">
-                                <a href="single.html">
-                                    <img class="border-radius-5" src="{{=it.newsList[i].urlImage}}" alt="">
+                            <div class="post-thumb d-flex mb-15 img-hover-scale">
+                                <a href="/Blog/BlogDetail/{{=it.newsList[i].idBaiViet}}">
+                                    <img class="img-fluid img-respone-service" src="{{=it.newsList[i].urlImage}}" alt="">
                                 </a>
                             </div>
                             <div class="pl-10 pr-10">
                                 <div class="entry-meta mb-10 mt-1">
-                                    <span class="post-in background1 text-secondary font-x-small">Bảo vệ sức khỏe</span>
+                                    <span class="post-in background1 text-secondary font-x-small">{{=it.newsList[i].cbNhomBaiViet}}</span>
                                 </div>
                                 <div class="post-title mb-10 text-limit-3-row">
-                                    <a href="#" class="text-c-3">Cách Phòng Bệnh Hiệu Quả Mùa Thay Đổi Thời Tiết</a>
+                                    <a href="/Blog/BlogDetail/{{=it.newsList[i].idBaiViet}}" class="text-c-3">{{=it.newsList[i].tieuDeBaiViet}}</a>
                                 </div>
                                 <div class="entry-meta meta-1 flex-column font-x-small text-capitalize mb-10">
-                                <span class="text-c-8 m-0"> <i class="ti ti-calendar"></i> 07 Thg 07,2025</span>
-                                    <span class="mr-0 ml-0 text-c-8">|</span>
-                                    <span class="text-c-8"><i class="ti ti-timer"></i> 1 Ngày Trước</span>
+                                <span class="text-bc-8 m-0"> <i class="ti ti-calendar"></i>{{=it.newsList[i].ngayDang}}</span>
+                                    <span class="mr-0 ml-0 text-bc-8">|</span>
+                                    <span class="text-bc-8"><i class="ti ti-timer"></i> {{=it.newsList[i].thoiGianCapNhap}}</span>
                                 </div>
                                 <div class="">
-                                    <p class="post-exerpt text-c-2 text-limit-3-row">Mỗi khi giao mùa, cơ thể rất dễ bị cảm lạnh, sốt, dị ứng… Bài viết này sẽ hướng dẫn bạn cách bảo vệ bản thân và gia đình hiệu quả.</p>
+                                    <p class="post-exerpt text-bc-2 text-limit-3-row">{{=it.newsList[i].moTaNgan}}</p>
                                 </div>
                             </div>
                         </div>
+            </article>
+    {{ } }}
+</script>
+
+<script id="news-templatem" type="text/x-dot-template">
+    {{ for(var i = 0; i < it.newsListm.length; i++) { }}
+             <article class="p-0 background-white border-radius-10 mb-30 mr-15 wow fadeIn animated">
+                    <div class="d-flex">
+                        <div class="media-body d-flex mr-15 border-radius-5 img-hover-scale">
+                            <a class="color-white" href="/Blog/BlogDetail/{{=it.newsListm[i].idBaiViet}}">
+                                <img class="border-radius-5 img-head-1" src="{{=it.newsListm[i].urlImage}}" alt="">
+                            </a>
+                        </div>
+                        <div class="post-content media-body">
+                            <div class="entry-meta mb-10 mt-1">
+                                <span class="post-in background1 text-secondary font-x-small">{{=it.newsListm[i].cbNhomBaiViet}}</span>
+                            </div>
+                            <div class="post-title mb-10 text-limit-3-row">
+                                <a href="/Blog/BlogDetail/{{=it.newsListm[i].idBaiViet}}" class="text-c-3">{{=it.newsListm[i].tieuDeBaiViet}}</a>
+                            </div>
+                            <div class="entry-meta meta-1 flex-column font-x-small text-capitalize mb-10 hide-on-mobile">
+                                <span class="text-c-6 m-0"> <i class="ti ti-calendar"></i> {{=it.newsListm[i].ngayDang}}</span>
+                                <span class="mr-2 ml-2 text-c-6">|</span>
+                                <span class="text-c-6"><i class="ti ti-timer"></i> {{=it.newsListm[i].thoiGianCapNhap}}</span>
+                            </div>
+                            <div class="">
+                                <p class="post-exerpt text-c-2 text-limit-3-row hide-on-mobile">{{=it.newsListm[i].moTaNgan}}</p>
+                            </div>
+                        </div>
+                    </div>
+            </article>
+    {{ } }}
+</script>
+
+<script id="news-templatex" type="text/x-dot-template">
+    {{ for(var i = 0; i < it.newsListx.length; i++) { }}
+           <article class="p-0 background-white border-radius-10 mb-15 mr-15 wow fadeIn animated">
+                <div class="d-flex">
+                    <div class="post-thumb d-flex mr-15 border-radius-5 img-hover-scale">
+                        <a class="color-white" href="/Blog/BlogDetail/{{=it.newsListx[i].idBaiViet}}">
+                            <img src="{{=it.newsListx[i].urlImage}}" width="145px" height="115px" alt="">
+                        </a>
+                    </div>
+                    <div class="post-content media-body">
+                        <div class="entry-meta mb-10 mt-1">
+                            <span class="post-in background1 text-secondary font-x-small">{{=it.newsListx[i].cbNhomBaiViet}}</span>
+                        </div>
+
+                        <small class="post-title font-weight-500 mb-10 text-limit-2-row"><a href="/Blog/BlogDetail/{{=it.newsListx[i].idBaiViet}}" class="text-c-4">{{=it.newsListx[i].tieuDeBaiViet}}</a></small>
+                        <div class="entry-meta meta-1 flex-column font-x-small text-capitalize mb-10">
+                            <span class="text-c-6 m-0"> <i class="ti ti-calendar"></i> {{=it.newsListx[i].ngayDang}}</span>
+                            <span class="mr-1 ml-1 text-c-6">|</span>
+                            <span class="text-c-6"><i class="ti ti-timer"></i> {{=it.newsListx[i].thoiGianCapNhap}}</span>
+                        </div>
+                    </div>
+                </div>
             </article>
     {{ } }}
 </script>

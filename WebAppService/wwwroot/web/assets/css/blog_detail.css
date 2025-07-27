@@ -1,0 +1,36 @@
+﻿
+.text-c-d {
+    font-family: 'Montserrat',sans-serif !important;
+    color: #2F4848;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.text-bdc-1 {
+    font-family: 'Montserrat',sans-serif !important;
+    color: #2F4848;
+    font-size: 18px;
+    font-weight: 700;
+}
+.dmb-30 {
+    margin-bottom: 30px;
+}
+.container-mobile {
+    padding-left: 10px;
+    padding-right: 70px;
+}
+@media (max-width: 768px) {
+    .container-mobile {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .text-c-d {
+        font-family: 'Montserrat',sans-serif !important;
+        color: #2F4848;
+        font-size: 25px;
+        font-weight: 700;
+    }
+    .dmb-30 {
+        margin-bottom: 10px;
+    }
+}

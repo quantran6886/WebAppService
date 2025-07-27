@@ -211,7 +211,7 @@
 }
 
     .slicknav_nav a {
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 600 !important;
         color: #ffffff !important;
         text-transform: capitalize;
@@ -223,14 +223,14 @@
     }
 
     .slicknav_nav a {
-        padding: 5px 10px;
+        padding: 1px 5px;
         margin: 2px 5px;
         text-decoration: none;
         color: #fff;
     }
 
         .slicknav_nav a:hover {
-            color: #06279d !important;
+            color: #ffffff  !important;
         }
 
     .slicknav_nav .slicknav_arrow {

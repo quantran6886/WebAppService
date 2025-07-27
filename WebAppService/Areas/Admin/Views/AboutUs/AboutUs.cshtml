@@ -18,6 +18,9 @@
                 $("#btnSaveData").off("click").on("click", function () {
                     myScripts.SaveData();
                 });
+                 $("#btnGetSeo").off("click").on("click", function () {
+                    myScripts.getSeo();
+                });
             },
 
             LoadDetail: function () {
@@ -73,6 +76,23 @@
                         },
                  });
             },
+            getSeo:function () {
+                 $.ajax({
+                        type: 'Post',
+                        url: '/Admin/AboutUs/GetSeo',
+                        datatype: 'json',
+                        success: function (response) {
+                            if (response.status) {
+                               myScripts.LoadDetail();
+                               toastr.success("Cập nhập thành công", "Thành Công", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                            }
+                            else {
+                                toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                            }
+                        },
+                 });
+            },
+
         };
         myScripts.init();
     </script>
@@ -93,12 +113,14 @@
                         </label>
                     </div>
                     <div class="col-sm-6 text-end p-1">
+                        <button type="button" class="btn btn-danger waves-effect text-end z-100" id="btnGetSeo">
+                            Lấy giao diện gốc
+                        </button>
                         <button type="button" class="btn btn-primary waves-effect text-end z-100" id="btnSaveData">
                             Lưu và kết thúc
                         </button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

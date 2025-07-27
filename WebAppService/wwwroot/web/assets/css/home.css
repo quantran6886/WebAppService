@@ -111,7 +111,9 @@
     background-image: linear-gradient(101deg, #FFFFFF, #E4FFFE);
     width: 340px;
     height: 310px;
-    border-radius: 0px;
+    border-radius: 10px;
+    border: 2px solid #ffeee6;
+    box-shadow: 1px 1px 5px -2px #343a4094;
 }
 
 .doctor-overlay-wrapper {
@@ -152,6 +154,21 @@
 .tranform-x {
     transform: translateX(110px);
     white-space: nowrap;
+}
+
+.text-inter {
+    font-family: 'Inter', sans-serif;
+}
+
+.text-Montserrat {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.text-primary-grd {
+    background: linear-gradient(to right, #00B9B5, #9EFFFD);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color-interpolation: inherit;
 }
 /* Khách hàng nói gì về chúng tôi*/
 .client-img-wrapper {
@@ -326,8 +343,12 @@
 .for-more{
     text-align:center;
 }
-@media (max-width: 576px) {
+@media screen and (max-width: 768px) {
     /* CSS dành cho mobile */
+    .mobile-icon {
+        margin-top: 8px !important;
+    }
+
     .box-item {
         page-break-inside: avoid;
         break-inside: avoid;
@@ -429,30 +450,35 @@
     #sp_sv article {
         padding: 3px;
     }
+
     .text-head-breadcrumb {
         font-size: 20px;
         font-weight: 700;
-
     }
+
     .doctor-note2 {
         position: relative;
         height: 100%;
     }
+
     .swiper {
         width: 100%;
         height: 100%;
     }
-    .swiper1{
-        margin-left:10px
+
+    .swiper1 {
+        margin-left: 10px
     }
-    .sub_video{
-        height:77px;
+
+    .sub_video {
+        height: 77px;
     }
+
     .post-thumb2 {
         width: 138px;
-        margin-right:10px;
-        
+        margin-right: 10px;
     }
+
     .text-c-2 {
         display: -webkit-box;
         -webkit-box-orient: vertical;
@@ -462,16 +488,16 @@
         line-height: 1.5em; /* Có thể chỉnh tùy font */
         max-height: 4.5em;
     }
+
     #sliderContainer {
         max-height: 270px;
         overflow-y: auto;
         scrollbar-width: none; /* Firefox */
         -ms-overflow-style: none;
     }
+
     item_vd {
         padding: 0px;
         margin-left: 16px;
     }
-    
-
 }

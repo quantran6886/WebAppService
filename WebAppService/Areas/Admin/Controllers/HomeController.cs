@@ -31,6 +31,61 @@ namespace WebAppService.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        public IActionResult GetSeo1()
+        {
+            try
+            {
+                var data_find = db.WebCauHinhTrangs.Where(c => c.CbGiaoDien == "1").FirstOrDefault();
+                if (data_find != null)
+                {
+                    var vbtl = db.BrowerVanBanTaiLieus.Where(c => c.TenVanBan == "1").FirstOrDefault();
+                    data_find.NoiDung = vbtl.UrlFile;
+                }
+                db.SaveChanges();
+                return new JsonResult(new
+                {
+                    status = true
+                });
+            }
+            catch (Exception ex)
+            {
+
+                return new JsonResult(new
+                {
+                    message = ex.Message,
+                    status = false
+                });
+            }
+        }
+        [HttpPost]
+        public IActionResult GetSeo2()
+        {
+            try
+            {
+                var data_find = db.WebCauHinhTrangs.Where(c => c.CbGiaoDien == "2").FirstOrDefault();
+                if (data_find != null)
+                {
+                    var vbtl = db.BrowerVanBanTaiLieus.Where(c => c.TenVanBan == "2").FirstOrDefault();
+                    data_find.NoiDung = vbtl.UrlFile;
+                }
+                db.SaveChanges();
+                return new JsonResult(new
+                {
+                    status = true
+                });
+            }
+            catch (Exception ex)
+            {
+
+                return new JsonResult(new
+                {
+                    message = ex.Message,
+                    status = false
+                });
+            }
+        }
+
+        [HttpPost]
         public IActionResult SaveData(string CbGiaoDien, string NoiDung, bool IsCongKhai)
         {
             try

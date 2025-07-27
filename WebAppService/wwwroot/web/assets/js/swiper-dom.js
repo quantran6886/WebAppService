@@ -1,6 +1,8 @@
-﻿document.addEventListener("DOMContentLoaded", function () {
+﻿function InitSwiperPopularArticles() {
     const articles = Array.from(document.querySelectorAll("#original-articles article"));
     const wrapper = document.querySelector("#slider-content .swiper-wrapper");
+
+    if (!articles.length || !wrapper) return;
 
     function chunkArray(arr, size) {
         const result = [];
@@ -10,17 +12,17 @@
         return result;
     }
 
-    const groups = chunkArray(articles, 4); // 4 bài mỗi slide
+    const groups = chunkArray(articles, 4);
 
     groups.forEach(group => {
         const slide = document.createElement("div");
         slide.className = "swiper-slide";
-
         group.forEach(article => slide.appendChild(article));
         wrapper.appendChild(slide);
     });
 
-    document.getElementById("original-articles").remove(); // Xóa bản gốc
+    document.getElementById("original-articles").remove();
+
     new Swiper("#slider-content", {
         slidesPerView: 1,
         spaceBetween: 10,
@@ -33,4 +35,4 @@
             clickable: true
         }
     });
-});
+}

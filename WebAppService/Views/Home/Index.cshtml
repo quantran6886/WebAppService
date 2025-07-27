@@ -1,7 +1,9 @@
-﻿@{
+﻿@using WebAppService.Models
+@{
     ViewData["Title"] = "Home Page";
 }
 <link href="~/web/assets/css/home.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/dot/doT.min.js"></script>
 @section Scripts {
     <script>
         function scrollSlider(direction) {
@@ -29,52 +31,55 @@
         });
         ///
     </script>
+    <script>
+        var myClient = {
+            init: function(){
+                myClient.LoadData();
+            },
+             LoadData: function () {
+                $.ajax({
+                    url: '/Home/LoadData',
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.status == true) {
+                            var lstData = data.viewModel;
+                            if(lstData.record != null)
+                            {
+                                $('#_layout1').html(lstData.record.noiDung);
+                            }
+                            if(lstData.record2 != null)
+                            {
+                                $('#_layout2').html(lstData.record2.noiDung);
+                            }
+                            if (lstData.listData != null) {
+                                var template = doT.template($("#news-template").html());
+                                $("#sp_sv").html(template({ newsList: lstData.listData }));
+                            }
+                        }
+                    }
+                });
+            },
+        }
+        myClient.init();
+
+    </script>
 }
-
-<!-- Banner chính -->
-<div class="entry-header entry-header-2 mt-0 text-center" id="LayoutHome1">
-    <div class="position-relative layout-home">
-        <div class="container d-flex flex-column p-0">
-            <div class="author-bio border-radius-10 p-30 mb-40  justify-content-center">
-                <div class="col-sm-7 author-info d-flex flex-column justify-content-center">
-                    <h3>
-                        <span class="vcard author">
-                            <span class="fn">
-                                <a href="author.html" title="" rel="author" class="author-info-text">Bệnh viện hiện đại Dịch vụ chuẩn quốc tế</a>
-                            </span>
-                        </span>
-                    </h3>
-                    <div class="author-info-small-text">
-                        Ứng dụng công nghệ tiên tiến, đội ngũ y bác sĩ hàng đầu, cam kết mang đến trải nghiệm chăm sóc sức khỏe toàn diện và chất lượng quốc tế
-                    </div>
-                    <div class="mt-10">
-                        <a href="#" class="main-menu d-none d-lg-inline btn-orrange">Xem thêm</a>
-                    </div>
-                </div>
-                <div class="col-sm-5 mb-30 car_img_circle">
-                    <div class="author-img-circle">
-                        <a href="author.html"><img src="/root/doctor1 1.png" alt="" class="avatar"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
+<div id="_layout1"></div>
 <!-- Hộp nổi dịch vụ -->
 <div class="floating-box-wrapper">
     <div class="floating-box container col-12 row">
         <div class="box-item col-sm-4 d-flex p-0">
-            <div class="icon_box col-sm-4 ml-0 p-0 ">
-                <i class="bi bi-telephone-fill"></i>
+            <div class="icon_box col-sm-4 ml-0 p-0 mobile-icon">
+                <a href="tel:628646442222"> <i class="bi bi-telephone-fill"></i></a>
             </div>
             <div class="col-sm-8 box_item_text p-0 pr-sm-3">
-                <h5>Gọi tổng đài</h5>
+                <h5><a href="tel:628646442222">Gọi tổng đài</a></h5>
                 <p>Liên hệ với tổng đài hỗ trợ 24/7 để được tư vấn và đặt lịch khám nhanh chóng.</p>
             </div>
         </div>
         <div class="box-item col-sm-4 d-flex p-0">
-            <div class="icon_box col-sm-4 ml-0 p-0 ">
+            <div class="icon_box col-sm-4 ml-0 p-0  mobile-icon">
                 <i class="bi bi-calendar-week-fill"></i>
             </div>
             <div class="col-sm-8 box_item_text p-0 pr-sm-3">
@@ -83,7 +88,7 @@
             </div>
         </div>
         <div class="box-item col-sm-4 d-flex p-0">
-            <div class="icon_box col-sm-4 ml-0 p-0 ">
+            <div class="icon_box col-sm-4 ml-0 p-0  mobile-icon">
                 <i class="bi bi-file-earmark-text-fill"></i>
             </div>
             <div class="col-sm-8 box_item_text p-0 pr-sm-3">
@@ -93,113 +98,7 @@
         </div>
     </div>
 </div>
-
-<!-- Phần giới thiệu dịch vụ đặc biệt -->
-<div class="entry-header entry-header-2 mb-0 text-center" id="LayoutHome2">
-    <div class="position-relative layout-home-white">
-        <div class="container p-0 mt-5">
-            <div class="author-bio border-radius-10 p-30 mt-100 mt-sm-60 mb-40 d-flex flex-column flex-md-row" id="author-bio_bt">
-                <div class="t_mb d-block d-sm-none text-left" >Về chúng tôi</div>
-                <div class="t_mb2 d-block d-sm-none text-left">Hành Trình Vì Sức Khỏe Cộng Đồng</div>
-                <div class="img_avt2 col-sm-5 mb-30 text-center d-flex">
-                    <div class="avatar2" style="width:453.98px;height:443.88px">
-                        <a href="author.html"><img src="/root/group 4.png" alt="" ></a>
-                    </div>
-                </div>
-                <div class="title_sv col-sm-7 author-info d-flex flex-column justify-content-center d-none d-sm-block">
-                    <span class="no-arrow text-c-0 d-none d-sm-block">Sun Medical</span>
-                    <h3 class="d-none d-sm-block">
-                        <span class="vcard author">
-                            <span class="fn">
-                                <a href="author.html" title="" rel="author" style="font-size:35px;font-family:Montserrat">Dịch vụ đặc biệt tại Sun Medical</a>
-                            </span>
-                        </span>
-                    </h3>
-                    <div class="author-info-small-text d-none d-sm-block">
-                        Tại Sun Medical, chúng tôi không ngừng mở rộng và nâng tầm dịch vụ nhằm đáp ứng nhu cầu chăm sóc sức khỏe toàn diện và chuyên sâu cho từng khách hàng. Bên cạnh các dịch vụ khám chữa bệnh thông thường, Sun Medical đặc biệt chú trọng phát triển các lĩnh vực y tế cao cấp như nha khoa thẩm mỹ, da liễu thẩm mỹ và lưu trữ tế bào gốc – những dịch vụ tiên tiến kết hợp giữa công nghệ hiện đại và tiêu chuẩn quốc tế.
-                        Với đội ngũ chuyên gia giàu kinh nghiệm cùng hệ thống trang thiết bị tiên tiến, các dịch vụ đặc biệt tại Sun Medical không chỉ mang lại hiệu quả điều trị vượt trội mà còn đảm bảo tính cá nhân hóa cao, phù hợp với từng thể trạng và nhu cầu riêng biệt của khách hàng. Chúng tôi tự hào là điểm đến đáng tin cậy cho những ai đang tìm kiếm giải pháp chăm sóc sức khỏe kết hợp giữa y học hiện đại và yếu tố thẩm mỹ tinh tế.
-                    </div>
-
-                    <div class="author-info-small-text d-block d-sm-none">
-                        Từ những ngày đầu thành lập, chúng tôi đã xác định sứ mệnh cốt lõi là phục vụ và chăm sóc sức khỏe cộng đồng một cách toàn diện, tận tâm và bền vững. Không chỉ là nơi khám chữa bệnh, bệnh viện còn là điểm tựa tinh thần – nơi bệnh nhân và người nhà tìm thấy sự an tâm và hy vọng.
-                        Chúng tôi tự hào với đội ngũ y bác sĩ chuyên môn cao, giàu y đức cùng hệ thống trang thiết bị hiện đại, luôn sẵn sàng ứng dụng các phương pháp điều trị tiên tiến. Mỗi dịch vụ đều được thực hiện với tinh thần tận tụy và lấy người bệnh làm trung tâm.
-                    </div>
-
-                    <div class="btn_sv mt-20">
-                        <a href="#" class="main-menu d-lg-inline btn-orrange">Xem thêm</a>
-                    </div>
-<<<<<<< HEAD
-
-=======
-                    <div class="col-lg-8 row d-block d-md-none doctor-note">
-                        <article class="col-lg-4 wow fadeIn   animated" style="visibility: visible; animation-name: fadeIn;">
-                            <div class="border-radius-10 p-0 mb-30">
-                                <div class="post-thumb d-flex mb-15 border-radius-5 img-hover-scale">
-                                    <a href="single.html">
-                                        <img class="border-radius-5" src="/root/seo1.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="pl-10 pr-10">
-                                    <div class="post-title mb-10 text-limit-3-row">
-                                        <a href="#" class="text-c-3">10 Reasons to invest in SEO copywriting services</a>
-                                    </div>
-                                    <div class="">
-                                        <p class="post-exerpt text-c-2 text-limit-3-row">Agency life. We’ve all seen the photos posted on social media – the cool....</p>
-                                    </div>
-                                    <div>
-                                        <a href="single.html" class="read-more">Xem thêm</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="col-lg-4 wow fadeIn   animated" style="visibility: visible; animation-name: fadeIn;">
-                            <div class="border-radius-10 p-0 mb-30">
-                                <div class="post-thumb d-flex mb-15 border-radius-5 img-hover-scale">
-                                    <a href="single.html">
-                                        <img class="border-radius-5" src="/root/seo1.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="pl-10 pr-10">
-                                    <div class="post-title mb-10 text-limit-3-row">
-                                        <a href="#" class="text-c-3">10 Reasons to invest in SEO copywriting services</a>
-                                    </div>
-                                    <div class="">
-                                        <p class="post-exerpt text-c-2 text-limit-3-row">Agency life. We’ve all seen the photos posted on social media – the cool....</p>
-                                    </div>
-                                    <div>
-                                        <a href="single.html" class="read-more">Xem thêm</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="col-lg-4 wow fadeIn   animated" style="visibility: visible; animation-name: fadeIn;">
-                            <div class="border-radius-10 p-0 mb-30">
-                                <div class="post-thumb d-flex mb-15 border-radius-5 img-hover-scale">
-                                    <a href="single.html">
-                                        <img class="border-radius-5" src="/root/seo1.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="pl-10 pr-10">
-                                    <div class="post-title mb-10 text-limit-3-row">
-                                        <a href="#" class="text-c-3">10 Reasons to invest in SEO copywriting services</a>
-                                    </div>
-                                    <div class="">
-                                        <p class="post-exerpt text-c-2 text-limit-3-row">Agency life. We’ve all seen the photos posted on social media – the cool....</p>
-                                    </div>
-                                    <div>
-                                        <a href="single.html" class="read-more">Xem thêm</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
->>>>>>> 6362d8bab2d6fad6b791a8599d5e70de1e584844
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
+<div id="_layout2"></div>
 <!-- Danh sách dịch vụ -->
 <div class="service-card-y" style="background:#F5FFFFCC">
     <div class="container px-30 py-2 container-mobile">
@@ -214,86 +113,36 @@
             </div>
         </div>
         <div class="row" id="sp_sv">
-            <article class="col-lg-4 col-6">
-                <div class="service-card bg-hover-green">
-                    <div class="post-thumb d-flex mb-15 img-hover-scale justify-content-center">
-                        <a href="single.html" class="service-img-wrapper">
-                            <img class="border-radius-15" src="~/root/pill-emoji-clipart-md.png" width="50" height="50" alt="">
-                        </a>
-                    </div>
-                    <div class="desc-title">
-                        <h5 class="post-title mb-15 text-center">
-                            Thuốc
-                        </h5>
-                        <div class="meta-1 color-grey mb-10 text-center">
-                            <span class="post-by">Cung cấp thuốc chất lượng, an toàn và phù hợp</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            <article class="col-lg-4 col-6" >
-                <div class="service-card bg-hover-green">
-                    <div class="post-thumb d-flex mb-15 img-hover-scale justify-content-center">
-                        <a href="single.html" class="service-img-wrapper">
-                            <img class="border-radius-15" src="~/root/imagesgen.png" width="50" height="50" alt="">
-                        </a>
-                    </div>
-                    <div class="desc-title">
-                        <h5 class="post-title mb-15 text-center">
-                            Khám tổng quát
-                        </h5>
-                        <div class="meta-1 color-grey mb-10 text-center">
-                            <span class="post-by">Tầm soát sức khỏe toàn diện, phát hiện sớm nguy cơ bệnh lý</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            <article class="col-lg-4 col-6">
-                <div class="service-card bg-hover-green">
-                    <div class="post-thumb d-flex mb-15 img-hover-scale justify-content-center">
-                        <a href="single.html" class="service-img-wrapper">
-                            <img class="border-radius-15" src="~/root/imagesgen.png" width="50" height="50" alt="">
-                        </a>
-                    </div>
-                    <div class="desc-title">
-                        <h5 class="post-title mb-15 text-center">
-                            Thuốc
-                        </h5>
-                        <div class="meta-1 color-grey mb-10 text-center">
-                            <span class="post-by">Cung cấp thuốc chất lượng, an toàn và phù hợp</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
+          
         </div>
-        <div class="for-more pagination-area mb-30">
-            Xem thêm >
+        <div class="for-more pagination-area mb-30" style="color:#234A6B; font-family:Manrope;font-weight:700">
+            <a href="#">Xem thêm ></a>
         </div>
     </div>
 </div>
 
 <!-- tại sao chọn chúng tôi -->
 <div class="question-doctor" style="background:#F9FCFF">
-    <div class="container pt-30 pb-50">
+    <div class="container pt-30 pb-100 pl-30 pl-md-0">
         <div class="row align-items-center">
             <!-- Bên trái: nội dung lý do -->
             <div class="col-md-12">
                 <div class="text-center">
-                    <span class="text-head-breadcrumb text-c-5">Tại sao <span class="text-primary">chọn chúng tôi</span></span>
+                    <span class="text-head-breadcrumb text-c-5">Tại sao <span class="text-primary-grd">chọn chúng tôi</span></span>
                 </div>
-                <p class="text-muted mb-4 text-center">
+                <p class="text-muted mb-4 text-center text-inter">
                     Chúng tôi tự hào là nơi hội tụ đội ngũ y bác sĩ tận tâm, trang thiết bị hiện đại và quy trình chăm sóc đạt chuẩn quốc tế – mang đến cho bạn sự an tâm tuyệt đối trong suốt hành trình bảo vệ và chăm sóc sức khỏe.
                 </p>
             </div>
-            <div class="col-lg-7 col-md-12">
+            <div class="col-lg-7 col-md-12  order-2 order-md-1">
                 <!-- Lý do 1 -->
                 <div class="d-flex mb-4">
                     <div class="me-3">
                         <div class="rounded-circle bg-info text-white fw-bold d-flex justify-content-center align-items-center bg-info-gradient" style="width: 40px; height: 40px;">1</div>
                     </div>
                     <div>
-                        <h5 class="fw-bold mb-1">Đội ngũ y bác sĩ chuyên môn cao, tận tâm</h5>
-                        <p class="text-muted mb-0">
+                        <h5 class="fw-bold mb-1 text-Montserrat">Đội ngũ y bác sĩ chuyên môn cao, tận tâm</h5>
+                        <p class="text-muted mb-0 text-inter">
                             Chúng tôi quy tụ các chuyên gia đầu ngành với nhiều năm kinh nghiệm, luôn đặt y đức và sự an toàn của người bệnh lên hàng đầu.
                         </p>
                     </div>
@@ -304,8 +153,8 @@
                         <div class="rounded-circle bg-info text-white fw-bold d-flex justify-content-center align-items-center bg-info-gradient" style="width: 40px; height: 40px;">2</div>
                     </div>
                     <div>
-                        <h5 class="fw-bold mb-1">Trang thiết bị hiện đại, công nghệ tiên tiến</h5>
-                        <p class="text-muted mb-0">
+                        <h5 class="fw-bold mb-1 text-Montserrat">Trang thiết bị hiện đại, công nghệ tiên tiến</h5>
+                        <p class="text-muted mb-0 text-inter">
                             Bệnh viện đầu tư hệ thống máy móc và công nghệ chẩn đoán – điều trị đạt chuẩn quốc tế, giúp nâng cao hiệu quả khám chữa bệnh.
                         </p>
                     </div>
@@ -316,23 +165,23 @@
                         <div class="rounded-circle bg-info text-white fw-bold d-flex justify-content-center align-items-center bg-info-gradient" style="width: 40px; height: 40px;">3</div>
                     </div>
                     <div>
-                        <h5 class="fw-bold mb-1">Y tế toàn diện, lấy bệnh nhân làm trung tâm</h5>
-                        <p class="text-muted mb-0">
+                        <h5 class="fw-bold mb-1 text-Montserrat">Y tế toàn diện, lấy bệnh nhân làm trung tâm</h5>
+                        <p class="text-muted mb-0 text-inter">
                             Từ tiếp nhận, thăm khám đến điều trị và chăm sóc hậu kỳ, mọi quy trình đều được xây dựng để phục vụ tốt nhất cho người bệnh và người nhà.
                         </p>
                     </div>
                 </div>
             </div>
             <!-- Bên phải: hình ảnh bác sĩ -->
-            <div class="col-lg-5 col-md-12 text-center mt-4 mt-lg-0">
+            <div class="col-lg-5 col-md-12 text-center mt-4 mt-lg-0  order-1 order-md-2">
                 <div class="form-section-wrapper mb-30">
                     <div class="doctor-overlay-wrapper">
                         <img src="@Url.Content("~/root/hometsc.png")" alt="Doctor" class="doctor-overlay">
                     </div>
 
-                    <div class="position-absolute z-100 bottom-0 start-0 mb-3 ms-3 bg-white px-3 py-2 d-flex align-items-center shadow-sm tranform-x">
-                        <span class="text-danger fw-bold me-2">★</span>
-                        <span class="text-orange fw-semibold small">Best Certified Team of Specialists</span>
+                    <div class="position-absolute z-100 bottom-0 border-radius-10 start-0 mb-md-3 ms-md-3 bg-white px-3 py-2 d-flex align-items-center shadow-sm tranform-x">
+                        <span class="color-orrange fw-bold me-2"><i class="fa fa-star"></i></span>
+                        <span class="color-orrange fw-bold small">Best Certified Team of Specialists</span>
                     </div>
                 </div>
             </div>
@@ -876,3 +725,25 @@
         </div>
     </div>
 </div>
+
+<script id="news-template" type="text/x-dot-template">
+    {{ for(var i = 0; i < it.newsList.length; i++) { }}
+          <article class="col-lg-4 col-6">
+                <div class="service-card bg-hover-green">
+                    <div class="post-thumb d-flex mb-15 img-hover-scale justify-content-center">
+                        <a href="/Service/ServiceDetail/{{=it.newsList[i].idDichVu}}" class="service-img-wrapper">
+                            <img class="border-radius-15" src="{{=it.newsList[i].urlImage}}" width="50" height="50" alt="">
+                        </a>
+                    </div>
+                    <div class="desc-title">
+                        <h5 class="post-title mb-15 text-center">
+                            {{=it.newsList[i].tieuDeBaiViet}}
+                        </h5>
+                        <div class="meta-1 color-grey mb-10 text-center">
+                            <span class="post-by">{{=it.newsList[i].moTaNgan}}</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+    {{ } }}
+</script>
