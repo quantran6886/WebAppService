@@ -18,6 +18,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Views\AboutUs\AboutUsCopy.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="webpack.config.js~RF4b5ebc2.TMP" />
   </ItemGroup>
 

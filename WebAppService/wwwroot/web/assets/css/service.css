@@ -57,17 +57,6 @@ h2 {
     -webkit-box-orient: vertical;
 }
 
-.card-active {
-    background: #00B9B5;
-    color: #ffffff !important;
-}
-
-.card-active a,
-.card-active p,
-.card-active .post-title {
-    color: #ffffff !important;
-}
-
 .card-hover:hover {
     background: #00B9B5;
     color: #ffffff !important;
@@ -79,19 +68,137 @@ h2 {
     color: #ffffff !important;
 }
 
+.text-c-cckh {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    color: #2F4848;
+    font-weight: 700;
+}
+
+.text-c-cckh-1 {
+    background: linear-gradient(to right, #009F9C, #8FD9D7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color-interpolation: inherit;
+}
+/* Khách hàng nói gì về chúng tôi*/
+.client-img-wrapper {
+    background: #F6F9FE;
+    width: 80px;
+    height: 80px;
+    align-content: center;
+    text-align-last: center;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-client-boder {
+    border-radius: 25.91px;
+}
+
+.related-services {
+    margin: 0 auto;
+    padding: 20px 70px;
+    position: relative;
+}
+
+    .related-services h2 {
+        text-align: center;
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+.slider-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 20px;
+    padding-bottom: 10px;
+}
+
+.service-card {
+    flex: 0 0 300px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.service-content {
+    padding: 15px;
+}
+
+    .service-content h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .service-content p {
+        font-size: 14px;
+        color: #555;
+    }
+
+.nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #f26522;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.bottom-line {
+    border-bottom: 1px solid #E9EFF5;
+}
+
+.justify-items-center {
+    justify-items: center;
+    align-items: center;
+}
+
+.nav-left {
+    left: 10px;
+}
+
+.nav-right {
+    right: -10px;
+}
+
+.slider-container::-webkit-scrollbar {
+    display: none;
+}
 @media (max-width: 768px) {
     .container-mobile {
         padding-left: 30px;
         padding-right: 30px;
     }
-
+    .text-c-cckh {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 20px;
+        color: #2F4848;
+        font-weight: 700;
+    }
+    .text-detailkh-1 {
+        margin-top: 10px;
+        font-family: 'Manrope', sans-serif;
+        color: #F26522;
+        font-size: 12px;
+        font-weight: 600;
+    }
     .pxs-3 {
         padding-left: 0rem;
         padding-right: 0rem;
     }
 
     .psi-1 {
-        padding-left: 8px;
+        padding-left: 6px;
+        padding-right: 4px;
     }
 
     .text-media {

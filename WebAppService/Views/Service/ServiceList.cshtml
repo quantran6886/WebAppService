@@ -2,6 +2,80 @@
     ViewData["Title"] = "ServiceList";
 }
 <link href="~/web/assets/css/service.css" rel="stylesheet" />
+@section Scripts {
+    <script>
+        function scrollSlider(direction) {
+            const slider = document.getElementById('slider');
+            const scrollAmount = 320;
+            slider.scrollBy({
+                left: scrollAmount * direction,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/dot/doT.min.js"></script>
+    <script>
+        var myClient = {
+            currentPage: 1,
+            pageSize: 12,
+
+            init: function(){
+                myClient.Event();
+                myClient.LoadData();
+            },
+
+             Event: function () {
+                $(document).on('click', '.page-link', function () {
+                    var page = $(this).data("page");
+                    myClient.currentPage = page;
+                    myClient.LoadData();
+                });
+
+                $("#btnSearch").off("click").on("click", function () {
+                    myClient.LoadData();
+                });
+            },
+
+             LoadData: function () {
+                var txtSearh =  $("#txtSearh").val();    
+                $.ajax({
+                    url: '/Service/LoadData',
+                    type: "GET",
+                    data: {
+                        page: myClient.currentPage,
+                        pageSize: myClient.pageSize,
+                        txtSearh:txtSearh
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.status == true) {
+
+                            if (data.lstData != null) {
+                                var template = doT.template($("#news-template").html());
+                                $("#list_bai_viet").html(template({ newsList: data.lstData }));
+                            }
+
+                            var totalPages = Math.ceil(data.totalRow / myClient.pageSize);
+                            myClient.RenderPagination(totalPages);
+                        }
+                    }
+                });
+            },
+
+            RenderPagination: function (totalPages) {
+                var pagination = '';
+                for (var i = 1; i <= totalPages; i++) {
+                    pagination += '<li class="page-item ' + (i === myClient.currentPage ? 'active' : '') + '">' +
+                        '<a class="page-link" href="javascript:void(0)" data-page="' + i + '">' + i + '</a></li>';
+                }
+                $("#pagination").html('<ul class="pagination justify-content-center">' + pagination + '</ul>');
+            },
+
+        }
+        myClient.init();
+
+    </script>
+}
 
 <div class="entry-header entry-header-2 mb-3 mt-0 text-center">
     <div class="thumb-overlay img-hover-slide position-relative" style="background-image: url(/web/assets/imgs/farme.png)">
@@ -22,10 +96,10 @@
             <div class="row bg-white">
                 <div class="col-8" style="display:flex">
                     <i class="fas fa-heartbeat orane_color mt-20"></i>
-                    <input type="text" class="form-control w-100 border-0 pb-0" placeholder="Tìm dịch vụ ..." name="name" value="" />
+                    <input type="text" class="form-control w-100 border-0 pb-0" id="txtSearh" placeholder="Tìm dịch vụ ..." name="x" value="" />
                 </div>
                 <div class="col-4 " style="padding:15px 0px">
-                    <a href="#" class="main-menu btn-sm btn-orrange font-weight-bold w-100"><i class="fa fa-search"></i> Tìm kiếm</a>
+                    <a href="#" class="main-menu btn-sm btn-orrange font-weight-bold w-100" id="btnSearch"><i class="fa fa-search"></i> <span>Tìm</span> </a>
                 </div>
             </div>
         </div>
@@ -33,74 +107,6 @@
     <div class="grid-servide">
         <div class="col-lg-12 col-md-12 pxs-3">
             <div class="row mt-3" id="list_bai_viet">
-                <article class="col-lg-4 col-6 mb-4 psi-1 wow fadeIn animated" style="visibility: visible; animation-name: fadeIn;">
-                    <div class="background-white p-0 pb-10 mb-5 box-shadow-img card-hover card-active">
-                        <div class="post-thumb d-flex mb-15 img-hover-scale">
-                            <a href="single.html">
-                                <img src="/root/imgservice.png" class="img-fluid img-respone-service" alt="" />
-                            </a>
-                        </div>
-                        <div class="pl-10 pr-10">
-                            <div class="post-title mb-5 text-limit-c-row">
-                                <a href="/Service/ServiceDetail" class="text-c-3">Dược phẩm chính hãng</a>
-                            </div>
-                            <div class="">
-                                <p class="post-exerpt text-c-2 text-limit-c-row">Cung cấp thuốc đúng chuẩn, đúng toa, đúng người. SunMedical – đồng hành cùng bạn trong từng đơn thuốc.</p>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                <article class="col-lg-4 col-6 mb-4 psi-1 wow fadeIn animated" style="visibility: visible; animation-name: fadeIn;">
-                    <div class="background-white p-0 pb-10 mb-5 box-shadow-img card-hover">
-                        <div class="post-thumb d-flex mb-15 img-hover-scale">
-                            <a href="single.html">
-                                <img src="/root/img122.png" class="img-fluid img-respone-service" alt="" />
-                            </a>
-                        </div>
-                        <div class="pl-10 pr-10">
-                            <div class="post-title mb-5 text-limit-c-row">
-                                <a href="#" class="text-c-3">Dược phẩm chính hãng</a>
-                            </div>
-                            <div class="">
-                                <p class="post-exerpt text-c-2 text-limit-c-row">Cung cấp thuốc đúng chuẩn, đúng toa, đúng người. SunMedical – đồng hành cùng bạn trong từng đơn thuốc.</p>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                <article class="col-lg-4 col-6 mb-4 psi-1 wow fadeIn animated " style="visibility: visible; animation-name: fadeIn;">
-                    <div class="background-white p-0 pb-10 mb-5 box-shadow-img card-hover">
-                        <div class="post-thumb d-flex mb-15 img-hover-scale">
-                            <a href="single.html">
-                                <img src="/root/imgserve2.png" class="img-fluid img-respone-service" alt="" />
-                            </a>
-                        </div>
-                        <div class="pl-10 pr-10">
-                            <div class="post-title mb-5 text-limit-c-row">
-                                <a href="#" class="text-c-3">Dược phẩm chính hãng</a>
-                            </div>
-                            <div class="">
-                                <p class="post-exerpt text-c-2 text-limit-c-row">Cung cấp thuốc đúng chuẩn, đúng toa, đúng người. SunMedical – đồng hành cùng bạn trong từng đơn thuốc.</p>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                <article class="col-lg-4 col-6 mb-4 psi-1 wow fadeIn animated" style="visibility: visible; animation-name: fadeIn;">
-                    <div class="background-white p-0 pb-10 mb-5 box-shadow-img card-hover">
-                        <div class="post-thumb d-flex mb-15 img-hover-scale">
-                            <a href="single.html">
-                                <img src="/root/imgservice.png" class="img-fluid img-respone-service" alt="" />
-                            </a>
-                        </div>
-                        <div class="pl-10 pr-10">
-                            <div class="post-title mb-5 text-limit-c-row">
-                                <a href="#" class="text-c-3">Dược phẩm chính hãng</a>
-                            </div>
-                            <div class="">
-                                <p class="post-exerpt text-c-2 text-limit-c-row">Cung cấp thuốc đúng chuẩn, đúng toa, đúng người. SunMedical – đồng hành cùng bạn trong từng đơn thuốc.</p>
-                            </div>
-                        </div>
-                    </div>
-                </article>
               
             </div>
             <div class="pagination-area mb-30">
@@ -112,3 +118,181 @@
         </div>
     </div>
 </div>
+<!-- Câu chuyện của khách hàng -->
+<div class="message-client">
+    <div class="container px-30 py-2 container-mobile">
+        <div class="archive-header text-center mb-30 mt-10">
+            <div class="container">
+                <div>
+                    <span class="text-head-breadcrumb text-c-cckh"> <strong class="text-c-cckh-1">Câu chuyện</strong> <strong class="text-c-cckh-2">của khách hàng</strong></span>
+                </div>
+                <p class="text-muted mb-4 text-center text-detailkh-1">
+                    Khám phá sự khác biệt mà chúng tôi tạo ra thông qua tiếng nói của những người chúng tôi đã phục vụ.
+                </p>
+            </div>
+        </div>
+        <div class="row" id="">
+            <div class="related-services p-2">
+                <div class="d-block d-md-none">
+                    <div class="service-card mb-3 p-10 pl-20 pr-20 justify-items-center">
+                        <a href="#" class="client-img-wrapper img-client-boder">
+                            <img src="~/root/img-client.png" class="img-client-boder" alt="">
+                        </a>
+                        <div class="service-content text-center">
+                            <div class="bottom-line mb-10">
+                                <h3>Linda Ngo</h3>
+                            </div>
+                            <p>“Sau ca phẫu thuật đầu gối, sự tiện lợi của dịch vụ tư vấn trực tuyến đã giúp quá trình hồi phục của tôi diễn ra suôn sẻ hơn tôi tưởng.”</p>
+                            <div class="">
+                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star orane_color"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-card mb-3 p-10 pl-20 pr-20 justify-items-center">
+                        <a href="#" class="client-img-wrapper img-client-boder">
+                            <img src="~/root/kh1.png" class="img-client-boder" alt="">
+                        </a>
+                        <div class="service-content text-center">
+                            <div class="bottom-line mb-10">
+                                <h3>Crystal Maiden</h3>
+                            </div>
+                            <p>“Việc kiểm soát các bệnh mãn tính như bệnh tiểu đường đòi hỏi rất nhiều sự cảnh giác, nhưng hệ thống nạp thuốc đã đơn giản hóa cuộc sống của tôi.”</p>
+                            <div class="">
+                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star orane_color"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-card mb-3 p-10 pl-20 pr-20 justify-items-center">
+                        <a href="#" class="client-img-wrapper img-client-boder">
+                            <img src="~/root/kh2.png" class="img-client-boder" alt="">
+                        </a>
+                        <div class="service-content text-center">
+                            <div class="bottom-line mb-10">
+                                <h3>Crystal Maiden</h3>
+                            </div>
+                            <p>“Hệ thống nạp đơn thuốc là một bước ngoặt trong việc kiểm soát bệnh tiểu đường của tôi. Nó thực sự hiệu quả và hoàn toàn không rắc rối.”</p>
+                            <div class="">
+                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star orane_color"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="related-services hide-on-mobile">
+                <button class="nav-button nav-left" onclick="scrollSlider(-1)">❮</button>
+                <button class="nav-button nav-right" onclick="scrollSlider(1)">❯</button>
+                <div class="slider-container" id="slider">
+                    <!-- 1 -->
+                    <div class="service-card justify-items-center">
+                        <a href="single.html" class="client-img-wrapper img-client-boder">
+                            <img src="~/root/img-client.png" class="img-client-boder" alt="">
+                        </a>
+                        <div class="service-content text-center">
+                            <div class="bottom-line mb-10">
+                                <h3>Linda Ngo</h3>
+                            </div>
+                            <p>“Sau ca phẫu thuật đầu gối, sự tiện lợi của dịch vụ tư vấn trực tuyến đã giúp quá trình hồi phục của tôi diễn ra suôn sẻ hơn tôi tưởng.”</p>
+                            <div class="">
+                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star orane_color"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 1 -->
+                    <div class="service-card justify-items-center">
+                        <a href="single.html" class="client-img-wrapper img-client-boder">
+                            <img src="~/root/kh1.png" class="img-client-boder" alt="">
+                        </a>
+                        <div class="service-content text-center">
+                            <div class="bottom-line mb-10">
+                                <h3>Crystal Maiden</h3>
+                            </div>
+                            <p>“Việc kiểm soát các bệnh mãn tính như bệnh tiểu đường đòi hỏi rất nhiều sự cảnh giác, nhưng hệ thống nạp thuốc đã đơn giản hóa cuộc sống của tôi.”</p>
+                            <div class="">
+                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star orane_color"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 1 -->
+                    <div class="service-card justify-items-center">
+                        <a href="single.html" class="client-img-wrapper img-client-boder">
+                            <img src="~/root/kh2.png" class="img-client-boder" alt="">
+                        </a>
+                        <div class="service-content text-center">
+                            <div class="bottom-line mb-10">
+                                <h3>Crystal Maiden</h3>
+                            </div>
+                            <p>“Hệ thống nạp đơn thuốc là một bước ngoặt trong việc kiểm soát bệnh tiểu đường của tôi. Nó thực sự hiệu quả và hoàn toàn không rắc rối.”</p>
+                            <div class="">
+                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star orane_color"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 1 -->
+                    <div class="service-card justify-items-center">
+                        <a href="single.html" class="client-img-wrapper img-client-boder">
+                            <img src="~/root/img-client.png" class="img-client-boder" alt="">
+                        </a>
+                        <div class="service-content text-center">
+                            <div class="bottom-line mb-10">
+                                <h3>Linda Ngo</h3>
+                            </div>
+                            <p>“Sau ca phẫu thuật đầu gối, sự tiện lợi của dịch vụ tư vấn trực tuyến đã giúp quá trình hồi phục của tôi diễn ra suôn sẻ hơn tôi tưởng.”</p>
+                            <div class="">
+                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star orane_color"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="news-template" type="text/x-dot-template">
+    {{ for(var i = 0; i < it.newsList.length; i++) { }}
+         <article class="col-lg-4 col-6 mb-4 psi-1 wow fadeIn animated" style="visibility: visible; animation-name: fadeIn;">
+            <div class="background-white p-0 pb-10 mb-5 box-shadow-img card-hover card-active">
+                <div class="post-thumb d-flex mb-15 img-hover-scale">
+                    <a href="/Service/ServiceDetail/{{=it.newsList[i].idDichVu}}">
+                        <img src="{{=it.newsList[i].urlImage}}" class="img-fluid img-respone-service" alt="" />
+                    </a>
+                </div>
+                <div class="pl-10 pr-10">
+                    <div class="post-title mb-5 text-limit-c-row">
+                        <a href="/Service/ServiceDetail/{{=it.newsList[i].idDichVu}}" class="text-c-3">{{=it.newsList[i].tieuDeBaiViet}}</a>
+                    </div>
+                    <div class="">
+                        <p class="post-exerpt text-c-2 text-limit-c-row">{{=it.newsList[i].moTaNgan}}</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+    {{ } }}
+</script>

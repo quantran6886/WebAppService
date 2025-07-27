@@ -394,7 +394,7 @@ public partial class AppDbContext : DbContext
             entity.ToTable("WebNhanSu");
 
             entity.Property(e => e.IdNhanSu).HasDefaultValueSql("(newid())");
-            entity.Property(e => e.BangCapHocVi).HasMaxLength(250);
+            entity.Property(e => e.BangCapHocVi).HasMaxLength(500);
             entity.Property(e => e.CbGioiTinh)
                 .HasMaxLength(50)
                 .HasColumnName("cbGioiTinh");
@@ -404,7 +404,7 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.HoTen).HasMaxLength(250);
             entity.Property(e => e.NameImage).HasMaxLength(250);
             entity.Property(e => e.NgaySinh).HasColumnType("datetime");
-            entity.Property(e => e.NgonNgu).HasMaxLength(250);
+            entity.Property(e => e.NgonNgu).HasMaxLength(500);
             entity.Property(e => e.ThoiGianCapNhap).HasColumnType("datetime");
             entity.Property(e => e.ThoiGianTao)
                 .HasDefaultValueSql("(getdate())")

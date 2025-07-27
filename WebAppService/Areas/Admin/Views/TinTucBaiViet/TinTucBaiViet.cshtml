@@ -178,7 +178,7 @@
                 var MoTaNgan = $("#MoTaNgan").val();
                 var CbNhomBaiViet = $("#CbNhomBaiViet").val();
                 var TieuDeNgan = $("#TieuDeNgan").val();
-                var CbLoaiBaiDang = $("#cbLoaiBaiDang").val();
+                var CbLoaiBaiDang = $("#CbLoaiBaiDang").val();
                 var IsBaiVietNoiBat = $("#IsBaiVietNoiBat").prop("checked");
                 var IsCongKhai = $("#IsCongKhai").prop("checked");
                 var editor = encodeURIComponent(tinymce.get('editor').getContent());
@@ -399,16 +399,22 @@
                             </select>
                         </div>
                     </div>
-                    <table id="tableTinTucBaiViet" data-toggle="table" data-flat="true" data-search="true" data-url="">
+                    <table id="tableTinTucBaiViet"
+                           data-toggle="table"
+                           data-flat="true"
+                           data-search="true"
+                           data-pagination="true"
+                           data-page-size="10"
+                           data-page-list="[10, 15, 25, all]" data-url="">
                         <thead>
                             <tr>
-                                <th data-formatter="fm_editData" data-sortable="true" data-width="5" data-width="5"
+                                <th data-formatter="fm_editData" data-sortable="true" data-width="5"
                                     class="text-center">Chức năng</th>
                                 <th data-field="urlImage" data-width="8" data-formatter="fm_Image" data-sortable="true">Ảnh</th>
                                 <th data-field="tieuDeBaiViet" data-sortable="true">Tên tiêu đề</th>
-                                <th data-field="tieuDeBaiViet" data-sortable="true">Nhóm bài viết</th>
-                                <th data-field="tieuDeBaiViet" data-sortable="true">Danh mục</th>
-                                <th data-field="moTaNgan" data-sortable="true">Mô tả ngắn</th>
+                                <th data-field="cbNhomBaiViet" data-sortable="true">Nhóm bài viết</th>
+                                <th data-field="cbLoaiBaiDang" data-sortable="true">Danh mục</th>
+                                <th data-field="thoiGianTao" data-sortable="true">Ngày tạo</th>
                                 <th data-field="isBaiVietNoiBat" data-width="8" data-formatter="fm_editBVNB" data-sortable="true">Nổi bật</th>
                                 <th data-field="isCongKhai" data-width="8" data-formatter="fm_editBVCK" data-sortable="true">Công khai</th>
                             </tr>
@@ -469,7 +475,7 @@
                                                     <option value="">--Chọn danh mục--</option>
                                                 </select>
                                             </div>
-                                           <div class="col-sm-12 mb-2">
+                                            <div class="col-sm-12 mb-2">
                                                 <label class="form-label">Tiêu đề loại danh mục(nếu có):</label>
                                                 <input type="text" class="form-control" placeholder="" id="TieuDeNgan" value="">
                                             </div>

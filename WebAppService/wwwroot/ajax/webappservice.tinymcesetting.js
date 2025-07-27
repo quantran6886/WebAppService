@@ -11,9 +11,30 @@ function tinymceSettings(selectors ,height) {
             autosave_prefix: '{path}{query}-{id}-',
             autosave_restore_when_empty: false,
             autosave_retention: '2m',
+            image_dimensions: true,
             image_advtab: true,
+            extended_valid_elements: 'img[class|src|alt|title|width|height|style]',
             language: 'vi',
             importcss_append: true,
+            content_style: "body { font-family: 'Inter', sans-serif; }",
+            content_css: [
+                'https://fonts.googleapis.com/css2?family=Montserrat&display=swap',
+                'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap',
+                'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'
+            ],
+            font_family_formats: `
+                Montserrat=Montserrat, sans-serif;
+                Plus Jakarta Sans='Plus Jakarta Sans', sans-serif;
+                Inter=Inter, sans-serif;
+                Noto Sans='Noto Sans', sans-serif;
+                Manrope=Manrope, sans-serif;
+                Arial=arial,helvetica,sans-serif;
+                Courier New=courier new,courier,monospace;
+                Georgia=georgia,palatino;
+                Tahoma=tahoma,arial,helvetica,sans-serif;
+                Times New Roman=times new roman,times;
+                Verdana=verdana,geneva;
+              `,
             file_picker_callback: (callback, value, meta) => {
                 let input = document.createElement('input');
 

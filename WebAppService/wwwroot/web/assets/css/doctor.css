@@ -1,33 +1,6 @@
-﻿h2 {
-    color: #2F4848;
-    font-weight: 600;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 24px;
+﻿.orane_color {
+    color: #ff6600;
 }
-.filter {
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-    .filter h2 {
-        margin: 0;
-    }
-
-.filter-item {
-    display: inline-flex;
-    align-items: center;
-    background-color: #fff;
-    padding: 8px 12px;
-}
-
-    .filter-item select {
-        border: none;
-        font-size: 15px;
-        outline: none;
-        background: transparent;
-    }
 
 .btn-search {
     margin-left: 10px;
@@ -48,82 +21,159 @@
     gap: 8px;
 }
 
-/* Doctors Grid */
-    .doctors {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Mỗi hàng 3 cột */
-    gap: 25px;
-    justify-items: center;
-    margin-top: 40px;
-}
-
-.doctor-card {
-    background-color: #F8FFFF;
-    padding: 36px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    text-align: center;
-    font-weight: 500;
-    width: 320px;
-}
-
-    .doctor-card img {
-        border-radius: 5px;
-        margin-bottom: 15px;
-    }
-
-    .doctor-card h3 {
-        margin: 0;
-        color: #2F4848;
-        font-size: 18px;
-        font-weight: 700;
-    }
-
-    .doctor-card p {
-        margin: 5px 0;
-        color: #555;
-    }
-
-    .doctor-card i {
-        margin-right: 6px;
-    }
 
 .btn-detail {
-    margin-top: 10px;
+    margin-bottom: 10px;
     background-color: #ff6600;
     color: white;
     border: none;
-    padding: 8px 60px;
+    font-size: 14px;
+    padding: 6px 60px;
     border-radius: 8px;
     cursor: pointer;
 }
 
 .nice-select {
     -webkit-tap-highlight-color: transparent;
-    background-color: #fff;
-    border-radius: 5px;
-     border: none; 
-    box-sizing: border-box;
+    background-color: #ffffff;
+    border: none;
     clear: both;
-    cursor: pointer;
-    display: block;
-    float: left;
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: normal;
-    height: 30px;
-    line-height: 30px;
-    outline: none;
-    padding-left: 18px;
-    padding-right: 30px;
-    position: relative;
-    text-align: left !important;
+    height: 57px;
+    line-height: 55px;
     -webkit-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none;
+    /* user-select: none; */
     white-space: nowrap;
     width: auto;
+}
+
+.nice-select {
+    -webkit-tap-highlight-color: transparent;
+    background-color: #fff;
+    color: #6E6E6E;
+    cursor: pointer;
+    font-size: 14px;
+    height: 57px;
+    line-height: 54px;
+    white-space: nowrap;
+    font-family: 'Inter', sans-serif;
+    width: auto;
+}
+.mt-20 {
+    margin-top: 20px;
+}
+.text-media {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 24px;
+    color: #2F4848;
+    font-weight: 800;
+}
+
+.img-respone-service {
+    height: 260px;
+    width: 100%;
+}
+.bg-doctor {
+    background-color: #F8FFFF;
+}
+.doctor-avartar {
+    background-color: #F8FFFF;
+    justify-self: center;
+}
+.pxs-3 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.container-mobile {
+    padding-left: 0px;
+    padding-right: 50px;
+}
+.text-d-1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: #2F4848;
+    font-weight: 700;
+}
+.text-d-2 {
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    font-size: 14px;
+    color: #2F4848;
+    font-weight: 500;
+}
+.text-d-3 {
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    font-size: 14px;
+    color: #2F4848;
+    font-weight: 500;
+}
+@media (max-width: 768px) {
+    .container-mobile {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .pxs-3 {
+        padding-left: 0rem;
+        padding-right: 0rem;
+    }
+
+    .psi-1 {
+        padding-left: 6px;
+        padding-right: 4px;
+    }
+
+    .text-media {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 20px;
+        color: #2F4848;
+        font-weight: 800;
+    }
+
+    .img-respone-service {
+        height: 130px;
+        width: 100%;
+    }
+
+    .text-limit-c-row {
+        margin: 0px;
+        overflow: hidden !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical;
+    }
+    .pl-mobile-0 {
+        padding-left: 0px !important;
+    }
+    .pr-mobile-0 {
+        padding-right: 0px !important;
+    }
+    .btn-detail {
+        margin-bottom: 10px;
+        background-color: #ff6600;
+        color: white;
+        border: none;
+        font-size: 10px;
+        padding: 6px 60px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    .text-d-2 {
+        font-family: 'Inter', sans-serif;
+        font-style: italic;
+        font-size: 11px;
+        color: #2F4848;
+        font-weight: 500;
+    }
+    .text-d-3 {
+        font-family: 'Inter', sans-serif;
+        font-style: italic;
+        font-size: 10px;
+        color: #2F4848;
+        font-weight: 500;
+    }
 }

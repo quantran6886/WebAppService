@@ -5,7 +5,7 @@
 @section Scripts {
     <script src="~/assets/plug/tinymce/js/tinymce/tinymce.min.js"></script>
     <script src="~/ajax/webappservice.tinymcesetting2.js?v=1.3"></script>
-    <script> tinymceSettings(['#editor'], 550); </script>
+    <script> tinymceSettings(['#editor'], 550 ,"/web/assets/css/aboutus.css"); </script>
     <script>
          var files;
         var myScripts = {
@@ -37,7 +37,7 @@
                                                                 tinymce.get('editor').setContent(lstData.noiDung);
                                                                 clearInterval(waitEditor);
                                                             }
-                                                        }, 100);
+                                                        }, 200);
                                     } else {
                                         tinymce.get('editor').setContent("");
                                     }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Web;
 using WebAppService.Areas.Admin._Helper;
 using WebAppService.Models;
 
@@ -51,8 +52,12 @@ namespace WebAppService.Areas.Admin.Controllers
         {
             string duong_dan_tai_lieu = "";
             string ten_file = "";
+            string decodedContent = "";
             var ClientData = System.Text.Json.JsonSerializer.Deserialize<WebNhanSu>(strData);
-
+            if (!string.IsNullOrEmpty(ClientData.KinhNghiemLamViec))
+            {
+                decodedContent = HttpUtility.UrlDecode(ClientData.KinhNghiemLamViec);
+            }
             try
             {
                 if (files != null && files.Count > 0)
@@ -94,7 +99,7 @@ namespace WebAppService.Areas.Admin.Controllers
                     ClientData.DonViKhoa = ClientData.DonViKhoa;
                     ClientData.BangCapHocVi = ClientData.BangCapHocVi;
                     ClientData.NgonNgu = ClientData.NgonNgu;
-                    ClientData.KinhNghiemLamViec = ClientData.KinhNghiemLamViec;
+                    ClientData.KinhNghiemLamViec = decodedContent;
                     db.WebNhanSus.Add(ClientData);
                 }
                 else
@@ -115,7 +120,7 @@ namespace WebAppService.Areas.Admin.Controllers
                         existing.DonViKhoa = ClientData.DonViKhoa;
                         existing.BangCapHocVi = ClientData.BangCapHocVi;
                         existing.NgonNgu = ClientData.NgonNgu;
-                        existing.KinhNghiemLamViec = ClientData.KinhNghiemLamViec;
+                        existing.KinhNghiemLamViec = decodedContent;
                         db.Entry(existing).State = EntityState.Modified;
                     }
                 }
@@ -178,6 +183,7 @@ namespace WebAppService.Areas.Admin.Controllers
                     c.ChucDanh,
                     c.DonViKhoa,
                     c.BangCapHocVi,
+                    c.KinhNghiemLamViec,
                     c.NgonNgu,
                     NgaySinh = c.NgaySinh != null ? string.Format("{0:yyyy-MM-dd}", c.NgaySinh) : "",
                     c.UrlImage,

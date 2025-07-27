@@ -4,67 +4,8 @@
 }
 @section Scripts {
     <script src="~/assets/plug/tinymce/js/tinymce/tinymce.min.js"></script>
-    <script>
-        function tinymceSettings() {
-                  tinymce.init({
-                      selector: '#editor',
-                      plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons accordion',
-                      editimage_cors_hosts: ['picsum.photos'],
-                      menubar: 'file edit view insert format tools table help',
-                      toolbar: "undo redo | accordion accordionremove | blocks fontfamily fontsize | bold italic underline strikethrough | align numlist bullist | link image | table media | lineheight outdent indent| forecolor backcolor removeformat | charmap emoticons | code fullscreen preview | save print | pagebreak anchor codesample | ltr rtl",
-                      autosave_ask_before_unload: true,
-                      autosave_interval: '30s',
-                      autosave_prefix: '{path}{query}-{id}-',
-                      autosave_restore_when_empty: false,
-                      autosave_retention: '2m',
-                      image_advtab: true,
-                      language: 'vi',
-                      importcss_append: true,
-                      file_picker_callback: (callback, value, meta) => {
-                          let input = document.createElement('input');
-
-                          if (meta.filetype === 'image') {
-                              input.setAttribute('type', 'file');
-                              input.setAttribute('accept', 'image/*');
-
-                              input.onchange = function () {
-                                  var file = this.files[0];
-                                  var reader = new FileReader();
-
-                                  reader.onload = function () {
-                                      callback(reader.result, { alt: file.name });
-                                  };
-                                  reader.readAsDataURL(file);
-                              };
-
-                              input.click();
-                          }
-                          else if (meta.filetype === 'media') {
-                              input.setAttribute('type', 'file');
-                              input.setAttribute('accept', 'video/*');
-
-                              input.onchange = function () {
-                                  var file = this.files[0];
-
-                                  if (file) {
-                                      var videoUrl = URL.createObjectURL(file);
-                                      callback(videoUrl, { source2: file.name });
-                                  }
-                              };
-
-                              input.click();
-                          }
-                      },
-                      height: 1000,
-                      image_caption: true,
-                      quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
-                      noneditable_class: 'mceNonEditable',
-                      toolbar_mode: 'sliding',
-                      contextmenu: 'link image table',
-                  });
-              };
-              tinymceSettings();
-    </script>
+    <script src="~/ajax/webappservice.tinymcesetting.js?v=1.2"></script>
+    <script> tinymceSettings(['#editor'], 300); </script>
     <script>
         var files;
         var myScripts = {
@@ -174,7 +115,11 @@
                                     $("#DonViKhoa").val(lstData.donViKhoa);
                                     $("#BangCapHocVi").val(lstData.bangCapHocVi);
                                     $("#NgonNgu").val(lstData.ngonNgu);
-                                    $("#KinhNghiemLamViec").val(lstData.kinhNghiemLamViec);
+                                     if (lstData.kinhNghiemLamViec != null) {
+                                        tinymce.get('editor').setContent(lstData.kinhNghiemLamViec);
+                                    } else {
+                                        tinymce.get('editor').setContent("");
+                                    }
                                     if (lstData.urlImage != null && lstData.urlImage != "") {
                                         $('#imageHoSo').attr('src', lstData.urlImage);
                                     } else {
@@ -208,6 +153,7 @@
                 $("#BangCapHocVi").val("");
                 $("#NgonNgu").val("");
                 $("#KinhNghiemLamViec").val("");
+                tinymce.get('editor').setContent("");
                 $("#isThayDoi").val("false");
                 $('#imageHoSo').attr('src', '/root/Profile_avatar.png');
             },
@@ -220,7 +166,7 @@
                 var DonViKhoa = $("#DonViKhoa").val();
                 var BangCapHocVi = $("#BangCapHocVi").val();
                 var NgonNgu = $("#NgonNgu").val();
-                var KinhNghiemLamViec = $("#KinhNghiemLamViec").val();
+                var editor = encodeURIComponent(tinymce.get('editor').getContent());
 
                 if (HoTen == "") {
                     toastr.error("Bạn chưa nhập họ tên", "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
@@ -246,7 +192,7 @@
                     DonViKhoa: DonViKhoa,
                     BangCapHocVi: BangCapHocVi,
                     NgonNgu: NgonNgu,
-                    KinhNghiemLamViec: KinhNghiemLamViec,
+                    KinhNghiemLamViec: editor,
                 }
                  if (files != undefined && files.length > 0) {
                     if (window.FormData !== undefined) {
@@ -270,7 +216,7 @@
                                     myScripts.LoadTable();
                                     $("#bsHoSoCanBo").modal('hide');
                                 } else {
-                                    notify('error', 'Có Lỗi', response.message);
+                                    toastr.error("Có lỗi dữ liệu", "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
                                 }
                             },
                             error: function (response) {
@@ -385,6 +331,9 @@
                            data-toggle="table"
                            data-flat="true"
                            data-search="true"
+                           data-pagination="true"
+                           data-page-size="10"
+                           data-page-list="[5, 10, 15, all]"
                            data-url="">
                         <thead>
                             <tr>
@@ -393,8 +342,8 @@
                                 <th data-field="ngaySinh" data-sortable="true">Ngày sinh</th>
                                 <th data-field="chucDanh" data-sortable="true">Chức danh</th>
                                 <th data-field="donViKhoa" data-sortable="true">Cơ sở làm việc</th>
-                                <th data-field="bangCapHocVi" data-sortable="true">Bằng cấp - học vị</th>
-                                <th data-field="ngonNgu" data-sortable="true">Bằng cấp - học vị</th>
+                          @*       <th data-field="bangCapHocVi" data-sortable="true">Bằng cấp - học vị</th>
+                                <th data-field="ngonNgu" data-sortable="true">Ngôn ngữ</th> *@
                             </tr>
                         </thead>
                     </table>
@@ -413,7 +362,7 @@
                 </h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body pb-0">
                 <div class="row">
                     <div class="col-lg-12 d-flex align-items-stretch p-0">
                         <div class="card w-100 border position-relative m-0 overflow-hidden">
@@ -461,15 +410,14 @@
                                             </div>
                                             <div class="col-sm-12 mb-2">
                                                 <label class="fs-2 form-label m-0">Ngôn ngữ:</label>
-                                                <textarea type="text" class="form-control" placeholder="Bằng cấp học vị ..." rows="2" id="NgonNgu" value=""></textarea>
+                                                <textarea type="text" class="form-control" placeholder="Ngôn ngữ ..." rows="2" id="NgonNgu" value=""></textarea>
                                             </div>
                                             <div class="col-sm-12 mb-2">
                                                 <label class="fs-2 form-label m-0">Kinh nghiệm làm việc:</label>
-                                                <textarea type="text" class="form-control" placeholder="Kinh nghiệm làm việc ..." rows="2" id="KinhNghiemLamViec" value=""></textarea>
+                                                <textarea id="editor"></textarea>
+                                                @* <textarea type="text" class="form-control" placeholder="Kinh nghiệm làm việc ..." rows="2" id="KinhNghiemLamViec" value=""></textarea> *@
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
                                     </div>
                                 </div>
                             </div>
@@ -489,26 +437,3 @@
     </div>
 </div>
 
-<div class="modal fade" id="editer" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header d-flex align-items-center">
-                <h4 class="modal-title" id="myLargeModalLabel">
-                    Bài viết
-                </h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <textarea id="editor"></textarea>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary waves-effect text-start">
-                    Lưu và kết thúc
-                </button>
-                <button type="button" class="btn bg-danger-subtle text-danger  waves-effect text-start" data-bs-dismiss="modal">
-                    Đóng
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
