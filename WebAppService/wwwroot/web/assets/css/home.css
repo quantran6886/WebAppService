@@ -308,6 +308,24 @@
     -webkit-text-fill-color: transparent;
     display: inline-block;
 }
+#slider1 {
+    scroll-behavior: smooth;
+    gap: 30px;
+    padding-bottom: 10px;
+}
+
+    #slider1::-webkit-scrollbar {
+        display: none; 
+    }
+.animated{
+    margin:0px;
+}
+.fa{
+    color:#FF7F22;
+}
+.for-more{
+    text-align:center;
+}
 @media (max-width: 576px) {
     /* CSS dành cho mobile */
     .box-item {
@@ -414,4 +432,44 @@
         font-weight: 700;
 
     }
+    .doctor-note2 {
+        position: relative;
+        height: 100%;
+    }
+    .swiper {
+        width: 100%;
+        height: 100%;
+    }
+    .swiper1{
+        margin-left:10px
+    }
+    .sub_video{
+        height:77px;
+    }
+    .post-thumb2 {
+        width: 138px;
+        margin-right:10px;
+        
+    }
+    .text-c-2 {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2; /* Số dòng muốn hiển thị */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.5em; /* Có thể chỉnh tùy font */
+        max-height: 4.5em;
+    }
+    #sliderContainer {
+        max-height: 270px;
+        overflow-y: auto;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none;
+    }
+    item_vd {
+        padding: 0px;
+        margin-left: 16px;
+    }
+    
+
 }

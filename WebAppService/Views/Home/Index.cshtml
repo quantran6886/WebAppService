@@ -12,6 +12,22 @@
                 behavior: 'smooth'
             });
         }
+         var swiper = new Swiper(".mySwiper1", {
+          spaceBetween: 30,
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+          breakpoints: {
+            0: {
+              slidesPerView: 1.5,
+            },
+            768: {
+              slidesPerView: 3,
+            }
+          }
+        });
+        ///
     </script>
 }
 
@@ -112,68 +128,6 @@
                     <div class="btn_sv mt-20">
                         <a href="#" class="main-menu d-lg-inline btn-orrange">Xem thêm</a>
                     </div>
-                    <div class="col-lg-8 row d-block d-md-none doctor-note">
-                        <article class="col-lg-4 wow fadeIn   animated" style="visibility: visible; animation-name: fadeIn;">
-                            <div class="border-radius-10 p-0 mb-30">
-                                <div class="post-thumb d-flex mb-15 border-radius-5 img-hover-scale">
-                                    <a href="single.html">
-                                        <img class="border-radius-5" src="/root/seo1.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="pl-10 pr-10">
-                                    <div class="post-title mb-10 text-limit-3-row">
-                                        <a href="#" class="text-c-3">10 Reasons to invest in SEO copywriting services</a>
-                                    </div>
-                                    <div class="">
-                                        <p class="post-exerpt text-c-2 text-limit-3-row">Agency life. We’ve all seen the photos posted on social media – the cool....</p>
-                                    </div>
-                                    <div>
-                                        <a href="single.html" class="read-more">Xem thêm</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="col-lg-4 wow fadeIn   animated" style="visibility: visible; animation-name: fadeIn;">
-                            <div class="border-radius-10 p-0 mb-30">
-                                <div class="post-thumb d-flex mb-15 border-radius-5 img-hover-scale">
-                                    <a href="single.html">
-                                        <img class="border-radius-5" src="/root/seo1.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="pl-10 pr-10">
-                                    <div class="post-title mb-10 text-limit-3-row">
-                                        <a href="#" class="text-c-3">10 Reasons to invest in SEO copywriting services</a>
-                                    </div>
-                                    <div class="">
-                                        <p class="post-exerpt text-c-2 text-limit-3-row">Agency life. We’ve all seen the photos posted on social media – the cool....</p>
-                                    </div>
-                                    <div>
-                                        <a href="single.html" class="read-more">Xem thêm</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="col-lg-4 wow fadeIn   animated" style="visibility: visible; animation-name: fadeIn;">
-                            <div class="border-radius-10 p-0 mb-30">
-                                <div class="post-thumb d-flex mb-15 border-radius-5 img-hover-scale">
-                                    <a href="single.html">
-                                        <img class="border-radius-5" src="/root/seo1.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="pl-10 pr-10">
-                                    <div class="post-title mb-10 text-limit-3-row">
-                                        <a href="#" class="text-c-3">10 Reasons to invest in SEO copywriting services</a>
-                                    </div>
-                                    <div class="">
-                                        <p class="post-exerpt text-c-2 text-limit-3-row">Agency life. We’ve all seen the photos posted on social media – the cool....</p>
-                                    </div>
-                                    <div>
-                                        <a href="single.html" class="read-more">Xem thêm</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
 
                 </div>
             </div>
@@ -247,15 +201,15 @@
                 </div>
             </article>
         </div>
-        <div class="pagination-area mb-30">
-            Xem thêm
+        <div class="for-more pagination-area mb-30">
+            Xem thêm >
         </div>
     </div>
 </div>
 
 <!-- tại sao chọn chúng tôi -->
 <div class="question-doctor" style="background:#F9FCFF">
-    <div class="container pt-30 pb-100">
+    <div class="container pt-30 pb-50">
         <div class="row align-items-center">
             <!-- Bên trái: nội dung lý do -->
             <div class="col-md-12">
@@ -322,7 +276,7 @@
 </div>
 
 <!-- Câu chuyện của khách hàng -->
-<div class="message-client hide-on-mobile">
+<div class="message-client">
     <div class="container px-30 py-2 container-mobile">
         <div class="archive-header text-center mb-30 mt-10">
             <div class="container">
@@ -334,7 +288,7 @@
                 </p>
             </div>
         </div>
-        <div class="row" id="">
+        <div class="row hide-on-mobile">
             <div class="related-services">
                 <button class="nav-button nav-left" onclick="scrollSlider(-1)">❮</button>
                 <button class="nav-button nav-right" onclick="scrollSlider(1)">❯</button>
@@ -418,6 +372,71 @@
                 </div>
             </div>
         </div>
+
+        <div class="row d-block d-md-none">
+                <div class="">
+                    <!-- 1 -->
+                    <div class="service-card justify-items-center">
+                        <a href="single.html" class="client-img-wrapper img-client-boder">
+                            <img src="/root/img-client.png" class="img-client-boder" alt="">
+                        </a>
+                        <div class="service-content text-center">
+                            <div class="bottom-line mb-10">
+                                <h3>Linda Ngo</h3>
+                            </div>
+                            <p>“Sau ca phẫu thuật đầu gối, sự tiện lợi của dịch vụ tư vấn trực tuyến đã giúp quá trình hồi phục của tôi diễn ra suôn sẻ hơn tôi tưởng.”</p>
+                            <div class="">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 1 -->
+                    <div class="service-card justify-items-center">
+                        <a href="single.html" class="client-img-wrapper img-client-boder">
+                            <img src="/root/img-client.png" class="img-client-boder" alt="">
+                        </a>
+                        <div class="service-content text-center">
+                            <div class="bottom-line mb-10">
+                                <h3>Linda Ngo</h3>
+                            </div>
+                            <p>“Sau ca phẫu thuật đầu gối, sự tiện lợi của dịch vụ tư vấn trực tuyến đã giúp quá trình hồi phục của tôi diễn ra suôn sẻ hơn tôi tưởng.”</p>
+                            <div class="">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 1 -->
+                    <div class="service-card justify-items-center">
+                        <a href="single.html" class="client-img-wrapper img-client-boder">
+                            <img src="/root/img-client.png" class="img-client-boder" alt="">
+                        </a>
+                        <div class="service-content text-center">
+                            <div class="bottom-line mb-10">
+                                <h3>Linda Ngo</h3>
+                            </div>
+                            <p>“Sau ca phẫu thuật đầu gối, sự tiện lợi của dịch vụ tư vấn trực tuyến đã giúp quá trình hồi phục của tôi diễn ra suôn sẻ hơn tôi tưởng.”</p>
+                            <div class="">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+                    <!-- 1 -->
+                 
+                </div>
+            </div>
     </div>
 </div>
 
@@ -454,7 +473,8 @@
                         </div>
                     </article>
                 </div>
-                <div class="col-lg-8 row">
+                @* vacheck *@
+               @*  <div class="col-lg-8 row">
                     <article class="col-lg-4 wow fadeIn  animated" style="visibility: visible; animation-name: fadeIn;">
                         <div class="border-radius-10 p-0 mb-30">
                             <div class="post-thumb d-flex mb-15 border-radius-5 img-hover-scale">
@@ -515,8 +535,95 @@
                             </div>
                         </div>
                     </article>
+                </div> *@
+                @* @vacheck *@
+                <div class="swiper1 mySwiper1 col-lg-8 row" style="overflow:hidden;padding-left:0px">
+                    <div class="swiper-wrapper">
+                        <article class="swiper-slide col-lg-4 col-sm-12 wow fadeIn  animated" style="visibility: visible; animation-name: fadeIn; margin-right:0px;">
+                            <div class="border-radius-10 p-0 mb-30">
+                                <div class="post-thumb d-flex mb-15 border-radius-5 img-hover-scale">
+                                    <a href="single.html">
+                                        <img class="border-radius-5" src="~/root/seo1.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="pl-10 pr-10">
+                                    <div class="post-title mb-10 text-limit-3-row">
+                                        <a href="#" class="text-c-3">10 Reasons to invest in SEO copywriting services</a>
+                                    </div>
+                                    <div class="">
+                                        <p class="post-exerpt text-c-2 text-limit-3-row">Agency life. We’ve all seen the photos posted on social media – the cool....</p>
+                                    </div>
+                                    <div>
+                                        <a href="single.html" class="read-more">Xem thêm</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="swiper-slide col-lg-4 col-sm-12 wow fadeIn  animated" style="visibility: visible; animation-name: fadeIn;">
+                            <div class="border-radius-10 p-0 mb-30">
+                                <div class="post-thumb d-flex mb-15 border-radius-5 img-hover-scale">
+                                    <a href="single.html">
+                                        <img class="border-radius-5" src="~/root/seo1.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="pl-10 pr-10">
+                                    <div class="post-title mb-10 text-limit-3-row">
+                                        <a href="#" class="text-c-3">10 Reasons to invest in SEO copywriting services</a>
+                                    </div>
+                                    <div class="">
+                                        <p class="post-exerpt text-c-2 text-limit-3-row">Agency life. We’ve all seen the photos posted on social media – the cool....</p>
+                                    </div>
+                                    <div>
+                                        <a href="single.html" class="read-more">Xem thêm</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="swiper-slide col-lg-4 col-sm-12 wow fadeIn  animated" style="visibility: visible; animation-name: fadeIn;">
+                            <div class="border-radius-10 p-0 mb-30">
+                                <div class="post-thumb d-flex mb-15 border-radius-5 img-hover-scale">
+                                    <a href="single.html">
+                                        <img class="border-radius-5" src="~/root/seo1.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="pl-10 pr-10">
+                                    <div class="post-title mb-10 text-limit-3-row">
+                                        <a href="#" class="text-c-3">10 Reasons to invest in SEO copywriting services</a>
+                                    </div>
+                                    <div class="">
+                                        <p class="post-exerpt text-c-2 text-limit-3-row">Agency life. We’ve all seen the photos posted on social media – the cool....</p>
+                                    </div>
+                                    <div>
+                                        <a href="single.html" class="read-more">Xem thêm</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="swiper-slide col-lg-4 col-sm-12 wow fadeIn  animated" style="visibility: visible; animation-name: fadeIn;">
+                            <div class="border-radius-10 p-0 mb-30">
+                                <div class="post-thumb d-flex mb-15 border-radius-5 img-hover-scale">
+                                    <a href="single.html">
+                                        <img class="border-radius-5" src="~/root/seo1.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="pl-10 pr-10">
+                                    <div class="post-title mb-10 text-limit-3-row">
+                                        <a href="#" class="text-c-3">10 Reasons to invest in SEO copywriting services</a>
+                                    </div>
+                                    <div class="">
+                                        <p class="post-exerpt text-c-2 text-limit-3-row">Agency life. We’ve all seen the photos posted on social media – the cool....</p>
+                                    </div>
+                                    <div>
+                                        <a href="single.html" class="read-more">Xem thêm</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
                 </div>
+                @* vacheck *@
             </div>
+            <div class="for-more">xem thêm</div>
         </div>
     </div>
 </div>
@@ -549,12 +656,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 row">
-                    <div class="col-lg-12">
+               
+                <div class="col-lg-6 row mt-15" id="sliderContainer">
+
+                    <div class="item_vd col-lg-12"  >
                         <article class="p-0 background-white border-radius-10 mb-15 mr-15 wow fadeIn animated">
-                            <div class="d-flex">
-                                <div class="post-thumb d-flex border-radius-5 p-0 img-hover-scale col-sm-6">
-                                    <div class="img-hover-scale border-radius-10 position-relative overflow-hidden">
+                            <div class="sub_video d-flex">
+                                <div class="post-thumb2 d-flex border-radius-5 p-0 img-hover-scale col-sm-6">
+                                    <div class="img-hover-scale border-radius-10 position-relative overflow-hidden" id="img_dv">
                                         <a href="single.html">
                                             <img class="border-radius-10 w-100" src="~/root/imgserve2.png" height="150px" style="width:100%" alt="post-slider">
                                         </a>
@@ -566,7 +675,7 @@
                                     </div>
                                 </div>
                                 <div class="post-content media-body col-sm-6 p-0">
-                                    <small class="post-title font-weight-500 mb-10 text-limit-2-row"><a href="#" class="text-c-4">Cách Phòng Bệnh Hiệu Quả Mùa Thay Đổi Thời Tiết</a></small>
+                                    <small class="post-title font-weight-500 text-limit-2-row"><a href="#" class="text-c-4">Cách Phòng Bệnh Hiệu Quả Mùa Thay Đổi Thời Tiết</a></small>
                                     <div class="entry-meta meta-1 flex-column font-x-small text-capitalize mb-10">
                                         <span class="mr-1 ml-1 text-c-2  text-limit-3-row ">Mỗi khi giao mùa, cơ thể rất dễ bị cảm lạnh, sốt, dị ứng… Bài viết này sẽ hướng dẫn bạn cách bảo vệ bản thân và gia đình hiệu quả.</span>
                                     </div>
@@ -574,13 +683,13 @@
                             </div>
                         </article>
                     </div>
-                    <div class="col-lg-12">
+                    <div class="item_vd col-lg-12">
                         <article class="p-0 background-white border-radius-10 mb-15 mr-15 wow fadeIn animated">
-                            <div class="d-flex">
-                                <div class="post-thumb d-flex border-radius-5 p-0 img-hover-scale col-sm-6">
+                            <div class="sub_video d-flex">
+                                <div class="post-thumb2 d-flex border-radius-5 p-0 img-hover-scale col-sm-6">
                                     <div class="img-hover-scale border-radius-10 position-relative overflow-hidden">
                                         <a href="single.html">
-                                            <img class="border-radius-10 w-100" src="~/root/imgserve2.png" height="150px" alt="post-slider">
+                                            <img class="border-radius-10 " src="~/root/imgserve2.png" height="150px width:100%" alt="post-slider">
                                         </a>
                                         <div class="play_btn play_btn_small position-absolute top-50 start-50 translate-middle">
                                             <a class="play-video" href="https://vimeo.com/333834999">
@@ -590,7 +699,31 @@
                                     </div>
                                 </div>
                                 <div class="post-content media-body col-sm-6 p-0">
-                                    <small class="post-title font-weight-500 mb-10 text-limit-2-row"><a href="#" class="text-c-4">Cách Phòng Bệnh Hiệu Quả Mùa Thay Đổi Thời Tiết</a></small>
+                                    <small class="post-title font-weight-500 text-limit-2-row"><a href="#" class="text-c-4">Cách Phòng Bệnh Hiệu Quả Mùa Thay Đổi Thời Tiết</a></small>
+                                    <div class="entry-meta meta-1 flex-column font-x-small text-capitalize mb-10">
+                                        <span class="mr-1 ml-1 text-c-2  ">Mỗi khi giao mùa, cơ thể rất dễ bị cảm lạnh, sốt, dị ứng… Bài viết này sẽ hướng dẫn bạn cách bảo vệ bản thân và gia đình hiệu quả.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="item_vd col-lg-12"  >
+                        <article class="p-0 background-white border-radius-10 mb-15 mr-15 wow fadeIn animated">
+                            <div class="sub_video d-flex">
+                                <div class="post-thumb2 d-flex border-radius-5 p-0 img-hover-scale col-sm-6">
+                                    <div class="img-hover-scale border-radius-10 position-relative overflow-hidden" id="img_dv">
+                                        <a href="single.html">
+                                            <img class="border-radius-10 w-100" src="~/root/imgserve2.png" height="150px" style="width:100%" alt="post-slider">
+                                        </a>
+                                        <div class="play_btn play_btn_small position-absolute top-50 start-50 translate-middle">
+                                            <a class="play-video" href="https://vimeo.com/333834999">
+                                                <i class="fa fa-play"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="post-content media-body col-sm-6 p-0">
+                                    <small class="post-title font-weight-500 text-limit-2-row"><a href="#" class="text-c-4">Cách Phòng Bệnh Hiệu Quả Mùa Thay Đổi Thời Tiết</a></small>
                                     <div class="entry-meta meta-1 flex-column font-x-small text-capitalize mb-10">
                                         <span class="mr-1 ml-1 text-c-2  text-limit-3-row ">Mỗi khi giao mùa, cơ thể rất dễ bị cảm lạnh, sốt, dị ứng… Bài viết này sẽ hướng dẫn bạn cách bảo vệ bản thân và gia đình hiệu quả.</span>
                                     </div>
@@ -598,7 +731,82 @@
                             </div>
                         </article>
                     </div>
+                    <div class="item_vd col-lg-12"  >
+                        <article class="p-0 background-white border-radius-10 mb-15 mr-15 wow fadeIn animated">
+                            <div class="sub_video d-flex">
+                                <div class="post-thumb2 d-flex border-radius-5 p-0 img-hover-scale col-sm-6">
+                                    <div class="img-hover-scale border-radius-10 position-relative overflow-hidden" id="img_dv">
+                                        <a href="single.html">
+                                            <img class="border-radius-10 w-100" src="~/root/imgserve2.png" height="150px" style="width:100%" alt="post-slider">
+                                        </a>
+                                        <div class="play_btn play_btn_small position-absolute top-50 start-50 translate-middle">
+                                            <a class="play-video" href="https://vimeo.com/333834999">
+                                                <i class="fa fa-play"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="post-content media-body col-sm-6 p-0">
+                                    <small class="post-title font-weight-500 text-limit-2-row"><a href="#" class="text-c-4">Cách Phòng Bệnh Hiệu Quả Mùa Thay Đổi Thời Tiết</a></small>
+                                    <div class="entry-meta meta-1 flex-column font-x-small text-capitalize mb-10">
+                                        <span class="mr-1 ml-1 text-c-2  text-limit-3-row ">Mỗi khi giao mùa, cơ thể rất dễ bị cảm lạnh, sốt, dị ứng… Bài viết này sẽ hướng dẫn bạn cách bảo vệ bản thân và gia đình hiệu quả.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="item_vd col-lg-12"  >
+                        <article class="p-0 background-white border-radius-10 mb-15 mr-15 wow fadeIn animated">
+                            <div class="sub_video d-flex">
+                                <div class="post-thumb2 d-flex border-radius-5 p-0 img-hover-scale col-sm-6">
+                                    <div class="img-hover-scale border-radius-10 position-relative overflow-hidden" id="img_dv">
+                                        <a href="single.html">
+                                            <img class="border-radius-10 w-100" src="~/root/imgserve2.png" height="150px" style="width:100%" alt="post-slider">
+                                        </a>
+                                        <div class="play_btn play_btn_small position-absolute top-50 start-50 translate-middle">
+                                            <a class="play-video" href="https://vimeo.com/333834999">
+                                                <i class="fa fa-play"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="post-content media-body col-sm-6 p-0">
+                                    <small class="post-title font-weight-500 text-limit-2-row"><a href="#" class="text-c-4">Cách Phòng Bệnh Hiệu Quả Mùa Thay Đổi Thời Tiết</a></small>
+                                    <div class="entry-meta meta-1 flex-column font-x-small text-capitalize mb-10">
+                                        <span class="mr-1 ml-1 text-c-2  text-limit-3-row ">Mỗi khi giao mùa, cơ thể rất dễ bị cảm lạnh, sốt, dị ứng… Bài viết này sẽ hướng dẫn bạn cách bảo vệ bản thân và gia đình hiệu quả.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="item_vd col-lg-12"  >
+                        <article class="p-0 background-white border-radius-10 mb-15 mr-15 wow fadeIn animated">
+                            <div class="sub_video d-flex">
+                                <div class="post-thumb2 d-flex border-radius-5 p-0 img-hover-scale col-sm-6">
+                                    <div class="img-hover-scale border-radius-10 position-relative overflow-hidden" id="img_dv">
+                                        <a href="single.html">
+                                            <img class="border-radius-10 w-100" src="~/root/imgserve2.png" height="150px" style="width:100%" alt="post-slider">
+                                        </a>
+                                        <div class="play_btn play_btn_small position-absolute top-50 start-50 translate-middle">
+                                            <a class="play-video" href="https://vimeo.com/333834999">
+                                                <i class="fa fa-play"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="post-content media-body col-sm-6 p-0">
+                                    <small class="post-title font-weight-500 text-limit-2-row"><a href="#" class="text-c-4">Cách Phòng Bệnh Hiệu Quả Mùa Thay Đổi Thời Tiết</a></small>
+                                    <div class="entry-meta meta-1 flex-column font-x-small text-capitalize mb-10">
+                                        <span class="mr-1 ml-1 text-c-2  text-limit-3-row ">Mỗi khi giao mùa, cơ thể rất dễ bị cảm lạnh, sốt, dị ứng… Bài viết này sẽ hướng dẫn bạn cách bảo vệ bản thân và gia đình hiệu quả.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                 >
                 </div>
+               
+
             </div>
         </div>
     </div>
