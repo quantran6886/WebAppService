@@ -1,0 +1,113 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/root/404.png" rel="icon" />
+    <title>Không tìm thấy trang</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .logo {
+            position: absolute;
+            top: 30px;
+            left: 70px;
+        }
+
+            .logo img {
+                height: 50px;
+            }
+
+        .error-container {
+            text-align: center;
+            margin-top: 200px;
+        }
+
+        .error-image img {
+            background: #48b5ae;
+            width: 350px;
+            height: 350px;
+            border-radius: 100%;
+            max-width: 100%;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .back-button {
+            margin-top: 20px;
+        }
+
+            .back-button button {
+                background-color: #ff6b2c;
+                color: white;
+                border: none;
+                padding: 12px 24px;
+                font-size: 14px;
+                border-radius: 6px;
+                cursor: pointer;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+
+        .decor {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(to bottom, #9bf3f0, #4ecdc4);
+            z-index: -1;
+        }
+
+            .decor.left {
+                top: 20%;
+                left: -90px;
+            }
+
+            .decor.right {
+                bottom: 5%;
+                right: -40px;
+            }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <img src="~/web/images/Group.png" alt="Sun Medical Center Logo">
+    </div>
+    <div class="decor left"></div>
+    <div class="decor right"></div>
+    <div class="error-container">
+        <div class="error-image">
+            <img src="~/root/404.png" alt="Doctor illustration">
+            <!-- Bạn có thể thay ảnh bằng ảnh trong hệ thống bạn -->
+        </div>
+        <h2>Đã xảy ra lỗi.</h2>
+        <p>Rất tiếc, chúng tôi không tìm thấy trang bạn đang tìm kiếm.</p>
+        <div class="back-button">
+            <button onclick="window.location.href='/'">Trở lại trang chủ</button>
+        </div>
+    </div>
+
+</body>
+</html>

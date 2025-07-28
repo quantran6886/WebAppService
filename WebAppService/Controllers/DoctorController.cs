@@ -16,7 +16,7 @@ namespace clinic_website.Controllers
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                return BadRequest("Không tìm thấy thông tin.");
+                return RedirectToAction("NotFound", "NotFound");
             }
             var  record = db.WebNhanSus.FirstOrDefault(c => c.IdNhanSu.ToString() == id);
             return View(record);

@@ -1,19 +1,20 @@
 ﻿<div class="container p-0">
     <div class="row">
-        <div class="col-lg-3 col-md-3 ">
+        <div class="col-lg-3 col-md-3" id="menuMDesk">
             <div class="header-logo d-none d-lg-block">
                 <a href="/Home/Index">
                     <img class="logo-img d-inline p-2" src="~/web/images/Group.png" width="255px" alt="">
                 </a>
             </div>
-            <div class="logo-tablet d-md-inline d-lg-none d-none">
-                <a href="/Home/Index">
-                    <img class="logo-img d-inline" src="~/web/images/Group.png" alt="">
-                </a>
-            </div>
             <div class="logo-mobile d-block d-md-none">
                 <a href="/Home/Index">
-                    <img class="logo-img d-inline" src="~/web/images/Group.png" width="200" alt="">
+                    @* <img src="~/root/mb.png" /> *@
+                    <img class="logo-img d-inline"
+                         id="logoImage"
+                         src="@Url.Content("~/web/images/Group.png")"
+                         data-alt-src="@Url.Content("~/root/mb.png")"
+                         width="200"
+                         alt="">
                 </a>
             </div>
         </div>
@@ -36,9 +37,9 @@
                         <img class="ml-3 img-fluid icon-langue3" src="https://flagcdn.com/gb.svg" alt="UK Flag">
                     </li>
                     <li class="mt-20 mb-20"><a href="#" class="main-menu d-lg-inline btn-orrange ml-2" style="width:fit-content">Đăng Nhập tài khoản</a></li>
-                    <li class="cat-item txt-mobile col-12 p-0"><a href="#"><i class="fa fa-map-marker"></i> Ha Noi, Viet Nam</a></li>
-                    <li class="cat-item txt-mobile col-12 p-0"><a href="#"><i class="fa fa-envelope"></i> support@carelink.com</a></li>
-                    <li class="cat-item txt-mobile col-12 p-0"><a href="#"><i class="fa fa-phone"></i> +62 864 6444 2222</a></li>
+                    <li class="cat-item txt-mobile col-12 p-0"><a href="#"><i class="fa fa-map-marker text-white"></i> Ha Noi, Viet Nam</a></li>
+                    <li class="cat-item txt-mobile col-12 p-0"><a href="#"><i class="fa fa-envelope text-white"></i> support@carelink.com</a></li>
+                    <li class="cat-item txt-mobile col-12 p-0"><a href="#"><i class="fa fa-phone text-white"></i> +62 864 6444 2222</a></li>
                 </ul>
                 <nav>
                     <ul class="main-menu d-none d-lg-inline">

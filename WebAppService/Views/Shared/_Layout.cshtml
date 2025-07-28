@@ -171,16 +171,30 @@
     <script src="~/web/assets/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-
     <script type="text/javascript">
-        $(document).ready(function () {
+        window.onload = function () {
             const menuIcon = document.getElementById("menuToggle");
-          if (menuIcon) {
+            const logoWrapper = document.getElementById("menuMDesk");
+            const logoImage = document.getElementById("logoImage");
+            if (menuIcon && logoWrapper && logoImage) {
             menuIcon.addEventListener("click", function () {
-              this.classList.toggle("active");
+                this.classList.toggle("active");
+                logoWrapper.classList.toggle("header-colored");
+
+                const currentSrc = logoImage.getAttribute("src");
+                const altSrc = logoImage.getAttribute("data-alt-src");
+
+                logoImage.setAttribute("src", altSrc);
+                logoImage.setAttribute("data-alt-src", currentSrc);
             });
-          }
-        });
+            } else {
+            console.warn("Không tìm thấy phần tử:", {
+                menuIcon,
+                logoWrapper,
+                logoImage
+            });
+            }
+        };
     </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

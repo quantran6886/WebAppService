@@ -22,13 +22,13 @@ namespace clinic_website.Controllers
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                return BadRequest("Không tìm thấy thông tin.");
+                return RedirectToAction("NotFound", "NotFound");
             }
 
             var record = db.WebDichVus.FirstOrDefault(c => c.IdDichVu.ToString() == id);
             if (record == null)
             {
-                return NotFound("Không tìm thấy dịch vụ.");
+                return RedirectToAction("NotFound", "NotFound");
             }
 
             var listData = db.WebDichVus

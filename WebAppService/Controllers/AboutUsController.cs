@@ -12,7 +12,7 @@ namespace WebAppService.Controllers
 
             if (record == null)
             {
-                return NotFound("Không tìm thấy thông tin.");
+                return RedirectToAction("NotFound", "NotFound");
             }
 
             return View(record);

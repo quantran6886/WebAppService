@@ -231,8 +231,15 @@
     }
 
     /* Toggle trạng thái "active" */
+    .header-colored {
+        background-color: #009f9c;
+        transition: background-color 0.3s ease;
+    }
     .menu-icon.active span:nth-child(1) {
         transform: rotate(45deg) translate(7px, 4px);
+        color: white !important;
+        background: white;
+        width: 18px;
     }
 
     .menu-icon.active span:nth-child(2) {
@@ -241,7 +248,9 @@
 
     .menu-icon.active span:nth-child(3) {
         transform: rotate(-45deg) translate(8px, -6px);
-        width: 30px;
+        width: 18px;
+        color: white !important;
+        background: white;
     }
 
     .menu-icon span:nth-child(1) {
