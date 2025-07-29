@@ -35,7 +35,7 @@ namespace clinic_website.Controllers
                 {
                     c.IdNhanSu,
                     c.NameImage,
-                    c.UrlImage,
+                    UrlImage = c.UrlImage != null ? c.UrlImage : "/root/6388000.png",
                     c.HoTen,
                     c.BangCapHocVi,
                     c.DonViKhoa,

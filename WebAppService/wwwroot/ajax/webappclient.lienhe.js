@@ -4,7 +4,6 @@
 
 connectionNoti.on("ReceiveNotification", function (message) {
 });
-
 function SendForm() {
     var ho_ten = $("#ho_ten").val();
     var so_dien_thoai = $("#so_dien_thoai").val();
@@ -21,21 +20,43 @@ function SendForm() {
         return;
     }
 
-    $.ajax({
-        type: "POST",
-        url: "/LienHe/GuiThongBao",
-        data: {
-            ho_ten: ho_ten,
-            so_dien_thoai: so_dien_thoai,
-            email: email,
-            loi_nhan: loi_nhan
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: "swal2-cancel btn main-menu border-radius-5 d-lg-inline btn-orrange p-20",
+            cancelButton: "swal2-cancel btn main-menu border-radius-5 d-lg-inline btn-orrange p-20 mr-10",
         },
-        success: function () {
-            alert("Đã gửi!");
-            $("#ho_ten").val('');
-            $("#so_dien_thoai").val('');
-            $("#email").val('');
-            $("#loi_nhan").val('');
-        }
+        buttonsStyling: false,
     });
+
+    swalWithBootstrapButtons
+        .fire({
+            title: "Thông báo?",
+            text: "Bạn có muốn đang ký lịch khám không?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Đồng ý",
+            cancelButtonText: "Hủy",
+            reverseButtons: true,
+        })
+        .then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: "/LienHe/GuiThongBao",
+                    data: {
+                        ho_ten: ho_ten,
+                        so_dien_thoai: so_dien_thoai,
+                        email: email,
+                        loi_nhan: loi_nhan
+                    },
+                    success: function () {
+                        alert("Đã gửi!");
+                        $("#ho_ten").val('');
+                        $("#so_dien_thoai").val('');
+                        $("#email").val('');
+                        $("#loi_nhan").val('');
+                    }
+                });
+            }
+        });
 }

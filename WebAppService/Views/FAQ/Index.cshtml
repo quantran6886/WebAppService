@@ -1,8 +1,12 @@
 ﻿<link href="~/web/assets/css/faqs.css" rel="stylesheet" />
+<link href="~/assets/libs/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" />
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dot/doT.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <script src="~/assets/libs/sweetalert2/dist/sweetalert2.min.js"></script>
     <script src="~/ajax/webappclient.faqs.js"></script>
+    <script src="~/ajax/webappclient.lienhe.js"></script>
 }
 <div class="entry-header entry-header-2 mb-3 mt-0 text-center">
     <div class="thumb-overlay img-hover-slide position-relative" style="background-image: url(/web/assets/imgs/farme.png)">
@@ -37,7 +41,7 @@
                             <img src="@Url.Content("~/root/imglh.png")" alt="Doctor" class="doctor-overlay">
                         </div>
                     </div>
-                    <div class="form col-md-8 position-absolute tranform-x  px-form bg-form">
+                    <div class="form col-md-8 position-absolute tranform-x  px-form bg-form" style="z-index:100">
                         <div class="txt-dkk">Đăng ký khám, nhận thông tin mới từ chúng tôi!</div>
                         <div class="mt-30 row">
                             <div class="col-md-6 p-0">

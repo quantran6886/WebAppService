@@ -2,9 +2,10 @@
     ViewData["Title"] = "LienHe";
 }
 <link href="~/web/assets/css/lienhe.css" rel="stylesheet" />
-
+<link href="~/assets/libs/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" />
 @section Scripts {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <script src="~/assets/libs/sweetalert2/dist/sweetalert2.min.js"></script>
     <script src="~/ajax/webappclient.lienhe.js"></script>
 }
 
@@ -56,13 +57,19 @@
                                 <img src="@Url.Content("~/root/imglh.png")" alt="Doctor" class="doctor-overlay">
                             </div>
                         </div>
-                        <div class="form col-md-8 position-absolute tranform-x  px-form bg-form">
+                        <div class="form col-md-8 position-absolute tranform-x  px-form bg-form" style="z-index:100">
                             <div class="txt-dkk">Đăng ký khám, nhận thông tin mới từ chúng tôi!</div>
                             <div class="mt-30 row">
                                 <div class="col-md-6 p-0">
                                     <div class="col-md-12 form-group">
-                                        <span class="me-3"><input type="radio" name="gender" checked> Ông</span>
-                                        <span><input type="radio" name="gender"> Bà</span>
+                                        <span class="me-3">
+                                            <input type="radio" name="gender" id="gender-male" value="male" checked>
+                                            <label for="gender-male">Ông</label>
+                                        </span>
+                                        <span>
+                                            <input type="radio" name="gender" id="gender-female" value="female">
+                                            <label for="gender-female">Bà</label>
+                                        </span>
                                     </div>
                                     <div class="form-group col-md-12">
                                         <input type="text" class="form-control" id="ho_ten" placeholder="Nhập tên của bạn...">

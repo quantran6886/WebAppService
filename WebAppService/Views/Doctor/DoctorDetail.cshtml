@@ -10,12 +10,18 @@
         <div class="row">
             <div class="profile-image col-md-6 col-12">
                 <div class="post-thumb d-flex img-hover-scale doctor-avartar">
-                <img src="@Model.UrlImage" alt="@Model.HoTen" class="img-fluid img-respone-service" />
+                    @if (Model.UrlImage != null)
+                    {   <img src="@Model.UrlImage" alt="@Model.HoTen" class="img-fluid img-respone-service" />
+                    }
+                    else
+                    {
+                        <img src="/root/6388000.png" alt="@Model.HoTen" class="img-fluid img-respone-service" />
+                    }
                 </div>
                 <div class="degree-title">@Model.ChucDanh</div>
             </div>
             <div class="profile-info col-md-6 col-12">
-                <div class="name"><strong>@Model.HoTen</strong></div>
+                <div class="name">@Model.HoTen</div>
                 <h4 class="department">@Model.DonViKhoa </h4>
 
                 <div class="section">

@@ -28,9 +28,54 @@
     z-index: 500;
     position: relative;
 }
+.main-header .main-nav ul li a {
+    position: relative;
+    color: #171616;
+    font-weight: 700;
+    padding: 0;
+    display: block;
+    font-size: 14px;
+    -webkit-transition: all .2s ease-out 0s;
+    -moz-transition: all .2s ease-out 0s;
+    -ms-transition: all .2s ease-out 0s;
+    -o-transition: all .2s ease-out 0s;
+    transition: all .2s ease-out 0s;
+    font-family: 'Nunito', sans-serif;
+    line-height: 1.5;
+    line-height: 60px;
+}
 
 @media screen and (max-width: 768px) {
     .bg-mobile {
         background: #009f9c
+    }
+    .btn-login {
+        font-size: 13px !important;
+        font-weight: 600;
+    }
+}
+
+
+@media (max-width: 1192px) {
+    .btn-login {
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .main-header .main-nav ul li a {
+        position: relative;
+        color: #171616;
+        font-weight: 700;
+        padding: 0;
+        display: block;
+        font-size: 12px;
+        -webkit-transition: all .2s ease-out 0s;
+        -moz-transition: all .2s ease-out 0s;
+        -ms-transition: all .2s ease-out 0s;
+        -o-transition: all .2s ease-out 0s;
+        transition: all .2s ease-out 0s;
+        font-family: 'Nunito', sans-serif;
+        line-height: 1.5;
+        line-height: 60px;
     }
 }
