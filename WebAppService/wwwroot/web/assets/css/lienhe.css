@@ -94,6 +94,10 @@
 .mx-main{
     margin-top: 50px;
 }
+
+.rc-anchor-normal{
+
+}
 @media screen and (max-width: 768px) {
     .tranform-x {
         transform: translateX(0px);
