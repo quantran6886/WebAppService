@@ -25,7 +25,7 @@
 .form-section-wrapper {
     position: relative;
     background-color: #EDFFFF;
-    height: 350px;
+    height: 450px;
     padding: 0;
 }
 
@@ -37,7 +37,7 @@
 }
 
 .doctor-overlay {
-    width: 442px;
+    width: 520px;
     object-fit: contain;
 }
 
