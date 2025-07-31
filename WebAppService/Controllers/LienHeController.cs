@@ -9,6 +9,15 @@ namespace WebAppService.Controllers
     {
         public IActionResult LienHe()
         {
+            var recapchakey = db.SYSVARs.FirstOrDefault(x => x.VARNAME == "RECAPCHAKEY");
+            if (recapchakey != null)
+            {
+                ViewBag.ReCaptchaKey = recapchakey.VARVALUE;
+            }
+            else
+            {
+                ViewBag.ReCaptchaKey = "";
+            }
             return View();
         }
 
