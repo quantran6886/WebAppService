@@ -44,13 +44,30 @@
         .goog-logo-link, .goog-te-gadget-icon {
             display: none !important;
         }
+
+        #loadingOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255,255,255,0.8);
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 
 <body>
     <!-- Preloader Start -->
     <div id="google_translate_element" style="display:none"></div>
-
+    <div id="loadingOverlay">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Đang trong quá trình chuyển đổi...</span>
+        </div>
+    </div>
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
@@ -77,10 +94,11 @@
                     <span><i class="fas fa-envelope"></i> <a href="mailto:support@carelink.com" class="text-white">support@carelink.com</a></span>
                     <span> <a href="tel:628646442222" class="text-white"> <i class="fas fa-phone"></i> +62 864 644 2222</a></span>
                     <div class="flags">
-                        <img src="https://flagcdn.com/vn.svg" alt="Vietnam Flag" onclick="fcTranslate('vi/vi')" >
-                        <img src="https://flagcdn.com/jp.svg" alt="Japan Flag" onclick="fcTranslate('vi/ja')">
-                        <img src="https://flagcdn.com/tw.svg" alt="Taiwan Flag" onclick="fcTranslate('vi/en')">
-                        <img src="https://flagcdn.com/gb.svg" alt="UK Flag">
+                        <img src="https://flagcdn.com/vn.svg" alt="Vietnam" class="translate-btn" data-lang="vi">
+                        <img src="https://flagcdn.com/kr.svg" alt="South Korea Flag" class="translate-btn" data-lang="ko">
+                        <img src="https://flagcdn.com/jp.svg" alt="Japan" class="translate-btn" data-lang="ja">
+                        <img src="https://flagcdn.com/tw.svg" alt="Chinese" class="translate-btn" data-lang="zh-CN">
+                        <img src="https://flagcdn.com/gb.svg" alt="English" class="translate-btn" data-lang="en">
                     </div>
                 </div>
             </div>
@@ -184,24 +202,28 @@
     <script src="~/web/assets/js/vendor/jquery.counterup.min.js"></script>
     <script src="~/web/assets/js/vendor/jquery.theia.sticky.js"></script>
     <script src="~/web/assets/js/main.js"></script>
-    <script src="~/web/assets/js/vendor/tsl.js?cb=googleTranslateElementInit"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <script>
-        function hideGoogleTranslateBar() {
+    <script type="text/javascript">
+           function hideGoogleTranslateBar() {
             const frame = document.querySelector('iframe.goog-te-banner-frame');
             if (frame) {
                 frame.style.display = 'none';
                 document.body.style.top = '0px';
             }
         }
-
-        // Đợi Google Translate load xong rồi ẩn
         window.addEventListener('load', function () {
-            setTimeout(hideGoogleTranslateBar, 1000); // Delay 1 giây
+            setTimeout(hideGoogleTranslateBar, 1000);
         });
-    </script>
-    <script type="text/javascript">
+        function showLoading() {
+            $('#loadingOverlay').fadeIn(200);
+        }
+
+        function hideLoading() {
+            $('#loadingOverlay').fadeOut(200);
+        }
+
         window.onload = function () {
             const menuIcon = document.getElementById("menuToggle");
             const logoWrapper = document.getElementById("menuMDesk");
@@ -225,23 +247,22 @@
             });
             }
         };
-        function fcTranslate(lang) {
-            document.cookie = `googtrans=/${lang}; path=/`;
-            document.cookie = `googtrans=/${lang}; domain=${window.location.hostname}; path=/`;
-              setTimeout(function () {
-            location.reload();
-        }, 300); // Cho cookie có thời gian ghi
-        }
-        function googleTranslateElementInit() {
+    </script>
+    <script type="text/javascript">
+             function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'vi',
-                includedLanguages: 'en,vi,ja,zh-CN,fr,de',
+                includedLanguages: 'en,vi,ja,zh-CN,fr,de,ko',
                 layout: google.translate.TranslateElement.InlineLayout.SIMPLE
             }, 'google_translate_element');
-            $("#:2.container").hide();
-        }
 
+            setTimeout(function () {
+                document.documentElement.classList.remove("translating");
+            },500);
+        }
     </script>
+    <script src="~/web/assets/js/vendor/tsl.js?cb=googleTranslateElementInit"></script>
+    <script src="~/ajax/webappclient.settinghome.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 
