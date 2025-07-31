@@ -18,6 +18,11 @@
                                     <span class="badge text-bg-danger text-white fs-2 me-9 mt-2 px-2 fw-semibold">
                                         Quyền Admin
                                     </span>
+                                }else if (User.IsInRole("SuperAdmin"))
+                                {
+                                    <span class="badge text-bg-success text-white fs-2 me-9 mt-2 px-2 fw-semibold">
+                                        Quyền Super Admin
+                                    </span>
                                 }
                                 else
                                 {

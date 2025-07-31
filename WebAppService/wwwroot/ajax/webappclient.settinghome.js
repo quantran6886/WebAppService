@@ -14,15 +14,17 @@
         var fromLang = 'vi';
         var toLang = lang;
 
-        document.cookie = "googtrans=/" + fromLang + "/" + toLang + "; path=/";
-        document.cookie = "googtrans=/" + fromLang + "/" + toLang + "; domain=" + window.location.hostname + "; path=/";
-
-        showLoading();
-
-        setTimeout(function () {
-            location.reload();
-        }, 500);
+        if (toLang === 'vi') {
+            document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=" + window.location.hostname + "; path=/;";
+            setTimeout(function () { location.reload(); }, 300);
+        } else {
+            document.cookie = "googtrans=/" + fromLang + "/" + toLang + "; path=/;";
+            document.cookie = "googtrans=/" + fromLang + "/" + toLang + "; domain=" + window.location.hostname + "; path=/;";
+            setTimeout(function () { location.reload(); }, 300);
+        }
     }
+
 };
 
 $(document).ready(function () {

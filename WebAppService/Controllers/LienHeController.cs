@@ -7,12 +7,13 @@ namespace WebAppService.Controllers
 {
     public class LienHeController : Controller
     {
+        AppDbContext db = new AppDbContext();
         public IActionResult LienHe()
         {
-            var recapchakey = db.SYSVARs.FirstOrDefault(x => x.VARNAME == "RECAPCHAKEY");
+            var recapchakey = db.WebDanhMucHeThongs.Where(c => c.LoaiDanhMuc == "capcha").FirstOrDefault();
             if (recapchakey != null)
             {
-                ViewBag.ReCaptchaKey = recapchakey.VARVALUE;
+                ViewBag.ReCaptchaKey = recapchakey.TenGoi;
             }
             else
             {
@@ -22,7 +23,6 @@ namespace WebAppService.Controllers
         }
 
         private readonly IHubContext<NotificationHub> _hubContext;
-        AppDbContext db = new AppDbContext();
         public LienHeController(IHubContext<NotificationHub> hubContext)
         {
             _hubContext = hubContext;

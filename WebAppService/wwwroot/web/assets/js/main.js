@@ -1,12 +1,36 @@
-(function($) {
+﻿(function($) {
     'use strict';
 
     // Page loading
-    $(window).on('load', function() {
-        $('#preloader-active').delay(450).fadeOut('slow');
-        $('body').delay(450).css({
-            'overflow': 'visible'
-        });
+    //$(window).on('load', function() {
+    //    $('#preloader-active').delay(550).fadeOut('slow');
+    //    $('body').delay(550).css({
+    //        'overflow': 'visible'
+    //    });
+    //});
+    $(window).on('load', function () {
+        const isUsingTranslate = document.cookie.indexOf('googtrans') > -1;
+        if (isUsingTranslate) {
+            let waited = 0;
+            const waitForTranslation = () => {
+                const hasGoogleTranslateSpan = document.querySelector('body span[lang]') !== null;
+                const hasTranslateIframe = document.querySelector('iframe.goog-te-banner-frame') !== null;
+
+                if (hasGoogleTranslateSpan || hasTranslateIframe || waited >= 550) {
+                    $('#preloader-active').addClass('hidden');
+                    $('body').css({ 'overflow': 'visible' });
+                } else {
+                    waited += 50;
+                    setTimeout(waitForTranslation, 80);
+                }
+            };
+            waitForTranslation();
+        } else {
+            setTimeout(function () {
+                $('#preloader-active').addClass('hidden');
+                $('body').css({ 'overflow': 'visible' });
+            }, 300);
+        }
     });
 
     // Scroll progress

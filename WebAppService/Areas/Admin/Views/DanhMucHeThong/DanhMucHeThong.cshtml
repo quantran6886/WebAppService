@@ -30,6 +30,11 @@
                         <option value="Danh mục chức danh">Danh mục chức danh</option>
                         <option value="Danh mục nhóm bài viết">Danh mục nhóm bài viết</option>
                         <option value="Danh mục bài đăng">Danh mục bài đăng</option>
+                        @if (User.IsInRole("SuperAdmin"))
+                        {
+                        <option value="capcha"> reCAPTCHA</option>
+                        }
+                        
                     </select>
                 </div>
                 <div class="card-body p-2 pt-0">
