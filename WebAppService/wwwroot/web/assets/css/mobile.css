@@ -53,6 +53,32 @@
         font-size: 13px !important;
         font-weight: 600;
     }
+    .sub-menu-lst {
+        font-weight: 400 !important;
+        font-size: 14px;
+        font-family: 'Inter';
+    }
+    .slicknav_arrow {
+        font-size: 0 !important;
+        position: relative;
+    }
+
+    /* Hiển thị icon Font Awesome (chevron-down) */
+    .slicknav_arrow::before {
+        content: "\f078"; /* fa-chevron-down */
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        font-size: 11px;
+        display: inline-block;
+        transition: transform 0.3s ease;
+    }
+
+    /* Khi menu con mở, đổi icon thành fa-chevron-up */
+    .slicknav_open > a > .slicknav_arrow::before {
+        content: "\f077"; /* fa-chevron-up */
+    }
+
+
 }
 
 

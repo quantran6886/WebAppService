@@ -12,7 +12,7 @@
                     <img class="logo-img d-inline"
                          id="logoImage"
                          src="@Url.Content("~/web/images/Group.png")"
-                         data-alt-src="@Url.Content("~/root/mb.png")"
+                         data-alt-src="@Url.Content("~/src/image_figma/asset 1 2.png")"
                          width="200"
                          alt="">
                 </a>
@@ -24,6 +24,16 @@
                 <ul class="mobi-menu d-none" id="navigation">
                     <li class="cat-item txt-mobile col-12 p-0"><a href="/AboutUs/AboutUs">Về SunMedical</a></li>
                     <li class="cat-item txt-mobile col-12 p-0"><a href="/Service/ServiceList">Chuyên Khoa</a></li>
+                    <li class="cat-item txt-mobile col-12 p-0 menu-item-has-children">
+                        <a href="/Service/ServiceList">
+                            Chuyên Khoa
+                        </a>
+                        <ul class="sub-menu font-small m-0">
+                            <li>
+                                <a class="sub-menu-lst" href="#" style="font-weight: 400 !important;font-size: 14px;font-family: 'Inter';">Khoa nhi</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="cat-item txt-mobile col-12 p-0"><a href="/Service/ServiceList">Dịch Vụ Đặc Biệt</a></li>
                     <li class="cat-item txt-mobile col-12 p-0"><a href="/Doctor/ListDoctor">Bác Sĩ</a></li>
                     <li class="cat-item txt-mobile col-12 p-0"><a href="/Blog/Blog">Tin Tức</a></li>
@@ -49,10 +59,18 @@
                                 Về SunMedical
                             </a>
                         </li>
-                        <li>
-                            <a href="/Service/ServiceList" class="text-menu">
-                                Chuyên Khoa
+                        <li class="menu-item-has-children">
+                            <a href="/Service/ServiceList">
+                                <span class="">
+                                    <ion-icon name="home-outline"></ion-icon>
+                                </span> Chuyên Khoa
                             </a>
+                            <ul class="sub-menu font-small">
+                                <li><a class="sub-menu-lst" href="#">Khoa nhi</a></li>
+                                <li><a class="sub-menu-lst" href="#">Khoa sản</a></li>
+                                <li><a class="sub-menu-lst" href="#">Khoa tim mạch</a></li>
+                                <li><a class="sub-menu-lst" href="#">Khoa tai mũi họng trung ương</a></li>
+                            </ul>
                         </li>
                         <li>
                             <a href="/Service/ServiceList" class="text-menu">
