@@ -29,6 +29,10 @@ namespace clinic_website.Controllers
         {
             return View();
         }
+        public IActionResult BlogList()
+        {
+            return View();
+        }
         public IActionResult BlogDetail(string? id)
         {
             if (string.IsNullOrWhiteSpace(id))
@@ -174,5 +178,56 @@ namespace clinic_website.Controllers
                 });
             }
         }
+
+        [HttpGet]
+        public IActionResult LoadListData(int page, int pageSize, string txtSearh, string? cb)
+        {
+            try
+            {
+                var keyword = (txtSearh ?? "").ToLower().Trim();
+
+                var allData = db.WebTinTucBaiViets
+                    .Where(c =>
+                        c.IsCongKhai == true &&
+                        (string.IsNullOrEmpty(keyword) || c.TieuDeBaiViet.ToLower().Trim().Contains(keyword)) &&
+                        (!string.IsNullOrEmpty(cb)  ? c.CbNhomBaiViet == cb : true)
+                    )
+                    .OrderByDescending(x => x.ThoiGianTao)
+                    .ToList();
+
+                var lstData = allData.Select(x => new
+                {
+                    x.IdBaiViet,
+                    x.UrlImage,
+                    x.NameImage,
+                    x.TieuDeBaiViet,
+                    x.MoTaNgan,
+                    x.NguoiTao,
+                    x.IsCongKhai,
+                    x.IsBaiVietNoiBat,
+                    x.TieuDeNgan,
+                    x.ThoiGianTao,
+                }).Skip((page - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToList();
+
+
+                return new JsonResult(new
+                {
+                    totalRow = allData.Count,
+                    lstData,
+                    status = true
+                });
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult(new
+                {
+                    message = ex.Message,
+                    status = false
+                });
+            }
+        }
     }
+
 }

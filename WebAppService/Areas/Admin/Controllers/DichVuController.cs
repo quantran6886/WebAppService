@@ -22,7 +22,7 @@ namespace WebAppService.Areas.Admin.Controllers
         {
             try
             {
-                var lstNhomBaiViet = db.WebDanhMucHeThongs.Where(c => c.LoaiDanhMuc == "Danh mục nhóm bài viết").Select(c => new
+                var lstNhomBaiViet1 = db.WebDanhMucHeThongs.Where(c => c.LoaiDanhMuc == "Danh mục nhóm dịch vụ chuyên khoa").Select(c => new
                 {
                     c.IdHeThong,
                     c.ThuTuTg,
@@ -30,18 +30,16 @@ namespace WebAppService.Areas.Admin.Controllers
                     c.GhiChu,
                 }).OrderBy(c => c.TenGoi).ToList();
 
-                var lstDanhMucBaiDang = db.WebDanhMucHeThongs.Where(c => c.LoaiDanhMuc == "Danh mục bài đăng").Select(c => new
+                var lstNhomBaiViet2 = db.WebDichVus.Where(c => c.IsBaiVietNoiBat == true).Select(c => new
                 {
-                    c.IdHeThong,
-                    c.ThuTuTg,
-                    c.TenGoi,
-                    c.GhiChu,
+                    c.IdDichVu,
+                    TenGoi = !string.IsNullOrEmpty(c.TieuDeBaiViet) ? c.TieuDeBaiViet : "",
                 }).OrderBy(c => c.TenGoi).ToList();
 
                 return new JsonResult(new
                 {
-                    lstNhomBaiViet,
-                    lstDanhMucBaiDang,
+                    lstNhomBaiViet1,
+                    lstNhomBaiViet2,
                     status = true
                 });
             }
@@ -72,6 +70,7 @@ namespace WebAppService.Areas.Admin.Controllers
                     x.IsCongKhai,
                     x.IsBaiVietNoiBat,
                     x.CbLoaiBaiDang,
+                    x.CbNhomBaiViet,
                     x.TieuDeNgan,
                     x.ThoiGianTao,
                 }).ToList().Select(x => new
@@ -84,7 +83,8 @@ namespace WebAppService.Areas.Admin.Controllers
                     x.NguoiTao,
                     x.IsCongKhai,
                     x.IsBaiVietNoiBat,
-                    x.CbLoaiBaiDang,
+                    CbLoaiBaiDang = x.CbLoaiBaiDang == "1" ? "<p class='text-danger'> DV chuyên khoa </p>" : x.CbLoaiBaiDang == "2" ? "<p class='text-success'>DV đặc biệt</p>" : "",
+                    x.CbNhomBaiViet,
                     x.TieuDeNgan,
                     ThoiGianTao =  x.ThoiGianTao != null ? string.Format("{0:dd-MM-yyyy}",x.ThoiGianTao) : "",
                 });

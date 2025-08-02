@@ -11,7 +11,6 @@ namespace clinic_website.Controllers
     public class ServiceController : Controller
     {
         AppDbContext db = new AppDbContext();
-
         public IActionResult ServiceList()
         {
             return View();
@@ -47,7 +46,7 @@ namespace clinic_website.Controllers
         }
 
         [HttpGet]
-        public IActionResult LoadData(int page, int pageSize, string txtSearh)
+        public IActionResult LoadData(int page, int pageSize, string txtSearh, string? cb, string? dm)
         {
             try
             {
@@ -57,7 +56,8 @@ namespace clinic_website.Controllers
                     .Where(c =>
                         c.IsCongKhai == true &&
                         c.IsBaiVietNoiBat != true &&
-                        (string.IsNullOrEmpty(keyword) || c.TieuDeBaiViet.ToLower().Trim().Contains(keyword))
+                        (string.IsNullOrEmpty(keyword) || c.TieuDeBaiViet.ToLower().Trim().Contains(keyword)) &&
+                        (!string.IsNullOrEmpty(cb) && !string.IsNullOrEmpty(dm) ? c.CbNhomBaiViet == cb && c.CbLoaiBaiDang == dm : true)
                     )
                     .OrderByDescending(x => x.ThoiGianTao)
                     .ToList();
@@ -88,7 +88,6 @@ namespace clinic_website.Controllers
             }
             catch (Exception ex)
             {
-
                 return new JsonResult(new
                 {
                     message = ex.Message,

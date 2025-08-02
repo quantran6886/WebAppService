@@ -23,20 +23,28 @@
             <div class="main-nav text-left float-lg-left float-md-right">
                 <ul class="mobi-menu d-none" id="navigation">
                     <li class="cat-item txt-mobile col-12 p-0"><a href="/AboutUs/AboutUs">Về SunMedical</a></li>
-                    <li class="cat-item txt-mobile col-12 p-0"><a href="/Service/ServiceList">Chuyên Khoa</a></li>
-                    <li class="cat-item txt-mobile col-12 p-0 menu-item-has-children">
+                    <li class="cat-item txt-mobile col-12 p-0">
                         <a href="/Service/ServiceList">
                             Chuyên Khoa
                         </a>
                         <ul class="sub-menu font-small m-0">
-                            <li>
-                                <a class="sub-menu-lst" href="#" style="font-weight: 400 !important;font-size: 14px;font-family: 'Inter';">Khoa nhi</a>
-                            </li>
                         </ul>
                     </li>
-                    <li class="cat-item txt-mobile col-12 p-0"><a href="/Service/ServiceList">Dịch Vụ Đặc Biệt</a></li>
+                    <li class="cat-item txt-mobile col-12 p-0">
+                        <a href="/Service/ServiceList">
+                            Dịch Vụ Đặc Biệt
+                        </a>
+                        <ul class="sub-menu font-small m-0" id="menuDichVuDacBietMobile">
+                        </ul>
+                    </li>
                     <li class="cat-item txt-mobile col-12 p-0"><a href="/Doctor/ListDoctor">Bác Sĩ</a></li>
-                    <li class="cat-item txt-mobile col-12 p-0"><a href="/Blog/Blog">Tin Tức</a></li>
+                    <li class="cat-item txt-mobile col-12 p-0">
+                        <a href="/Blog/Blog">
+                            Tin Tức
+                        </a>
+                        <ul class="sub-menu font-small m-0" id="menuBaiVietMobile">
+                        </ul>
+                    </li>
                     <li class="cat-item txt-mobile col-12 p-0"><a href="/LienHe/LienHe">Liên Hệ</a></li>
                     <li class="cat-item txt-mobile col-12 p-0"><a href="/FAQ/Index">FAQ</a></li>
                     <li class="cat-item txt-mobile col-12 p-0"><a href="#">Chọn Ngôn Ngữ</a></li>
@@ -60,32 +68,24 @@
                             </a>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="/Service/ServiceList">
-                                <span class="">
-                                    <ion-icon name="home-outline"></ion-icon>
-                                </span> Chuyên Khoa
-                            </a>
-                            <ul class="sub-menu font-small">
-                                <li><a class="sub-menu-lst" href="#">Khoa nhi</a></li>
-                                <li><a class="sub-menu-lst" href="#">Khoa sản</a></li>
-                                <li><a class="sub-menu-lst" href="#">Khoa tim mạch</a></li>
-                                <li><a class="sub-menu-lst" href="#">Khoa tai mũi họng trung ương</a></li>
+                            <a href="/Service/ServiceList"><ion-icon name="home-outline"></ion-icon> Chuyên Khoa</a>
+                            <ul class="sub-menu font-small" id="menuChuyenKhoa">
                             </ul>
                         </li>
-                        <li>
-                            <a href="/Service/ServiceList" class="text-menu">
-                                Dịch Vụ Đặc Biệt
-                            </a>
+                        <li class="menu-item-has-children">
+                            <a href="/Service/ServiceList" class="text-menu">Dịch Vụ Đặc Biệt</a>
+                            <ul class="sub-menu font-small" id="menuDichVuDacBiet">
+                            </ul>
                         </li>
                         <li>
                             <a href="/Doctor/ListDoctor" class="text-menu">
                                 Bác Sĩ
                             </a>
                         </li>
-                        <li>
-                            <a href="/Blog/Blog" class="text-menu">
-                                Tin Tức
-                            </a>
+                        <li class="menu-item-has-children">
+                            <a href="/Blog/Blog" class="text-menu">Tin Tức</a>
+                            <ul class="sub-menu font-small" id="menuBaiViet">
+                            </ul>
                         </li>
                         <li>
                             <a href="/LienHe/LienHe" class="text-menu">

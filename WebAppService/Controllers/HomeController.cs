@@ -1,5 +1,6 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Net.WebSockets;
 using WebAppService.Models;
 
 namespace clinic_website.Controllers
@@ -40,8 +41,8 @@ namespace clinic_website.Controllers
 
                 var home1 = Datarecord.FirstOrDefault(c => c.CbGiaoDien == "1");
                 var home2 = Datarecord.FirstOrDefault(c => c.CbGiaoDien == "2");
-                var tintuc1 = Datarecord2.OrderByDescending(c => c.ThoiGianTao).Where(c => c.IsBaiVietNoiBat == true && c.CbLoaiBaiDang == "B�o ch�").Take(1).ToList();
-                var tintuc2 = Datarecord2.Where(c => c.IsBaiVietNoiBat != true && c.CbLoaiBaiDang == "B�o ch�").ToList();
+                var tintuc1 = Datarecord2.OrderByDescending(c => c.ThoiGianTao).Where(c => c.IsBaiVietNoiBat == true && c.CbLoaiBaiDang == "Báo chí").Take(1).ToList();
+                var tintuc2 = Datarecord2.Where(c => c.IsBaiVietNoiBat != true && c.CbLoaiBaiDang == "Báo chí").ToList();
                 var video1 = Datarecord3.OrderByDescending(c => c.ThoiGianTao).Where(c => c.IsVideoNoiBat == true).Take(1).ToList();
                 var video2 = Datarecord3.OrderByDescending(c => c.ThoiGianTao).Where(c => c.IsVideoNoiBat != true).Take(2).ToList();
                 var listData = db.WebDichVus
@@ -64,6 +65,53 @@ namespace clinic_website.Controllers
                 return new JsonResult(new
                 {
                     viewModel,
+                    status = true
+                });
+            }
+            catch (Exception ex)
+            {
+
+                return new JsonResult(new
+                {
+                    message = ex.Message,
+                    status = false
+                });
+            }
+        }
+
+        [HttpGet]
+        public IActionResult LoadMenu()
+        {
+            try
+            {
+                var dbLoad = db.WebDanhMucHeThongs.ToList();
+
+                var lstChuyenKhoa = dbLoad.Where(c => c.LoaiDanhMuc == "Danh mục nhóm dịch vụ chuyên khoa").Select(c => new
+                {
+                    c.ThuTuTg,
+                    c.TenGoi,
+                    link = "/Service/ServiceList/?cb=" + c.TenGoi + "&dm=1",
+                }).OrderBy(c => c.ThuTuTg).ToList();
+
+                var lstDichVuDacBiet = db.WebDichVus.Where(c => c.IsBaiVietNoiBat == true).Select(c => new
+                {
+                    c.IdDichVu,
+                    TenGoi = c.TieuDeBaiViet,
+                    link = "/Service/ServiceList/?cb=" + c.TieuDeBaiViet + "&dm=2",
+                }).ToList();
+
+                var lstBaiViet = dbLoad.Where(c => c.LoaiDanhMuc == "Danh mục nhóm bài viết").Select(c => new
+                {
+                    c.ThuTuTg,
+                    c.TenGoi,
+                    link = "/Blog/BlogList/?cb=" + c.TenGoi,
+                }).OrderBy(c => c.ThuTuTg).ToList();
+
+                return new JsonResult(new
+                {
+                    lstChuyenKhoa,
+                    lstDichVuDacBiet,
+                    lstBaiViet,
                     status = true
                 });
             }

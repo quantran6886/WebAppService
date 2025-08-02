@@ -1,1 +1,370 @@
-﻿(function (_0x1b1a1f, _0x33e6b6) { var _0x3b109d = _0x32d0, _0x4a30d3 = _0x1b1a1f(); while (!![]) { try { var _0x299ff2 = -parseInt(_0x3b109d(0x182)) / 0x1 + -parseInt(_0x3b109d(0x177)) / 0x2 + parseInt(_0x3b109d(0x172)) / 0x3 + parseInt(_0x3b109d(0x166)) / 0x4 * (parseInt(_0x3b109d(0x188)) / 0x5) + -parseInt(_0x3b109d(0x162)) / 0x6 * (-parseInt(_0x3b109d(0x184)) / 0x7) + -parseInt(_0x3b109d(0x140)) / 0x8 * (parseInt(_0x3b109d(0x14e)) / 0x9) + -parseInt(_0x3b109d(0x165)) / 0xa * (-parseInt(_0x3b109d(0x14b)) / 0xb); if (_0x299ff2 === _0x33e6b6) break; else _0x4a30d3['push'](_0x4a30d3['shift']()); } catch (_0x3e786f) { _0x4a30d3['push'](_0x4a30d3['shift']()); } } }(_0x54bd, 0x602f5)); function _0x32d0(_0x3e75ff, _0x5ec38e) { var _0x54bd05 = _0x54bd(); return _0x32d0 = function (_0x32d01d, _0xcbbf9b) { _0x32d01d = _0x32d01d - 0x13a; var _0x2a0035 = _0x54bd05[_0x32d01d]; return _0x2a0035; }, _0x32d0(_0x3e75ff, _0x5ec38e); } var files, myScripts = { 'init': function () { var _0x10bce3 = _0x32d0; myScripts[_0x10bce3(0x13a)](), myScripts['Event'](); }, 'Event': function () { var _0x141acd = _0x32d0; $(_0x141acd(0x167))['off'](_0x141acd(0x1aa))['on']('click', function () { var _0x552b17 = _0x141acd; myScripts['ResetForm'](), toastr['success'](_0x552b17(0x1b0), 'Thành\x20công', { 'showMethod': _0x552b17(0x15c), 'hideMethod': _0x552b17(0x199), 'timeOut': 0x3e8 }); }), $('#btnSaveData')['off'](_0x141acd(0x1aa))['on'](_0x141acd(0x1aa), function () { var _0x4c7d0f = _0x141acd; myScripts[_0x4c7d0f(0x183)](); }), $(_0x141acd(0x142))['off']('click')['on'](_0x141acd(0x1aa), function () { var _0x2c380c = _0x141acd; $('#isThayDoi')[_0x2c380c(0x170)](_0x2c380c(0x178)), $(_0x2c380c(0x1a2))['attr'](_0x2c380c(0x144), _0x2c380c(0x1a1)); }), $(_0x141acd(0x174))['off'](_0x141acd(0x1aa))['on'](_0x141acd(0x1aa), function () { var _0x28cbad = _0x141acd; $(_0x28cbad(0x180))[_0x28cbad(0x1aa)](), $(_0x28cbad(0x180))[_0x28cbad(0x13e)](_0x28cbad(0x17d))['on'](_0x28cbad(0x17d), function (_0x123464) { var _0x553163 = _0x28cbad; files = _0x123464[_0x553163(0x156)][_0x553163(0x194)]; if (files[_0x553163(0x164)] > 0x0) for (var _0x2819a1 = 0x0; _0x2819a1 < files['length']; _0x2819a1++) { if (files[_0x2819a1][_0x553163(0x149)] >= 0x3200000) { toastr[_0x553163(0x15f)]('Chỉ\x20được\x20upload\x20file\x20dưới\x2050mb', _0x553163(0x159), { 'showMethod': 'slideDown', 'hideMethod': 'slideUp', 'timeOut': 0x3e8 }), $(_0x553163(0x1ac))[_0x553163(0x170)](_0x553163(0x178)); return; } else myScripts[_0x553163(0x16b)](this), $(_0x553163(0x1ac))[_0x553163(0x170)](_0x553163(0x169)); } }); }); }, 'LoadData': function () { var _0x2b7ef8 = _0x32d0; $[_0x2b7ef8(0x171)]({ 'url': _0x2b7ef8(0x14f), 'type': _0x2b7ef8(0x145), 'datatype': _0x2b7ef8(0x1a7), 'success': function (_0x3515b1) { var _0x6b927d = _0x2b7ef8; if (_0x3515b1[_0x6b927d(0x16c)]) { var _0x10034b = _0x3515b1[_0x6b927d(0x192)]; if (_0x10034b != null) { var _0x3fc097 = '<option\x20value=\x27\x27>Chọn\x20nhóm\x20bài\x20viết</option>'; $['each'](_0x10034b, function (_0x45e12e, _0x584e6d) { var _0x11be71 = _0x6b927d; _0x3fc097 += _0x11be71(0x16a) + _0x584e6d[_0x11be71(0x19d)] + '\x27>' + _0x584e6d[_0x11be71(0x19d)] + '</option>'; }), $(_0x6b927d(0x187))['html'](_0x3fc097), $('#CbNhomBaiViet')['trigger'](_0x6b927d(0x18b)); } myScripts[_0x6b927d(0x1ab)](); } } }); }, 'LoadTable': function () { var _0x1bffd9 = _0x32d0; $['ajax']({ 'url': _0x1bffd9(0x157), 'type': _0x1bffd9(0x145), 'dataType': 'json', 'data': {}, 'success': function (_0x5b9e5d) { var _0x4331ec = _0x1bffd9; if (_0x5b9e5d[_0x4331ec(0x16c)] == !![]) { var _0x326820 = _0x5b9e5d[_0x4331ec(0x154)]; _0x326820 != null && _0x326820[_0x4331ec(0x164)] > 0x0 ? $(_0x4331ec(0x143))[_0x4331ec(0x153)]('load', _0x326820) : $(_0x4331ec(0x143))[_0x4331ec(0x153)](_0x4331ec(0x18f)), $(_0x4331ec(0x1a0))['tooltip'](); } } }); }, 'LoadDetail': function (_0x36645d) { var _0x37cf4d = _0x32d0; _0x36645d != '' && $[_0x37cf4d(0x171)]({ 'url': _0x37cf4d(0x173), 'type': 'GET', 'dataType': _0x37cf4d(0x1a7), 'data': { 'IdDichVu': _0x36645d }, 'success': function (_0x12e068) { var _0x326284 = _0x37cf4d; if (_0x12e068[_0x326284(0x16c)] == !![]) { var _0x1f0e2b = _0x12e068['lstData']; _0x1f0e2b != null && ($(_0x326284(0x148))[_0x326284(0x170)](_0x1f0e2b[_0x326284(0x197)]), $(_0x326284(0x15a))[_0x326284(0x170)](_0x1f0e2b['tieuDeBaiViet']), $('#MoTaNgan')[_0x326284(0x170)](_0x1f0e2b[_0x326284(0x17c)]), $('#IsCongKhai')[_0x326284(0x17b)](_0x326284(0x19f), _0x1f0e2b[_0x326284(0x191)]), $(_0x326284(0x14d))['prop']('checked', _0x1f0e2b[_0x326284(0x179)]), $('#CbNhomBaiViet')[_0x326284(0x170)](_0x1f0e2b[_0x326284(0x13b)])['trigger'](_0x326284(0x18b)), _0x1f0e2b[_0x326284(0x15d)] != null && _0x1f0e2b[_0x326284(0x15d)] != '' ? $(_0x326284(0x1a2))[_0x326284(0x185)](_0x326284(0x144), _0x1f0e2b[_0x326284(0x15d)]) : $('#imageHoSo')[_0x326284(0x185)](_0x326284(0x144), '/root/unnamed.png'), _0x1f0e2b['noiDung'] != null ? tinymce[_0x326284(0x1a9)](_0x326284(0x16f))[_0x326284(0x18e)](_0x1f0e2b[_0x326284(0x18c)]) : tinymce[_0x326284(0x1a9)]('editor')[_0x326284(0x18e)](''), $(_0x326284(0x1ac))[_0x326284(0x170)](_0x326284(0x178)), $('#bsBaiViet')[_0x326284(0x13f)](_0x326284(0x17f))); } else toastr[_0x326284(0x15f)](_0x12e068[_0x326284(0x16d)], _0x326284(0x159), { 'showMethod': _0x326284(0x15c), 'hideMethod': _0x326284(0x199), 'timeOut': 0x3e8 }); } }); }, 'readURL': function (_0x5e1a69) { var _0x37a039 = _0x32d0, _0x56175a = new FileReader(); _0x56175a[_0x37a039(0x15e)] = function (_0x1315ae) { var _0x569a7c = _0x37a039; $('#imageHoSo')['attr'](_0x569a7c(0x144), _0x1315ae['target'][_0x569a7c(0x195)]); }, _0x56175a['readAsDataURL'](_0x5e1a69[_0x37a039(0x194)][0x0]); }, 'ResetForm': function () { var _0x376efd = _0x32d0; $(_0x376efd(0x148))[_0x376efd(0x170)](0x0), $(_0x376efd(0x15a))[_0x376efd(0x170)](''), $('#MoTaNgan')['val'](''), $(_0x376efd(0x187))[_0x376efd(0x170)]('')['trigger'](_0x376efd(0x18b)), $(_0x376efd(0x14d))[_0x376efd(0x17b)](_0x376efd(0x19f), ![]), $(_0x376efd(0x16e))['prop'](_0x376efd(0x19f), ![]), $(_0x376efd(0x1ac))['val'](_0x376efd(0x178)), tinymce['get'](_0x376efd(0x16f))[_0x376efd(0x18e)](''), $(_0x376efd(0x1a2))['attr'](_0x376efd(0x144), _0x376efd(0x1a1)); }, 'SaveData': function () { var _0x1b9fd0 = _0x32d0, _0x43e67d = $('#IdDichVu')[_0x1b9fd0(0x170)](), _0x39d7cc = $(_0x1b9fd0(0x15a))[_0x1b9fd0(0x170)](), _0x390ee9 = $(_0x1b9fd0(0x160))[_0x1b9fd0(0x170)](), _0x585a37 = $(_0x1b9fd0(0x187))[_0x1b9fd0(0x170)](), _0x585a37 = $(_0x1b9fd0(0x187))[_0x1b9fd0(0x170)](), _0x51ab2f = $('#IsBaiVietNoiBat')[_0x1b9fd0(0x17b)](_0x1b9fd0(0x19f)), _0x246fbd = $(_0x1b9fd0(0x16e))[_0x1b9fd0(0x17b)]('checked'), _0x10658e = encodeURIComponent(tinymce[_0x1b9fd0(0x1a9)](_0x1b9fd0(0x16f))[_0x1b9fd0(0x163)]()); if (_0x39d7cc == '') { toastr[_0x1b9fd0(0x15f)]('Bạn\x20chưa\x20nhập\x20tên\x20tiêu\x20đề', 'Lỗi', { 'showMethod': _0x1b9fd0(0x15c), 'hideMethod': _0x1b9fd0(0x199), 'timeOut': 0x3e8 }), $('#TieuDeBaiViet')['focus'](); return; } var _0x1f54b4 = { 'IdDichVu': _0x43e67d != 0x0 ? _0x43e67d : _0x1b9fd0(0x189), 'TieuDeBaiViet': _0x39d7cc, 'MoTaNgan': _0x390ee9, 'CbNhomBaiViet': _0x585a37, 'IsBaiVietNoiBat': _0x51ab2f, 'IsCongKhai': _0x246fbd, 'NoiDung': _0x10658e }; if (files != undefined && files[_0x1b9fd0(0x164)] > 0x0) { if (window[_0x1b9fd0(0x176)] !== undefined) { var _0x36b0c1 = new FormData(); for (var _0x55adeb = 0x0; _0x55adeb < files[_0x1b9fd0(0x164)]; _0x55adeb++) { _0x36b0c1[_0x1b9fd0(0x1af)](_0x1b9fd0(0x194), files[_0x55adeb]); } _0x36b0c1['append'](_0x1b9fd0(0x146), JSON[_0x1b9fd0(0x141)](_0x1f54b4)), _0x36b0c1[_0x1b9fd0(0x1af)](_0x1b9fd0(0x13d), $(_0x1b9fd0(0x1ac))[_0x1b9fd0(0x170)]()), $[_0x1b9fd0(0x171)]({ 'type': _0x1b9fd0(0x17a), 'url': _0x1b9fd0(0x1ad), 'contentType': ![], 'processData': ![], 'data': _0x36b0c1, 'success': function (_0x309528) { var _0x4a3c81 = _0x1b9fd0; _0x309528['status'] == !![] ? (toastr['success'](_0x4a3c81(0x14c), 'Thành\x20Công', { 'showMethod': 'slideDown', 'hideMethod': _0x4a3c81(0x199), 'timeOut': 0x3e8 }), myScripts[_0x4a3c81(0x1ab)](), $(_0x4a3c81(0x18a))['modal'](_0x4a3c81(0x186))) : notify(_0x4a3c81(0x15f), _0x4a3c81(0x190), _0x309528[_0x4a3c81(0x16d)]); }, 'error': function (_0x22e22c) { var _0x4fb0e3 = _0x1b9fd0; toastr[_0x4fb0e3(0x15f)](_0x22e22c[_0x4fb0e3(0x16d)], _0x4fb0e3(0x159), { 'showMethod': _0x4fb0e3(0x15c), 'hideMethod': _0x4fb0e3(0x199), 'timeOut': 0x3e8 }); } }); } else alert(_0x1b9fd0(0x175)); } else $[_0x1b9fd0(0x171)]({ 'type': _0x1b9fd0(0x1a8), 'url': '/Admin/DichVu/SaveData', 'datatype': _0x1b9fd0(0x1a7), 'data': { 'strData': JSON[_0x1b9fd0(0x141)](_0x1f54b4) }, 'success': function (_0x411a34) { var _0x1fef4d = _0x1b9fd0; _0x411a34[_0x1fef4d(0x16c)] ? (toastr[_0x1fef4d(0x1a6)]('Cập\x20nhập\x20thành\x20công', 'Thành\x20Công', { 'showMethod': _0x1fef4d(0x15c), 'hideMethod': _0x1fef4d(0x199), 'timeOut': 0x3e8 }), myScripts[_0x1fef4d(0x1ab)](), $(_0x1fef4d(0x18a))[_0x1fef4d(0x13f)](_0x1fef4d(0x186))) : toastr['error'](_0x411a34[_0x1fef4d(0x16d)], _0x1fef4d(0x159), { 'showMethod': _0x1fef4d(0x15c), 'hideMethod': _0x1fef4d(0x199), 'timeOut': 0x3e8 }); } }); }, 'DeleteData': function (_0x353f6a) { var _0x3ce81e = _0x32d0; if (_0x353f6a != '') { const _0x5d6b11 = Swal['mixin']({ 'customClass': { 'confirmButton': _0x3ce81e(0x152), 'cancelButton': _0x3ce81e(0x196) }, 'buttonsStyling': ![] }); _0x5d6b11[_0x3ce81e(0x147)]({ 'title': _0x3ce81e(0x198), 'text': 'Bạn\x20có\x20chắc\x20chắn\x20muốn\x20xóa\x20bản\x20ghi\x20này\x20không?', 'icon': _0x3ce81e(0x13c), 'showCancelButton': !![], 'confirmButtonText': 'Đồng\x20ý', 'cancelButtonText': _0x3ce81e(0x15b), 'reverseButtons': !![] })['then'](_0x20419b => { var _0x5c28a9 = _0x3ce81e; _0x20419b[_0x5c28a9(0x1a5)] && $[_0x5c28a9(0x171)]({ 'type': _0x5c28a9(0x17a), 'url': _0x5c28a9(0x181), 'data': { 'IdDichVu': _0x353f6a }, 'success': function (_0x41b919) { var _0x5096bd = _0x5c28a9; _0x41b919['status'] == !![] ? (myScripts[_0x5096bd(0x1ab)](), toastr[_0x5096bd(0x1a6)](_0x5096bd(0x151), _0x5096bd(0x19e), { 'showMethod': _0x5096bd(0x15c), 'hideMethod': 'slideUp', 'timeOut': 0x3e8 })) : toastr['error'](_0x41b919['message'], _0x5096bd(0x159), { 'showMethod': _0x5096bd(0x15c), 'hideMethod': 'slideUp', 'timeOut': 0x3e8 }); }, 'error': function (_0x34d9a2) { var _0x51d2d6 = _0x5c28a9; toastr[_0x51d2d6(0x15f)](_0x34d9a2[_0x51d2d6(0x16d)], _0x51d2d6(0x159), { 'showMethod': _0x51d2d6(0x15c), 'hideMethod': _0x51d2d6(0x199), 'timeOut': 0x3e8 }); } }); }); } else alert(_0x3ce81e(0x1ae)); } }; myScripts['init'](); function _0x54bd() { var _0x3d2254 = ['strData', 'fire', '#IdDichVu', 'size', '\x20</a>', '22SnnTlX', 'Cập\x20nhập\x20thành\x20công', '#IsBaiVietNoiBat', '135YprMVF', '/Admin/DichVu/LoadData', '<a\x20href=\x22javascript:myScripts.DeleteData(', 'Xóa\x20thành\x20công\x201\x20bản\x20ghi', 'btn\x20bg-secondary-subtle\x20text-secondary', 'bootstrapTable', 'lstData', '<a\x20href=\x22javascript:myScripts.LoadDetail(', 'target', '/Admin/DichVu/LoadTable', '<iconify-icon\x20icon=\x22solar:verified-check-bold-duotone\x22\x20class=\x22text-success\x22\x20width=\x2235px\x22\x20height=\x2235px\x22></iconify-icon>', 'Lỗi', '#TieuDeBaiViet', 'Hủy', 'slideDown', 'urlImage', 'onload', 'error', '#MoTaNgan', '<iconify-icon\x20icon=\x22solar:close-circle-bold-duotone\x22\x20class=\x22text-danger\x22\x20width=\x2235px\x22\x20height=\x2235px\x22></iconify-icon>', '4698138OhOQuW', 'getContent', 'length', '2501900qRvAJt', '7048GFmmnj', '#btnNewForm', 'join', 'true', '<option\x20value=\x27', 'readURL', 'status', 'message', '#IsCongKhai', 'editor', 'val', 'ajax', '998166IVGHPl', '/Admin/DichVu/LoadDetail', '#btnUpload', 'Upload\x20file\x20thất\x20bại!', 'FormData', '428902RuRSDI', 'false', 'isBaiVietNoiBat', 'POST', 'prop', 'moTaNgan', 'change', '<div\x20style=\x22width:120px;justify-self:\x20center;\x22\x20class=\x22\x22>', 'show', '#duong_dan_file', '/Admin/DichVu/DeleteData', '601520pPZJrP', 'SaveData', '7mPzRSW', 'attr', 'hide', '#CbNhomBaiViet', '35YqFgCH', '00000000-0000-0000-0000-000000000000', '#bsBaiViet', 'chosen:updated', 'noiDung', '<a\x20class=\x22image-popup-vertical-fit\x22\x20target=\x22_blank\x22\x20href=\x22', 'setContent', 'removeAll', 'Có\x20Lỗi', 'isCongKhai', 'lstNhomBaiViet', '<div\x20style=\x22width:\x20100%\x22>', 'files', 'result', 'me-6\x20btn\x20bg-secondary-subtle\x20text-secondary', 'idDichVu', 'Xác\x20nhận?', 'slideUp', '</div>', '\x20<img\x20class=\x22d-block\x20position-relative\x20w-100\x22\x20src=\x22', '\x22\x20width=\x22100\x22\x20/>', 'tenGoi', 'Thành\x20công', 'checked', '[data-bs-toggle=\x22tooltip\x22]', '/root/unnamed.png', '#imageHoSo', ')\x22\x20class=\x22hvr-shrink\x20me-2\x22\x20data-bs-toggle=\x22tooltip\x22\x20data-bs-placement=\x22top\x22\x20title=\x22Sửa\x20dữ\x20liệu\x22><iconify-icon\x20icon=\x22solar:gallery-edit-line-duotone\x22\x20class=\x22text-primary\x22\x20width=\x2223px\x22\x20height=\x2223px\x22></iconify-icon></a>', '<div\x20style=\x22width:\x20100%;text-align:\x20center;\x22>', 'isConfirmed', 'success', 'json', 'Post', 'get', 'click', 'LoadTable', '#isThayDoi', '/Admin/DichVu/SaveData', 'Bạn\x20chưa\x20chọn\x20bản\x20ghi\x20nào\x20để\x20xóa', 'append', 'Mời\x20bạn\x20nhập\x20thông\x20tin', 'LoadData', 'CbNhomBaiViet', 'warning', 'isThayDoi', 'off', 'modal', '223208yWVYmM', 'stringify', '#btnRemoveUpload', '#tableDichVu', 'src', 'GET']; _0x54bd = function () { return _0x3d2254; }; return _0x54bd(); } function fm_Image(_0x57fa9b, _0x3dbb72, _0x18fef9, _0x2cdb75) { var _0x3f8eb9 = _0x32d0; return _0x3dbb72['urlImage'] != '' ? [_0x3f8eb9(0x17e), _0x3f8eb9(0x18d) + _0x3dbb72[_0x3f8eb9(0x15d)] + '\x22>', _0x3f8eb9(0x19b) + _0x3dbb72['urlImage'] + _0x3f8eb9(0x19c), _0x3f8eb9(0x14a), '</div>']['join']('') : [_0x3f8eb9(0x193), _0x3f8eb9(0x19a)][_0x3f8eb9(0x168)](''); }; function fm_editBVNB(_0x8cf45, _0x34f0be, _0x3722c1, _0x1d5405) { var _0x2f6ff2 = _0x32d0; return _0x34f0be[_0x2f6ff2(0x179)] == !![] ? ['<div\x20style=\x22width:\x20100%;text-align:\x20center;\x22>', '<iconify-icon\x20icon=\x22solar:verified-check-bold-duotone\x22\x20class=\x22text-success\x22\x20width=\x2235px\x22\x20height=\x2235px\x22></iconify-icon>', '</div>']['join']('') : [_0x2f6ff2(0x1a4), _0x2f6ff2(0x161), '</div>'][_0x2f6ff2(0x168)](''); }; function fm_editBVCK(_0x33310f, _0x3c5876, _0x53f4ea, _0x53c967) { var _0x51ccdb = _0x32d0; return _0x3c5876[_0x51ccdb(0x191)] == !![] ? ['<div\x20style=\x22width:\x20100%;text-align:\x20center;\x22>', _0x51ccdb(0x158), '</div>'][_0x51ccdb(0x168)]('') : [_0x51ccdb(0x1a4), _0x51ccdb(0x161), _0x51ccdb(0x19a)][_0x51ccdb(0x168)](''); }; function fm_editData(_0x1adf84, _0x9d22a1, _0x4011f0, _0x37c6b1) { var _0x342a65 = _0x32d0; return [_0x342a65(0x193), _0x342a65(0x155) + '\x27' + _0x9d22a1[_0x342a65(0x197)] + '\x27' + _0x342a65(0x1a3) + _0x342a65(0x150) + '\x27' + _0x9d22a1['idDichVu'] + '\x27' + ')\x22\x20class=\x22hvr-shrink\x22\x20data-bs-toggle=\x22tooltip\x22\x20title=\x22Xóa\x20dữ\x20liệu\x22><iconify-icon\x20icon=\x22solar:trash-bin-trash-outline\x22\x20class=\x22text-danger\x22\x20width=\x2225px\x22\x20height=\x2225px\x22></iconify-icon></a>' + _0x342a65(0x19a)][_0x342a65(0x168)](''); };
+﻿var files;
+var myScripts = {
+    init: function () {
+        myScripts.LoadData();
+        myScripts.Event();
+    },
+
+    Event: function () {
+        $("#btnNewForm").off("click").on("click", function () {
+            myScripts.ResetForm();
+            toastr.success("Mời bạn nhập thông tin", "Thành công", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+        });
+
+        $("#btnSaveData").off("click").on("click", function () {
+            myScripts.SaveData();
+        });
+
+        $("#btnRemoveUpload").off("click").on("click", function () {
+            $("#isThayDoi").val("false");
+            $('#imageHoSo').attr('src', '/root/unnamed.png');
+        });
+
+        $("#btnUpload").off('click').on('click', function () {
+            $("#duong_dan_file").click();
+            $("#duong_dan_file").off('change').on('change', function (e) {
+                files = e.target.files;
+                if (files.length > 0) {
+                    for (var x = 0; x < files.length; x++) {
+                        if (files[x].size >= 52428800) {
+                            toastr.error("Chỉ được upload file dưới 50mb", "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                            $("#isThayDoi").val("false");
+                            return;
+                        } else {
+                            myScripts.readURL(this);
+                            $("#isThayDoi").val("true");
+                        }
+                    }
+                }
+            });
+        });
+
+        $("#CbNhomBaiViet1").off("change").on("change", function () {
+            $("#CbLoaiBaiDang").val("1");
+            $("#CbNhomBaiViet2").val("").trigger('chosen:updated');
+        });
+
+        $("#CbNhomBaiViet2").off("change").on("change", function () {
+            $("#CbLoaiBaiDang").val("2");
+            $("#CbNhomBaiViet1").val("").trigger('chosen:updated');
+        });
+        
+    },
+
+    LoadData: function () {
+        $.ajax({
+            url: '/Admin/DichVu/LoadData',
+            type: 'GET',
+            datatype: 'json',
+            success: function (response) {
+                if (response.status) {
+                    var lstNhomBaiViet1 = response.lstNhomBaiViet1;
+                    var lstNhomBaiViet2 = response.lstNhomBaiViet2;
+                    if (lstNhomBaiViet1 != null) {
+                        var option = "<option value=''>--- Chọn dịch vụ chuyên khoa ---</option>";
+                        $.each(lstNhomBaiViet1, function (index, val) {
+                            option += "<option value='" + val.tenGoi + "'>" + val.tenGoi + "</option>";
+                        });
+                        $("#CbNhomBaiViet1").html(option);
+                        $("#CbNhomBaiViet1").trigger('chosen:updated');
+                    }
+                    if (lstNhomBaiViet2 != null) {
+                        var option = "<option value=''>--- Chọn dịch vụ đặc biêt ---</option>";
+                        $.each(lstNhomBaiViet2, function (index, val) {
+                            option += "<option value='" + val.tenGoi + "'>" + val.tenGoi + "</option>";
+                        });
+                        $("#CbNhomBaiViet2").html(option);
+                        $("#CbNhomBaiViet2").trigger('chosen:updated');
+                    }
+                    myScripts.LoadTable();
+                }
+            },
+        });
+    },
+
+    LoadTable: function () {
+        $.ajax({
+            url: '/Admin/DichVu/LoadTable',
+            type: "GET",
+            dataType: "json",
+            data: {
+            },
+            success: function (response) {
+                if (response.status == true) {
+                    var lstData = response.lstData;
+                    if (lstData != null && lstData.length > 0) {
+                        $("#tableDichVu").bootstrapTable('load', lstData);
+                    }
+                    else {
+                        $("#tableDichVu").bootstrapTable('removeAll');
+                    }
+                    $('[data-bs-toggle="tooltip"]').tooltip();
+                }
+            }
+        })
+    },
+
+    LoadDetail: function (idDichVu) {
+        if (idDichVu != "") {
+            $.ajax({
+                url: '/Admin/DichVu/LoadDetail',
+                type: "GET",
+                dataType: "json",
+                data: {
+                    IdDichVu: idDichVu,
+                },
+                success: function (response) {
+                    if (response.status == true) {
+                        var lstData = response.lstData;
+
+                        if (lstData != null) {
+                            $("#IdDichVu").val(lstData.idDichVu);
+                            $("#TieuDeBaiViet").val(lstData.tieuDeBaiViet);
+                            $("#MoTaNgan").val(lstData.moTaNgan);
+                            $("#IsCongKhai").prop("checked", lstData.isCongKhai);
+                            $("#IsBaiVietNoiBat").prop("checked", lstData.isBaiVietNoiBat);
+                            if (lstData.cbLoaiBaiDang == "1") {
+                                $("#CbNhomBaiViet1").val(lstData.cbNhomBaiViet).trigger('chosen:updated');
+                                $("#CbNhomBaiViet2").val("").trigger('chosen:updated');
+                                $("#CbLoaiBaiDang").val("1");
+                            } else if (lstData.cbLoaiBaiDang == "2") {
+                                $("#CbNhomBaiViet2").val(lstData.cbNhomBaiViet).trigger('chosen:updated');
+                                $("#CbNhomBaiViet1").val("").trigger('chosen:updated');
+                            } else {
+                                $("#CbNhomBaiViet1").val("").trigger('chosen:updated');
+                                $("#CbNhomBaiViet2").val("").trigger('chosen:updated');
+                                $("#CbLoaiBaiDang").val("2");
+                            }
+                            if (lstData.urlImage != null && lstData.urlImage != "") {
+                                $('#imageHoSo').attr('src', lstData.urlImage);
+                            } else {
+                                $('#imageHoSo').attr('src', '/root/unnamed.png');
+                            }
+                            if (lstData.noiDung != null) {
+                                tinymce.get('editor').setContent(lstData.noiDung);
+                            } else {
+                                tinymce.get('editor').setContent("");
+                            }
+                            $("#isThayDoi").val("false");
+                            $("#bsBaiViet").modal('show');
+                        }
+                    } else {
+                        toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                    }
+                }
+            })
+        }
+    },
+
+    readURL: function (input) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#imageHoSo').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    },
+
+    ResetForm: function () {
+        $("#IdDichVu").val(0);
+        $("#TieuDeBaiViet").val("");
+        $("#MoTaNgan").val("");
+        $("#CbLoaiBaiDang").val("");
+        $("#CbNhomBaiViet1").val("").trigger('chosen:updated');
+        $("#CbNhomBaiViet2").val("").trigger('chosen:updated');
+        $("#IsBaiVietNoiBat").prop("checked", false);
+        $("#IsCongKhai").prop("checked", false);
+        $("#isThayDoi").val("false");
+        tinymce.get('editor').setContent("");
+        $('#imageHoSo').attr('src', '/root/unnamed.png');
+    },
+
+    SaveData: function () {
+        var IdDichVu = $("#IdDichVu").val();
+        var TieuDeBaiViet = $("#TieuDeBaiViet").val();
+        var MoTaNgan = $("#MoTaNgan").val();
+        var CbLoaiBaiDang = $("#CbLoaiBaiDang").val();
+        var CbNhomBaiViet1 = $("#CbNhomBaiViet1").val();
+        var CbNhomBaiViet2 = $("#CbNhomBaiViet2").val();
+        var IsBaiVietNoiBat = $("#IsBaiVietNoiBat").prop("checked");
+        var IsCongKhai = $("#IsCongKhai").prop("checked");
+        var editor = encodeURIComponent(tinymce.get('editor').getContent());
+
+        if (TieuDeBaiViet == "") {
+            toastr.error("Bạn chưa nhập tên tiêu đề", "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+            $("#TieuDeBaiViet").focus();
+            return;
+        }
+        if ((CbNhomBaiViet1 == "" || CbNhomBaiViet1 == undefined) && (CbNhomBaiViet2 == "" || CbNhomBaiViet2 == undefined)) {
+            toastr.error("Bạn chưa chọn phân loại dịch vụ", "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+            return;
+        }
+
+        var objdata = {
+            IdDichVu: IdDichVu != 0 ? IdDichVu : '00000000-0000-0000-0000-000000000000',
+            TieuDeBaiViet: TieuDeBaiViet,
+            MoTaNgan: MoTaNgan,
+            CbLoaiBaiDang: CbLoaiBaiDang,
+            CbNhomBaiViet: CbNhomBaiViet1 != "" ? CbNhomBaiViet1 : CbNhomBaiViet2 != "" ? CbNhomBaiViet2 : "",
+            IsBaiVietNoiBat: IsBaiVietNoiBat,
+            IsCongKhai: IsCongKhai,
+            NoiDung: editor,
+        }
+        if (files != undefined && files.length > 0) {
+            if (window.FormData !== undefined) {
+                var data = new FormData();
+                for (var x = 0; x < files.length; x++) {
+                    data.append('files', files[x]);
+
+                }
+                data.append("strData", JSON.stringify(objdata));
+                data.append('isThayDoi', $("#isThayDoi").val());
+
+                $.ajax({
+                    type: "POST",
+                    url: '/Admin/DichVu/SaveData',
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    success: function (response) {
+                        if (response.status == true) {
+                            toastr.success("Cập nhập thành công", "Thành Công", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                            myScripts.LoadTable();
+                            $("#bsBaiViet").modal('hide');
+                        } else {
+                            notify('error', 'Có Lỗi', response.message);
+                        }
+                    },
+                    error: function (response) {
+                        toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                    }
+                });
+            } else {
+                alert("Upload file thất bại!");
+            }
+        }
+        else {
+            $.ajax({
+                type: 'Post',
+                url: '/Admin/DichVu/SaveData',
+                datatype: 'json',
+                data: {
+                    strData: JSON.stringify(objdata),
+                },
+                success: function (response) {
+                    if (response.status) {
+                        toastr.success("Cập nhập thành công", "Thành Công", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                        myScripts.LoadTable();
+                        $("#bsBaiViet").modal('hide');
+                    }
+                    else {
+                        toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                    }
+                },
+            });
+        }
+    },
+
+    DeleteData: function (idDichVu) {
+        if (idDichVu != "") {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "btn bg-secondary-subtle text-secondary",
+                    cancelButton: "me-6 btn bg-secondary-subtle text-secondary",
+                },
+                buttonsStyling: false,
+            });
+            swalWithBootstrapButtons
+                .fire({
+                    title: "Xác nhận?",
+                    text: "Bạn có chắc chắn muốn xóa bản ghi này không?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Đồng ý",
+                    cancelButtonText: "Hủy",
+                    reverseButtons: true,
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: "POST",
+                            url: "/Admin/DichVu/DeleteData",
+                            data: {
+                                IdDichVu: idDichVu,
+                            },
+                            success: function (response) {
+                                if (response.status == true) {
+                                    myScripts.LoadTable();
+                                    toastr.success("Xóa thành công 1 bản ghi", "Thành công", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                                } else {
+                                    toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                                }
+                            },
+                            error: function (response) {
+                                toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                            }
+                        });
+                    }
+                });
+        } else {
+            alert("Bạn chưa chọn bản ghi nào để xóa");
+        }
+    },
+};
+myScripts.init();
+function fm_Image(e, value, row, index) {
+    if (value.urlImage != "") {
+        return [
+            '<div style="width:120px;justify-self: center;" class="">',
+            '<a class="image-popup-vertical-fit" target="_blank" href="' + value.urlImage + '">',
+            ' <img class="d-block position-relative w-100" src="' + value.urlImage + '" width="100" />',
+            ' </a>',
+            '</div>'
+        ].join('');
+    } else {
+        return [
+            '<div style="width: 100%">',
+
+            '</div>'
+        ].join('');
+    }
+};
+
+function fm_editBVNB(e, value, row, index) {
+    if (value.isBaiVietNoiBat == true) {
+        return [
+            '<div style="width: 100%;text-align: center;">',
+            '<iconify-icon icon="solar:verified-check-bold-duotone" class="text-success" width="35px" height="35px"></iconify-icon>',
+            '</div>'
+        ].join('');
+    } else {
+        return [
+            '<div style="width: 100%;text-align: center;">',
+            '<iconify-icon icon="solar:close-circle-bold-duotone" class="text-danger" width="35px" height="35px"></iconify-icon>',
+            '</div>'
+        ].join('');
+    }
+};
+
+function fm_editBVCK(e, value, row, index) {
+    if (value.isCongKhai == true) {
+        return [
+            '<div style="width: 100%;text-align: center;">',
+            '<iconify-icon icon="solar:verified-check-bold-duotone" class="text-success" width="35px" height="35px"></iconify-icon>',
+            '</div>'
+        ].join('');
+    } else {
+        return [
+            '<div style="width: 100%;text-align: center;">',
+            '<iconify-icon icon="solar:close-circle-bold-duotone" class="text-danger" width="35px" height="35px"></iconify-icon>',
+            '</div>'
+        ].join('');
+    }
+};
+function fm_editData(e, value, row, index) {
+    return [
+        '<div style="width: 100%">',
+        '<a href="javascript:myScripts.LoadDetail(' + "'" + value.idDichVu + "'" + ')" class="hvr-shrink me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Sửa dữ liệu"><iconify-icon icon="solar:gallery-edit-line-duotone" class="text-primary" width="23px" height="23px"></iconify-icon></a>' +
+        '<a href="javascript:myScripts.DeleteData(' + "'" + value.idDichVu + "'" + ')" class="hvr-shrink" data-bs-toggle="tooltip" title="Xóa dữ liệu"><iconify-icon icon="solar:trash-bin-trash-outline" class="text-danger" width="25px" height="25px"></iconify-icon></a>' +
+        '</div>'
+    ].join('');
+};

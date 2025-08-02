@@ -152,6 +152,7 @@ namespace WebAppService.Areas.Admin.Controllers
                     x.IsVideoNoiBat,
                     x.UrlImage,
                     x.UrlVideo,
+                    x.NameVideo,
                     x.MoTaNgan,
                     x.TieuDeNgan,
                 }).FirstOrDefault();

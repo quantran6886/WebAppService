@@ -6,6 +6,22 @@
 @section Scripts {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
     <script src="~/assets/libs/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script>
+        var widgetIdPC = null;
+        var widgetIdMobile = null;
+
+        function initRecaptcha() {
+            widgetIdPC = grecaptcha.render('recaptcha-pc', {
+                'sitekey': '@ViewBag.ReCaptchaKey'
+            });
+            widgetIdMobile = grecaptcha.render('recaptcha-mobile', {
+                'sitekey': '@ViewBag.ReCaptchaKey'
+            });
+        }
+        window.onload = function () {
+            initRecaptcha();
+        };
+    </script>
     <script src="~/ajax/webappclient.lienhe.js"></script>
 }
 
@@ -97,7 +113,7 @@
                                     </div>
 
                                     <div class="form-group mt-2 col-md-12 hide-on-mobile">
-                                        <div class="g-recaptcha" data-sitekey="@ViewBag.ReCaptchaKey"></div>
+                                        <div id="recaptcha-pc"></div>
                                     </div>
                                     <div class="form-group col-md-6 hide-on-mobile" style="margin-top:30px">
                                         <a href="#" onclick="CheckBeforeSend()" class="btn main-menu border-radius-5 d-lg-inline btn-orrange py-2 w-100" style=" padding: 0px 67px;font-weight: 700;font-family: 'Montserrat'">Gửi</a>
@@ -117,7 +133,7 @@
                                 <a href="#" onclick="SendForm()" class="btn main-menu btn-orrange w-100" style="padding:20px">Gửi</a>
                             </div>-->
                             <div class="form-group col-md-12 p-0  d-block d-md-none">
-                                <div class="g-recaptcha" data-sitekey="@ViewBag.ReCaptchaKey"></div>
+                                <div id="recaptcha-mobile"></div>
                             </div>
                             <div class="form-group col-md-12 p-0  d-block d-md-none">
                                 <a href="#" onclick="CheckBeforeSend()" class="btn main-menu btn-orrange w-100" style="padding:20px">Gửi</a>

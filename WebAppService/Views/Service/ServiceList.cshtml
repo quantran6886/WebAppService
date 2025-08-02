@@ -37,14 +37,18 @@
             },
 
              LoadData: function () {
-                var txtSearh =  $("#txtSearh").val();    
+                var txtSearh =  $("#txtSearh").val();
+                var cb = getUrlParameter('cb');
+                var dm = getUrlParameter('dm');
                 $.ajax({
                     url: '/Service/LoadData',
                     type: "GET",
                     data: {
                         page: myClient.currentPage,
                         pageSize: myClient.pageSize,
-                        txtSearh:txtSearh
+                        txtSearh:txtSearh,
+                        cb: cb,
+                        dm: dm
                     },
                     dataType: "json",
                     success: function (data) {
@@ -73,7 +77,12 @@
 
         }
         myClient.init();
-
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        };
     </script>
 }
 
@@ -107,7 +116,6 @@
     <div class="grid-servide">
         <div class="col-lg-12 col-md-12 pxs-3">
             <div class="row mt-3" id="list_bai_viet">
-              
             </div>
             <div class="pagination-area mb-30">
                 <nav aria-label="Page navigation example">
