@@ -41,6 +41,7 @@
                                 <th data-field="hoTen" data-sortable="true">Họ và tên</th>
                                 <th data-field="ngaySinh" data-sortable="true">Ngày sinh</th>
                                 <th data-field="chucDanh" data-sortable="true">Chức danh</th>
+                                <th data-field="chucVu" data-sortable="true">Chuyên khoa</th>
                                 <th data-field="donViKhoa" data-sortable="true">Cơ sở làm việc</th>
                           @*       <th data-field="bangCapHocVi" data-sortable="true">Bằng cấp - học vị</th>
                                 <th data-field="ngonNgu" data-sortable="true">Ngôn ngữ</th> *@
@@ -102,13 +103,22 @@
                                             </div>
                                             <div class="col-sm-6 mb-2">
                                                 <label class="fs-2 form-label m-0">Cơ sở làm việc:</label>
-                                                <input type="text" class="form-control" placeholder="Cơ sở làm việc ..." id="DonViKhoa" value="">
+                                                @* <input type="text" class="form-control" placeholder="Cơ sở làm việc ..." id="DonViKhoa" value=""> *@
+                                                <select data-placeholder="Choose a Country..." class="form-control chosen-select" id="DonViKhoa" tabindex="2">
+                                                    <option value="">--Chọn Cơ sở làm việc--</option>
+                                                </select>
                                             </div>
                                             <div class="col-sm-12 mb-2">
+                                                <label class="fs-2 form-label m-0">Chuyên khoa:</label>
+                                                <select data-placeholder="Choose a Country..." class="form-control chosen-select" id="ChucVu" tabindex="2">
+                                                    <option value="">--Chọn Chuyên khoa--</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-6 mb-2">
                                                 <label class="fs-2 form-label m-0">Bằng cấp - Học vị:</label>
                                                 <textarea type="text" class="form-control" placeholder="Bằng cấp học vị ..." rows="2" id="BangCapHocVi" value=""></textarea>
                                             </div>
-                                            <div class="col-sm-12 mb-2">
+                                            <div class="col-sm-6 mb-2">
                                                 <label class="fs-2 form-label m-0">Ngôn ngữ:</label>
                                                 <textarea type="text" class="form-control" placeholder="Ngôn ngữ ..." rows="2" id="NgonNgu" value=""></textarea>
                                             </div>

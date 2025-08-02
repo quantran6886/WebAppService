@@ -22,7 +22,25 @@ namespace WebAppService.Areas.Admin.Controllers
         {
             try
             {
-                var lstChucDanh = db.WebDanhMucHeThongs.Where(c => c.LoaiDanhMuc == "Danh mục chức danh").Select(c => new
+                var listHethong = db.WebDanhMucHeThongs.OrderBy(c => c.ThuTuTg ).ToList();
+
+                var lstChucDanh = listHethong.Where(c => c.LoaiDanhMuc == "Danh mục chức danh").Select(c => new
+                {
+                    c.IdHeThong,
+                    c.ThuTuTg,
+                    c.TenGoi,
+                    c.GhiChu,
+                }).ToList();
+
+                var lstDonViKhoa = listHethong.Where(c => c.LoaiDanhMuc == "Danh mục cơ sở làm việc").Select(c => new
+                {
+                    c.IdHeThong,
+                    c.ThuTuTg,
+                    c.TenGoi,
+                    c.GhiChu,
+                }).ToList();
+
+                var lstChuyenKhoa = listHethong.Where(c => c.LoaiDanhMuc == "Danh mục nhóm dịch vụ chuyên khoa").Select(c => new
                 {
                     c.IdHeThong,
                     c.ThuTuTg,
@@ -33,6 +51,8 @@ namespace WebAppService.Areas.Admin.Controllers
                 return new JsonResult(new
                 {
                     lstChucDanh,
+                    lstDonViKhoa,
+                    lstChuyenKhoa,
                     status = true
                 });
             }
@@ -96,6 +116,7 @@ namespace WebAppService.Areas.Admin.Controllers
                     ClientData.HoTen = ClientData.HoTen;
                     ClientData.NgaySinh = ClientData.NgaySinh;
                     ClientData.ChucDanh = ClientData.ChucDanh;
+                    ClientData.ChucVu = ClientData.ChucVu;
                     ClientData.DonViKhoa = ClientData.DonViKhoa;
                     ClientData.BangCapHocVi = ClientData.BangCapHocVi;
                     ClientData.NgonNgu = ClientData.NgonNgu;
@@ -117,6 +138,7 @@ namespace WebAppService.Areas.Admin.Controllers
                         existing.HoTen = ClientData.HoTen;
                         existing.NgaySinh = ClientData.NgaySinh;
                         existing.ChucDanh = ClientData.ChucDanh;
+                        existing.ChucVu = ClientData.ChucVu;
                         existing.DonViKhoa = ClientData.DonViKhoa;
                         existing.BangCapHocVi = ClientData.BangCapHocVi;
                         existing.NgonNgu = ClientData.NgonNgu;
@@ -149,6 +171,7 @@ namespace WebAppService.Areas.Admin.Controllers
                     c.HoTen,
                     c.ChucDanh,
                     c.DonViKhoa,
+                    c.ChucVu,
                     c.BangCapHocVi,
                     c.NgonNgu,
                     NgaySinh = c.NgaySinh != null ? string.Format("{0:dd-MM-yyyy}",c.NgaySinh) : "",
@@ -188,6 +211,7 @@ namespace WebAppService.Areas.Admin.Controllers
                     NgaySinh = c.NgaySinh != null ? string.Format("{0:yyyy-MM-dd}", c.NgaySinh) : "",
                     c.UrlImage,
                     c.NameImage,
+                    c.ChucVu,
                 }).FirstOrDefault();
 
                 return new JsonResult(new

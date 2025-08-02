@@ -25,11 +25,12 @@ namespace clinic_website.Controllers
         AppDbContext db = new AppDbContext();
 
         [HttpGet]
-        public IActionResult LoadData(int page, int pageSize)
+        public IActionResult LoadData(int page, int pageSize ,string? txtCoSo, string? txtChuyenKhoa)
         {
             try
             {
-                var allData = db.WebNhanSus.ToList();
+                var allData = db.WebNhanSus.Where(c => (!string.IsNullOrEmpty(txtCoSo) ? c.DonViKhoa == txtCoSo : true) 
+                && (!string.IsNullOrEmpty(txtChuyenKhoa) ? c.ChucVu == txtChuyenKhoa : true)).ToList();
 
                 var lstData = allData.Select(c => new
                 {

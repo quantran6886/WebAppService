@@ -8,7 +8,8 @@
 
             init: function(){
                 myClient.Event();
-                myClient.LoadData();
+                myClient.LoadDanhMuc();
+                // myClient.LoadData();
             },
 
              Event: function () {
@@ -17,15 +18,54 @@
                     myClient.currentPage = page;
                     myClient.LoadData();
                 });
+
+                   $("#btnSearch").off("click").on("click", function () {
+                    myClient.LoadData();
+                });
             },
 
+           LoadDanhMuc: function () {
+                    $.ajax({
+                        url: '/Admin/DanhSachNhanSu/LoadData',
+                        type: 'GET',
+                        datatype: 'json',
+                        success: function (response) {
+                            if (response.status) {
+                                var lstDonViKhoa = response.lstDonViKhoa;
+                                var lstChuyenKhoa = response.lstChuyenKhoa;
+
+                                if (lstDonViKhoa != null) {
+                                    var option = "<option value=''>Chọn cơ sở</option>";
+                                    $.each(lstDonViKhoa, function (index, val) {
+                                        option += "<option value='" + val.tenGoi + "'>" + val.tenGoi + "</option>";
+                                    });
+                                    $("#txtCoSo").html(option).niceSelect('update');
+                                }
+                                if (lstChuyenKhoa != null) {
+                                    var option = "<option value=''>Chọn chuyên khoa</option>";
+                                    $.each(lstChuyenKhoa, function (index, val) {
+                                        option += "<option value='" + val.tenGoi + "'>" + val.tenGoi + "</option>";
+                                    });
+                                    $("#txtChuyenKhoa").html(option).niceSelect('update');
+                                }
+                                myClient.LoadData();
+                            }
+                        },
+                    });
+                },
+
              LoadData: function () {
+                var txtCoSo =  $("#txtCoSo").val();
+                var txtChuyenKhoa =  $("#txtChuyenKhoa").val();
+
                 $.ajax({
                     url: '/Doctor/LoadData',
                     type: "GET",
                     data: {
                         page: myClient.currentPage,
-                        pageSize: myClient.pageSize
+                        pageSize: myClient.pageSize,
+                        txtCoSo: txtCoSo,
+                        txtChuyenKhoa: txtChuyenKhoa,
                     },
                     dataType: "json",
                     success: function (data) {
@@ -77,10 +117,10 @@
                     <svg class="mt-15 mr-1" width="30" height="26" viewBox="0 0 19 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8.32812 24.5391C5.78906 21.3652 0.125 13.7969 0.125 9.5C0.125 4.32422 4.27539 0.125 9.5 0.125C14.6758 0.125 18.875 4.32422 18.875 9.5C18.875 13.7969 13.1621 21.3652 10.623 24.5391C10.0371 25.2715 8.91406 25.2715 8.32812 24.5391ZM9.5 12.625C11.209 12.625 12.625 11.2578 12.625 9.5C12.625 7.79102 11.209 6.375 9.5 6.375C7.74219 6.375 6.375 7.79102 6.375 9.5C6.375 11.2578 7.74219 12.625 9.5 12.625Z" fill="#F26522" />
                     </svg>
-                    <select class="w-100 border-0 p-0  pr-20" style="font-size: small;">
+                    <select class="w-100 border-0 p-0  pr-20" style="font-size: small;" id="txtCoSo">
                         <option value="">Chọn cơ sở</option>
                     </select>
-                    <svg class="mt-15 mr-1" width="36" height="24" viewBox="0 0 36 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="mt-15 mr-1" width="59" height="26" viewBox="0 0 36 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M30.1722 2.12177C29.4956 1.44911 28.6922 0.915505 27.8079 0.551444C26.9237 0.187383 25.9759 0 25.0188 0C24.0616 0 23.1138 0.187383 22.2296 0.551444C21.3454 0.915505 20.542 1.44911 19.8653 2.12177L18.461 3.51714L17.0568 2.12177C15.69 0.763676 13.8362 0.00070395 11.9033 0.000703964C9.97039 0.000703978 8.11664 0.763676 6.74986 2.12177C5.38308 3.47987 4.61523 5.32185 4.61523 7.24249C4.61523 9.16313 5.38308 11.0051 6.74986 12.3632L8.15414 13.7586L18.461 24L28.7679 13.7586L30.1722 12.3632C30.8492 11.6909 31.3862 10.8926 31.7526 10.0139C32.119 9.13531 32.3075 8.19356 32.3075 7.24249C32.3075 6.29142 32.119 5.34967 31.7526 4.47104C31.3862 3.59241 30.8492 2.79412 30.1722 2.12177Z" fill="#F26522" />
                         <foreignObject x="-25" y="-19.4614" width="86" height="62"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(12.5px);clip-path:url(#bgblur_0_87_31_clip_path);height:100%;width:100%"></div></foreignObject>
                         <path data-figma-bg-blur-radius="25" d="M15 17.5386C14.737 17.5383 14.4786 17.4689 14.2509 17.3372C14.0231 17.2056 13.834 17.0164 13.7025 16.7886L11.145 12.1912L9.51 14.6436C9.36929 14.8465 9.18067 15.0116 8.96087 15.1241C8.74107 15.2366 8.49689 15.2931 8.25 15.2886H1.5C1.10218 15.2886 0.720644 15.1306 0.43934 14.8493C0.158035 14.568 0 14.1865 0 13.7887C0 13.3908 0.158035 13.0093 0.43934 12.728C0.720644 12.4467 1.10218 12.2887 1.5 12.2887H7.4475L10.005 8.45628C10.1479 8.24274 10.3432 8.06949 10.5723 7.95313C10.8014 7.83676 11.0565 7.78119 11.3132 7.79173C11.5699 7.80227 11.8196 7.87857 12.0384 8.01332C12.2571 8.14807 12.4376 8.33675 12.5625 8.56127L15 13.0387L18.9225 6.28882C19.0565 6.05657 19.2504 5.86449 19.4838 5.73259C19.7173 5.60069 19.9819 5.53378 20.25 5.53884C20.5118 5.54042 20.7686 5.61048 20.9949 5.74205C21.2212 5.87362 21.4091 6.06212 21.54 6.28882L25.1325 12.2887L26.6325 11.1037C26.8984 10.8974 27.2259 10.7864 27.5625 10.7887H34.5C34.8978 10.7887 35.2794 10.9468 35.5607 11.2281C35.842 11.5094 36 11.8909 36 12.2887C36 12.6865 35.842 13.068 35.5607 13.3493C35.2794 13.6306 34.8978 13.7887 34.5 13.7887H28.0875L25.65 15.7161C25.4821 15.8543 25.2861 15.9543 25.0756 16.0091C24.8652 16.064 24.6454 16.0725 24.4313 16.034C24.2173 15.9954 24.0142 15.9108 23.8361 15.786C23.658 15.6612 23.5092 15.4992 23.4 15.3111L20.25 9.99374L16.2975 16.7886C16.166 17.0164 15.9769 17.2056 15.7491 17.3372C15.5214 17.4689 15.263 17.5383 15 17.5386Z" fill="white" fill-opacity="0.2" />
@@ -90,12 +130,12 @@
                             </clipPath>
                         </defs>
                     </svg>
-                    <select class="w-100 border-0 p-0 pr-20" style="font-size: small;">
+                    <select class="w-100 border-0 p-0 pr-20" style="font-size: small;" id="txtChuyenKhoa">
                         <option value="">Chọn chuyên khoa</option>
                     </select>
                 </div>
                 <div class="col-3" style="padding:13px 0px;text-align: right;">
-                    <a href="#" class="main-menu btn-sm btn-orrange font-weight-bold w-100"><i class="fa fa-search"></i> <span class="hide-on-mobile">Tìm</span></a>
+                    <a href="#" class="main-menu btn-sm btn-orrange font-weight-bold w-100" id="btnSearch"><i class="fa fa-search"></i> <span class="hide-on-mobile">Tìm</span></a>
                 </div>
             </div>
         </div>

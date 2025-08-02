@@ -6,6 +6,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
     <script src="~/assets/libs/sweetalert2/dist/sweetalert2.min.js"></script>
     <script src="~/ajax/webappclient.faqs.js"></script>
+    <script>
+        var widgetIdPC = null;
+        var widgetIdMobile = null;
+
+        function initRecaptcha() {
+            widgetIdPC = grecaptcha.render('recaptcha-pc', {
+                'sitekey': '@ViewBag.ReCaptchaKey'
+            });
+            widgetIdMobile = grecaptcha.render('recaptcha-mobile', {
+                'sitekey': '@ViewBag.ReCaptchaKey'
+            });
+        }
+        window.onload = function () {
+            initRecaptcha();
+        };
+    </script>
     <script src="~/ajax/webappclient.lienhe.js"></script>
 }
 <div class="entry-header entry-header-2 mb-3 mt-0 text-center">
