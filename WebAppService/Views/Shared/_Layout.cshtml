@@ -1,8 +1,9 @@
 ﻿<!DOCTYPE html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="vi">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="google" content="notranslate">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sun Meidcal</title>
@@ -38,6 +39,8 @@
         </header>
         <!-- Main Wrap Start -->
         <main class="position-relative">
+            <img src="~/src/image_figma/Vector_2.png" class="orange-top" alt="orange-top" />
+            <img src="~/src/image_figma/Vector_3.png" class="orange-bottom" alt="orange-bottom" />
             @RenderBody()
         </main>
         <!-- Footer Start-->
@@ -47,5 +50,4 @@
     @await Html.PartialAsync("_ScriptsBundle")
     @await RenderSectionAsync("Scripts", required: false)
 </body>
-
 </html>

@@ -1,12 +1,166 @@
-﻿.layout-home {
+﻿
+.service-card-y {
+    position: inherit;
+    top: -54px;
+}
+
+.question-doctor {
+    background: #F9FCFF;
+    position: inherit;
+    top: -55px;
+}
+
+.layout-home-white {
+    position: relative;
+    overflow: hidden;
+}
+
+.text-dvdb1 {
+    font-family: 'Montserrat', sans-serif;
+    color: #000000;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.text-dvdb2 {
+    font-family: 'Inter', sans-serif;
+    color: #757575;
+    font-size: 15px;
+}
+
+.video-overlay {
+    background: rgba(0, 0, 0, 0.4); /* đen mờ */
+    z-index: 1;
+    border-radius: 10px;
+}
+
+/* Đảm bảo các thành phần khác nằm trên overlay */
+.play_btn,
+.video-caption {
+    z-index: 2;
+}
+
+.custom-play-button {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.2); /* vòng ngoài mờ */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px); /* hiệu ứng mờ nền */
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+    .custom-play-button::before {
+        content: "";
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        background: rgba(255, 255, 255, 0.4); /* vòng trong sáng hơn */
+        border-radius: 50%;
+        z-index: 1;
+    }
+
+    .custom-play-button i {
+        color: white;
+        font-size: 22px;
+        z-index: 2;
+    }
+
+    .custom-play-button:hover {
+        transform: scale(1.1);
+    }
+/* ----- Mặc định: laptop ----- */
+.dot-left {
+    position: absolute;
+    top: 297px;
+    left: 213px;
+    width: 165px;
+    opacity: 1;
+    z-index: 0;
+}
+
+.dot-right {
+    position: absolute;
+    top: 100px;
+    right: 256px;
+    width: 130px;
+    opacity: 0.7;
+    z-index: 0;
+}
+
+.social-float-buttons {
+    position: absolute;
+    top: 20%;
+    right: 230px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 999;
+    padding-right: 10px;
+}
+
+.social-btn {
+    width: 57px;
+    height: 57px;
+    background: #fff;
+    border-radius: 69%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+    .social-btn:hover {
+        transform: scale(1.1);
+    }
+
+    .social-btn img {
+        width: 37px;
+        height: 37px;
+    }
+
+
+/* ----- Màn hình lớn hơn 1920px (≈ 20 inch trở lên) ----- */
+@media (min-width: 1920px) {
+    .dot-left {
+        top: 297px;
+        left: 160px;
+        width: 147px;
+    }
+
+    .dot-right {
+        top: 78px;
+        right: 184px;
+        width: 141px;
+    }
+
+    .social-float-buttons {
+        position: absolute;
+        top: 20%;
+        right: 423px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        z-index: 999;
+        padding-right: 10px;
+    }
+}
+/*////////////////////////*/
+.layout-home {
     background: #e1f3f3;
     height: 500px;
 }
 
 .layout-home-white {
-    background: white;
-   /* height: 524px;*/
-   height:max-content;
+    background: transparent;
+    /* height: 524px;*/
+    height: max-content;
 }
 
 .floating-box-wrapper {
@@ -22,6 +176,7 @@
     -webkit-line-clamp: 10;
     -webkit-box-orient: vertical;
 }
+
 .floating-box {
     position: absolute;
     top: -60px;
@@ -31,7 +186,6 @@
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     padding: 0px;
-    
     justify-content: center;
     z-index: 10;
     width: 752px;
@@ -54,12 +208,14 @@
     background: #009F9C;
     color: #ffffff;
 }
-    .bg-hover-green:hover  .post-by {
+
+    .bg-hover-green:hover .post-by {
         color: #F7FFFF;
     }
+
     .bg-hover-green:hover h5 {
         color: #F7FFFF;
-    }                 
+    }
 
 
 .author-img-circle {
@@ -77,18 +233,20 @@
 
 .author-info-small-text {
     color: #757575;
+    padding-right: 40px;
+    font-family: 'Inter';
 }
 
-.service-card-c
-{
-    height:290px;
+.service-card-c {
+    height: 290px;
 }
+
 .service-card {
     background: #ffffff;
     border-radius: 25.91px;
     padding: 40px 10px;
     margin-bottom: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 7px 0px 40px rgb(193 147 147 / 5%);
 }
 
 .service-img-wrapper {
@@ -212,9 +370,11 @@
     margin-right: 15px;
     margin-left: 25px;
 }
+
 .swiper-slide {
     margin-right: 0px;
 }
+
 .service-card {
     flex: 0 0 300px;
     background: #fff;
@@ -279,8 +439,8 @@
     margin: 0px;
     padding: 0px;
 }*/
-.author-info{
-    text-align:left;
+.author-info {
+    text-align: left;
 }
 
 .box-item i {
@@ -289,24 +449,27 @@
     height: 100%;
     color: #00B9B5
 }
+
 .bi-telephone-fill::before {
     content: "\f5b4";
     height: 27px;
     width: 27px;
 }
+
 .box_item_text p {
     text-align: left;
     font-family: 'Inter', sans-serif;
     color: #757575;
     font-size: 10px;
 }
+
 .icon_box {
     height: 30px;
     width: 30px;
     font-size: 30px;
-    margin-top: 35px;
-
+    margin-top: 24px;
 }
+
 .box_item_text h5 {
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
@@ -319,20 +482,24 @@
     width: 453.98px;
     height: 443.88px
 }
+
 .box-item {
     page-break-inside: avoid;
     break-inside: avoid;
     text-align: center;
 }
+
 #sp_sv article {
-    padding: 20px;
+    padding: 0px 30px 35px 50px;
 }
+
 .text-primary {
     background: linear-gradient(90deg, #009688, #00BCD4);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
 }
+
 #slider1 {
     scroll-behavior: smooth;
     gap: 30px;
@@ -340,21 +507,159 @@
 }
 
     #slider1::-webkit-scrollbar {
-        display: none; 
+        display: none;
     }
-.animated{
-    margin:0px;
+
+.animated {
+    margin: 0px;
 }
-.fa{
-    color:#FF7F22;
+
+.fa {
+    color: #FF7F22;
 }
+
 .for-more {
     text-align: center;
     font-family: 'Manrope', sans-serif;
     font-weight: bold;
     font-size: 16px;
 }
+
+.text-ic-5 {
+    font-family: 'Montserrat', sans-serif;
+    color: #2F4848;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.text-ics-5 {
+    font-family: 'Inter', sans-serif;
+    color: #000000;
+}
+
+
+.img-client-boder {
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.mtauthordv {
+    margin-top: 130px !important;
+}
+
 @media screen and (max-width: 768px) {
+    .author-info-small-text {
+        color: #757575;
+        padding-right: 0px;
+    }
+
+    .social-float-buttons {
+        position: absolute;
+        top: 13.2%;
+        right: 21px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        z-index: 999;
+        padding-right: 10px;
+    }
+
+    .author-info-mobile {
+        position: inherit;
+        top: -48px;
+        padding-top: 20px;
+        background: white;
+    }
+
+    .custom-play-button {
+        width: 50px;
+        height: 50px;
+    }
+
+        .custom-play-button::before {
+            width: 36px;
+            height: 36px;
+        }
+
+        .custom-play-button i {
+            font-size: 16px;
+        }
+
+    .slider-container {
+        justify-content: flex-start;
+    }
+
+    .play_btn a {
+        transform: translate(-62%, -62%) !important;
+    }
+    .text-ic-5 {
+        font-family: 'Montserrat', sans-serif;
+        color: #2F4848;
+        font-size: 28px;
+        font-weight: 700;
+    }
+
+    .text-ics-5 {
+        font-family: 'Inter', sans-serif;
+        color: #000000;
+        font-size: 11px;
+    }
+
+    .text-dvdb1 {
+        font-family: 'Montserrat', sans-serif;
+        color: #000000;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .text-dvdb2 {
+        font-family: 'Inter', sans-serif;
+        color: #757575;
+        font-size: 13px;
+    }
+
+    .service-card-y {
+        position: inherit;
+        top: -23px;
+    }
+
+    .dot-left {
+        position: absolute;
+        top: 297px;
+        left: 213px;
+        width: 147px;
+        opacity: 0.8;
+        z-index: 0;
+    }
+
+    .dot-right {
+        position: absolute;
+        top: 99px;
+        right: 259px;
+        width: 99px;
+        opacity: 0.7;
+        z-index: 0;
+    }
+
+    /*.orange-top {
+        position: absolute;
+        top: 272px;
+        right: 316px;
+        width: 517px;
+        opacity: 0.9;
+        z-index: 0;
+    }
+
+    .orange-bottom {
+        position: absolute;
+        bottom: 55px;
+        left: 900px;
+        width: 500px;
+        opacity: 0.9;
+        z-index: 0;
+    }*/
+
     /* CSS dành cho mobile */
     .mobile-icon {
         margin-top: 8px !important;
@@ -366,9 +671,11 @@
         text-align: center;
         margin-top: 5px;
     }
-    .layout-home{
-        height:590px;
+
+    .layout-home {
+        height: 590px;
     }
+
     .icon_box {
         font-size: 16px;
         margin-top: 7px;
@@ -404,11 +711,9 @@
     }
 
     .author-bio {
-        padding-top: 43px !important;
         text-align: center;
+        margin-top: 22px !important;
     }
-
- 
 
     #LayoutHome1 {
         margin-bottom: 50px;
@@ -422,19 +727,25 @@
         text-align: center;
     }
 
+    .icon_mobile {
+        width: 13px;
+        height: 13px;
+    }
 
     .box_item_text {
         margin-top: 10px;
+        padding: 3px !important;
     }
 
         .box_item_text h5 {
             margin-top: 0px;
-
-            font-size:10px;
+            font-size: 10px;
         }
+
         .box_item_text p {
             font-size: 9px;
         }
+
     .img_avt2 {
         height: 300px;
         width: 329px;
@@ -450,10 +761,11 @@
     .t_mb2 {
         font-family: 'Montserrat', sans-serif;
         color: #2F4848;
-        font-size: 18px;
+        font-size: 17px;
         font-weight: bold;
         line-height: 120%;
         margin-bottom: 10px;
+        z-index: 100;
     }
 
 
@@ -462,7 +774,7 @@
     }*/
     .btn_sv {
         text-align: center;
-        margin-top: 20px;
+        margin-top: 0px !important;
     }
 
     #sp_sv article {
@@ -519,11 +831,12 @@
         margin-left: 16px;
         margin-top: 15px;
     }
+
     .swiper-slide {
         padding: 0px;
-       
     }
-    .item_vd{
-        height:90px;
+
+    .item_vd {
+        height: 90px;
     }
 }

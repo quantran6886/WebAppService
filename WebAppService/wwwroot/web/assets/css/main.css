@@ -267,8 +267,6 @@
 .social-icons {
     display: flex;
     gap: 20px;
-    justify-content: center;
-    align-items: center;
     background: #efffff; /* nền nhẹ màu xanh */
     padding: 0px;
 }
@@ -305,7 +303,59 @@
     transform: scale(1.1);
 }
 
+.orange-top {
+    position: absolute;
+    top: 808px;
+    right: 316px;
+    width: 517px;
+    opacity: 0.9;
+    z-index: 0;
+}
+
+.orange-bottom {
+    position: absolute;
+    top: 620px;
+    left: 893px;
+    width: 500px;
+    opacity: 0.9;
+    z-index: 0;
+}
+
+@media (min-width: 1920px) {
+    .orange-top {
+        position: absolute;
+        top: 808px;
+        right: 507px;
+        width: 517px;
+        opacity: 0.9;
+        z-index: 0;
+    }
+
+    .orange-bottom {
+        position: absolute;
+        top: 620px;
+        left: 1088px;
+        width: 500px;
+        opacity: 0.9;
+        z-index: 0;
+    }
+}
 @media screen and (max-width: 768px) {
+    .social-icons {
+        display: flex;
+        gap: 20px;
+        -webkit-justify-content: center;
+        justify-content: center;
+        background: #efffff; /* nền nhẹ màu xanh */
+        padding: 0px;
+    }
+    .orange-top {
+        display: none;
+    }
+
+    .orange-bottom {
+        display: none;
+    }
     .container-mobile {
         padding: 0 30px;
     }

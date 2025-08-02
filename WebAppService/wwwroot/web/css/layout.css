@@ -172,11 +172,14 @@
 
 .footer-desc {
     font-size: 14px;
-    margin: 20px 0;
-    line-height: 1.5;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    white-space: normal;
+    line-height: 1.6;
+    text-align: left;
+    word-break: break-word;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 400px;
+    color:#000000;
+    padding-left:0px
 }
 
 .footer-socials a {
@@ -224,4 +227,29 @@
     font-size: 12px;
     margin-top: 40px;
     color: #777;
+}
+.footer-copy-right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* tự xuống dòng nếu màn nhỏ */
+    font-size: 14px;
+    padding: 10px 0;
+}
+@media screen and (max-width: 768px) {
+    .footer-desc {
+        font-size: 14px;
+        line-height: 1.6;
+        text-align: center;
+        word-break: break-word;
+        padding: 0;
+        margin: 0 auto;
+        max-width: 400px;
+        color: #000000;
+    }
+    .footer-copy-right {
+        flex-direction: column;
+        text-align: center;
+        gap: 5px;
+    }
 }

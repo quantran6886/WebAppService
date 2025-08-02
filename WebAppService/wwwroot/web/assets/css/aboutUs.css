@@ -1,4 +1,7 @@
-﻿.text-inter {
+﻿.aboutUsContent {
+    margin-top: 35px;
+}
+.text-inter {
     font-family: 'Inter', sans-serif;
     font-size: 13px;
     margin-bottom: 0px;
@@ -22,6 +25,17 @@
 
 .content-section {
     margin-bottom: 40px;
+}
+.text-ic-5 {
+    font-family: 'Montserrat', sans-serif;
+    color: #2F4848;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.text-ics-5 {
+    font-family: 'Inter', sans-serif;
+    color: #000000;
 }
 /* tại sao chọn chúng tôi*/
 .bg-info-gradient {
@@ -96,5 +110,22 @@
         padding-left: 30px;
         padding-right: 30px;
     }
-
+    .aboutUsContent {
+        margin-top: 10px;
+    }
+    .img-mobile {
+        width: 550px !important;
+        height: 600px !important;
+    }
+    .text-ics-5 {
+        font-family: 'Inter', sans-serif;
+        color: #000000;
+        font-size: 11px;
+    }
+    .text-ic-5 {
+        font-family: 'Montserrat', sans-serif;
+        color: #2F4848;
+        font-size: 28px;
+        font-weight: 700;
+    }
 }

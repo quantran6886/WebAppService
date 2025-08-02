@@ -91,7 +91,7 @@
 .form-section-wrapper {
     position: relative;
     background-color: #EDFFFF;
-    height: 350px;
+    height: 450px;
     padding: 0;
 }
 
@@ -103,7 +103,7 @@
 }
 
 .doctor-overlay {
-    width: 442px;
+    width: 520px;
     object-fit: contain;
 }
 
@@ -164,6 +164,9 @@
 
 .mx-main {
     margin-top: 50px;
+}
+
+.rc-anchor-normal {
 }
 
 @media screen and (max-width: 768px) {

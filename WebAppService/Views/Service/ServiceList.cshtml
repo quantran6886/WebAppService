@@ -119,23 +119,83 @@
     </div>
 </div>
 <!-- Câu chuyện của khách hàng -->
+<!-- Câu chuyện của khách hàng -->
 <div class="message-client">
     <div class="container px-30 py-2 container-mobile">
         <div class="archive-header text-center mb-30 mt-10">
             <div class="container">
                 <div>
-                    <span class="text-head-breadcrumb text-c-cckh"> <strong class="text-c-cckh-1">Câu chuyện</strong> <strong class="text-c-cckh-2">của khách hàng</strong></span>
+                    <span class="text-head-breadcrumb text-ic-5"><span class="text-primary">Câu chuyện</span> của khách hàng</span>
                 </div>
-                <p class="text-muted mb-4 text-center text-detailkh-1">
+                <p class="text-muted mb-4 text-center">
                     Khám phá sự khác biệt mà chúng tôi tạo ra thông qua tiếng nói của những người chúng tôi đã phục vụ.
                 </p>
             </div>
         </div>
-        <div class="row" id="">
-            <div class="related-services p-2">
-                <div class="d-block d-md-none">
-                    <div class="service-card mb-3 p-10 pl-20 pr-20 justify-items-center">
-                        <a href="#" class="client-img-wrapper img-client-boder">
+        <div class="row hide-on-mobile">
+            <div class="related-services">
+                <button class="nav-button nav-left" onclick="scrollSlider(-1)">❮</button>
+                <button class="nav-button nav-right" onclick="scrollSlider(1)">❯</button>
+                <div class="slider-container" id="slider">
+                    <div class="service-card justify-items-center">
+                        <a href="single.html" class="client-img-wrapper img-client-boder">
+                            <img src="/root/img-client.png" class="img-client-boder" alt="">
+                        </a>
+                        <div class="service-content text-center">
+                            <div class="bottom-line mb-10">
+                                <h3>Linda Ngo</h3>
+                            </div>
+                            <p>“Sau ca phẫu thuật đầu gối, sự tiện lợi của dịch vụ tư vấn trực tuyến đã giúp quá trình hồi phục của tôi diễn ra suôn sẻ hơn tôi tưởng.”</p>
+                            <div class="">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 1 -->
+                    <div class="service-card justify-items-center">
+                        <a href="single.html" class="client-img-wrapper img-client-boder">
+                            <img src="/root/img-client2.png" class="img-client-boder" alt="">
+                        </a>
+                        <div class="service-content text-center">
+                            <div class="bottom-line mb-10">
+                                <h3>Crystal Maiden</h3>
+                            </div>
+                            <p>“Việc kiểm soát các bệnh mãn tính như bệnh tiểu đường đòi hỏi rất nhiều sự cảnh giác, nhưng hệ thống nạp thuốc đã đơn giản hóa cuộc sống của tôi.”</p>
+                            <div class="">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 1 -->
+                    <div class="service-card justify-items-center">
+                        <a href="single.html" class="client-img-wrapper img-client-boder">
+                            <img src="/root/img-client3.png" class="img-client-boder" alt="">
+                        </a>
+                        <div class="service-content text-center">
+                            <div class="bottom-line mb-10">
+                                <h3>Crystal Maiden</h3>
+                            </div>
+                            <p>“Hệ thống nạp đơn thuốc là một bước ngoặt trong việc kiểm soát bệnh tiểu đường của tôi. Nó thực sự hiệu quả và hoàn toàn không rắc rối.”</p>
+                            <div class="">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 1 -->
+                    <div class="service-card justify-items-center">
+                        <a href="single.html" class="client-img-wrapper img-client-boder">
                             <img src="~/root/img-client.png" class="img-client-boder" alt="">
                         </a>
                         <div class="service-content text-center">
@@ -144,130 +204,74 @@
                             </div>
                             <p>“Sau ca phẫu thuật đầu gối, sự tiện lợi của dịch vụ tư vấn trực tuyến đã giúp quá trình hồi phục của tôi diễn ra suôn sẻ hơn tôi tưởng.”</p>
                             <div class="">
-                                <i class="fa fa-star orane_color"></i>
-                                <i class="fa fa-star orane_color"></i>
-                                <i class="fa fa-star orane_color"></i>
-                                <i class="fa fa-star orane_color"></i>
-                                <i class="fa fa-star orane_color"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="service-card mb-3 p-10 pl-20 pr-20 justify-items-center">
-                        <a href="#" class="client-img-wrapper img-client-boder">
-                            <img src="~/root/kh1.png" class="img-client-boder" alt="">
-                        </a>
-                        <div class="service-content text-center">
-                            <div class="bottom-line mb-10">
-                                <h3>Crystal Maiden</h3>
-                            </div>
-                            <p>“Việc kiểm soát các bệnh mãn tính như bệnh tiểu đường đòi hỏi rất nhiều sự cảnh giác, nhưng hệ thống nạp thuốc đã đơn giản hóa cuộc sống của tôi.”</p>
-                            <div class="">
-                                <i class="fa fa-star orane_color"></i>
-                                <i class="fa fa-star orane_color"></i>
-                                <i class="fa fa-star orane_color"></i>
-                                <i class="fa fa-star orane_color"></i>
-                                <i class="fa fa-star orane_color"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="service-card mb-3 p-10 pl-20 pr-20 justify-items-center">
-                        <a href="#" class="client-img-wrapper img-client-boder">
-                            <img src="~/root/kh2.png" class="img-client-boder" alt="">
-                        </a>
-                        <div class="service-content text-center">
-                            <div class="bottom-line mb-10">
-                                <h3>Crystal Maiden</h3>
-                            </div>
-                            <p>“Hệ thống nạp đơn thuốc là một bước ngoặt trong việc kiểm soát bệnh tiểu đường của tôi. Nó thực sự hiệu quả và hoàn toàn không rắc rối.”</p>
-                            <div class="">
-                                <i class="fa fa-star orane_color"></i>
-                                <i class="fa fa-star orane_color"></i>
-                                <i class="fa fa-star orane_color"></i>
-                                <i class="fa fa-star orane_color"></i>
-                                <i class="fa fa-star orane_color"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="related-services hide-on-mobile">
-                <button class="nav-button nav-left" onclick="scrollSlider(-1)">❮</button>
-                <button class="nav-button nav-right" onclick="scrollSlider(1)">❯</button>
-                <div class="slider-container" id="slider">
-                    <!-- 1 -->
-                    <div class="service-card justify-items-center">
-                        <a href="single.html" class="client-img-wrapper img-client-boder">
-                            <img src="~/root/img-client.png" class="img-client-boder" alt="">
-                        </a>
-                        <div class="service-content text-center">
-                            <div class="bottom-line mb-10">
-                                <h3>Linda Ngo</h3>
-                            </div>
-                            <p>“Sau ca phẫu thuật đầu gối, sự tiện lợi của dịch vụ tư vấn trực tuyến đã giúp quá trình hồi phục của tôi diễn ra suôn sẻ hơn tôi tưởng.”</p>
-                            <div class="">
-                                <i class="fa fa-star orane_color"></i>
-                                <i class="fa fa-star orane_color"></i>
-                                <i class="fa fa-star orane_color"></i>
-                                <i class="fa fa-star orane_color"></i>
-                                <i class="fa fa-star orane_color"></i>
-                            </div>
+        </div>
+
+        <div class="row d-block d-md-none">
+            <div class="">
+                <!-- 1 -->
+                <div class="service-card justify-items-center">
+                    <a href="single.html" class="client-img-wrapper img-client-boder">
+                        <img src="/root/img-client.png" class="img-client-boder" alt="">
+                    </a>
+                    <div class="service-content text-center">
+                        <div class="bottom-line mb-10">
+                            <h3>Linda Ngo</h3>
+                        </div>
+                        <p>“Sau ca phẫu thuật đầu gối, sự tiện lợi của dịch vụ tư vấn trực tuyến đã giúp quá trình hồi phục của tôi diễn ra suôn sẻ hơn tôi tưởng.”</p>
+                        <div class="">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
                         </div>
                     </div>
-                    <!-- 1 -->
-                    <div class="service-card justify-items-center">
-                        <a href="single.html" class="client-img-wrapper img-client-boder">
-                            <img src="~/root/kh1.png" class="img-client-boder" alt="">
-                        </a>
-                        <div class="service-content text-center">
-                            <div class="bottom-line mb-10">
-                                <h3>Crystal Maiden</h3>
-                            </div>
-                            <p>“Việc kiểm soát các bệnh mãn tính như bệnh tiểu đường đòi hỏi rất nhiều sự cảnh giác, nhưng hệ thống nạp thuốc đã đơn giản hóa cuộc sống của tôi.”</p>
-                            <div class="">
-                                <i class="fa fa-star orane_color"></i>
-                                <i class="fa fa-star orane_color"></i>
-                                <i class="fa fa-star orane_color"></i>
-                                <i class="fa fa-star orane_color"></i>
-                                <i class="fa fa-star orane_color"></i>
-                            </div>
+                </div>
+                <!-- 1 -->
+                <div class="service-card justify-items-center">
+                    <a href="single.html" class="client-img-wrapper img-client-boder">
+                        <img src="/root/img-client2.png" class="img-client-boder" alt="">
+                    </a>
+                    <div class="service-content text-center">
+                        <div class="bottom-line mb-10">
+                            <h3>Crystal Maiden</h3>
+                        </div>
+                        <p>“Việc kiểm soát các bệnh mãn tính như bệnh tiểu đường đòi hỏi rất nhiều sự cảnh giác, nhưng hệ thống nạp thuốc đã đơn giản hóa cuộc sống của tôi.”</p>
+                        <div class="">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
                         </div>
                     </div>
-                    <!-- 1 -->
-                    <div class="service-card justify-items-center">
-                        <a href="single.html" class="client-img-wrapper img-client-boder">
-                            <img src="~/root/kh2.png" class="img-client-boder" alt="">
-                        </a>
-                        <div class="service-content text-center">
-                            <div class="bottom-line mb-10">
-                                <h3>Crystal Maiden</h3>
-                            </div>
-                            <p>“Hệ thống nạp đơn thuốc là một bước ngoặt trong việc kiểm soát bệnh tiểu đường của tôi. Nó thực sự hiệu quả và hoàn toàn không rắc rối.”</p>
-                            <div class="">
-                                <i class="fa fa-star orane_color"></i>
-                                <i class="fa fa-star orane_color"></i>
-                                <i class="fa fa-star orane_color"></i>
-                                <i class="fa fa-star orane_color"></i>
-                                <i class="fa fa-star orane_color"></i>
-                            </div>
+                </div>
+                <!-- 1 -->
+                <div class="service-card justify-items-center">
+                    <a href="single.html" class="client-img-wrapper img-client-boder">
+                        <img src="/root/img-client3.png" class="img-client-boder" alt="">
+                    </a>
+                    <div class="service-content text-center">
+                        <div class="bottom-line mb-10">
+                            <h3>Crystal Maiden</h3>
                         </div>
-                    </div>
-                    <!-- 1 -->
-                    <div class="service-card justify-items-center">
-                        <a href="single.html" class="client-img-wrapper img-client-boder">
-                            <img src="~/root/img-client.png" class="img-client-boder" alt="">
-                        </a>
-                        <div class="service-content text-center">
-                            <div class="bottom-line mb-10">
-                                <h3>Linda Ngo</h3>
-                            </div>
-                            <p>“Sau ca phẫu thuật đầu gối, sự tiện lợi của dịch vụ tư vấn trực tuyến đã giúp quá trình hồi phục của tôi diễn ra suôn sẻ hơn tôi tưởng.”</p>
-                            <div class="">
-                                <i class="fa fa-star orane_color"></i>
-                                <i class="fa fa-star orane_color"></i>
-                                <i class="fa fa-star orane_color"></i>
-                                <i class="fa fa-star orane_color"></i>
-                                <i class="fa fa-star orane_color"></i>
-                            </div>
+                        <p>“Hệ thống nạp đơn thuốc là một bước ngoặt trong việc kiểm soát bệnh tiểu đường của tôi. Nó thực sự hiệu quả và hoàn toàn không rắc rối.”</p>
+                        <div class="">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
                         </div>
                     </div>
                 </div>

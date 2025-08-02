@@ -4,6 +4,78 @@
 
 connectionNoti.on("ReceiveNotification", function (message) {
 });
+function CheckBeforeSend() {
+    var response = grecaptcha.getResponse();
+    if (response.length === 0) {
+        Toastify({
+            text: "Vui lòng xác minh trước khi gửi",
+            duration: 2000,
+            close: true,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "red"
+        }).showToast();
+        return;
+    }
+    SendForm();
+}
+
+//function SendForm() {
+//    var ho_ten = $("#ho_ten").val();
+//    var so_dien_thoai = $("#so_dien_thoai").val();
+//    var email = $("#email").val();
+//    var loi_nhan = $("#loi_nhan").val();
+
+//    if (ho_ten == "") {
+//        Toastify({
+//            text: "Họ tên không được để trống!",
+//            duration: 2000,
+//            close: true,
+//            gravity: "top",
+//            position: "right",
+//            backgroundColor: "red"
+//        }).showToast();
+//        $("#ho_ten").focus();
+//        return;
+//    }
+//    if (loi_nhan == "") {
+//        Toastify({
+//            text: "Họ tên không được để trống!",
+//            duration: 2000,
+//            close: true,
+//            gravity: "top",
+//            position: "right",
+//            backgroundColor: "red"
+//        }).showToast();
+//        $("#loi_nhan").focus();
+//        return;
+//    }
+
+//    var data = {
+//        ho_ten: ho_ten,
+//        so_dien_thoai: so_dien_thoai,
+//        email: email,
+//        loi_nhan: loi_nhan,
+//        gRecaptchaResponse: grecaptcha.getResponse()
+//    };
+
+//    $.ajax({
+//        type: "POST",
+//        url: "/verify",
+//        data: data,
+//        success: function (res) {
+//            Swal.fire({
+//                title: 'Thành công!',
+//                text: 'Dữ liệu đã được gửi.',
+//                icon: 'success',
+//                confirmButtonText: 'OK'
+//            });
+//        },
+//        error: function () {
+//            alert("Lỗi kết nối tới server.");
+//        }
+//    });
+//}
 function SendForm() {
     var ho_ten = $("#ho_ten").val();
     var so_dien_thoai = $("#so_dien_thoai").val();
@@ -11,11 +83,25 @@ function SendForm() {
     var loi_nhan = $("#loi_nhan").val();
     if (ho_ten == "") {
         alert("Họ tên không được để trống!");
-        $("#ho_ten").focus();
+        Toastify({
+            text: "Họ tên không được để trống!",
+            duration: 2000,
+            close: true,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "red"
+        }).showToast();
         return;
     }
     if (loi_nhan == "") {
-        alert("Nội dung không được để trống!");
+        Toastify({
+            text: "Họ tên không được để trống!",
+            duration: 2000,
+            close: true,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "red"
+        }).showToast();
         $("#loi_nhan").focus();
         return;
     }

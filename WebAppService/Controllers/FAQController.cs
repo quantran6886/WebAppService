@@ -7,7 +7,16 @@ namespace clinic_website.Controllers
 	{
 		public IActionResult Index()
 		{
-			return View();
+            var recapchakey = db.WebDanhMucHeThongs.Where(c => c.LoaiDanhMuc == "capcha").FirstOrDefault();
+            if (recapchakey != null)
+            {
+                ViewBag.ReCaptchaKey = recapchakey.TenGoi;
+            }
+            else
+            {
+                ViewBag.ReCaptchaKey = "";
+            }
+            return View();
 		}
 
         AppDbContext db = new AppDbContext();

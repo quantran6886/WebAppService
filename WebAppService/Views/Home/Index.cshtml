@@ -31,31 +31,6 @@
             }
           }
         });
-        ///6h17
-        //     const wrapper = document.getElementById("swiperWrapper");
-        // const allItems = document.querySelectorAll("#allItems .item_vd");
-
-        // // Gom 2 item vào 1 slide
-        // for (let i = 0; i < allItems.length; i += 2) {
-        //   const slide = document.createElement("div");
-        //   slide.classList.add("swiper-slide");
-
-        //   for (let j = i; j < i + 2 && j < allItems.length; j++) {
-        //     slide.appendChild(allItems[j].cloneNode(true)); // clone để giữ nguyên HTML
-        //   }
-
-        //   wrapper.appendChild(slide);
-        // }
-
-        // // Khởi tạo Swiper
-        // const swiper = new Swiper(".mySwiper", {
-        //   loop: false,
-        //   pagination: {
-        //     el: ".swiper-pagination",
-        //     clickable: true,
-        //   },
-        // });
-
     </script>
     <script>
         var myClient = {
@@ -114,7 +89,9 @@
     <div class="floating-box container col-12 row">
         <div class="box-item col-sm-4 d-flex p-0">
             <div class="icon_box col-sm-4 ml-0 p-0 mobile-icon">
-                <a href="tel:628646442222"> <i class="bi bi-telephone-fill"></i></a>
+                <a href="tel:628646442222">
+                    <img src="~/src/image_figma/frame 48095619.png" class="icon_mobile" width="27px" height="27px" />
+                </a>
             </div>
             <div class="col-sm-8 box_item_text p-0 pr-sm-3">
                 <h5><a href="tel:628646442222">Gọi tổng đài</a></h5>
@@ -123,7 +100,7 @@
         </div>
         <div class="box-item col-sm-4 d-flex p-0">
             <div class="icon_box col-sm-4 ml-0 p-0  mobile-icon">
-                <i class="bi bi-calendar-week-fill"></i>
+                <img src="~/src/image_figma/Frame 48095620.png" class="icon_mobile" width="25.263671875px" height="24px" />
             </div>
             <div class="col-sm-8 box_item_text p-0 pr-sm-3">
                 <h5>Đặt lịnh khám</h5>
@@ -132,7 +109,7 @@
         </div>
         <div class="box-item col-sm-4 d-flex p-0">
             <div class="icon_box col-sm-4 ml-0 p-0  mobile-icon">
-                <i class="bi bi-file-earmark-text-fill"></i>
+                <img src="~/src/image_figma/Frame 48095621.png" class="icon_mobile" width="19.550012588500977px" height="23px" />
             </div>
             <div class="col-sm-8 box_item_text p-0 pr-sm-3">
                 <h5>Tra cứu kết quả </h5>
@@ -142,15 +119,16 @@
     </div>
 </div>
 <div id="_layout2"></div>
+
 <!-- Danh sách dịch vụ -->
 <div class="service-card-y" style="background:#F5FFFFCC">
     <div class="container px-30 py-2 container-mobile">
         <div class="archive-header text-center mb-30 mt-10">
             <div class="container">
                 <div>
-                    <span class="text-head-breadcrumb text-c-5">Dịch Vụ đặc biệt</span>
+                    <span class="text-head-breadcrumb text-ic-5">Dịch Vụ đặc biệt</span>
                 </div>
-                <p class="text-muted mb-4 text-center">
+                <p class="text-ics-5 mb-4 text-center">
                     Chúng tôi cung cấp các dịch vụ tốt nhất với đội ngũ y tế tốt nhất!
                 </p>
             </div>
@@ -170,7 +148,7 @@
             <!-- Bên trái: nội dung lý do -->
             <div class="col-md-12">
                 <div class="text-center">
-                    <span class="text-head-breadcrumb text-c-5">Tại sao <span class="text-primary-grd">chọn chúng tôi</span></span>
+                    <span class="text-head-breadcrumb text-ic-5">Tại sao <span class="text-primary-grd">chọn chúng tôi</span></span>
                 </div>
                 <p class="text-muted mb-4 text-center text-inter">
                     Chúng tôi tự hào là nơi hội tụ đội ngũ y bác sĩ tận tâm, trang thiết bị hiện đại và quy trình chăm sóc đạt chuẩn quốc tế – mang đến cho bạn sự an tâm tuyệt đối trong suốt hành trình bảo vệ và chăm sóc sức khỏe.
@@ -184,7 +162,7 @@
                     </div>
                     <div>
                         <h5 class="fw-bold mb-1 text-Montserrat">Đội ngũ y bác sĩ chuyên môn cao, tận tâm</h5>
-                        <p class="text-muted mb-0 text-inter">
+                        <p class="text-muted mb-0 text-inter" style="color:#6D6D6D !important">
                             Chúng tôi quy tụ các chuyên gia đầu ngành với nhiều năm kinh nghiệm, luôn đặt y đức và sự an toàn của người bệnh lên hàng đầu.
                         </p>
                     </div>
@@ -196,7 +174,7 @@
                     </div>
                     <div>
                         <h5 class="fw-bold mb-1 text-Montserrat">Trang thiết bị hiện đại, công nghệ tiên tiến</h5>
-                        <p class="text-muted mb-0 text-inter">
+                        <p class="text-muted mb-0 text-inter" style="color:#6D6D6D !important">
                             Bệnh viện đầu tư hệ thống máy móc và công nghệ chẩn đoán – điều trị đạt chuẩn quốc tế, giúp nâng cao hiệu quả khám chữa bệnh.
                         </p>
                     </div>
@@ -208,7 +186,7 @@
                     </div>
                     <div>
                         <h5 class="fw-bold mb-1 text-Montserrat">Y tế toàn diện, lấy bệnh nhân làm trung tâm</h5>
-                        <p class="text-muted mb-0 text-inter">
+                        <p class="text-muted mb-0 text-inter" style="color:#6D6D6D !important">
                             Từ tiếp nhận, thăm khám đến điều trị và chăm sóc hậu kỳ, mọi quy trình đều được xây dựng để phục vụ tốt nhất cho người bệnh và người nhà.
                         </p>
                     </div>
@@ -237,7 +215,7 @@
         <div class="archive-header text-center mb-30 mt-10">
             <div class="container">
                 <div>
-                    <span class="text-head-breadcrumb text-c-5"><span class="text-primary">Câu chuyện</span> của khách hàng</span>
+                    <span class="text-head-breadcrumb text-ic-5"><span class="text-primary">Câu chuyện</span> của khách hàng</span>
                 </div>
                 <p class="text-muted mb-4 text-center">
                     Khám phá sự khác biệt mà chúng tôi tạo ra thông qua tiếng nói của những người chúng tôi đã phục vụ.
@@ -401,9 +379,9 @@
                 </div>
             </div>
             <div class="row mt-30">
-                <div class="col-lg-4 hide-on-mobile" id="list_bai_viet0">
+                <div class="col-lg-5 hide-on-mobile p-0" id="list_bai_viet0">
                 </div>
-                <div class="swiper1 mySwiper1 col-lg-8 row" style="overflow:hidden;padding-left:0px">
+                <div class="swiper1 mySwiper1 col-lg-7 row" style="overflow:hidden;padding-left:0px">
                     <div class="swiper-wrapper" id="original-articles">
                     </div>
                 </div>
@@ -424,7 +402,6 @@
             <div class="row mt-30">
                 <div class="col-lg-6">
                     <div class="slider-single col-12 p-0 position-relative" id="list_bai_viet1">
-                       
                     </div>
                 </div>
                 <div class="col-lg-6 row" id="original-article1">
@@ -444,15 +421,15 @@
                 <div class="service-card service-card-c bg-hover-green">
                     <div class="post-thumb d-flex mb-15 img-hover-scale justify-content-center">
                         <a href="/Service/ServiceDetail/{{=it.newsList[i].idDichVu}}" class="service-img-wrapper">
-                            <img class="border-radius-15" src="{{=it.newsList[i].urlImage}}" width="50" height="50" alt="">
+                            <img class="border-radius-15" src="{{=it.newsList[i].urlImage || '/root/6388000.png'}}" width="50" height="50" alt="">
                         </a>
                     </div>
                     <div class="desc-title">
-                        <h5 class="post-title mb-15 text-center">
+                        <h5 class="post-title mb-15 text-center text-dvdb1">
                             {{=it.newsList[i].tieuDeBaiViet}}
                         </h5>
                         <div class="meta-1 color-grey mb-10 text-center">
-                            <span class="post-by">{{=it.newsList[i].moTaNgan}}</span>
+                            <span class="post-by text-dvdb2">{{=it.newsList[i].moTaNgan}}</span>
                         </div>
                     </div>
                 </div>
@@ -466,7 +443,7 @@
                     <div class="border-radius-10 p-0 mb-30">
                         <div class="post-thumb d-flex mb-15 border-radius-5 img-hover-scale">
                             <a href="/Blog/BlogDetail/{{=it.newsListm[i].idBaiViet}}">
-                                <img class="border-radius-5" src="{{=it.newsListm[i].urlImage}}" alt="">
+                                <img class="border-radius-5" src="{{=it.newsListm[i].urlImage || '/root/6388000.png'}}" alt="">
                             </a>
                         </div>
                         <div class="pl-10 pr-10">
@@ -487,11 +464,11 @@
 
 <script id="news-templatex" type="text/x-dot-template">
     {{ for(var i = 0; i < it.newsListx.length; i++) { }}
-         <article class="swiper-slide col-lg-4 col-sm-12 wow fadeIn  animated" style="visibility: visible; animation-name: fadeIn;">
+         <article class="swiper-slide col-lg-4 col-sm-12 wow fadeIn  animated  p-1" style="visibility: visible; animation-name: fadeIn;">
             <div class="border-radius-10 p-0 mb-30">
                 <div class="post-thumb d-flex mb-15 border-radius-5 img-hover-scale">
                     <a href="/Blog/BlogDetail/{{=it.newsListx[i].idBaiViet}}">
-                        <img class="border-radius-5" src="{{=it.newsListx[i].urlImage}}" alt="">
+                        <img class="border-radius-5" src="{{=it.newsListx[i].urlImage || '/root/6388000.png'}}" alt="">
                     </a>
                 </div>
                 <div class="pl-10 pr-10">
@@ -514,11 +491,14 @@
     {{ for(var i = 0; i < it.newsListvm.length; i++) { }}
         <div class="img-hover-scale border-radius-10 position-relative overflow-hidden">
             <a href="#">
-                <img class="border-radius-10 w-100" src="{{=it.newsListvm[i].urlImage}}" height="100%" alt="post-slider">
+                <img class="border-radius-10 w-100" src="{{=it.newsListvm[i].urlImage || '/root/6388000.png'}}" height="100%" alt="post-slider">
             </a>
+             <div class="video-overlay position-absolute top-0 start-0 w-100 h-100"></div>
             <div class="play_btn play_btn_small position-absolute top-50 start-50 translate-middle">
                 <a class="play-video" href="{{=it.newsListvm[i].urlVideo}}">
-                    <i class="fa fa-play"></i>
+                    <div class="custom-play-button">
+                        <i class="fa fa-play"></i>
+                    </div>
                 </a>
             </div>
             <div class="video-caption position-absolute bottom-0 start-0 w-100 text-white px-3 py-2">
@@ -538,11 +518,14 @@
                         <div class="post-thumb2 d-flex border-radius-5 p-0 img-hover-scale col-sm-6">
                             <div class="img-hover-scale border-radius-10 position-relative overflow-hidden" id="img_dv">
                                 <a href="#">
-                                    <img class="border-radius-10 w-100" src="{{=it.newsListvx[i].urlImage}}" height="150px" style="width:100%" alt="post-slider">
+                                    <img class="border-radius-10 w-100" src="{{=it.newsListvx[i].urlImage || '/root/6388000.png'}}" height="150px" style="width:100%" alt="post-slider">
                                 </a>
+                                 <div class="video-overlay position-absolute top-0 start-0 w-100 h-100"></div>
                                 <div class="play_btn play_btn_small position-absolute top-50 start-50 translate-middle">
                                     <a class="play-video" href="{{=it.newsListvx[i].urlVideo}}" >
+                                     <div class="custom-play-button">
                                         <i class="fa fa-play"></i>
+                                    </div>
                                     </a>
                                 </div>
                             </div>
@@ -550,7 +533,7 @@
                         <div class="post-content media-body col-sm-6 p-0">
                             <small class="post-title font-weight-500 text-limit-2-row"><a href="#" class="text-c-4">{{=it.newsListvx[i].tieuDeBaiViet}}</a></small>
                             <div class="entry-meta meta-1 flex-column font-x-small text-capitalize mb-10">
-                                <span class="mr-1 ml-1 text-c-2  text-limit-3-row ">{{=it.newsListvx[i].motaNgan}}</span>
+                                <span class="mr-1 ml-1 text-c-2  text-limit-3-row ">{{=it.newsListvx[i].motaNgan || ''}}</span>
                             </div>
                         </div>
                     </div>

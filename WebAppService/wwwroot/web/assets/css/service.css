@@ -173,7 +173,40 @@ h2 {
 .slider-container::-webkit-scrollbar {
     display: none;
 }
+.text-ic-5 {
+    font-family: 'Montserrat', sans-serif;
+    color: #2F4848;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.text-ics-5 {
+    font-family: 'Inter', sans-serif;
+    color: #000000;
+}
+
+
+.img-client-boder {
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+.text-primary {
+    background: linear-gradient(90deg, #009688, #00BCD4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+.fa {
+    color: #FF7F22;
+}
 @media (max-width: 768px) {
+    .text-ic-5 {
+        font-family: 'Montserrat', sans-serif;
+        color: #2F4848;
+        font-size: 20px;
+        font-weight: 700;
+    }
     .container-mobile {
         padding-left: 30px;
         padding-right: 30px;

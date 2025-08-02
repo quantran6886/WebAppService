@@ -23,12 +23,13 @@
 
 
 .btn-detail {
+    font-family: 'Inter', sans-serif;
     margin-bottom: 10px;
     background-color: #ff6600;
     color: white;
     border: none;
     font-size: 14px;
-    padding: 6px 60px;
+    padding: 9px 60px;
     border-radius: 8px;
     cursor: pointer;
 }

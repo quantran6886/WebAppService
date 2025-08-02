@@ -46,16 +46,19 @@
     </div>
 </div>
 
-<div class="message-client hide-on-mobile">
+<div class="message-client hide-on-mobile" style="background: #F8F8F8;">
     <div class="container px-30 py-2 container-mobile">
         <div class="row" id="">
+            <div class="text-center">
+                <span class="text-head-breadcrumb text-c-d">Dịch vụ liên quan</span>
+            </div>
             <div class="related-services">
                 <button class="nav-button nav-left" onclick="scrollSlider(-1)">❮</button>
                 <button class="nav-button nav-right" onclick="scrollSlider(1)">❯</button>
                 <div class="slider-container" id="slider">
                     @foreach (var item in Model.ListData)
                     {
-                        <article class="col-lg-4 col-6 mb-4 psi-1 wow fadeIn animated" style="visibility: visible; animation-name: fadeIn;">
+                        <article class="col-lg-4 col-6 mb-4 p-1 wow fadeIn animated" style="visibility: visible; animation-name: fadeIn;">
                             <div class="background-white p-0 pb-10 mb-5 box-shadow-img card-hover card-active">
                                 <div class="post-thumb d-flex mb-15 img-hover-scale">
                                     <a href="/Service/ServiceDetail/IdDichVu">
