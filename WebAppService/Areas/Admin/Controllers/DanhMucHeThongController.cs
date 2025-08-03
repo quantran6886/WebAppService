@@ -1,13 +1,26 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WebAppService.Models;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace WebAppService.Areas.Admin.Controllers
 {
+    [Authorize]
     [Area("Admin")]
     public class DanhMucHeThongController : Controller
     {
         public IActionResult DanhMucHeThong()
+        {
+            return View();
+        }
+        public IActionResult NhomBaiViet()
+        {
+            return View();
+        }
+        public IActionResult DichVuChuyenKhoa()
+        {
+            return View();
+        }
+        public IActionResult CoSoLamViec()
         {
             return View();
         }

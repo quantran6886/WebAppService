@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NotificationLibrary.NotificationControl;
+using WebAppService.Middlewares;
 using WebAppService.Models.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,6 +35,7 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+
 builder.Services.Configure<FormOptions>(options =>
 {
     options.ValueLengthLimit = int.MaxValue;
@@ -58,14 +60,14 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
+app.UseStatusCodePagesWithReExecute("/notfound/notfound");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
-
+//app.UseMiddleware<InvalidDomainMiddleware>();
 // Thêm SignalR Hub
 app.MapHub<UserStatusHub>("/userStatusHub");
 app.MapHub<NotificationHub>("/notificationHub");

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Web;
 using WebAppService.Models;
 
 namespace WebAppService.Areas.Admin.Controllers
@@ -265,13 +264,13 @@ namespace WebAppService.Areas.Admin.Controllers
                     {
                         if (isThayDoi)
                         {
-                            ClientData.UrlImage = "/" + duong_dan_tai_lieu.Replace("\\", "/");
-                            ClientData.NameImage = ten_file;
+                            existing.UrlImage = "/" + duong_dan_tai_lieu.Replace("\\", "/");
+                            existing.NameImage = ten_file;
                         }
                         if (isThayDoi2)
                         {
-                            ClientData.UrlVideo = "/" + duong_dan_video.Replace("\\", "/");
-                            ClientData.NameVideo = ten_video;
+                            existing.UrlVideo = "/" + duong_dan_video.Replace("\\", "/");
+                            existing.NameVideo = ten_video;
                         }
                         existing.TieuDeNgan = ClientData.TieuDeNgan;
                         existing.TieuDeBaiViet = ClientData.TieuDeBaiViet;

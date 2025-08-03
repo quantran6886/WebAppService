@@ -17,23 +17,16 @@
 }
 
 <div class="card-header">
-    <h4 class="card-title">Danh mục hệ thống</h4>
+    <h4 class="card-title">Cấu hình cơ sở làm việc</h4>
 </div>
 <div class="card-body">
     <div class="row">
         <div class="col-lg-6 d-flex align-items-stretch">
             <div class="card w-100 border position-relative overflow-hidden">
-                <div class="form-group col-sm-12 p-1">
+                <div class="form-group col-sm-12 p-1" hidden>
                     <label class="fs-2 form-label m-0">Phân loại:<font class="text-danger">*</font> </label>
                     <select class="form-control" id="LoaiDanhMuc">
-                        <option value="">-- Chọn phân loại --</option>
-                        <option value="Danh mục chức danh">Danh mục chức danh</option>
-                        <option value="Danh mục bài đăng">Danh mục bài đăng</option>
-                        @if (User.IsInRole("SuperAdmin"))
-                        {
-                        <option value="capcha"> reCAPTCHA</option>
-                        }
-                        
+                        <option value="Danh mục cơ sở làm việc">Danh mục cơ sở làm việc</option>
                     </select>
                 </div>
                 <div class="card-body p-2 pt-0">
@@ -69,7 +62,7 @@
                         </button>
                     </div>
                     <div class="form-group p-3">
-                        <input type="hidden" id="IdHeThong"/>
+                        <input type="hidden" id="IdHeThong" />
                         <div class="mb-3">
                             <label class="form-label">Số thứ tự</label>
                             <input type="number" id="ThuTuTG" class="form-control" placeholder="1,2,3...">

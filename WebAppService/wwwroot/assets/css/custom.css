@@ -83,3 +83,8 @@
     background-color: #c1c1c11a;
     color: #a71818;
 }
+.bg-dark-admin {
+    border-radius: 0px !important;
+    color: #fff !important;
+    background-color: rgb(77 93 118) !important;
+}

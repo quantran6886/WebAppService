@@ -33,54 +33,56 @@
         });
     </script>
     <script>
-        var myClient = {
-            init: function(){
-                myClient.LoadData();
-            },
-             LoadData: function () {
-                $.ajax({
-                    url: '/Home/LoadData',
-                    type: "GET",
-                    dataType: "json",
-                    success: function (data) {
-                        if (data.status == true) {
-                            var lstData = data.viewModel;
-                            if(lstData.record != null)
-                            {
-                                $('#_layout1').html(lstData.record.noiDung);
-                            }
-                            if(lstData.record2 != null)
-                            {
-                                $('#_layout2').html(lstData.record2.noiDung);
-                            }
-                            if (lstData.listData != null) {
-                                var template = doT.template($("#news-template").html());
-                                $("#sp_sv").html(template({ newsList: lstData.listData }));
-                            }
+          var myClient = {
+              init: function(){
+                  myClient.LoadData();
+              },
+               LoadData: function () {
+                  $.ajax({
+                      url: '/Home/LoadData',
+                      type: "GET",
+                      dataType: "json",
+                      success: function (data) {
+                          if (data.status == true) {
+                              var lstData = data.viewModel;
+                              if(lstData.record != null)
+                              {
+                                  $('#_layout1').html(lstData.record.noiDung);
+                              }
+                              if(lstData.record2 != null)
+                              {
+                                  $('#_layout2').html(lstData.record2.noiDung);
+                              }
+                              if (lstData.listData != null) {
+                                  var template = doT.template($("#news-template").html());
+                                  $("#sp_sv").html(template({ newsList: lstData.listData }));
+                              }
 
-                             if (lstData.record3.length > 0) {
-                                var template = doT.template($("#news-templatem").html());
-                                $("#list_bai_viet0").html(template({ newsListm: lstData.record3 }));
-                            }
-                            if (lstData.record4.length > 0) {
-                                var template = doT.template($("#news-templatex").html());
-                                $("#original-articles").html(template({ newsListx: lstData.record4 }));
-                            }
-                             if (lstData.record5.length > 0) {
-                                var template = doT.template($("#news-templatevm").html());
-                                $("#list_bai_viet1").html(template({ newsListvm: lstData.record5 }));
-                            }
-                            if (lstData.record6.length > 0) {
-                                var template = doT.template($("#news-templatevx").html());
-                                $("#original-article1").html(template({ newsListvx: lstData.record6 }));
-                            }
-                        }
-                    }
-                });
-            },
-        }
-        myClient.init();
-
+                               if (lstData.record3.length > 0) {
+                                  var template = doT.template($("#news-templatem").html());
+                                  $("#list_bai_viet0").html(template({ newsListm: lstData.record3 }));
+                              }
+                              if (lstData.record4.length > 0) {
+                                  var template = doT.template($("#news-templatex").html());
+                                  $("#original-articles").html(template({ newsListx: lstData.record4 }));
+                              }
+                               if (lstData.record5.length > 0) {
+                                  var template = doT.template($("#news-templatevm").html());
+                                  $("#list_bai_viet1").html(template({ newsListvm: lstData.record5 }));
+                              }
+                              if (lstData.record6.length > 0) {
+                                  var template = doT.template($("#news-templatevx").html());
+                                  $("#original-article1").html(template({ newsListvx: lstData.record6 }));
+                              }
+                          }
+                      }
+                  });
+              },
+        };
+        
+        $(document).ready(function () {
+              myClient.init();
+        });
     </script>
 }
 <div id="_layout1"></div>
@@ -533,7 +535,7 @@
                         <div class="post-content media-body col-sm-6 p-0">
                             <small class="post-title font-weight-500 text-limit-2-row"><a href="#" class="text-c-4">{{=it.newsListvx[i].tieuDeBaiViet}}</a></small>
                             <div class="entry-meta meta-1 flex-column font-x-small text-capitalize mb-10">
-                                <span class="mr-1 ml-1 text-c-2  text-limit-3-row ">{{=it.newsListvx[i].motaNgan || ''}}</span>
+                                <span class="mr-1 ml-1 text-c-2  text-limit-3-row ">{{=it.newsListvx[i].moTaNgan || ''}}</span>
                             </div>
                         </div>
                     </div>

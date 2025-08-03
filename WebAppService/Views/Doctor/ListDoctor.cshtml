@@ -8,8 +8,7 @@
 
             init: function(){
                 myClient.Event();
-                myClient.LoadDanhMuc();
-                // myClient.LoadData();
+                myClient.LoadData();
             },
 
              Event: function () {
@@ -26,7 +25,7 @@
 
            LoadDanhMuc: function () {
                     $.ajax({
-                        url: '/Admin/DanhSachNhanSu/LoadData',
+                        url: '/Doctor/LoadDanhMuc',
                         type: 'GET',
                         datatype: 'json',
                         success: function (response) {
@@ -48,11 +47,10 @@
                                     });
                                     $("#txtChuyenKhoa").html(option).niceSelect('update');
                                 }
-                                myClient.LoadData();
                             }
                         },
                     });
-                },
+             },
 
              LoadData: function () {
                 var txtCoSo =  $("#txtCoSo").val();
@@ -79,6 +77,7 @@
                             // Phân trang
                             var totalPages = Math.ceil(data.totalRow / myClient.pageSize);
                             myClient.RenderPagination(totalPages);
+                            myClient.LoadDanhMuc();
                         }
                     }
                 });
@@ -93,8 +92,11 @@
                 $("#pagination").html('<ul class="pagination justify-content-center">' + pagination + '</ul>');
             },
 
-        }
-        myClient.init();
+        };
+
+        $(document).ready(function () {
+            myClient.init();
+        });
 
     </script>
 }

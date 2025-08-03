@@ -64,5 +64,46 @@ namespace clinic_website.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult LoadDanhMuc()
+        {
+            try
+            {
+                var listHethong = db.WebDanhMucHeThongs.OrderBy(c => c.ThuTuTg).ToList();
+
+                var lstDonViKhoa = listHethong.Where(c => c.LoaiDanhMuc == "Danh mục cơ sở làm việc").Select(c => new
+                {
+                    c.IdHeThong,
+                    c.ThuTuTg,
+                    c.TenGoi,
+                    c.GhiChu,
+                }).ToList();
+
+                var lstChuyenKhoa = listHethong.Where(c => c.LoaiDanhMuc == "Danh mục nhóm dịch vụ chuyên khoa").Select(c => new
+                {
+                    c.IdHeThong,
+                    c.ThuTuTg,
+                    c.TenGoi,
+                    c.GhiChu,
+                }).ToList();
+
+                return new JsonResult(new
+                {
+                    lstDonViKhoa,
+                    lstChuyenKhoa,
+                    status = true
+                });
+            }
+            catch (Exception ex)
+            {
+
+                return new JsonResult(new
+                {
+                    message = ex.Message,
+                    status = false
+                });
+            }
+        }
+
     }
 }
