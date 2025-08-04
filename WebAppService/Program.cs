@@ -11,11 +11,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<XEntitiesContex>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-//// Đăng ký Identity
-//builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-//    .AddEntityFrameworkStores<AppDbContext>()
-//    .AddDefaultTokenProviders();
-
 // Cấu hình Identity XEntitiesContex
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<XEntitiesContex>()
@@ -35,6 +30,7 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+builder.Services.AddSingleton<DapperConnection>();
 
 builder.Services.Configure<FormOptions>(options =>
 {

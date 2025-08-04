@@ -218,7 +218,7 @@
     flex-direction: column;
     justify-content: space-between;
     cursor: pointer;
-    margin-right: 20px;
+    margin-right: 5px;
 }
 
     .menu-icon span {
@@ -304,8 +304,8 @@
 }
 
 .orange-top {
-    position: absolute;
-    top: 808px;
+    position: fixed;
+    top: 50%;
     right: 316px;
     width: 517px;
     opacity: 0.9;
@@ -313,9 +313,9 @@
 }
 
 .orange-bottom {
-    position: absolute;
-    top: 620px;
-    left: 893px;
+    position: fixed;
+    top: 20%;
+    left: 909px;
     width: 500px;
     opacity: 0.9;
     z-index: 0;
@@ -323,24 +323,27 @@
 
 @media (min-width: 1920px) {
     .orange-top {
-        position: absolute;
-        top: 808px;
-        right: 507px;
+        position: fixed;
+        top: 70%;
+        right: 431px;
         width: 517px;
         opacity: 0.9;
         z-index: 0;
     }
 
     .orange-bottom {
-        position: absolute;
-        top: 620px;
-        left: 1088px;
+        position: fixed;
+        top: 48%;
+        left: 1177px;
         width: 500px;
         opacity: 0.9;
         z-index: 0;
     }
 }
 @media screen and (max-width: 768px) {
+    .mobile-mt-10 {
+        margin-top: 10px !important;
+    }
     .social-icons {
         display: flex;
         gap: 20px;

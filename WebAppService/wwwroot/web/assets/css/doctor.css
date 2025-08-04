@@ -141,8 +141,13 @@
     }
 
     .img-respone-service {
-        height: 130px;
         width: 100%;
+        max-width: 144px;
+        max-height: 166px;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+        display: block;
+        margin: 0 auto;
     }
 
     .text-limit-c-row {

@@ -351,7 +351,7 @@
 
 .related-services {
     margin: 0 auto;
-    padding: 20px 70px;
+    padding: 20px 45px;
     position: relative;
 }
 
@@ -376,8 +376,10 @@
 }
 
 .service-card {
-    flex: 0 0 300px;
-    background: #fff;
+    flex: 0 0 353px;
+    background: #FFFFFF;
+    border-radius: 24px;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
 
@@ -399,11 +401,11 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: orange;
+    background: #f26522;
     border: none;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     color: white;
     font-size: 20px;
     cursor: pointer;
@@ -555,9 +557,9 @@
     }
 
     .social-float-buttons {
-        position: absolute;
-        top: 13.2%;
-        right: 21px;
+        position: fixed;
+        top: 40%;
+        right: 4px;
         display: flex;
         flex-direction: column;
         gap: 10px;
@@ -774,7 +776,7 @@
     }*/
     .btn_sv {
         text-align: center;
-        margin-top: 0px !important;
+        margin-top: -20px !important;
     }
 
     #sp_sv article {
