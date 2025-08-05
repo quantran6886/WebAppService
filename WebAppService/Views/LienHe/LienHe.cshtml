@@ -68,7 +68,7 @@
                         info@loremipsum.com
                     </span>
                 </div>
-                <div class="col-md-12 mt-3 p-0">
+                <div class="col-md-12 mt-2 p-0">
                     <span class="txt-c-1 color-black mr-3">
                         <svg width="15" height="20" viewBox="0 0 15 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M6.60938 18.6836C4.67969 16.2715 0.375 10.5195 0.375 7.25391C0.375 3.32031 3.5293 0.128906 7.5 0.128906C11.4336 0.128906 14.625 3.32031 14.625 7.25391C14.625 10.5195 10.2832 16.2715 8.35352 18.6836C7.9082 19.2402 7.05469 19.2402 6.60938 18.6836ZM7.5 9.62891C8.79883 9.62891 9.875 8.58984 9.875 7.25391C9.875 5.95508 8.79883 4.87891 7.5 4.87891C6.16406 4.87891 5.125 5.95508 5.125 7.25391C5.125 8.58984 6.16406 9.62891 7.5 9.62891Z" fill="#F26522" />
@@ -80,7 +80,7 @@
         </div>
         <!-- Nút gửi để dưới toàn form -->
         <div class="form-group col-md-12 p-0  d-block d-md-none">
-            <a href="#" class="form-group col-md-12 p-30 pt-10 m-0 d-block d-md-none" style="padding:20px">Liên hệ</a>
+            <a href="#" class="form-group col-md-12 p-30 pt-10 m-0 d-block d-md-none hide-on-mobile" style="padding:20px">Liên hệ</a>
         </div>
         <div class="question-doctor mt-120">
             <div class="container pl-md-0">
@@ -128,10 +128,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Nút gửi để dưới toàn form -->
-                            <!--div class="form-group col-md-12 p-0  d-block d-md-none">
-                                <a href="#" onclick="SendForm()" class="btn main-menu btn-orrange w-100" style="padding:20px">Gửi</a>
-                            </div>-->
                             <div class="form-group col-md-12 p-0  d-block d-md-none">
                                 <div id="recaptcha-mobile"></div>
                             </div>
@@ -146,7 +142,7 @@
         <!-- Bản đồ -->
         <div class="map-section mx-map">
             <h5 class="fx-Montserrat"><strong>Vị trí của Bệnh viện Sun Medical</strong></h5>
-            <p style="font-family:Inter;font-size:14px;margin-bottom: 0px;">Vui lòng xem bản đồ dưới đây để xác định vị trí chính xác của Bệnh viện Sun Medical.</p>
+            <p style="font-family:Inter;font-size:14px;margin-bottom: 14px;">Vui lòng xem bản đồ dưới đây để xác định vị trí chính xác của Bệnh viện Sun Medical.</p>
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.858109795675!2d105.80054021531389!3d21.036238792915985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab6ee9d816fd%3A0x93b2549b3593cc5a!2sTimes%20Tower!5e0!3m2!1sen!2s!4v1650289940599"
                     allowfullscreen=""
                     loading="lazy">
@@ -154,79 +150,3 @@
         </div>
     </div>
 </div>
-@* 
-<script>
-    function CheckBeforeSend() {
-      var response = grecaptcha.getResponse();
-      if (response.length === 0) {
-        Toastify({
-            text: "Vui lòng xác minh trước khi gửi",
-            duration: 2000,
-            close: true,
-            gravity: "top",
-            position: "right",
-            backgroundColor: "red"
-        }).showToast();
-        return;
-      }
-      SendForm();
-    }
-
-    function SendForm() {
-      var ho_ten = $("#ho_ten").val();
-      var so_dien_thoai = $("#so_dien_thoai").val();
-      var email = $("#email").val();
-      var loi_nhan = $("#loi_nhan").val();
-
-      if (ho_ten == "") {
-             Toastify({
-              text: "Họ tên không được để trống!",
-              duration: 2000,
-              close: true,
-              gravity: "top",
-              position: "right",
-              backgroundColor: "red"
-            }).showToast();
-          $("#ho_ten").focus();
-          return;
-      }
-      if (loi_nhan == "") {
-           Toastify({
-              text: "Họ tên không được để trống!",
-              duration: 2000,
-              close: true,
-              gravity: "top",
-              position: "right",
-              backgroundColor: "red"
-            }).showToast();
-          $("#loi_nhan").focus();
-          return;
-      }
-
-      var data = {
-          ho_ten: ho_ten,
-          so_dien_thoai: so_dien_thoai,
-          email: email,
-          loi_nhan: loi_nhan,
-          gRecaptchaResponse: grecaptcha.getResponse()
-      };
-
-      $.ajax({
-          type: "POST",
-          url: "/verify",
-          data: data,
-          success: function (res) {
-                Swal.fire({
-                  title: 'Thành công!',
-                  text: 'Dữ liệu đã được gửi.',
-                  icon: 'success',
-                  confirmButtonText: 'OK'
-                });
-          },
-          error: function () {
-              alert("Lỗi kết nối tới server.");
-          }
-      });
-    }
-</script>
- *@

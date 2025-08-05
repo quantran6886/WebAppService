@@ -35,14 +35,13 @@ namespace clinic_website.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> LoadData()
+        public async Task<IActionResult> LoadDataAfter()
         {
             try
             {
                 using (var connection = _dapper.CreateConnection())
                 {
                     var sql = @"
-                         SELECT * FROM WebCauHinhTrang WHERE IsCongKhai = 1;
                          SELECT * FROM WebTinTucBaiViet WHERE IsCongKhai = 1;
                          SELECT * FROM WebVideo WHERE IsCongKhai = 1;
                          SELECT TOP 9 * FROM WebDichVu WHERE IsBaiVietNoiBat = 1 AND IsCongKhai = 1 ORDER BY ThoiGianTao DESC;
@@ -50,13 +49,9 @@ namespace clinic_website.Controllers
 
                     using (var multi = await connection.QueryMultipleAsync(sql))
                     {
-                        var datarecord = (await multi.ReadAsync<WebCauHinhTrang>()).ToList();
                         var datarecord2 = (await multi.ReadAsync<WebTinTucBaiViet>()).ToList();
                         var datarecord3 = (await multi.ReadAsync<WebVideo>()).ToList();
                         var listData = (await multi.ReadAsync<WebDichVu>()).ToList();
-
-                        var home1 = datarecord.FirstOrDefault(c => c.CbGiaoDien == "1");
-                        var home2 = datarecord.FirstOrDefault(c => c.CbGiaoDien == "2");
 
                         var tintuc1 = datarecord2
                             .Where(c => c.IsBaiVietNoiBat == true && c.CbLoaiBaiDang == "Báo chí")
@@ -82,13 +77,50 @@ namespace clinic_website.Controllers
 
                         var viewModel = new HomeViewModel
                         {
-                            Record = home1,
-                            Record2 = home2,
                             Record3 = tintuc1,
                             Record4 = tintuc2,
                             Record5 = video1,
                             Record6 = video2,
                             ListData = listData
+                        };
+
+                        return new JsonResult(new
+                        {
+                            viewModel,
+                            status = true
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult(new
+                {
+                    message = ex.Message,
+                    status = false
+                });
+            }
+        }
+        [HttpGet]
+        public async Task<IActionResult> LoadDataBefore()
+        {
+            try
+            {
+                using (var connection = _dapper.CreateConnection())
+                {
+                    var sql = @"SELECT * FROM WebCauHinhTrang WHERE IsCongKhai = 1;";
+
+                    using (var multi = await connection.QueryMultipleAsync(sql))
+                    {
+                        var datarecord = (await multi.ReadAsync<WebCauHinhTrang>()).ToList();
+
+                        var home1 = datarecord.FirstOrDefault(c => c.CbGiaoDien == "1");
+                        var home2 = datarecord.FirstOrDefault(c => c.CbGiaoDien == "2");
+
+                        var viewModel = new HomeViewModel
+                        {
+                            Record = home1,
+                            Record2 = home2,
                         };
 
                         return new JsonResult(new
@@ -127,7 +159,7 @@ namespace clinic_website.Controllers
                 {
                     c.IdDichVu,
                     TenGoi = c.TieuDeBaiViet,
-                    link = "/Service/ServiceList/?cb=" + c.TieuDeBaiViet + "&dm=2",
+                    link = "/Service/ServiceDetail/" + c.IdDichVu,
                 }).ToList();
 
                 var lstBaiViet = dbLoad.Where(c => c.LoaiDanhMuc == "Danh mục nhóm bài viết").Select(c => new
