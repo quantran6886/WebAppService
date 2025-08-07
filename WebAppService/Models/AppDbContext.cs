@@ -135,6 +135,8 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.Link).HasColumnType("text");
             entity.Property(e => e.MoTaHienThi).HasColumnType("text");
             entity.Property(e => e.PhanLoai).HasMaxLength(250);
+            entity.Property(e => e.SeoTittile).HasMaxLength(250);
+            entity.Property(e => e.SeoUrl).HasMaxLength(250);
             entity.Property(e => e.Tag).HasMaxLength(250);
             entity.Property(e => e.TenTieuDe).HasMaxLength(250);
         });
@@ -213,6 +215,8 @@ public partial class AppDbContext : DbContext
             entity.HasKey(e => e.IdAbousUs);
 
             entity.Property(e => e.IdAbousUs).ValueGeneratedNever();
+            entity.Property(e => e.SeoTittile).HasMaxLength(250);
+            entity.Property(e => e.SeoUrl).HasMaxLength(250);
         });
 
         modelBuilder.Entity<WebCauHinhTrang>(entity =>
@@ -227,22 +231,24 @@ public partial class AppDbContext : DbContext
                 .HasColumnName("cbGiaoDien");
             entity.Property(e => e.IsCard1).HasDefaultValue(false);
             entity.Property(e => e.IsCard2).HasDefaultValue(false);
+            entity.Property(e => e.SeoTittile).HasMaxLength(250);
+            entity.Property(e => e.SeoUrl).HasMaxLength(250);
             entity.Property(e => e.ThoiGianCapNhap).HasColumnType("datetime");
             entity.Property(e => e.ThoiGianTao)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
             entity.Property(e => e.TieuDe).HasMaxLength(250);
             entity.Property(e => e.TxtCard1)
-                .HasMaxLength(50)
+                .HasMaxLength(250)
                 .HasColumnName("txtCard1");
             entity.Property(e => e.TxtCard21)
-                .HasMaxLength(50)
+                .HasMaxLength(250)
                 .HasColumnName("txtCard21");
             entity.Property(e => e.TxtCard22)
                 .HasMaxLength(50)
                 .HasColumnName("txtCard22");
             entity.Property(e => e.TxtCard31)
-                .HasMaxLength(50)
+                .HasMaxLength(250)
                 .HasColumnName("txtCard31");
             entity.Property(e => e.TxtIcon1)
                 .HasMaxLength(50)
@@ -251,10 +257,10 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(50)
                 .HasColumnName("txtIcon21");
             entity.Property(e => e.TxtIcon23)
-                .HasMaxLength(50)
+                .HasMaxLength(250)
                 .HasColumnName("txtIcon23");
             entity.Property(e => e.TxtIcon32)
-                .HasMaxLength(50)
+                .HasMaxLength(250)
                 .HasColumnName("txtIcon32");
         });
 
@@ -288,7 +294,7 @@ public partial class AppDbContext : DbContext
 
         modelBuilder.Entity<WebDanhMucQuanHuyen>(entity =>
         {
-            entity.HasKey(e => e.MaQuanHuyen).HasName("PK__Web.Danh__B86B827AE1718AC9");
+            entity.HasKey(e => e.MaQuanHuyen).HasName("PK__Web.Danh__B86B827A3BCBA333");
 
             entity.ToTable("Web.DanhMucQuanHuyen");
 
@@ -300,7 +306,7 @@ public partial class AppDbContext : DbContext
 
             entity.HasOne(d => d.MaTinhThanhNavigation).WithMany(p => p.WebDanhMucQuanHuyens)
                 .HasForeignKey(d => d.MaTinhThanh)
-                .HasConstraintName("FK__Web.DanhM__MaTin__10566F31");
+                .HasConstraintName("FK__Web.DanhM__MaTin__04E4BC85");
         });
 
         modelBuilder.Entity<WebDanhMucTinhThanh>(entity =>
@@ -316,7 +322,7 @@ public partial class AppDbContext : DbContext
 
         modelBuilder.Entity<WebDanhMucXaPhuong>(entity =>
         {
-            entity.HasKey(e => e.MaXaPhuong).HasName("PK__Web.Danh__92E67F278CE2FB40");
+            entity.HasKey(e => e.MaXaPhuong).HasName("PK__Web.Danh__92E67F2719A0A26E");
 
             entity.ToTable("Web.DanhMucXaPhuong");
 
@@ -328,12 +334,12 @@ public partial class AppDbContext : DbContext
 
             entity.HasOne(d => d.MaQuanHuyenNavigation).WithMany(p => p.WebDanhMucXaPhuongs)
                 .HasForeignKey(d => d.MaQuanHuyen)
-                .HasConstraintName("FK__Web.DanhM__MaQua__114A936A");
+                .HasConstraintName("FK__Web.DanhM__MaQua__05D8E0BE");
         });
 
         modelBuilder.Entity<WebDichVu>(entity =>
         {
-            entity.HasKey(e => e.IdDichVu).HasName("PK__WebDichV__C817D5DCEC638C83");
+            entity.HasKey(e => e.IdDichVu).HasName("PK__WebDichV__C817D5DCAF8F538E");
 
             entity.ToTable("WebDichVu");
 
@@ -345,6 +351,8 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.MoTaNgan).HasMaxLength(500);
             entity.Property(e => e.NameImage).HasMaxLength(250);
             entity.Property(e => e.NguoiTao).HasMaxLength(250);
+            entity.Property(e => e.SeoTittile).HasMaxLength(250);
+            entity.Property(e => e.SeoUrl).HasMaxLength(250);
             entity.Property(e => e.ThoiGianCapNhap).HasColumnType("datetime");
             entity.Property(e => e.ThoiGianTao)
                 .HasDefaultValueSql("(getdate())")
@@ -356,13 +364,15 @@ public partial class AppDbContext : DbContext
 
         modelBuilder.Entity<WebFaq>(entity =>
         {
-            entity.HasKey(e => e.IdFaqs).HasName("PK__WebFAQS__1BFA1307410C0D53");
+            entity.HasKey(e => e.IdFaqs).HasName("PK__WebFAQS__1BFA130758810082");
 
             entity.ToTable("WebFAQS");
 
             entity.Property(e => e.IdFaqs).HasDefaultValueSql("(newid())");
             entity.Property(e => e.CauHoi).HasMaxLength(500);
             entity.Property(e => e.GhiChu).HasMaxLength(250);
+            entity.Property(e => e.SeoTittile).HasMaxLength(250);
+            entity.Property(e => e.SeoUrl).HasMaxLength(250);
         });
 
         modelBuilder.Entity<WebNguoiDungQuanTri>(entity =>
@@ -405,6 +415,8 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.NameImage).HasMaxLength(250);
             entity.Property(e => e.NgaySinh).HasColumnType("datetime");
             entity.Property(e => e.NgonNgu).HasMaxLength(500);
+            entity.Property(e => e.SeoTittile).HasMaxLength(250);
+            entity.Property(e => e.SeoUrl).HasMaxLength(250);
             entity.Property(e => e.ThoiGianCapNhap).HasColumnType("datetime");
             entity.Property(e => e.ThoiGianTao)
                 .HasDefaultValueSql("(getdate())")
@@ -462,7 +474,7 @@ public partial class AppDbContext : DbContext
 
         modelBuilder.Entity<WebTinTucBaiViet>(entity =>
         {
-            entity.HasKey(e => e.IdBaiViet).HasName("PK__WebTinTu__42161C7A6B926181");
+            entity.HasKey(e => e.IdBaiViet).HasName("PK__WebTinTu__42161C7A1BBABB78");
 
             entity.ToTable("WebTinTucBaiViet");
 
@@ -476,6 +488,8 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.MoTaNgan).HasMaxLength(500);
             entity.Property(e => e.NameImage).HasMaxLength(250);
             entity.Property(e => e.NguoiTao).HasMaxLength(250);
+            entity.Property(e => e.SeoTittile).HasMaxLength(250);
+            entity.Property(e => e.SeoUrl).HasMaxLength(250);
             entity.Property(e => e.ThoiGianCapNhap).HasColumnType("datetime");
             entity.Property(e => e.ThoiGianTao)
                 .HasDefaultValueSql("(getdate())")
@@ -506,6 +520,8 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.NameImage).HasMaxLength(250);
             entity.Property(e => e.NameVideo).HasMaxLength(250);
             entity.Property(e => e.NguoiTao).HasMaxLength(250);
+            entity.Property(e => e.SeoTittile).HasMaxLength(250);
+            entity.Property(e => e.SeoUrl).HasMaxLength(250);
             entity.Property(e => e.ThoiGianCapNhap).HasColumnType("datetime");
             entity.Property(e => e.ThoiGianTao)
                 .HasDefaultValueSql("(getdate())")

@@ -20,4 +20,7 @@ public partial class BrowerHomePage
     public string? PhanLoai { get; set; }
 
     public bool? IsBanerHome { get; set; }
+    public string? SeoUrl { get; set; }
+
+    public string? SeoTittile { get; set; }
 }

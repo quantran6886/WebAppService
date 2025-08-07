@@ -10,4 +10,7 @@ public partial class WebAbousU
     public string? NoiDung { get; set; }
 
     public bool? IsCongKhai { get; set; }
+    public string? SeoUrl { get; set; }
+
+    public string? SeoTittile { get; set; }
 }

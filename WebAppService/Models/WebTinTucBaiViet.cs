@@ -34,4 +34,7 @@ public partial class WebTinTucBaiViet
     public DateTime? ThoiGianTao { get; set; }
 
     public DateTime? ThoiGianCapNhap { get; set; }
+    public string? SeoUrl { get; set; }
+
+    public string? SeoTittile { get; set; }
 }

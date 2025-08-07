@@ -14,4 +14,7 @@ public partial class WebFaq
     public string? CauTraLoi { get; set; }
 
     public string? GhiChu { get; set; }
+    public string? SeoUrl { get; set; }
+
+    public string? SeoTittile { get; set; }
 }
