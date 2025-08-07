@@ -26,12 +26,23 @@
     font-size: 13px;
     line-height: 1.5;
 }
+.text-ic-5 {
+    font-family: 'Montserrat', sans-serif;
+    color: #2F4848;
+    font-size: 30px;
+    font-weight: 700;
+}
 @media (max-width: 768px) {
     .container-mobile {
         padding-left: 30px;
         padding-right: 30px;
     }
-
+    .text-ic-5 {
+        font-family: 'Montserrat', sans-serif;
+        color: #2F4848;
+        font-size: 28px;
+        font-weight: 700;
+    }
     .img-respone-service {
         height: 130px;
         width: 100%;

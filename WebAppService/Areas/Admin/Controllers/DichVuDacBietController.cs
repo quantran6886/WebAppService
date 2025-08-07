@@ -231,7 +231,7 @@ namespace WebAppService.Areas.Admin.Controllers
                         ClientData.UrlImage = "/" + duong_dan_tai_lieu.Replace("\\", "/");
                         ClientData.NameImage = ten_file;
                     }
-                    ClientData.TieuDeNgan = ClientData.TieuDeNgan;
+                    //ClientData.TieuDeNgan = ClientData.TieuDeNgan;
                     ClientData.TieuDeBaiViet = ClientData.TieuDeBaiViet;
                     ClientData.MoTaNgan = ClientData.MoTaNgan;
                     ClientData.SapXep = ClientData.SapXep;
@@ -256,7 +256,7 @@ namespace WebAppService.Areas.Admin.Controllers
                             existing.UrlImage = ClientData.UrlImage;
                             existing.NameImage = ClientData.NameImage;
                         }
-                        existing.TieuDeNgan = ClientData.TieuDeNgan;
+                        //existing.TieuDeNgan = ClientData.TieuDeNgan;
                         existing.TieuDeBaiViet = ClientData.TieuDeBaiViet;
                         existing.NoiDung = decodedContent;
                         existing.MoTaNgan = ClientData.MoTaNgan;

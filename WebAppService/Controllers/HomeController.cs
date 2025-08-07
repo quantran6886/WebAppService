@@ -44,14 +44,13 @@ namespace clinic_website.Controllers
                     var sql = @"
                          SELECT * FROM WebTinTucBaiViet WHERE IsCongKhai = 1;
                          SELECT * FROM WebVideo WHERE IsCongKhai = 1;
-                         SELECT TOP 9 * FROM WebDichVu WHERE IsBaiVietNoiBat = 1 AND IsCongKhai = 1 ORDER BY ThoiGianTao DESC;
+                   
                      ";
 
                     using (var multi = await connection.QueryMultipleAsync(sql))
                     {
                         var datarecord2 = (await multi.ReadAsync<WebTinTucBaiViet>()).ToList();
                         var datarecord3 = (await multi.ReadAsync<WebVideo>()).ToList();
-                        var listData = (await multi.ReadAsync<WebDichVu>()).ToList();
 
                         var tintuc1 = datarecord2
                             .Where(c => c.IsBaiVietNoiBat == true && c.CbLoaiBaiDang == "Báo chí")
@@ -81,7 +80,6 @@ namespace clinic_website.Controllers
                             Record4 = tintuc2,
                             Record5 = video1,
                             Record6 = video2,
-                            ListData = listData
                         };
 
                         return new JsonResult(new
@@ -108,7 +106,8 @@ namespace clinic_website.Controllers
             {
                 using (var connection = _dapper.CreateConnection())
                 {
-                    var sql = @"SELECT * FROM WebCauHinhTrang WHERE IsCongKhai = 1;";
+                    var sql = @"SELECT * FROM WebCauHinhTrang WHERE IsCongKhai = 1;
+                                SELECT TOP 9 * FROM WebDichVu WHERE IsBaiVietNoiBat = 1 AND IsCongKhai = 1 ORDER BY ThoiGianTao DESC;";
 
                     using (var multi = await connection.QueryMultipleAsync(sql))
                     {
@@ -116,11 +115,13 @@ namespace clinic_website.Controllers
 
                         var home1 = datarecord.FirstOrDefault(c => c.CbGiaoDien == "1");
                         var home2 = datarecord.FirstOrDefault(c => c.CbGiaoDien == "2");
+                        var listData = (await multi.ReadAsync<WebDichVu>()).ToList();
 
                         var viewModel = new HomeViewModel
                         {
                             Record = home1,
                             Record2 = home2,
+                            ListData = listData
                         };
 
                         return new JsonResult(new

@@ -1,0 +1,640 @@
+﻿@using WebAppService.Models
+@{
+    ViewData["Title"] = "Home Page";
+}
+<link href="~/web/assets/css/home.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/dot/doT.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+@section Scripts {
+    <script>
+        function scrollSlider(direction) {
+            const slider = document.getElementById('slider');
+            const scrollAmount = 320;
+            slider.scrollBy({
+                left: scrollAmount * direction,
+                behavior: 'smooth'
+            });
+        }
+         var swiper = new Swiper(".mySwiper1", {
+          spaceBetween: 0,
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+          breakpoints: {
+            0: {
+              slidesPerView: 1.5,
+               spaceBetween: 10,
+            },
+            768: {
+              slidesPerView: 3,
+            }
+          }
+        });
+    </script>
+    <script>
+          var myClient = {
+              init: function(){
+                  myClient.LoadData();
+              },
+               LoadData: function () {
+                  $.ajax({
+                      url: '/Home/LoadData',
+                      type: "GET",
+                      dataType: "json",
+                      success: function (data) {
+                          if (data.status == true) {
+                              var lstData = data.viewModel;
+                              if(lstData.record != null)
+                              {
+                                  $('#_layout1').html(lstData.record.noiDung);
+                              }
+                              if(lstData.record2 != null)
+                              {
+                                  $('#_layout2').html(lstData.record2.noiDung);
+                              }
+                              if (lstData.listData != null) {
+                                  var template = doT.template($("#news-template").html());
+                                  $("#sp_sv").html(template({ newsList: lstData.listData }));
+                              }
+
+                               if (lstData.record3.length > 0) {
+                                  var template = doT.template($("#news-templatem").html());
+                                  $("#list_bai_viet0").html(template({ newsListm: lstData.record3 }));
+                              }
+                              if (lstData.record4.length > 0) {
+                                  var template = doT.template($("#news-templatex").html());
+                                  $("#original-articles").html(template({ newsListx: lstData.record4 }));
+                              }
+                               if (lstData.record5.length > 0) {
+                                  var template = doT.template($("#news-templatevm").html());
+                                  $("#list_bai_viet1").html(template({ newsListvm: lstData.record5 }));
+                              }
+                              if (lstData.record6.length > 0) {
+                                  var template = doT.template($("#news-templatevx").html());
+                                  $("#original-article1").html(template({ newsListvx: lstData.record6 }));
+                              }
+                          }
+                      }
+                  });
+              },
+        };
+       myClient.init();
+    </script>
+}
+<div class="col-lg-8 col-md-12">
+    <!-- Featured posts -->
+    <div class="featured-post mb-50">
+        <h4 class="widget-title mb-30">Today <span>Highlight</span></h4>
+        <div class="featured-slider-1 border-radius-10">
+            <div class="featured-slider-1-items">
+                <div class="slider-single p-10">
+                    <div class="img-hover-slide border-radius-15 mb-30 position-relative overflow-hidden">
+                        <span class="top-right-icon bg-dark"><i class="mdi mdi-camera-alt"></i></span>
+                        <a href="single.html">
+                            <img src="assets/imgs/news-8.jpg" alt="post-slider">
+                        </a>
+                    </div>
+                    <div class="pr-10 pl-10">
+                        <div class="entry-meta mb-30">
+                            <a class="entry-meta meta-0" href="category.html"><span class="post-in background1 text-danger font-x-small">Economy</span></a>
+                            <div class="float-right font-small">
+                                <span><span class="mr-10 text-muted"><i class="fa fa-eye" aria-hidden="true"></i></span>5.8k</span>
+                                <span class="ml-30"><span class="mr-10 text-muted"><i class="fa fa-comment" aria-hidden="true"></i></span>2.5k</span>
+                                <span class="ml-30"><span class="mr-10 text-muted"><i class="fa fa-share-alt" aria-hidden="true"></i></span>125k</span>
+                            </div>
+                        </div>
+                        <h4 class="post-title mb-20"><a href="#">‘People Are Getting in Planes’: The Travel Business Is Picking Up</a></h4>
+                        <div class="mb-20 overflow-hidden">
+                            <div class="entry-meta meta-2 float-left">
+                                <a class="float-left mr-10 author-img" href="author.html" tabindex="0"><img src="assets/imgs/authors/author.png" alt=""></a>
+                                <a href="author.html" tabindex="0"><span class="author-name text-grey">B. Johnathan</span></a>
+                                <br>
+                                <span class="author-add color-grey">Maidstone, Kent</span>
+                            </div>
+                            <div class="float-right">
+                                <a href="single.html" class="read-more"><span class="mr-10"><i class="fa fa-thumbtack" aria-hidden="true"></i></span>Picked by Editor</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-single pt-10 pl-10 pr-10 pb-10">
+                    <div class="img-hover-slide border-radius-15 mb-30 position-relative overflow-hidden">
+                        <span class="top-right-icon bg-dark"><i class="mdi mdi-flash-on"></i></span>
+                        <a href="single.html">
+                            <img src="assets/imgs/slide-1.jpg" alt="post-slider">
+                        </a>
+                    </div>
+                    <div class="pr-10 pl-10">
+                        <div class="entry-meta mb-30">
+                            <a class="entry-meta meta-0" href="category.html"><span class="post-in background2 text-primary font-x-small">Technology</span></a>
+                            <div class="float-right font-small">
+                                <span><span class="mr-10 text-muted"><i class="fa fa-eye" aria-hidden="true"></i></span>5.8k</span>
+                                <span class="ml-30"><span class="mr-10 text-muted"><i class="fa fa-comment" aria-hidden="true"></i></span>2.5k</span>
+                                <span class="ml-30"><span class="mr-10 text-muted"><i class="fa fa-share-alt" aria-hidden="true"></i></span>125k</span>
+                            </div>
+                        </div>
+                        <h4 class="post-title mb-20"><a href="#">NASA Picks Moon Lander Designs by Elon Musk and Jeff Bezos Rocket Companies</a></h4>
+                        <div class="mb-20 overflow-hidden">
+                            <div class="entry-meta meta-2 float-left">
+                                <a class="float-left mr-10 author-img" href="author.html" tabindex="0"><img src="assets/imgs/authors/author-1.png" alt=""></a>
+                                <a href="author.html" tabindex="0"><span class="author-name text-grey">Steven Keni</span></a>
+                                <br>
+                                <span class="author-add color-grey">Maidstone, Kent</span>
+                            </div>
+                            <div class="float-right">
+                                <a href="single.html" class="read-more"><span class="mr-10"><i class="fa fa-thumbtack" aria-hidden="true"></i></span>Picked by Editor</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@* <div id="_layout1"></div> *@
+@* <div class="entry-header entry-header-2 mt-0 text-center" id="LayoutHome1">
+    <div class="position-relative layout-home">
+        <div class="container d-flex flex-column p-0">
+            <div class="author-bio border-radius-10 p-30 mb-40  justify-content-center">
+                <div class="col-sm-7 author-info d-flex flex-column justify-content-center">
+                    <h3>
+                        <span class="vcard author">
+                            <span class="fn">
+                                <a href="author.html" title="" rel="author" class="author-info-text">Bệnh viện hiện đại Dịch vụ chuẩn quốc tế</a>
+                            </span>
+                        </span>
+                    </h3>
+                    <div class="author-info-small-text">
+                        Ứng dụng công nghệ tiên tiến, đội ngũ y bác sĩ hàng đầu, cam kết mang đến trải nghiệm chăm sóc sức khỏe toàn diện và chất lượng quốc tế
+                    </div>
+                    <div class="mt-10">
+                        <a href="#" class="main-menu d-none d-lg-inline btn-orrange">Xem thêm</a>
+                    </div>
+                </div>
+                <div class="col-sm-5 mb-30 car_img_circle">
+                    <div class="author-img-circle">
+                        <a href="author.html"><img src="/root/doctor1 1.png" alt="" class="avatar"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> *@
+<!-- Hộp nổi dịch vụ -->
+<div class="floating-box-wrapper">
+    <div class="floating-box container col-12 row">
+        <div class="box-item col-sm-4 d-flex p-0">
+            <div class="icon_box col-sm-4 ml-0 p-0 mobile-icon">
+                <a href="tel:628646442222">
+                    <img src="~/src/image_figma/frame 48095619.png" class="icon_mobile" width="27px" height="27px" />
+                </a>
+            </div>
+            <div class="col-sm-8 box_item_text p-0 pr-sm-3">
+                <h5><a href="tel:628646442222">Gọi tổng đài</a></h5>
+                <p>Liên hệ với tổng đài hỗ trợ 24/7 để được tư vấn và đặt lịch khám nhanh chóng.</p>
+            </div>
+        </div>
+        <div class="box-item col-sm-4 d-flex p-0">
+            <div class="icon_box col-sm-4 ml-0 p-0  mobile-icon">
+                <img src="~/src/image_figma/Frame 48095620.png" class="icon_mobile" width="25.263671875px" height="24px" />
+            </div>
+            <div class="col-sm-8 box_item_text p-0 pr-sm-3">
+                <h5>Đặt lịnh khám</h5>
+                <p>Đặt lịch khám trực tuyến dễ dàng, giúp quý khách chủ động chọn thời gian.</p>
+            </div>
+        </div>
+        <div class="box-item col-sm-4 d-flex p-0">
+            <div class="icon_box col-sm-4 ml-0 p-0  mobile-icon">
+                <img src="~/src/image_figma/Frame 48095621.png" class="icon_mobile" width="19.550012588500977px" height="23px" />
+            </div>
+            <div class="col-sm-8 box_item_text p-0 pr-sm-3">
+                <h5>Tra cứu kết quả </h5>
+                <p>Xem nhanh kết quả khám bệnh trực tuyến, mọi lúc mọi nơi.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="_layout2"></div>
+
+<!-- Danh sách dịch vụ -->
+<div class="service-card-y" style="background:#F5FFFFCC">
+    <div class="container px-30 py-2 container-mobile">
+        <div class="archive-header text-center mb-30 mt-10">
+            <div class="container">
+                <div>
+                    <span class="text-head-breadcrumb text-ic-5 text-up text-uppercase">Dịch Vụ đặc biệt</span>
+                </div>
+                <p class="text-ics-5 mb-4 text-center">
+                    Chúng tôi cung cấp các dịch vụ tốt nhất với đội ngũ y tế tốt nhất!
+                </p>
+            </div>
+        </div>
+        <div class="row" id="sp_sv">
+        </div>
+        <div class="for-more pagination-area mb-30" style="color:#234A6B; font-family:Manrope;font-weight:700">
+            <a href="/Service/ServiceList">Xem thêm ></a>
+        </div>
+    </div>
+</div>
+
+<!-- tại sao chọn chúng tôi -->
+<div class="question-doctor" style="background:#F9FCFF">
+    <div class="container pt-30 pb-30 pl-30 pl-md-0">
+        <div class="row align-items-center">
+            <!-- Bên trái: nội dung lý do -->
+            <div class="col-md-12">
+                <div class="text-center mb-2">
+                    <span class="text-head-breadcrumb text-ic-5">Tại sao <span class="text-primary-grd">chọn chúng tôi</span></span>
+                </div>
+                <p class="text-muted mb-4 text-center text-inter">
+                    Chúng tôi tự hào là nơi hội tụ đội ngũ y bác sĩ tận tâm, trang thiết bị hiện đại và quy trình chăm sóc đạt chuẩn quốc tế – mang đến cho bạn sự an tâm tuyệt đối trong suốt hành trình bảo vệ và chăm sóc sức khỏe.
+                </p>
+            </div>
+            <div class="col-lg-7 col-md-12  order-2 order-md-1 mobile-mt-10">
+                <!-- Lý do 1 -->
+                <div class="d-flex mb-4">
+                    <div class="me-3">
+                        <div class="rounded-circle bg-info text-white fw-bold d-flex justify-content-center align-items-center bg-info-gradient" style="width: 40px; height: 40px;">1</div>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold mb-1 text-Montserrat">Đội ngũ y bác sĩ chuyên môn cao, tận tâm</h5>
+                        <p class="text-muted mb-0 text-inter" style="color:#6D6D6D !important">
+                            Chúng tôi quy tụ các chuyên gia đầu ngành với nhiều năm kinh nghiệm, luôn đặt y đức và sự an toàn của người bệnh lên hàng đầu.
+                        </p>
+                    </div>
+                </div>
+                <!-- Lý do 2 -->
+                <div class="d-flex mb-4">
+                    <div class="me-3">
+                        <div class="rounded-circle bg-info text-white fw-bold d-flex justify-content-center align-items-center bg-info-gradient" style="width: 40px; height: 40px;">2</div>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold mb-1 text-Montserrat">Trang thiết bị hiện đại, công nghệ tiên tiến</h5>
+                        <p class="text-muted mb-0 text-inter" style="color:#6D6D6D !important">
+                            Bệnh viện đầu tư hệ thống máy móc và công nghệ chẩn đoán – điều trị đạt chuẩn quốc tế, giúp nâng cao hiệu quả khám chữa bệnh.
+                        </p>
+                    </div>
+                </div>
+                <!-- Lý do 3 -->
+                <div class="d-flex">
+                    <div class="me-3">
+                        <div class="rounded-circle bg-info text-white fw-bold d-flex justify-content-center align-items-center bg-info-gradient" style="width: 40px; height: 40px;">3</div>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold mb-1 text-Montserrat">Y tế toàn diện, lấy bệnh nhân làm trung tâm</h5>
+                        <p class="text-muted mb-0 text-inter" style="color:#6D6D6D !important">
+                            Từ tiếp nhận, thăm khám đến điều trị và chăm sóc hậu kỳ, mọi quy trình đều được xây dựng để phục vụ tốt nhất cho người bệnh và người nhà.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Bên phải: hình ảnh bác sĩ -->
+            <div class="col-lg-5 col-md-12 text-center mt-4 mt-lg-0  order-1 order-md-2">
+                <div class="form-section-wrapper mb-30">
+                    <div class="doctor-overlay-wrapper">
+                        <img src="@Url.Content("~/root/hometsc.png")" alt="Doctor" class="doctor-overlay">
+                    </div>
+
+                    <div class="position-absolute z-100 bottom-0 border-radius-10 start-0 mb-md-3 ms-md-3 bg-white px-3 py-2 d-flex align-items-center shadow-sm tranform-x">
+                        <span class="color-orrange fw-bold me-2"><i class="fa fa-star"></i></span>
+                        <span class="color-orrange fw-bold small">Best Certified Team of Specialists</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Câu chuyện của khách hàng -->
+<div class="message-client" style="margin-top:-20px">
+    <div class="container px-30 py-2 container-mobile">
+        <div class="archive-header text-center mb-20 mt-0">
+            <div class="container">
+                <div>
+                    <span class="text-head-breadcrumb text-ic-5"><span class="text-primary">Câu chuyện</span> của khách hàng</span>
+                </div>
+                <p class="text-muted mb-4 text-center" style="font-size:14px">
+                    Khám phá sự khác biệt mà chúng tôi tạo ra thông qua tiếng nói của những người chúng tôi đã phục vụ.
+                </p>
+            </div>
+        </div>
+        <div class="row hide-on-mobile">
+            <div class="related-services">
+                <button class="nav-button nav-left" onclick="scrollSlider(-1)">❮</button>
+                <button class="nav-button nav-right" onclick="scrollSlider(1)">❯</button>
+                <div class="slider-container" id="slider">
+                    <div class="service-card justify-items-center">
+                        <a href="single.html" class="client-img-wrapper img-client-boder">
+                            <img src="/root/img-client.png" class="img-client-boder" alt="">
+                        </a>
+                        <div class="service-content text-center">
+                            <div class="bottom-line mb-10">
+                                <h3>Linda Ngo</h3>
+                            </div>
+                            <p>“Sau ca phẫu thuật đầu gối, sự tiện lợi của dịch vụ tư vấn trực tuyến đã giúp quá trình hồi phục của tôi diễn ra suôn sẻ hơn tôi tưởng.”</p>
+                            <div class="">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 1 -->
+                    <div class="service-card justify-items-center">
+                        <a href="single.html" class="client-img-wrapper img-client-boder">
+                            <img src="/root/img-client2.png" class="img-client-boder" alt="">
+                        </a>
+                        <div class="service-content text-center">
+                            <div class="bottom-line mb-10">
+                                <h3>Crystal Maiden</h3>
+                            </div>
+                            <p>“Việc kiểm soát các bệnh mãn tính như bệnh tiểu đường đòi hỏi rất nhiều sự cảnh giác, nhưng hệ thống nạp thuốc đã đơn giản hóa cuộc sống của tôi.”</p>
+                            <div class="">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 1 -->
+                    <div class="service-card justify-items-center">
+                        <a href="single.html" class="client-img-wrapper img-client-boder">
+                            <img src="/root/img-client3.png" class="img-client-boder" alt="">
+                        </a>
+                        <div class="service-content text-center">
+                            <div class="bottom-line mb-10">
+                                <h3>Crystal Maiden</h3>
+                            </div>
+                            <p>“Hệ thống nạp đơn thuốc là một bước ngoặt trong việc kiểm soát bệnh tiểu đường của tôi. Nó thực sự hiệu quả và hoàn toàn không rắc rối.”</p>
+                            <div class="">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 1 -->
+                    <div class="service-card justify-items-center">
+                        <a href="single.html" class="client-img-wrapper img-client-boder">
+                            <img src="~/root/img-client.png" class="img-client-boder" alt="">
+                        </a>
+                        <div class="service-content text-center">
+                            <div class="bottom-line mb-10">
+                                <h3>Linda Ngo</h3>
+                            </div>
+                            <p>“Sau ca phẫu thuật đầu gối, sự tiện lợi của dịch vụ tư vấn trực tuyến đã giúp quá trình hồi phục của tôi diễn ra suôn sẻ hơn tôi tưởng.”</p>
+                            <div class="">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row d-block d-md-none">
+            <div class="">
+                <!-- 1 -->
+                <div class="service-card justify-items-center">
+                    <a href="single.html" class="client-img-wrapper img-client-boder">
+                        <img src="/root/img-client.png" class="img-client-boder" alt="">
+                    </a>
+                    <div class="service-content text-center">
+                        <div class="bottom-line mb-10">
+                            <h3>Linda Ngo</h3>
+                        </div>
+                        <p>“Sau ca phẫu thuật đầu gối, sự tiện lợi của dịch vụ tư vấn trực tuyến đã giúp quá trình hồi phục của tôi diễn ra suôn sẻ hơn tôi tưởng.”</p>
+                        <div class="">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- 1 -->
+                <div class="service-card justify-items-center">
+                    <a href="single.html" class="client-img-wrapper img-client-boder">
+                        <img src="/root/img-client2.png" class="img-client-boder" alt="">
+                    </a>
+                    <div class="service-content text-center">
+                        <div class="bottom-line mb-10">
+                            <h3>Crystal Maiden</h3>
+                        </div>
+                        <p>“Việc kiểm soát các bệnh mãn tính như bệnh tiểu đường đòi hỏi rất nhiều sự cảnh giác, nhưng hệ thống nạp thuốc đã đơn giản hóa cuộc sống của tôi.”</p>
+                        <div class="">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- 1 -->
+                <div class="service-card justify-items-center">
+                    <a href="single.html" class="client-img-wrapper img-client-boder">
+                        <img src="/root/img-client3.png" class="img-client-boder" alt="">
+                    </a>
+                    <div class="service-content text-center">
+                        <div class="bottom-line mb-10">
+                            <h3>Crystal Maiden</h3>
+                        </div>
+                        <p>“Hệ thống nạp đơn thuốc là một bước ngoặt trong việc kiểm soát bệnh tiểu đường của tôi. Nó thực sự hiệu quả và hoàn toàn không rắc rối.”</p>
+                        <div class="">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="about-sunmedical" style="background:#E7E7E7">
+    <div class="container pt-30 pb-20">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="text-start">
+                    <span class="text-head-breadcrumb text-ic-5">Báo chí <span class="text-primary">nói gì về Sun Medical</span></span>
+                </div>
+            </div>
+            <div class="row mt-30">
+                <div class="col-lg-5 hide-on-mobile p-0" id="list_bai_viet0">
+                </div>
+                <div class="swiper1 mySwiper1 col-lg-7 row" style="overflow:hidden;padding-left:0px">
+                    <div class="swiper-wrapper" id="original-articles">
+                    </div>
+                </div>
+            </div>
+            <div class="for-more"><a href="#">Xem thêm ></a></div>
+        </div>
+    </div>
+</div>
+@* // Video của tôi *@
+<div class="video-sunmedical" style="background:white">
+    <div class="container pt-30 pb-20">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="text-start">
+                    <span class="text-head-breadcrumb text-ic-5">Video nổi bật</span>
+                </div>
+            </div>
+            <div class="row mt-30">
+                <div class="col-lg-6">
+                    <div class="slider-single col-12 p-0 position-relative" id="list_bai_viet1">
+                    </div>
+                </div>
+                <div class="col-lg-6 row" id="original-article1">
+                </div>
+
+                <div class="for-more pagination-area mb-20 mt-30">
+                    <a href="#">Xem thêm> </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="news-template" type="text/x-dot-template">
+    {{ for(var i = 0; i < it.newsList.length; i++) { }}
+          <article class="col-lg-4 col-6">
+                <div class="service-card service-card-c bg-hover-green">
+                    <div class="post-thumb d-flex mb-15 img-hover-scale justify-content-center">
+                        <a href="/Service/ServiceDetail/{{=it.newsList[i].idDichVu}}" class="service-img-wrapper">
+                            <img class="border-radius-15" src="{{=it.newsList[i].urlImage || '/root/6388000.png'}}" width="50" height="50" alt="">
+                        </a>
+                    </div>
+                    <div class="desc-title">
+                        <h5 class="post-title mb-15 text-center text-dvdb1">
+                            {{=it.newsList[i].tieuDeBaiViet}}
+                        </h5>
+                        <div class="meta-1 color-grey mb-10 text-center">
+                            <span class="post-by text-dvdb2">{{=it.newsList[i].moTaNgan}}</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+    {{ } }}
+</script>
+
+<script id="news-templatem" type="text/x-dot-template">
+    {{ for(var i = 0; i < it.newsListm.length; i++) { }}
+            <article class="col-lg-12 wow fadeIn  animated" style="visibility: visible; animation-name: fadeIn;">
+                    <div class="border-radius-10 p-0 mb-30">
+                        <div class="post-thumb d-flex mb-15 border-radius-5 img-hover-scale">
+                            <a href="/Blog/BlogDetail/{{=it.newsListm[i].idBaiViet}}">
+                                <img class="border-radius-5" src="{{=it.newsListm[i].urlImage || '/root/6388000.png'}}" alt="">
+                            </a>
+                        </div>
+                        <div class="pl-10 pr-10">
+                            <div class="post-title mb-10 text-limit-3-row">
+                                <a href="/Blog/BlogDetail/{{=it.newsListm[i].idBaiViet}}" class="text-c-3">{{=it.newsListm[i].tieuDeBaiViet}}</a>
+                            </div>
+                            <div class="">
+                                <p class="post-exerpt text-c-2 text-limit-3-row">{{=it.newsListm[i].moTaNgan}}</p>
+                            </div>
+                            <div>
+                                <a href="#" class="read-more">Xem thêm ></a>
+                            </div>
+                        </div>
+                    </div>
+            </article>
+    {{ } }}
+</script>
+
+<script id="news-templatex" type="text/x-dot-template">
+    {{ for(var i = 0; i < it.newsListx.length; i++) { }}
+         <article class="swiper-slide col-lg-4 col-sm-12 wow fadeIn  animated  p-1" style="visibility: visible; animation-name: fadeIn;">
+            <div class="border-radius-10 p-0 mb-30">
+                <div class="post-thumb d-flex mb-15 border-radius-5 img-hover-scale">
+                    <a href="/Blog/BlogDetail/{{=it.newsListx[i].idBaiViet}}">
+                        <img class="border-radius-5" src="{{=it.newsListx[i].urlImage || '/root/6388000.png'}}" alt="">
+                    </a>
+                </div>
+                <div class="pl-10 pr-10">
+                    <div class="post-title mb-10 text-limit-3-row">
+                        <a href="/Blog/BlogDetail/{{=it.newsListx[i].idBaiViet}}" class="text-c-3">{{=it.newsListx[i].tieuDeBaiViet}}</a>
+                    </div>
+                    <div class="">
+                        <p class="post-exerpt text-c-2 text-limit-3-row">{{=it.newsListx[i].moTaNgan}}</p>
+                    </div>
+                    <div>
+                        <a href="single.html" class="read-more">Xem thêm</a>
+                    </div>
+                </div>
+            </div>
+        </article>
+    {{ } }}
+</script>
+
+<script id="news-templatevm" type="text/x-dot-template">
+    {{ for(var i = 0; i < it.newsListvm.length; i++) { }}
+        <div class="img-hover-scale border-radius-10 position-relative overflow-hidden">
+            <a href="#">
+                <img class="border-radius-10 w-100" src="{{=it.newsListvm[i].urlImage || '/root/6388000.png'}}" height="100%" alt="post-slider">
+            </a>
+             <div class="video-overlay position-absolute top-0 start-0 w-100 h-100"></div>
+            <div class="play_btn play_btn_small position-absolute top-50 start-50 translate-middle">
+                <a class="play-video" href="{{=it.newsListvm[i].urlVideo}}">
+                    <div class="custom-play-button">
+                        <i class="fa fa-play"></i>
+                    </div>
+                </a>
+            </div>
+            <div class="video-caption position-absolute bottom-0 start-0 w-100 text-white px-3 py-2">
+                <p class="mb-0 fw-semibold text-white">
+                    {{=it.newsListvm[i].tieuDeBaiViet}}
+                </p>
+            </div>
+         </div>
+    {{ } }}
+</script>
+
+<script id="news-templatevx" type="text/x-dot-template">
+    {{ for(var i = 0; i < it.newsListvx.length; i++) { }}
+            <div class="item_vd col-lg-12">
+                <article class="p-0 background-white border-radius-10 mb-15 mr-15 wow fadeIn animated">
+                    <div class="sub_video d-flex">
+                        <div class="post-thumb2 d-flex border-radius-5 p-0 img-hover-scale col-sm-6">
+                            <div class="img-hover-scale border-radius-10 position-relative overflow-hidden" id="img_dv">
+                                <a href="#">
+                                    <img class="border-radius-10 w-100" src="{{=it.newsListvx[i].urlImage || '/root/6388000.png'}}" height="150px" style="width:100%" alt="post-slider">
+                                </a>
+                                 <div class="video-overlay position-absolute top-0 start-0 w-100 h-100"></div>
+                                <div class="play_btn play_btn_small position-absolute top-50 start-50 translate-middle">
+                                    <a class="play-video" href="{{=it.newsListvx[i].urlVideo}}" >
+                                     <div class="custom-play-button">
+                                        <i class="fa fa-play"></i>
+                                    </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-content media-body col-sm-6 p-0">
+                            <small class="post-title font-weight-500 text-limit-2-row"><a href="#" class="text-c-4">{{=it.newsListvx[i].tieuDeBaiViet}}</a></small>
+                            <div class="entry-meta meta-1 flex-column font-x-small text-capitalize mb-10">
+                                <span class="mr-1 ml-1 text-c-2  text-limit-3-row ">{{=it.newsListvx[i].moTaNgan || ''}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+    {{ } }}
+</script>

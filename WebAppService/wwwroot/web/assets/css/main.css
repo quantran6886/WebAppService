@@ -305,7 +305,7 @@
 
 .orange-top {
     position: fixed;
-    top: 50%;
+    top: 30%;
     right: 316px;
     width: 517px;
     opacity: 0.9;
@@ -321,10 +321,14 @@
     z-index: 0;
 }
 
+.btn-search-home{
+    width: 120px !important;
+}
+
 @media (min-width: 1920px) {
     .orange-top {
         position: fixed;
-        top: 70%;
+        top: 20%;
         right: 431px;
         width: 517px;
         opacity: 0.9;

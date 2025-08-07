@@ -105,7 +105,20 @@
     -webkit-text-fill-color: transparent;
     color-interpolation: inherit;
 }
+.titile-heading {
+    font-size: 25px;
+    font-weight: 600;
+    font-family: Montserrat;
+    margin: 0
+}
 @media (max-width: 768px) {
+    .titile-heading {
+        font-size: 17px;
+        line-height: 1.5;
+        font-weight: 600;
+        font-family: Montserrat;
+        margin: 0;
+    }
     .container-mobile {
         padding-left: 30px;
         padding-right: 30px;

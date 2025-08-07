@@ -19,6 +19,9 @@
 
   <ItemGroup>
     <Content Remove="Views\AboutUs\AboutUsCopy.cshtml" />
+    <Content Remove="Views\Home\c1.cshtml" />
+    <Content Remove="Views\Home\c2.cshtml" />
+    <Content Remove="Views\Home\Index - Copy %282%29.cshtml" />
     <Content Remove="Views\Home\Index - Copy.cshtml" />
   </ItemGroup>
 

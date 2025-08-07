@@ -209,31 +209,6 @@ namespace WebAppService.Areas.Admin.Controllers
                         }
                     }
                 }
-                if (videos != null && videos.Count > 0)
-                {
-                    foreach (var video in videos)
-                    {
-                        if (video.Length > 0)
-                        {
-                            ten_video = video.FileName;
-                            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(video.FileName);
-                            var pathName = Path.Combine("FilesUploads", "Video_" + DateTime.Now.ToString("yyyyMM"));
-                            duong_dan_video = Path.Combine(pathName, fileName);
-
-                            var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", pathName);
-                            if (!Directory.Exists(uploadPath))
-                            {
-                                Directory.CreateDirectory(uploadPath);
-                            }
-
-                            var filePath = Path.Combine(uploadPath, fileName);
-                            using (var stream = new FileStream(filePath, FileMode.Create))
-                            {
-                                await video.CopyToAsync(stream);
-                            }
-                        }
-                    }
-                }
                 if (ClientData.IdVideo == Guid.Empty)
                 {
                     ClientData.IdVideo = Guid.NewGuid();
@@ -242,11 +217,7 @@ namespace WebAppService.Areas.Admin.Controllers
                         ClientData.UrlImage = "/" + duong_dan_tai_lieu.Replace("\\", "/");
                         ClientData.NameImage = ten_file;
                     }
-                    if (isThayDoi2)
-                    {
-                        ClientData.UrlVideo = "/" + duong_dan_video.Replace("\\", "/");
-                        ClientData.NameVideo = ten_video;
-                    }
+                    ClientData.UrlVideo = ClientData.UrlVideo;
                     ClientData.TieuDeNgan = ClientData.TieuDeNgan;
                     ClientData.TieuDeBaiViet = ClientData.TieuDeBaiViet;
                     ClientData.MoTaNgan = ClientData.MoTaNgan;
@@ -267,11 +238,7 @@ namespace WebAppService.Areas.Admin.Controllers
                             existing.UrlImage = "/" + duong_dan_tai_lieu.Replace("\\", "/");
                             existing.NameImage = ten_file;
                         }
-                        if (isThayDoi2)
-                        {
-                            existing.UrlVideo = "/" + duong_dan_video.Replace("\\", "/");
-                            existing.NameVideo = ten_video;
-                        }
+                        existing.UrlVideo = ClientData.UrlVideo ;
                         existing.TieuDeNgan = ClientData.TieuDeNgan;
                         existing.TieuDeBaiViet = ClientData.TieuDeBaiViet;
                         existing.MoTaNgan = ClientData.MoTaNgan;
