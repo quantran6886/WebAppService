@@ -22,7 +22,7 @@ namespace WebAppService.Areas.Admin.Controllers
         {
             try
             {
-                var listHethong = db.WebDanhMucHeThongs.OrderBy(c => c.ThuTuTg ).ToList();
+                var listHethong = db.WebDanhMucHeThongs.OrderBy(c => c.ThuTuTg).ToList();
 
                 var lstChucDanh = listHethong.Where(c => c.LoaiDanhMuc == "Danh mục chức danh").Select(c => new
                 {
@@ -78,6 +78,19 @@ namespace WebAppService.Areas.Admin.Controllers
             {
                 decodedContent = HttpUtility.UrlDecode(ClientData.KinhNghiemLamViec);
             }
+            if (!string.IsNullOrEmpty(ClientData.SeoUrl))
+            {
+                var check = db.WebNhanSus.FirstOrDefault(c => (ClientData.IdNhanSu == Guid.Empty && c.SeoUrl == ClientData.SeoUrl) || (c.SeoUrl == ClientData.SeoUrl && c.IdNhanSu != ClientData.IdNhanSu));
+                if (check != null)
+                {
+                    return Json(new
+                    {
+                        message = "Đường dẫn SEO đã tồn tại, vui lòng nhập đường dẫn khác.",
+                        status = false
+                    });
+                }
+            }
+
             try
             {
                 if (files != null && files.Count > 0)
@@ -179,7 +192,7 @@ namespace WebAppService.Areas.Admin.Controllers
                     c.BangCapHocVi,
                     c.NgonNgu,
                     c.SeoUrl,
-                    NgaySinh = c.NgaySinh != null ? string.Format("{0:dd-MM-yyyy}",c.NgaySinh) : "",
+                    NgaySinh = c.NgaySinh != null ? string.Format("{0:dd-MM-yyyy}", c.NgaySinh) : "",
                 }).ToList();
 
                 return new JsonResult(new

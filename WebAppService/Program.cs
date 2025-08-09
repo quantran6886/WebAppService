@@ -68,6 +68,7 @@ app.UseAuthorization();
 app.MapHub<UserStatusHub>("/userStatusHub");
 app.MapHub<NotificationHub>("/notificationHub");
 
+//admin
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
@@ -76,6 +77,13 @@ app.UseEndpoints(endpoints =>
     endpoints.MapDefaultControllerRoute();
 });
 
+//frontend
+
+app.MapControllerRoute(
+    name: "DanhSachBacSi",
+    pattern: "danh-sach-bac-si",
+    defaults: new { controller = "Doctor", action = "ListDoctor" }
+);
 
 app.MapControllerRoute(
     name: "default",

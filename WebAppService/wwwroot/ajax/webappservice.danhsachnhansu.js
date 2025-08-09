@@ -1,1 +1,359 @@
-﻿var _0x1e952c = _0x1066; (function (_0x1857fa, _0x7a8bb2) { var _0x3b9d3e = _0x1066, _0x50345e = _0x1857fa(); while (!![]) { try { var _0x536347 = -parseInt(_0x3b9d3e(0x1fc)) / 0x1 * (parseInt(_0x3b9d3e(0x1eb)) / 0x2) + -parseInt(_0x3b9d3e(0x1de)) / 0x3 * (-parseInt(_0x3b9d3e(0x1dd)) / 0x4) + parseInt(_0x3b9d3e(0x23a)) / 0x5 * (parseInt(_0x3b9d3e(0x1f3)) / 0x6) + -parseInt(_0x3b9d3e(0x1f2)) / 0x7 + -parseInt(_0x3b9d3e(0x21e)) / 0x8 + parseInt(_0x3b9d3e(0x216)) / 0x9 + parseInt(_0x3b9d3e(0x22a)) / 0xa; if (_0x536347 === _0x7a8bb2) break; else _0x50345e['push'](_0x50345e['shift']()); } catch (_0x594a59) { _0x50345e['push'](_0x50345e['shift']()); } } }(_0x4609, 0x66f84)); function _0x4609() { var _0x56799c = ['/Admin/DanhSachNhanSu/DeleteData', 'modal', '#btnUpload', 'Bạn\x20chưa\x20nhập\x20họ\x20tên', 'error', 'append', '#duong_dan_file', '#btnRemoveUpload', 'fire', '<a\x20href=\x22javascript:myScripts.DeleteData(', 'trigger', 'Bạn\x20có\x20chắc\x20chắn\x20muốn\x20xóa\x20bản\x20ghi\x20này\x20không?', 'LoadTable', '15955IFaqaU', 'strData', 'onload', 'idNhanSu', 'hide', 'status', 'false', 'mixin', 'getContent', 'click', '#ChucDanh', 'message', '<option\x20value=\x27\x27>--\x20Chọn\x20chuyên\x20khoa\x20--</option>', 'Cập\x20nhập\x20thành\x20công', 'lstChucDanh', 'then', 'Thành\x20Công', 'FormData', 'kinhNghiemLamViec', 'urlImage', '#btnNewForm', '<option\x20value=\x27\x27>--\x20Chọn\x20đơn\x20vị\x20--</option>', 'chucDanh', 'focus', 'Bạn\x20chưa\x20chọn\x20bản\x20ghi\x20nào\x20để\x20xóa', '64ZvkIFe', '90039aWdKWC', 'Post', 'Hủy', 'isThayDoi', 'src', 'bootstrapTable', 'slideUp', '#imageHoSo', '</option>', '#HoTen', 'html', '#bsHoSoCanBo', 'each', '6LUinSe', 'setContent', '<div\x20style=\x22width:\x20100%\x22>', 'get', 'length', 'Bạn\x20chưa\x20chọn\x20ngày\x20sinh', 'Xóa\x20thành\x20công\x201\x20bản\x20ghi', '5628658teyVAX', '1146BWUZVd', 'result', 'donViKhoa', '[data-bs-toggle=\x22tooltip\x22]', 'chucVu', '/Admin/DanhSachNhanSu/LoadTable', '#IdNhanSu', 'readURL', 'bangCapHocVi', '234811nLyjvG', 'lstData', '00000000-0000-0000-0000-000000000000', '#tableDanhSachNhanSu', '#isThayDoi', 'removeAll', '/root/Profile_avatar.png', 'join', 'Có\x20lỗi\x20dữ\x20liệu', 'off', 'json', 'Lỗi', '#btnSaveData', 'Bạn\x20chưa\x20chọn\x20chức\x20danh', '#DonViKhoa', '<option\x20value=\x27', 'success', 'slideDown', ')\x22\x20class=\x22hvr-shrink\x22\x20data-bs-toggle=\x22tooltip\x22\x20title=\x22Xóa\x20dữ\x20liệu\x22><i\x20class=\x22ti\x20ti-trash\x20text-danger\x20fs-6\x22></i>\x20</a>', 'warning', 'chosen:updated', 'POST', 'attr', '#ChucVu', '#BangCapHocVi', 'files', '5550804kCiMlp', 'init', 'ajax', '/Admin/DanhSachNhanSu/LoadData', 'val', 'size', 'Upload\x20file\x20thất\x20bại!', 'stringify', '2586296VXWbuO', 'change', 'btn\x20bg-secondary-subtle\x20text-secondary', 'ResetForm', 'editor', '#NgonNgu', 'hoTen', 'lstDonViKhoa', 'target', 'load', '<option\x20value=\x27\x27>--\x20Chọn\x20chức\x20danh\x20--</option>', 'tenGoi', '5471330JKTqzN', 'GET', '#NgaySinh']; _0x4609 = function () { return _0x56799c; }; return _0x4609(); } var files, myScripts = { 'init': function () { myScripts['LoadData'](), myScripts['Event'](); }, 'Event': function () { var _0x2d3cc7 = _0x1066; $(_0x2d3cc7(0x1d8))[_0x2d3cc7(0x205)](_0x2d3cc7(0x1cd))['on'](_0x2d3cc7(0x1cd), function () { var _0x9e968c = _0x2d3cc7; myScripts[_0x9e968c(0x221)](); }), $(_0x2d3cc7(0x208))[_0x2d3cc7(0x205)](_0x2d3cc7(0x1cd))['on'](_0x2d3cc7(0x1cd), function () { myScripts['SaveData'](); }), $(_0x2d3cc7(0x234))[_0x2d3cc7(0x205)](_0x2d3cc7(0x1cd))['on']('click', function () { var _0x5f2e72 = _0x2d3cc7; $(_0x5f2e72(0x200))[_0x5f2e72(0x21a)]('false'), $(_0x5f2e72(0x1e5))[_0x5f2e72(0x212)](_0x5f2e72(0x1e2), _0x5f2e72(0x202)); }), $(_0x2d3cc7(0x22f))[_0x2d3cc7(0x205)](_0x2d3cc7(0x1cd))['on'](_0x2d3cc7(0x1cd), function () { var _0x253b04 = _0x2d3cc7; $(_0x253b04(0x233))[_0x253b04(0x1cd)](), $(_0x253b04(0x233))[_0x253b04(0x205)]('change')['on'](_0x253b04(0x21f), function (_0x5bfd01) { var _0x13535c = _0x253b04; files = _0x5bfd01['target'][_0x13535c(0x215)]; if (files[_0x13535c(0x1ef)] > 0x0) for (var _0x4e538e = 0x0; _0x4e538e < files['length']; _0x4e538e++) { if (files[_0x4e538e][_0x13535c(0x21b)] >= 0x3200000) { toastr[_0x13535c(0x231)]('Chỉ\x20được\x20upload\x20file\x20dưới\x2050mb', 'Lỗi', { 'showMethod': _0x13535c(0x20d), 'hideMethod': _0x13535c(0x1e4), 'timeOut': 0x3e8 }), $(_0x13535c(0x200))['val'](_0x13535c(0x1ca)); return; } else myScripts[_0x13535c(0x1fa)](this), $(_0x13535c(0x200))[_0x13535c(0x21a)]('true'); } }); }); }, 'LoadData': function () { var _0x1ead96 = _0x1066; $[_0x1ead96(0x218)]({ 'url': _0x1ead96(0x219), 'type': _0x1ead96(0x22b), 'datatype': _0x1ead96(0x206), 'success': function (_0x15b1d1) { var _0x62d8fa = _0x1ead96; if (_0x15b1d1[_0x62d8fa(0x1c9)]) { var _0x214ee8 = _0x15b1d1[_0x62d8fa(0x1d2)], _0xea6efb = _0x15b1d1[_0x62d8fa(0x225)], _0x1b8053 = _0x15b1d1['lstChuyenKhoa']; if (_0x214ee8 != null) { var _0x4e11fb = _0x62d8fa(0x228); $['each'](_0x214ee8, function (_0x4c1d32, _0x4628a3) { var _0x3ac1aa = _0x62d8fa; _0x4e11fb += _0x3ac1aa(0x20b) + _0x4628a3[_0x3ac1aa(0x229)] + '\x27>' + _0x4628a3[_0x3ac1aa(0x229)] + '</option>'; }), $(_0x62d8fa(0x1ce))[_0x62d8fa(0x1e8)](_0x4e11fb), $(_0x62d8fa(0x1ce))['trigger']('chosen:updated'); } if (_0xea6efb != null) { var _0x4e11fb = _0x62d8fa(0x1d9); $['each'](_0xea6efb, function (_0x20b22b, _0x555824) { var _0x4214fd = _0x62d8fa; _0x4e11fb += _0x4214fd(0x20b) + _0x555824[_0x4214fd(0x229)] + '\x27>' + _0x555824[_0x4214fd(0x229)] + _0x4214fd(0x1e6); }), $(_0x62d8fa(0x20a))[_0x62d8fa(0x1e8)](_0x4e11fb), $(_0x62d8fa(0x20a))[_0x62d8fa(0x237)](_0x62d8fa(0x210)); } if (_0x1b8053 != null) { var _0x4e11fb = _0x62d8fa(0x1d0); $[_0x62d8fa(0x1ea)](_0x1b8053, function (_0x5ef719, _0x25e299) { var _0x12f15d = _0x62d8fa; _0x4e11fb += '<option\x20value=\x27' + _0x25e299['tenGoi'] + '\x27>' + _0x25e299[_0x12f15d(0x229)] + '</option>'; }), $(_0x62d8fa(0x213))[_0x62d8fa(0x1e8)](_0x4e11fb), $(_0x62d8fa(0x213))[_0x62d8fa(0x237)](_0x62d8fa(0x210)); } myScripts[_0x62d8fa(0x239)](); } } }); }, 'LoadTable': function () { var _0x44561a = _0x1066; $[_0x44561a(0x218)]({ 'url': _0x44561a(0x1f8), 'type': _0x44561a(0x22b), 'dataType': _0x44561a(0x206), 'data': {}, 'success': function (_0x51a40f) { var _0x3e72a6 = _0x44561a; if (_0x51a40f[_0x3e72a6(0x1c9)] == !![]) { var _0x5f3481 = _0x51a40f[_0x3e72a6(0x1fd)]; _0x5f3481 != null && _0x5f3481[_0x3e72a6(0x1ef)] > 0x0 ? $(_0x3e72a6(0x1ff))[_0x3e72a6(0x1e3)](_0x3e72a6(0x227), _0x5f3481) : $(_0x3e72a6(0x1ff))[_0x3e72a6(0x1e3)](_0x3e72a6(0x201)), $(_0x3e72a6(0x1f6))['tooltip'](); } } }); }, 'LoadDetail': function (_0x1bd200) { var _0x121124 = _0x1066; _0x1bd200 != '' && $['ajax']({ 'url': '/Admin/DanhSachNhanSu/LoadDetail', 'type': _0x121124(0x22b), 'dataType': _0x121124(0x206), 'data': { 'IdNhanSu': _0x1bd200 }, 'success': function (_0x340c3b) { var _0xa3b11 = _0x121124; if (_0x340c3b[_0xa3b11(0x1c9)] == !![]) { var _0x5d2f6c = _0x340c3b[_0xa3b11(0x1fd)]; _0x5d2f6c != null && ($(_0xa3b11(0x1f9))[_0xa3b11(0x21a)](_0x5d2f6c['idNhanSu']), $(_0xa3b11(0x1e7))[_0xa3b11(0x21a)](_0x5d2f6c[_0xa3b11(0x224)]), $(_0xa3b11(0x22c))[_0xa3b11(0x21a)](_0x5d2f6c['ngaySinh']), $(_0xa3b11(0x1ce))[_0xa3b11(0x21a)](_0x5d2f6c[_0xa3b11(0x1da)])[_0xa3b11(0x237)](_0xa3b11(0x210)), $(_0xa3b11(0x20a))[_0xa3b11(0x21a)](_0x5d2f6c[_0xa3b11(0x1f5)])[_0xa3b11(0x237)](_0xa3b11(0x210)), $(_0xa3b11(0x213))['val'](_0x5d2f6c[_0xa3b11(0x1f7)])[_0xa3b11(0x237)]('chosen:updated'), $(_0xa3b11(0x214))[_0xa3b11(0x21a)](_0x5d2f6c[_0xa3b11(0x1fb)]), $(_0xa3b11(0x223))[_0xa3b11(0x21a)](_0x5d2f6c['ngonNgu']), _0x5d2f6c[_0xa3b11(0x1d6)] != null ? tinymce['get'](_0xa3b11(0x222))[_0xa3b11(0x1ec)](_0x5d2f6c[_0xa3b11(0x1d6)]) : tinymce['get'](_0xa3b11(0x222))[_0xa3b11(0x1ec)](''), _0x5d2f6c[_0xa3b11(0x1d7)] != null && _0x5d2f6c[_0xa3b11(0x1d7)] != '' ? $(_0xa3b11(0x1e5))[_0xa3b11(0x212)](_0xa3b11(0x1e2), _0x5d2f6c[_0xa3b11(0x1d7)]) : $(_0xa3b11(0x1e5))[_0xa3b11(0x212)](_0xa3b11(0x1e2), _0xa3b11(0x202)), $(_0xa3b11(0x200))[_0xa3b11(0x21a)](_0xa3b11(0x1ca)), $(_0xa3b11(0x1e9))['modal']('show')); } else toastr[_0xa3b11(0x231)](_0x340c3b[_0xa3b11(0x1cf)], _0xa3b11(0x207), { 'showMethod': _0xa3b11(0x20d), 'hideMethod': _0xa3b11(0x1e4), 'timeOut': 0x3e8 }); } }); }, 'readURL': function (_0x36b31c) { var _0x23114e = _0x1066, _0x17d91c = new FileReader(); _0x17d91c[_0x23114e(0x23c)] = function (_0x560714) { var _0x2e9f81 = _0x23114e; $(_0x2e9f81(0x1e5))[_0x2e9f81(0x212)](_0x2e9f81(0x1e2), _0x560714[_0x2e9f81(0x226)][_0x2e9f81(0x1f4)]); }, _0x17d91c['readAsDataURL'](_0x36b31c[_0x23114e(0x215)][0x0]); }, 'ResetForm': function () { var _0x346c3c = _0x1066; $('#IdNhanSu')[_0x346c3c(0x21a)](0x0), $(_0x346c3c(0x1e7))['val'](''), $('#NgaySinh')['val'](''), $(_0x346c3c(0x1ce))['val']('')[_0x346c3c(0x237)]('chosen:updated'), $(_0x346c3c(0x20a))[_0x346c3c(0x21a)]('')['trigger']('chosen:updated'), $(_0x346c3c(0x213))[_0x346c3c(0x21a)]('')[_0x346c3c(0x237)]('chosen:updated'), $('#BangCapHocVi')['val'](''), $(_0x346c3c(0x223))['val'](''), $('#KinhNghiemLamViec')['val'](''), tinymce[_0x346c3c(0x1ee)](_0x346c3c(0x222))[_0x346c3c(0x1ec)](''), $(_0x346c3c(0x200))[_0x346c3c(0x21a)](_0x346c3c(0x1ca)), $(_0x346c3c(0x1e5))[_0x346c3c(0x212)](_0x346c3c(0x1e2), '/root/Profile_avatar.png'); }, 'SaveData': function () { var _0x246f67 = _0x1066, _0x40d8a2 = $(_0x246f67(0x1f9))[_0x246f67(0x21a)](), _0x74866e = $(_0x246f67(0x1e7))[_0x246f67(0x21a)](), _0x2c4333 = $(_0x246f67(0x22c))[_0x246f67(0x21a)](), _0x7d4cbf = $(_0x246f67(0x1ce))[_0x246f67(0x21a)](), _0x9cd218 = $('#DonViKhoa')[_0x246f67(0x21a)](), _0x1dad3b = $(_0x246f67(0x213))[_0x246f67(0x21a)](), _0x4221ec = $(_0x246f67(0x214))[_0x246f67(0x21a)](), _0x3f3ddd = $(_0x246f67(0x223))['val'](), _0x3cdf35 = encodeURIComponent(tinymce[_0x246f67(0x1ee)]('editor')[_0x246f67(0x1cc)]()); if (_0x74866e == '') { toastr[_0x246f67(0x231)](_0x246f67(0x230), _0x246f67(0x207), { 'showMethod': 'slideDown', 'hideMethod': _0x246f67(0x1e4), 'timeOut': 0x3e8 }), $(_0x246f67(0x1e7))[_0x246f67(0x1db)](); return; } if (_0x2c4333 == '') { toastr[_0x246f67(0x231)](_0x246f67(0x1f0), 'Lỗi', { 'showMethod': _0x246f67(0x20d), 'hideMethod': _0x246f67(0x1e4), 'timeOut': 0x3e8 }), $(_0x246f67(0x22c))[_0x246f67(0x1db)](); return; } if (_0x7d4cbf == '') { toastr[_0x246f67(0x231)](_0x246f67(0x209), _0x246f67(0x207), { 'showMethod': _0x246f67(0x20d), 'hideMethod': _0x246f67(0x1e4), 'timeOut': 0x3e8 }), $(_0x246f67(0x1ce))['focus'](); return; } var _0x430de6 = { 'IdNhanSu': _0x40d8a2 != 0x0 ? _0x40d8a2 : _0x246f67(0x1fe), 'HoTen': _0x74866e, 'NgaySinh': _0x2c4333, 'ChucDanh': _0x7d4cbf, 'DonViKhoa': _0x9cd218, 'ChucVu': _0x1dad3b, 'BangCapHocVi': _0x4221ec, 'NgonNgu': _0x3f3ddd, 'KinhNghiemLamViec': _0x3cdf35 }; if (files != undefined && files[_0x246f67(0x1ef)] > 0x0) { if (window[_0x246f67(0x1d5)] !== undefined) { var _0x4394df = new FormData(); for (var _0x23047a = 0x0; _0x23047a < files['length']; _0x23047a++) { _0x4394df[_0x246f67(0x232)]('files', files[_0x23047a]); } _0x4394df['append'](_0x246f67(0x23b), JSON[_0x246f67(0x21d)](_0x430de6)), _0x4394df[_0x246f67(0x232)](_0x246f67(0x1e1), $(_0x246f67(0x200))[_0x246f67(0x21a)]()), $[_0x246f67(0x218)]({ 'type': _0x246f67(0x211), 'url': '/Admin/DanhSachNhanSu/SaveData', 'contentType': ![], 'processData': ![], 'data': _0x4394df, 'success': function (_0x4266cd) { var _0x22a5a0 = _0x246f67; _0x4266cd[_0x22a5a0(0x1c9)] == !![] ? (toastr[_0x22a5a0(0x20c)]('Cập\x20nhập\x20thành\x20công', _0x22a5a0(0x1d4), { 'showMethod': _0x22a5a0(0x20d), 'hideMethod': 'slideUp', 'timeOut': 0x3e8 }), myScripts[_0x22a5a0(0x239)](), $('#bsHoSoCanBo')[_0x22a5a0(0x22e)]('hide')) : toastr['error'](_0x22a5a0(0x204), _0x22a5a0(0x207), { 'showMethod': _0x22a5a0(0x20d), 'hideMethod': _0x22a5a0(0x1e4), 'timeOut': 0x3e8 }); }, 'error': function (_0x573b4f) { var _0xbdf149 = _0x246f67; toastr['error'](_0x573b4f[_0xbdf149(0x1cf)], _0xbdf149(0x207), { 'showMethod': _0xbdf149(0x20d), 'hideMethod': _0xbdf149(0x1e4), 'timeOut': 0x3e8 }); } }); } else alert(_0x246f67(0x21c)); } else $[_0x246f67(0x218)]({ 'type': _0x246f67(0x1df), 'url': '/Admin/DanhSachNhanSu/SaveData', 'datatype': _0x246f67(0x206), 'data': { 'strData': JSON[_0x246f67(0x21d)](_0x430de6) }, 'success': function (_0x14a9c8) { var _0x42ff73 = _0x246f67; _0x14a9c8[_0x42ff73(0x1c9)] ? (toastr[_0x42ff73(0x20c)](_0x42ff73(0x1d1), _0x42ff73(0x1d4), { 'showMethod': _0x42ff73(0x20d), 'hideMethod': _0x42ff73(0x1e4), 'timeOut': 0x3e8 }), myScripts[_0x42ff73(0x239)](), $(_0x42ff73(0x1e9))[_0x42ff73(0x22e)](_0x42ff73(0x1c8))) : toastr[_0x42ff73(0x231)](_0x14a9c8['message'], _0x42ff73(0x207), { 'showMethod': 'slideDown', 'hideMethod': 'slideUp', 'timeOut': 0x3e8 }); } }); }, 'DeleteData': function (_0x6d3618) { var _0x405c52 = _0x1066; if (_0x6d3618 != '') { const _0x30c3dc = Swal[_0x405c52(0x1cb)]({ 'customClass': { 'confirmButton': _0x405c52(0x220), 'cancelButton': 'me-6\x20btn\x20bg-secondary-subtle\x20text-secondary' }, 'buttonsStyling': ![] }); _0x30c3dc[_0x405c52(0x235)]({ 'title': 'Xác\x20nhận?', 'text': _0x405c52(0x238), 'icon': _0x405c52(0x20f), 'showCancelButton': !![], 'confirmButtonText': 'Đồng\x20ý', 'cancelButtonText': _0x405c52(0x1e0), 'reverseButtons': !![] })[_0x405c52(0x1d3)](_0x52e58e => { var _0x16ae8b = _0x405c52; _0x52e58e['isConfirmed'] && $['ajax']({ 'type': _0x16ae8b(0x211), 'url': _0x16ae8b(0x22d), 'data': { 'IdNhanSu': _0x6d3618 }, 'success': function (_0xed2898) { var _0x48d5bb = _0x16ae8b; _0xed2898[_0x48d5bb(0x1c9)] == !![] ? (myScripts['LoadTable'](), toastr['success'](_0x48d5bb(0x1f1), 'Thành\x20công', { 'showMethod': _0x48d5bb(0x20d), 'hideMethod': 'slideUp', 'timeOut': 0x3e8 })) : toastr[_0x48d5bb(0x231)](_0xed2898[_0x48d5bb(0x1cf)], 'Lỗi', { 'showMethod': _0x48d5bb(0x20d), 'hideMethod': _0x48d5bb(0x1e4), 'timeOut': 0x3e8 }); }, 'error': function (_0xd39a84) { var _0x1375e6 = _0x16ae8b; toastr[_0x1375e6(0x231)](_0xd39a84['message'], _0x1375e6(0x207), { 'showMethod': _0x1375e6(0x20d), 'hideMethod': _0x1375e6(0x1e4), 'timeOut': 0x3e8 }); } }); }); } else alert(_0x405c52(0x1dc)); } }; function _0x1066(_0x294b7b, _0x69e664) { var _0x46095f = _0x4609(); return _0x1066 = function (_0x1066ef, _0x57f824) { _0x1066ef = _0x1066ef - 0x1c7; var _0x4d1e89 = _0x46095f[_0x1066ef]; return _0x4d1e89; }, _0x1066(_0x294b7b, _0x69e664); } myScripts[_0x1e952c(0x217)](); function fm_editData(_0x43f920, _0x4094f6, _0x3efcc1, _0x555b32) { var _0x22f149 = _0x1e952c; return [_0x22f149(0x1ed), '<a\x20href=\x22javascript:myScripts.LoadDetail(' + '\x27' + _0x4094f6[_0x22f149(0x1c7)] + '\x27' + ')\x22\x20class=\x22hvr-shrink\x20me-2\x22\x20data-bs-toggle=\x22tooltip\x22\x20data-bs-placement=\x22top\x22\x20title=\x22Sửa\x20dữ\x20liệu\x22><i\x20class=\x22ti\x20ti-pencil\x20text-primary\x20fs-6\x22></i></a>' + _0x22f149(0x236) + '\x27' + _0x4094f6['idNhanSu'] + '\x27' + _0x22f149(0x20e) + '</div>'][_0x22f149(0x203)](''); };
+﻿var files;
+var myScripts = {
+    init: function () {
+        myScripts.LoadData();
+        myScripts.Event();
+    },
+
+    Event: function () {
+
+        $("#btnNewForm").off("click").on("click", function () {
+            myScripts.ResetForm();
+        });
+
+        $("#btnSaveData").off("click").on("click", function () {
+            myScripts.SaveData();
+        });
+
+        $("#btnRemoveUpload").off("click").on("click", function () {
+            $("#isThayDoi").val("false");
+            $('#imageHoSo').attr('src', '/root/Profile_avatar.png');
+        });
+
+        $("#btnUpload").off('click').on('click', function () {
+            $("#duong_dan_file").click();
+            $("#duong_dan_file").off('change').on('change', function (e) {
+                files = e.target.files;
+                if (files.length > 0) {
+                    for (var x = 0; x < files.length; x++) {
+                        if (files[x].size >= 52428800) {
+                            toastr.error("Chỉ được upload file dưới 50mb", "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                            $("#isThayDoi").val("false");
+                            return;
+                        } else {
+                            myScripts.readURL(this);
+                            $("#isThayDoi").val("true");
+                        }
+                    }
+                }
+            });
+        });
+
+        $("#btnAutoCode").on("click", function () {
+            var title = $("#HoTen").val();
+            if (title.trim() === "") {
+                alert("Vui lòng nhập họ tên trước!");
+                return;
+            }
+            var slug = toSlug(title);
+            var finalSlug = slug + "-" + randomCode(4);
+            $("#SeoUrl").val(finalSlug);
+        });
+    },
+
+    LoadData: function () {
+        $.ajax({
+            url: '/Admin/DanhSachNhanSu/LoadData',
+            type: 'GET',
+            datatype: 'json',
+            success: function (response) {
+                if (response.status) {
+                    var lstChucDanh = response.lstChucDanh;
+                    var lstDonViKhoa = response.lstDonViKhoa;
+                    var lstChuyenKhoa = response.lstChuyenKhoa;
+                    if (lstChucDanh != null) {
+                        var option = "<option value=''>-- Chọn chức danh --</option>";
+                        $.each(lstChucDanh, function (index, val) {
+                            option += "<option value='" + val.tenGoi + "'>" + val.tenGoi + "</option>";
+                        });
+                        $("#ChucDanh").html(option);
+                        $("#ChucDanh").trigger('chosen:updated');
+                    }
+                    if (lstDonViKhoa != null) {
+                        var option = "<option value=''>-- Chọn đơn vị --</option>";
+                        $.each(lstDonViKhoa, function (index, val) {
+                            option += "<option value='" + val.tenGoi + "'>" + val.tenGoi + "</option>";
+                        });
+                        $("#DonViKhoa").html(option);
+                        $("#DonViKhoa").trigger('chosen:updated');
+                    }
+                    if (lstChuyenKhoa != null) {
+                        var option = "<option value=''>-- Chọn chuyên khoa --</option>";
+                        $.each(lstChuyenKhoa, function (index, val) {
+                            option += "<option value='" + val.tenGoi + "'>" + val.tenGoi + "</option>";
+                        });
+                        $("#ChucVu").html(option);
+                        $("#ChucVu").trigger('chosen:updated');
+                    }
+                    myScripts.LoadTable();
+                }
+            },
+        });
+    },
+
+    LoadTable: function () {
+        $.ajax({
+            url: '/Admin/DanhSachNhanSu/LoadTable',
+            type: "GET",
+            dataType: "json",
+            data: {
+            },
+            success: function (response) {
+                if (response.status == true) {
+                    var lstData = response.lstData;
+                    if (lstData != null && lstData.length > 0) {
+                        $("#tableDanhSachNhanSu").bootstrapTable('load', lstData);
+                    }
+                    else {
+                        $("#tableDanhSachNhanSu").bootstrapTable('removeAll');
+                    }
+                    $('[data-bs-toggle="tooltip"]').tooltip();
+                }
+            }
+        })
+    },
+
+    LoadDetail: function (idNhanSu) {
+        if (idNhanSu != "") {
+            $.ajax({
+                url: '/Admin/DanhSachNhanSu/LoadDetail',
+                type: "GET",
+                dataType: "json",
+                data: {
+                    IdNhanSu: idNhanSu,
+                },
+                success: function (response) {
+                    if (response.status == true) {
+                        var lstData = response.lstData;
+
+                        if (lstData != null) {
+                            $("#IdNhanSu").val(lstData.idNhanSu);
+                            $("#HoTen").val(lstData.hoTen);
+                            $("#NgaySinh").val(lstData.ngaySinh);
+                            $("#ChucDanh").val(lstData.chucDanh).trigger('chosen:updated');
+                            $("#DonViKhoa").val(lstData.donViKhoa).trigger('chosen:updated');
+                            $("#ChucVu").val(lstData.chucVu).trigger('chosen:updated');
+                            $("#BangCapHocVi").val(lstData.bangCapHocVi);
+                            $("#NgonNgu").val(lstData.ngonNgu);
+                            $("#SeoUrl").val(lstData.seoUrl);
+                            if (lstData.kinhNghiemLamViec != null) {
+                                tinymce.get('editor').setContent(lstData.kinhNghiemLamViec);
+                            } else {
+                                tinymce.get('editor').setContent("");
+                            }
+                            if (lstData.urlImage != null && lstData.urlImage != "") {
+                                $('#imageHoSo').attr('src', lstData.urlImage);
+                            } else {
+                                $('#imageHoSo').attr('src', '/root/Profile_avatar.png');
+                            }
+                            $("#isThayDoi").val("false");
+                            $("#bsHoSoCanBo").modal('show');
+                        }
+                    } else {
+                        toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                    }
+                }
+            })
+        }
+    },
+
+    readURL: function (input) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#imageHoSo').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    },
+
+    ResetForm: function () {
+        $("#IdNhanSu").val(0);
+        $("#SeoUrl").val("");
+        $("#HoTen").val("");
+        $("#NgaySinh").val("");
+        $("#ChucDanh").val("").trigger('chosen:updated');
+        $("#DonViKhoa").val("").trigger('chosen:updated');
+        $("#ChucVu").val("").trigger('chosen:updated');
+        $("#BangCapHocVi").val("");
+        $("#NgonNgu").val("");
+        $("#KinhNghiemLamViec").val("");
+        $("#SeoUrl").val("");
+        tinymce.get('editor').setContent("");
+        $("#isThayDoi").val("false");
+        $('#imageHoSo').attr('src', '/root/Profile_avatar.png');
+    },
+
+    SaveData: function () {
+        var IdNhanSu = $("#IdNhanSu").val();
+        var HoTen = $("#HoTen").val();
+        var NgaySinh = $("#NgaySinh").val();
+        var ChucDanh = $("#ChucDanh").val();
+        var DonViKhoa = $("#DonViKhoa").val();
+        var ChucVu = $("#ChucVu").val();
+        var BangCapHocVi = $("#BangCapHocVi").val();
+        var NgonNgu = $("#NgonNgu").val();
+        var SeoUrl = $("#SeoUrl").val();
+        var editor = encodeURIComponent(tinymce.get('editor').getContent());
+
+        if (HoTen == "") {
+            toastr.error("Bạn chưa nhập họ tên", "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+            $("#HoTen").focus();
+            return;
+        }
+        if (NgaySinh == "") {
+            toastr.error("Bạn chưa chọn ngày sinh", "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+            $("#NgaySinh").focus();
+            return;
+        }
+        if (ChucDanh == "") {
+            toastr.error("Bạn chưa chọn chức danh", "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+            $("#ChucDanh").focus();
+            return;
+        }
+        if (SeoUrl == "" || SeoUrl == undefined) {
+            toastr.error("Bạn chưa nhập đường dẫn seo url", "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+            $("#SeoUrl").focus();
+            return;
+        }
+
+        var objdata = {
+            IdNhanSu: IdNhanSu != 0 ? IdNhanSu : '00000000-0000-0000-0000-000000000000',
+            HoTen: HoTen,
+            NgaySinh: NgaySinh,
+            ChucDanh: ChucDanh,
+            DonViKhoa: DonViKhoa,
+            ChucVu: ChucVu,
+            BangCapHocVi: BangCapHocVi,
+            NgonNgu: NgonNgu,
+            SeoUrl: SeoUrl,
+            KinhNghiemLamViec: editor,
+        }
+        if (files != undefined && files.length > 0) {
+            if (window.FormData !== undefined) {
+                var data = new FormData();
+                for (var x = 0; x < files.length; x++) {
+                    data.append('files', files[x]);
+
+                }
+                data.append("strData", JSON.stringify(objdata));
+                data.append('isThayDoi', $("#isThayDoi").val());
+
+                $.ajax({
+                    type: "POST",
+                    url: '/Admin/DanhSachNhanSu/SaveData',
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    success: function (response) {
+                        if (response.status == true) {
+                            toastr.success("Cập nhập thành công", "Thành Công", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                            myScripts.LoadTable();
+                            $("#bsHoSoCanBo").modal('hide');
+                        } else {
+                            toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                        }
+                    },
+                    error: function (response) {
+                        toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                    }
+                });
+            } else {
+                alert("Upload file thất bại!");
+            }
+        }
+        else {
+            $.ajax({
+                type: 'Post',
+                url: '/Admin/DanhSachNhanSu/SaveData',
+                datatype: 'json',
+                data: {
+                    strData: JSON.stringify(objdata),
+                },
+                success: function (response) {
+                    if (response.status) {
+                        toastr.success("Cập nhập thành công", "Thành Công", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                        myScripts.LoadTable();
+                        $("#bsHoSoCanBo").modal('hide');
+                    }
+                    else {
+                        toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                    }
+                },
+            });
+        }
+    },
+
+    DeleteData: function (idNhanSu) {
+
+        if (idNhanSu != "") {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "btn bg-secondary-subtle text-secondary",
+                    cancelButton: "me-6 btn bg-secondary-subtle text-secondary",
+                },
+                buttonsStyling: false,
+            });
+            swalWithBootstrapButtons
+                .fire({
+                    title: "Xác nhận?",
+                    text: "Bạn có chắc chắn muốn xóa bản ghi này không?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Đồng ý",
+                    cancelButtonText: "Hủy",
+                    reverseButtons: true,
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: "POST",
+                            url: "/Admin/DanhSachNhanSu/DeleteData",
+                            data: {
+                                IdNhanSu: idNhanSu,
+                            },
+                            success: function (response) {
+                                if (response.status == true) {
+                                    myScripts.LoadTable();
+                                    toastr.success("Xóa thành công 1 bản ghi", "Thành công", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                                } else {
+                                    toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                                }
+                            },
+                            error: function (response) {
+                                toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                            }
+                        });
+                    }
+                });
+        } else {
+            alert("Bạn chưa chọn bản ghi nào để xóa");
+        }
+    },
+
+};
+myScripts.init();
+function fm_editData(e, value, row, index) {
+    return [
+        '<div style="width: 100%">',
+        '<a href="javascript:myScripts.LoadDetail(' + "'" + value.idNhanSu + "'" + ')" class="hvr-shrink me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Sửa dữ liệu"><i class="ti ti-pencil text-primary fs-6"></i></a>' +
+        '<a href="javascript:myScripts.DeleteData(' + "'" + value.idNhanSu + "'" + ')" class="hvr-shrink" data-bs-toggle="tooltip" title="Xóa dữ liệu"><i class="ti ti-trash text-danger fs-6"></i> </a>' +
+        '</div>'
+    ].join('');
+};
+
+function toSlug(str) {
+    str = str.toLowerCase();
+    str = str.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+    str = str.replace(/đ/g, 'd');
+    str = str.replace(/[^a-z0-9\s-]/g, '');
+    str = str.trim().replace(/\s+/g, '-');
+    str = str.replace(/-+/g, '-');
+    return str;
+}
+function randomCode(length) {
+    var chars = '0123456789';
+    var result = '';
+    for (var i = 0; i < length; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+}

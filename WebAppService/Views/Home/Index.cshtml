@@ -49,14 +49,14 @@
                        success: function (data) {
                            if (data.status == true) {
                                var lstData = data.viewModel;
-                               if(lstData.record != null)
-                               {
-                                   $('#_layout1').html(lstData.record.noiDung);
-                               }
-                               if(lstData.record2 != null)
-                               {
-                                   $('#_layout2').html(lstData.record2.noiDung);
-                               }
+                               // if(lstData.record != null)
+                               // {
+                               //     $('#_layout1').html(lstData.record.noiDung);
+                               // }
+                               // if(lstData.record2 != null)
+                               // {
+                               //     $('#_layout2').html(lstData.record2.noiDung);
+                               // }
                                 if (lstData.listData != null) {
                                     var template = doT.template($("#news-template").html());
                                     $("#sp_sv").html(template({ newsList: lstData.listData }));

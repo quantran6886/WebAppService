@@ -92,7 +92,7 @@
     opacity: 0.7;
     z-index: 0;
 }
-
+/*
 .social-float-buttons {
     position: fixed;
     right: 20px;
@@ -124,7 +124,7 @@
         width: 37px;
         height: 37px;
     }
-
+*/
 
 /* ----- Màn hình lớn hơn 1920px (≈ 20 inch trở lên) ----- */
 @media (min-width: 1920px) {

@@ -9,16 +9,17 @@ namespace clinic_website.Controllers
 		{
 			return View();
 		}
-	
 
         [HttpGet]
+        [Route("bac-si/{id?}")]
         public IActionResult DoctorDetail(string? id)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
                 return RedirectToAction("NotFound", "NotFound");
             }
-            var  record = db.WebNhanSus.FirstOrDefault(c => c.IdNhanSu.ToString() == id);
+
+            var record = db.WebNhanSus.FirstOrDefault(c => c.SeoUrl.ToString() == id);
             return View(record);
         }
 
@@ -41,6 +42,7 @@ namespace clinic_website.Controllers
                     c.BangCapHocVi,
                     c.DonViKhoa,
                     c.ChucDanh,
+                    c.SeoUrl,
                 })
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
