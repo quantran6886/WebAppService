@@ -18,11 +18,13 @@
 .container-mobile {
     padding-left: 10px;
     padding-right: 70px;
+    text-align: justify;
 }
 @media (max-width: 768px) {
     .container-mobile {
-        padding-left: 30px;
-        padding-right: 30px;
+        padding-left: 15px;
+        padding-right: 15px;
+        text-align: justify;
     }
     .text-c-d {
         font-family: 'Montserrat',sans-serif !important;

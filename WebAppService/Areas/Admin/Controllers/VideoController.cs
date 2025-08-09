@@ -72,6 +72,8 @@ namespace WebAppService.Areas.Admin.Controllers
                     x.NguoiTao,
                     x.IsCongKhai,
                     x.IsVideoNoiBat,
+                    x.SeoTittile,
+                    x.SeoUrl,
                     x.TieuDeNgan,
                     x.ThoiGianTao,
                 }).ToList().Select(x => new
@@ -85,6 +87,8 @@ namespace WebAppService.Areas.Admin.Controllers
                     x.MoTaNgan,
                     x.NguoiTao,
                     x.IsCongKhai,
+                    x.SeoTittile,
+                    x.SeoUrl,
                     x.IsVideoNoiBat,
                     x.TieuDeNgan,
                     ThoiGianTao = x.ThoiGianTao != null ? string.Format("{0:dd-MM-yyyy}", x.ThoiGianTao) : "",
@@ -154,6 +158,8 @@ namespace WebAppService.Areas.Admin.Controllers
                     x.NameVideo,
                     x.MoTaNgan,
                     x.TieuDeNgan,
+                    x.SeoTittile,
+                    x.SeoUrl,
                 }).FirstOrDefault();
 
                 return new JsonResult(new
@@ -217,13 +223,13 @@ namespace WebAppService.Areas.Admin.Controllers
                         ClientData.UrlImage = "/" + duong_dan_tai_lieu.Replace("\\", "/");
                         ClientData.NameImage = ten_file;
                     }
-                    ClientData.UrlVideo = ClientData.UrlVideo;
-                    ClientData.TieuDeNgan = ClientData.TieuDeNgan;
-                    ClientData.TieuDeBaiViet = ClientData.TieuDeBaiViet;
-                    ClientData.MoTaNgan = ClientData.MoTaNgan;
-                    ClientData.SapXep = ClientData.SapXep;
-                    ClientData.IsVideoNoiBat = ClientData.IsVideoNoiBat;
-                    ClientData.IsCongKhai = ClientData.IsCongKhai;
+                    //ClientData.UrlVideo = ClientData.UrlVideo;
+                    //ClientData.TieuDeNgan = ClientData.TieuDeNgan;
+                    //ClientData.TieuDeBaiViet = ClientData.TieuDeBaiViet;
+                    //ClientData.MoTaNgan = ClientData.MoTaNgan;
+                    //ClientData.SapXep = ClientData.SapXep;
+                    //ClientData.IsVideoNoiBat = ClientData.IsVideoNoiBat;
+                    //ClientData.IsCongKhai = ClientData.IsCongKhai;
                     ClientData.NguoiTao = User.Identity.Name;
                     ClientData.ThoiGianTao = DateTime.Now;
                     db.WebVideos.Add(ClientData);
@@ -245,6 +251,8 @@ namespace WebAppService.Areas.Admin.Controllers
                         existing.SapXep = ClientData.SapXep;
                         existing.IsVideoNoiBat = ClientData.IsVideoNoiBat;
                         existing.IsCongKhai = ClientData.IsCongKhai;
+                        existing.SeoTittile = ClientData.SeoTittile;
+                        existing.SeoUrl = ClientData.SeoUrl;
                         existing.NguoiTao = User.Identity.Name;
                         existing.ThoiGianCapNhap = DateTime.Now;
                         db.Entry(existing).State = EntityState.Modified;

@@ -45,6 +45,17 @@
         <!-- Footer Start-->
         @await Html.PartialAsync("_Footer")
     </div>
+    <div class="social-float-buttons">
+        <a href="https://www.facebook.com/SunMedicalCenterVN" target="_blank" class="social-btn messenger">
+            <img src="~/src/image_figma/message.png" alt="Messenger">
+        </a>
+        <a href="https://zalo.me/0911572702" target="_blank" class="social-btn zalo">
+            <img src="~/src/image_figma/zalo.png" alt="Zalo">
+        </a>
+        <a href="tel:1800 8005" target="_blank" class="social-btn whatsapp">
+            <img src="~/src/image_figma/phone.png" width="150px" alt="WhatsApp">
+        </a>
+    </div>
     <div id="google_translate_element" style="display:none"></div>
     @await Html.PartialAsync("_ScriptsBundle")
     @await RenderSectionAsync("Scripts", required: false)

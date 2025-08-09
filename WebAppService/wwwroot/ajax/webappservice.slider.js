@@ -52,6 +52,72 @@ var myScripts = {
             }
         })
     },
+    DeleteData: function (MaTrang) {
+        if (MaTrang != "") {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "btn bg-secondary-subtle text-secondary",
+                    cancelButton: "me-6 btn bg-secondary-subtle text-secondary",
+                },
+                buttonsStyling: false,
+            });
+            swalWithBootstrapButtons
+                .fire({
+                    title: "Xác nhận?",
+                    text: "Bạn có chắc chắn muốn xóa bản ghi này không?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Đồng ý",
+                    cancelButtonText: "Hủy",
+                    reverseButtons: true,
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: "POST",
+                            url: "/Admin/Slider/DeleteData",
+                            data: {
+                                MaTrang: MaTrang,
+                            },
+                            success: function (response) {
+                                if (response.status == true) {
+                                    myScripts.LoadTable();
+                                    toastr.success("Xóa thành công 1 bản ghi", "Thành công", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                                } else {
+                                    toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                                }
+                            },
+                            error: function (response) {
+                                toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                            }
+                        });
+                    }
+                });
+        } else {
+            alert("Bạn chưa chọn bản ghi nào để xóa");
+        }
+    },
+    deleteUrl: function (maTrang) {
+        if (!confirm("Bạn có chắc muốn xóa ảnh không?")) return;
+
+        $.ajax({
+            url: '/Admin/Slider/DeleteFile',
+            type: 'POST',
+            dataType: 'json',
+            data: { MaTrang: maTrang },
+            success: function (res) {
+                if (res.status) {
+                    myScripts.LoadTable();
+                    toastr.success("Xóa ảnh thành công", "Thành Công");
+                } else {
+                    toastr.error(res.message, "Lỗi");
+                }
+            },
+            error: function () {
+                toastr.error("Lỗi khi xóa ảnh", "Lỗi");
+            }
+        });
+    },
 };
 myScripts.init();
 
@@ -73,7 +139,6 @@ window.ev_SapXep = {
             success: function (response) {
                 if (response.status) {
                     toastr.success("Cập nhập thành công", "Thành Công", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
-                    myScripts.LoadTable();
                 }
                 else {
                     toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
@@ -100,7 +165,7 @@ $(document).on('change', '.cbGiaoDienSelect', function () {
             MaTrang: maTrang,
             CbGiaoDien: selectedValue,
             SapXep: sapXep,
-            TxtCard1: txtCard1
+            TxtCard1: txtCard1,
         },
         success: function (response) {
             if (response.status) {
@@ -115,7 +180,6 @@ $(document).on('change', '.cbGiaoDienSelect', function () {
 $(document).on('change', 'input[type="file"]', function () {
     var fileInput = this;
     var maTrang = $(this).attr('id').split('_')[1];
-
     var formData = new FormData();
     formData.append('files', fileInput.files[0]);
     formData.append('MaTrang', maTrang);
@@ -128,8 +192,8 @@ $(document).on('change', 'input[type="file"]', function () {
         data: formData,
         success: function (response) {
             if (response.status) {
-                toastr.success("Tải ảnh thành công");
                 myScripts.LoadTable();
+                toastr.success("Tải ảnh thành công");
             } else {
                 toastr.error(response.message || "Lỗi khi tải ảnh");
             }
@@ -137,31 +201,36 @@ $(document).on('change', 'input[type="file"]', function () {
     });
 });
 
+$(document).on('change', '.isCongKhaiCheckbox', function () {
+    const $this = $(this);
+    const isChecked = $this.is(':checked');
+    const maTrang = $this.data('matrang');
 
-var myController = {
-    deleteUrl: function (maTrang) {
-        if (!confirm("Bạn có chắc muốn xóa ảnh không?")) return;
-
-        $.ajax({
-            url: '/Admin/Slider/DeleteFile',
-            type: 'POST',
-            dataType: 'json',
-            data: { MaTrang: maTrang },
-            success: function (res) {
-                if (res.status) {
-                    toastr.success("Xóa ảnh thành công", "Thành Công");
-                    myScripts.LoadTable();
-                } else {
-                    toastr.error(res.message, "Lỗi");
-                }
-            },
-            error: function () {
-                toastr.error("Lỗi khi xóa ảnh", "Lỗi");
+    $.ajax({
+        url: '/Admin/Slider/SaveDataCongKhai',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            MaTrang: maTrang,
+            IsCongKhai: isChecked,
+        },
+        success: function (response) {
+            if (response.status) {
+                toastr.success("Cập nhật trạng thái công khai thành công", "Thành Công");
+            } else {
+                toastr.error(response.message, "Lỗi");
             }
-        });
-    }
-};
+        }
+    });
+});
 
+function fm_editData(e, value, row, index) {
+    return [
+        '<div style="width: 100%">',
+        '<a href="javascript:myScripts.DeleteData(' + "'" + value.maTrang + "'" + ')" class="hvr-shrink" data-bs-toggle="tooltip" title="Xóa dữ liệu"><iconify-icon icon="solar:trash-bin-trash-outline" class="text-danger" width="25px" height="25px"></iconify-icon></a>' +
+        '</div>'
+    ].join('');
+};
 
 function fm_Image(e, value, row, index) {
     return [
@@ -178,7 +247,7 @@ function fm_UrlFile(e, value, row, index) {
         return [
             '<div style="margin-bottom:0px;width:200px">',
             '<a style="margin-left:5px" title="Tải về" href="' + value.txtCard1 + '" download="">Đã có ảnh <i class="fa fa-download"></i></a>',
-            '<a style="margin-left:5px;color:red;" title="Xóa tệp đính kèm" href="javascript:myController.deleteUrl(\'' + value.maTrang + '\')"><i class="ti ti-trash"></i></a>',
+            '<a style="margin-left:5px;color:red;" title="Xóa tệp đính kèm" href="javascript:myScripts.deleteUrl(\'' + value.maTrang + '\')"><i class="ti ti-trash"></i></a>',
             '</div>'
         ].join('');
     } else {
@@ -190,6 +259,18 @@ function fm_UrlFile(e, value, row, index) {
     }
 }
 
+function fm_IsCongKhai(e, value, row, index) {
+    return `
+    <div class="form-check form-switch text-center">
+        <input type="checkbox" class="form-check-input text-center isCongKhaiCheckbox"
+               ${value.isCongKhai ? 'checked' : ''}
+               data-maTrang="${value.maTrang}"
+               data-txtCard1="${value.txtCard1}"
+               data-sapXep="${value.sapXep}"
+               data-cbGiaoDien="${value.cbGiaoDien}" />
+    </div>
+    `;
+}
 
 function fm_SapXep(e, value, row, index) {
     if (value.sapXep != "" && value.sapXep != null) {
@@ -211,8 +292,8 @@ function fm_CbGiaoDien(e, value, row, index) {
     return [
         '<select class="form-control cbGiaoDienSelect" data-maTrang="' + value.maTrang + '" data-sapXep="' + value.sapXep + '" data-txtCard1="' + value.txtCard1 + '">',
         '<option value="">Chọn phân loại</option>',
-        '<option value="PC"' + (value.cbGiaoDien === 'PC' ? ' selected' : '') + '>Máy tính</option>',
-        '<option value="Mobile"' + (value.cbGiaoDien === 'Mobile' ? ' selected' : '') + '>Điện thoại</option>',
+        '<option value="Máy tính"' + (value.cbGiaoDien === 'Máy tính' ? ' selected' : '') + '>Máy tính</option>',
+        '<option value="Điện thoại"' + (value.cbGiaoDien === 'Điện thoại' ? ' selected' : '') + '>Điện thoại</option>',
         '</select>'
     ].join('');
 }

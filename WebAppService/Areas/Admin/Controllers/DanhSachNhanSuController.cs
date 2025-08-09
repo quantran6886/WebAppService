@@ -120,6 +120,8 @@ namespace WebAppService.Areas.Admin.Controllers
                     ClientData.DonViKhoa = ClientData.DonViKhoa;
                     ClientData.BangCapHocVi = ClientData.BangCapHocVi;
                     ClientData.NgonNgu = ClientData.NgonNgu;
+                    ClientData.SeoTittile = ClientData.SeoTittile;
+                    ClientData.SeoUrl = ClientData.SeoUrl;
                     ClientData.KinhNghiemLamViec = decodedContent;
                     db.WebNhanSus.Add(ClientData);
                 }
@@ -142,6 +144,8 @@ namespace WebAppService.Areas.Admin.Controllers
                         existing.DonViKhoa = ClientData.DonViKhoa;
                         existing.BangCapHocVi = ClientData.BangCapHocVi;
                         existing.NgonNgu = ClientData.NgonNgu;
+                        existing.SeoTittile = ClientData.SeoTittile;
+                        existing.SeoUrl = ClientData.SeoUrl;
                         existing.KinhNghiemLamViec = decodedContent;
                         db.Entry(existing).State = EntityState.Modified;
                     }
@@ -174,6 +178,7 @@ namespace WebAppService.Areas.Admin.Controllers
                     c.ChucVu,
                     c.BangCapHocVi,
                     c.NgonNgu,
+                    c.SeoUrl,
                     NgaySinh = c.NgaySinh != null ? string.Format("{0:dd-MM-yyyy}",c.NgaySinh) : "",
                 }).ToList();
 
@@ -212,6 +217,8 @@ namespace WebAppService.Areas.Admin.Controllers
                     c.UrlImage,
                     c.NameImage,
                     c.ChucVu,
+                    c.SeoTittile,
+                    c.SeoUrl,
                 }).FirstOrDefault();
 
                 return new JsonResult(new

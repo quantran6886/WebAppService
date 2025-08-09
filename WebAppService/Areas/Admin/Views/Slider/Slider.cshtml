@@ -3,7 +3,18 @@
     ViewData["Title"] = "Slider";
     Layout = "~/Areas/Admin/Views/Shared/_ViewAdmin.cshtml";
 }
+<style>
+    .group-by{
+        background: #0d83c8a8;
+        color: white !important;
+    }
+
+    .group-by td{
+        color:white
+    }
+</style>
 @section Scripts {
+    <script src="https://unpkg.com/bootstrap-table@1.24.0/dist/extensions/group-by-v2/bootstrap-table-group-by.min.js"></script>
     <script src="~/ajax/webappservice.slider.js"></script>
 }
 <div class="card-header mt-2">
@@ -21,14 +32,16 @@
                     </div>
                 </div>
                 <div class="card-body p-2">
-                    <table id="tableSlider" data-toggle="table" data-flat="true" data-search="true" data-url="">
+                    <table id="tableSlider" data-toggle="table" data-flat="true" data-search="true" data-group-by="true"
+                           data-group-by-field="cbGiaoDien">
                         <thead>
                             <tr>
+                                <th data-formatter="fm_editData" data-sortable="true" data-width="5" >Xóa</th>
                                 <th data-field="" data-width="8" data-sortable="true" data-formatter="fm_Image">Ảnh</th>
                                 <th data-field="SapXep" data-width="8" data-formatter="fm_SapXep" data-events="ev_SapXep">Số thứ tự</th>
                                 <th data-field="TxtCard1" data-sortable="true" data-formatter="fm_UrlFile">Đường dẫn ảnh</th>
                                 <th data-field="CbGiaoDien" data-sortable="true" data-formatter="fm_CbGiaoDien" >Phân loại thiết bị</th>
-                                <th data-field="IsCongKhai" data-width="8" data-sortable="true" data-formatter="fm_IsCongKhai" data-events="ev_IsCongKhai">Công khai</th>
+                                <th data-field="IsCongKhai" data-width="8" data-sortable="true" data-formatter="fm_IsCongKhai">Công khai</th>
                             </tr>
                         </thead>
                     </table>

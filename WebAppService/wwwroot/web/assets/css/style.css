@@ -412,7 +412,7 @@ ul {
 #scrollUp {
     height: 38px;
     width: 29px;
-    right: 64px;
+    left: 64px;
     bottom: 20px;
     font-weight: bolder !important;
     color: #fff !important;
@@ -420,6 +420,7 @@ ul {
     text-align: center;
     border-radius: 15px;
     padding-top: 5px;
+    display:none !important
 }
 
     #scrollUp:hover {

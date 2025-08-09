@@ -10,6 +10,20 @@
     color: #F26522;
 }
 
+.btn-lien-he {
+    background-color: #F26522;
+    color: white !important;
+    border-radius: 3px;
+    padding: 8px 20px;
+    font-weight: 500;
+    font-size: 12.5px;
+    font-family: 'Inter'
+}
+.btn-lien-he:hover {
+    color: white !important;
+    background-color: red;
+    transition: 0.3s all;
+}
 .btn-orrange {
     background-color: #F26522;
     color: white !important;
@@ -325,7 +339,51 @@
     width: 120px !important;
 }
 
+.social-float-buttons {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 999;
+    padding-right: 10px;
+}
+
+.social-btn {
+    width: 57px;
+    height: 57px;
+    background: #fff;
+    border-radius: 69%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+    .social-btn:hover {
+        transform: scale(1.1);
+    }
+
+    .social-btn img {
+        width: 37px;
+        height: 37px;
+    }
+
+
 @media (min-width: 1920px) {
+    .social-float-buttons {
+        position: fixed;
+        top: 65%;
+        right: 4px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        z-index: 999;
+        padding-right: 10px;
+    }
+
     .orange-top {
         position: fixed;
         top: 20%;

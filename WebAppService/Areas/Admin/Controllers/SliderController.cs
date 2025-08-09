@@ -81,6 +81,35 @@ namespace WebAppService.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        public IActionResult SaveDataCongKhai(Guid MaTrang,  bool? IsCongKhai)
+        {
+            try
+            {
+                var find_data = db.WebCauHinhTrangs.Find(MaTrang);
+
+                if (find_data != null)
+                {
+                    find_data.IsCongKhai = IsCongKhai;
+                }
+                db.SaveChanges();
+
+                return new JsonResult(new
+                {
+                    status = true
+                });
+            }
+            catch (Exception ex)
+            {
+
+                return new JsonResult(new
+                {
+                    message = ex.Message,
+                    status = false
+                });
+            }
+        }
+
+        [HttpPost]
         public async Task<IActionResult> UploadFile(List<IFormFile> files, Guid MaTrang)
         {
             try
@@ -151,34 +180,30 @@ namespace WebAppService.Areas.Admin.Controllers
             }
         }
 
-        //[HttpPost]
-        //public IActionResult DeleteData(Int64? IdHeThong)
-        //{
-        //    try
-        //    {
-        //        if (IdHeThong > 0)
-        //        {
-        //            var find_data = db.WebDanhMucHeThongs.Find(IdHeThong);
-        //            if (find_data != null)
-        //            {
-        //                db.WebDanhMucHeThongs.Remove(find_data);
-        //            }
-        //            db.SaveChanges();
-        //        }
-        //        return Json(new
-        //        {
-        //            status = true,
-        //        });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Json(new
-        //        {
-        //            status = false,
-        //            message = ex.Message
-        //        });
-        //    }
-        //}
+        [HttpPost]
+        public async Task<IActionResult> DeleteData(Guid MaTrang)
+        {
+            try
+            {
+                var record = db.WebCauHinhTrangs.FirstOrDefault(x => x.MaTrang == MaTrang);
+                if (record != null && !string.IsNullOrEmpty(record.TxtCard1))
+                {
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", record.TxtCard1.TrimStart('/'));
+                    if (System.IO.File.Exists(filePath))
+                    {
+                        System.IO.File.Delete(filePath);
+                    }
+                }
+                db.WebCauHinhTrangs.Remove(record);
+                await db.SaveChangesAsync();
+
+                return Json(new { status = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { status = false, message = ex.Message });
+            }
+        }
 
         [HttpPost]
         public IActionResult SaveNewForm()

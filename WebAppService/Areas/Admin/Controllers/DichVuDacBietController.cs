@@ -73,6 +73,8 @@ namespace WebAppService.Areas.Admin.Controllers
                     x.CbLoaiBaiDang,
                     x.TieuDeNgan,
                     x.ThoiGianTao,
+                    x.SeoUrl,
+                    x.SeoTittile,
                 }).ToList().Select(x => new
                 {
                     x.IdDichVu,
@@ -85,6 +87,8 @@ namespace WebAppService.Areas.Admin.Controllers
                     x.IsBaiVietNoiBat,
                     x.CbLoaiBaiDang,
                     x.TieuDeNgan,
+                    x.SeoUrl,
+                    x.SeoTittile,
                     ThoiGianTao = x.ThoiGianTao != null ? string.Format("{0:dd-MM-yyyy}", x.ThoiGianTao) : "",
                 });
 
@@ -232,14 +236,14 @@ namespace WebAppService.Areas.Admin.Controllers
                         ClientData.NameImage = ten_file;
                     }
                     //ClientData.TieuDeNgan = ClientData.TieuDeNgan;
-                    ClientData.TieuDeBaiViet = ClientData.TieuDeBaiViet;
-                    ClientData.MoTaNgan = ClientData.MoTaNgan;
-                    ClientData.SapXep = ClientData.SapXep;
-                    ClientData.NoiDung = decodedContent;
-                    ClientData.IsBaiVietNoiBat = true;
-                    ClientData.IsCongKhai = ClientData.IsCongKhai;
-                    ClientData.CbLoaiBaiDang = ClientData.CbLoaiBaiDang;
-                    ClientData.CbNhomBaiViet = ClientData.CbNhomBaiViet;
+                    //ClientData.TieuDeBaiViet = ClientData.TieuDeBaiViet;
+                    //ClientData.MoTaNgan = ClientData.MoTaNgan;
+                    //ClientData.SapXep = ClientData.SapXep;
+                    //ClientData.NoiDung = decodedContent;
+                    //ClientData.IsBaiVietNoiBat = true;
+                    //ClientData.IsCongKhai = ClientData.IsCongKhai;
+                    //ClientData.CbLoaiBaiDang = ClientData.CbLoaiBaiDang;
+                    //ClientData.CbNhomBaiViet = ClientData.CbNhomBaiViet;
                     ClientData.NguoiTao = User.Identity.Name;
                     ClientData.ThoiGianTao = DateTime.Now;
                     db.WebDichVus.Add(ClientData);
@@ -265,6 +269,8 @@ namespace WebAppService.Areas.Admin.Controllers
                         existing.IsCongKhai = ClientData.IsCongKhai;
                         existing.CbLoaiBaiDang = ClientData.CbLoaiBaiDang;
                         existing.CbNhomBaiViet = ClientData.CbNhomBaiViet;
+                        existing.SeoTittile = ClientData.SeoTittile;
+                        existing.SeoUrl = ClientData.SeoUrl;
                         existing.NguoiTao = User.Identity.Name;
                         existing.ThoiGianCapNhap = DateTime.Now;
                         db.Entry(existing).State = EntityState.Modified;
