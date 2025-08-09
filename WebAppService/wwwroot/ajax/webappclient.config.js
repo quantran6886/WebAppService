@@ -1,1 +1,63 @@
-﻿const _0x4526a8 = _0x3244; (function (_0x5e84dc, _0x1c16f4) { const _0xacf02e = _0x3244, _0x29303f = _0x5e84dc(); while (!![]) { try { const _0x5e832f = parseInt(_0xacf02e(0x14c)) / 0x1 + parseInt(_0xacf02e(0x13c)) / 0x2 * (-parseInt(_0xacf02e(0x146)) / 0x3) + parseInt(_0xacf02e(0x144)) / 0x4 * (parseInt(_0xacf02e(0x15e)) / 0x5) + -parseInt(_0xacf02e(0x13e)) / 0x6 * (parseInt(_0xacf02e(0x153)) / 0x7) + parseInt(_0xacf02e(0x14e)) / 0x8 * (parseInt(_0xacf02e(0x152)) / 0x9) + parseInt(_0xacf02e(0x13a)) / 0xa * (-parseInt(_0xacf02e(0x141)) / 0xb) + parseInt(_0xacf02e(0x14a)) / 0xc * (-parseInt(_0xacf02e(0x15a)) / 0xd); if (_0x5e832f === _0x1c16f4) break; else _0x29303f['push'](_0x29303f['shift']()); } catch (_0x30b85c) { _0x29303f['push'](_0x29303f['shift']()); } } }(_0xf04c, 0xa39b2)); function hideGoogleTranslateBar() { const _0x1299dd = _0x3244, _0x37c555 = document['querySelector']('iframe.goog-te-banner-frame'); _0x37c555 && (_0x37c555[_0x1299dd(0x154)][_0x1299dd(0x14f)] = _0x1299dd(0x15d), document['body'][_0x1299dd(0x154)][_0x1299dd(0x159)] = '0px'); } function _0x3244(_0x4e3dde, _0x348591) { const _0xf04c5f = _0xf04c(); return _0x3244 = function (_0x324483, _0x5792ff) { _0x324483 = _0x324483 - 0x139; let _0x39f2a2 = _0xf04c5f[_0x324483]; return _0x39f2a2; }, _0x3244(_0x4e3dde, _0x348591); } window[_0x4526a8(0x145)](_0x4526a8(0x15c), function () { setTimeout(hideGoogleTranslateBar, 0x3e8); }); function _0xf04c() { const _0xea7209 = ['top', '5785LYTIVP', '#loadingOverlay', 'load', 'none', '4536515wfoeMu', 'menuMDesk', 'Không\x20tìm\x20thấy\x20phần\x20tử:', '25470kNgoAk', 'google_translate_element', '16pmHBTQ', 'documentElement', '186FSNStE', 'getElementById', 'data-alt-src', '3102lcsLsz', 'translate', 'setAttribute', '4sNwnXl', 'addEventListener', '197928jLYTXQ', 'header-colored', 'classList', 'getAttribute', '4476oPVpGM', 'fadeOut', '725649XBLlhy', 'src', '144eklVbB', 'display', 'SIMPLE', 'logoImage', '625923rIjJMV', '181237ZitecJ', 'style', 'warn', 'remove', 'TranslateElement', 'InlineLayout']; _0xf04c = function () { return _0xea7209; }; return _0xf04c(); } function showLoading() { const _0x17c1d0 = _0x4526a8; $(_0x17c1d0(0x15b))['fadeIn'](0xc8); } function hideLoading() { const _0x4d150b = _0x4526a8; $(_0x4d150b(0x15b))[_0x4d150b(0x14b)](0xc8); } function googleTranslateElementInit() { const _0x30cfe7 = _0x4526a8; new google['translate'][(_0x30cfe7(0x157))]({ 'pageLanguage': 'vi', 'includedLanguages': 'en,vi,ja,zh-CN,fr,de,ko', 'layout': google[_0x30cfe7(0x142)][_0x30cfe7(0x157)][_0x30cfe7(0x158)][_0x30cfe7(0x150)] }, _0x30cfe7(0x13b)), setTimeout(function () { const _0x370680 = _0x30cfe7; document[_0x370680(0x13d)]['classList'][_0x370680(0x156)]('translating'); }, 0x1f4); } window['onload'] = function () { const _0xd969af = _0x4526a8, _0x50eb1e = document[_0xd969af(0x13f)]('menuToggle'), _0x2f1ab9 = document['getElementById'](_0xd969af(0x15f)), _0x4f5f13 = document[_0xd969af(0x13f)](_0xd969af(0x151)); _0x50eb1e && _0x2f1ab9 && _0x4f5f13 ? _0x50eb1e[_0xd969af(0x145)]('click', function () { const _0xdda74a = _0xd969af; this[_0xdda74a(0x148)]['toggle']('active'), _0x2f1ab9[_0xdda74a(0x148)]['toggle'](_0xdda74a(0x147)); const _0x1ea2d2 = _0x4f5f13[_0xdda74a(0x149)](_0xdda74a(0x14d)), _0x3f3011 = _0x4f5f13['getAttribute'](_0xdda74a(0x140)); _0x4f5f13[_0xdda74a(0x143)](_0xdda74a(0x14d), _0x3f3011), _0x4f5f13[_0xdda74a(0x143)]('data-alt-src', _0x1ea2d2); }) : console[_0xd969af(0x155)](_0xd969af(0x139), { 'menuIcon': _0x50eb1e, 'logoWrapper': _0x2f1ab9, 'logoImage': _0x4f5f13 }); };
+﻿    function hideGoogleTranslateBar() {
+            const frame = document.querySelector('iframe.goog-te-banner-frame');
+            if (frame) {
+                frame.style.display = 'none';
+                document.body.style.top = '0px';
+            }
+        }
+        window.addEventListener('load', function () {
+            setTimeout(hideGoogleTranslateBar, 1000);
+        });
+        function showLoading() {
+            $('#loadingOverlay').fadeIn(200);
+        }
+
+        function hideLoading() {
+            $('#loadingOverlay').fadeOut(200);
+        }
+
+        window.onload = function () {
+            const menuIcon = document.getElementById("menuToggle");
+            const logoWrapper = document.getElementById("menuMDesk");
+            const logoImage = document.getElementById("logoImage");
+            const logoImageTablet = document.getElementById("logoImageTablet");
+            const headerMenu = document.getElementById("header-menu");
+            if (menuIcon && logoWrapper && logoImage && logoImageTablet) {
+                menuIcon.addEventListener("click", function () {
+                    const isActive = this.classList.toggle("active");
+                    logoWrapper.classList.toggle("header-colored");
+
+                    // đổi ảnh logo desktop
+                    const currentSrc = logoImage.getAttribute("src");
+                    const altSrc = logoImage.getAttribute("data-alt-src");
+                    logoImage.setAttribute("src", altSrc);
+                    logoImage.setAttribute("data-alt-src", currentSrc);
+
+                    // đổi ảnh logo tablet
+                    const currentSrc2 = logoImageTablet.getAttribute("src");
+                    const altSrc2 = logoImageTablet.getAttribute("data-alt-src");
+                    logoImageTablet.setAttribute("src", altSrc2);
+                    logoImageTablet.setAttribute("data-alt-src", currentSrc2);
+
+                    // Nếu là tablet/mobile
+                    if (window.innerWidth < 992) {
+                        if (isActive) {
+                            // Khi mở menu → đổi sang đen
+                            headerMenu.classList.remove("background-white");
+                            headerMenu.classList.add("background-sunmedical");
+                        } else {
+                            // Khi đóng menu → đổi lại trắng
+                            headerMenu.classList.remove("background-sunmedical");
+                            headerMenu.classList.add("background-white");
+                        }
+                    }
+                });
+
+            } else {
+            console.warn("Không tìm thấy phần tử:", {
+                menuIcon,
+                logoWrapper,
+                logoImage
+            });
+            }
+        };

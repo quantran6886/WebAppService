@@ -31,7 +31,7 @@
         </aside>
         <header class="main-header background-white header-style-2">
             @await Html.PartialAsync("_HeaderMenu")
-            <div class="header-bottom header-sticky background-white text-center">
+            <div class="header-bottom header-sticky background-white text-center" id="header-menu">
                 <div class="scroll-progress gradient-bg-1"></div>
                 <div class="mobile_menu d-lg-none d-block"></div>
                 @await Html.PartialAsync("_ClientMenu")
@@ -44,6 +44,7 @@
         </main>
         <!-- Footer Start-->
         @await Html.PartialAsync("_Footer")
+        @await Html.PartialAsync("_NavigationBottom")
     </div>
     <div class="social-float-buttons">
         <a href="https://www.facebook.com/SunMedicalCenterVN" target="_blank" class="social-btn messenger">

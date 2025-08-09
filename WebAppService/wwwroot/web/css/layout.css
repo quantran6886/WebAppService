@@ -1,4 +1,5 @@
-﻿.header-top {
+﻿
+.header-top {
     background-color: #009F9C;
     color: white;
     padding: 10px 200px;
@@ -67,7 +68,7 @@
 
 /* Ẩn nav mặc định trên mobile */
 .mobile-nav {
-    display:none;
+    display: none;
     max-height: 0;
     overflow: hidden;
     opacity: 0;
@@ -85,12 +86,9 @@
         border-bottom: 1px solid #ddd;
     }
 
-    /* Hiện nav khi có class active */
 
-
-    /* Khi active thì hiện menu với chiều cao lớn và opacity 1 */
     .mobile-nav.active {
-        max-height: 500px; /* đủ để hiển thị toàn bộ menu */
+        max-height: 500px;
         opacity: 1;
         padding: 10px 20px;
     }
@@ -105,27 +103,6 @@
     to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-/* Hide full nav and only show logo + toggle in small screen */
-@media (max-width: 768px) {
-    .header-main {
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .nav {
-        display: none !important;
-    }
-
-    .toggle-menu {
-        display: flex;
-    }
-
-    .logo img {
-        width: 120px;
-        height: auto;
     }
 }
 
@@ -145,7 +122,6 @@
 
 .footer-left {
     flex: 1 1 25%;
-    /* max-width: 500px; */
 }
 
 .footer-logo {
@@ -178,22 +154,13 @@
     padding: 0;
     margin: 0 auto;
     max-width: 400px;
-    color:#000000;
-    padding-left:0px
+    color: #000000;
+    padding-left: 0px
 }
 
 .footer-socials a {
     display: inline-block;
     margin-right: 10px;
-}
-
-.footer-socials img {
-    /* 	width: 40px;
-					height: 40px;
-					border-radius: 5px;
-					padding: 5px;
-					background-color: white;
-					box-shadow: 0 0 3px rgba(0,0,0,0.1); */
 }
 
 .footer-cols {
@@ -228,6 +195,7 @@
     margin-top: 40px;
     color: #777;
 }
+
 .footer-copy-right {
     display: flex;
     justify-content: space-between;
@@ -236,7 +204,38 @@
     font-size: 14px;
     padding: 10px 0;
 }
-@media screen and (max-width: 768px) {
+/* Mobile */
+@media (max-width: 767px) {
+    .header-main {
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .constact-btn {
+        width: 100px;
+        padding: 0px;
+    }
+
+    .translate-btn {
+        display: flex !important;
+        gap: 10px;
+        margin-top: 11px;
+        margin-bottom: 11px;
+    }
+
+    .nav {
+        display: none !important;
+    }
+
+    .toggle-menu {
+        display: flex;
+    }
+
+    .logo img {
+        width: 120px;
+        height: auto;
+    }
+
     .footer-desc {
         font-size: 14px;
         line-height: 1.6;
@@ -247,9 +246,57 @@
         max-width: 400px;
         color: #000000;
     }
+
     .footer-copy-right {
         flex-direction: column;
         text-align: center;
         gap: 5px;
     }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .constact-btn {
+        width: 150px;
+        padding: 0px;
+    }
+
+    .translate-btn {
+        display: flex !important;
+        margin-left: 0px;
+        margin-top: 11px !important;
+        margin-bottom: 11px !important;
+    }
+
+    .header-top .contact {
+        display: none;
+    }
+    .background-sunmedical {
+        background: #009f9c !important;
+    }
+    .slicknav_nav a {
+        font-size: 15px !important;
+        font-weight: 600 !important;
+        color: #ffffff !important;
+        text-transform: capitalize;
+        line-height: 1.8;
+        text-align: left;
+        text-transform: capitalize;
+        font-weight: 500;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .slicknav_nav .slicknav_arrow {
+        float: right;
+        font-size: 30px !important;
+        position: absolute;
+        float: right;
+        font-weight: 100;
+        top: -12px !important;
+        margin-left: 9px !important;
+    }
+
+}
+
+/* PC / Desktop */
+@media (min-width: 1025px) {
 }

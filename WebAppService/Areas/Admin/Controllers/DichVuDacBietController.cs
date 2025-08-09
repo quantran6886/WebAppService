@@ -239,11 +239,11 @@ namespace WebAppService.Areas.Admin.Controllers
                     //ClientData.TieuDeBaiViet = ClientData.TieuDeBaiViet;
                     //ClientData.MoTaNgan = ClientData.MoTaNgan;
                     //ClientData.SapXep = ClientData.SapXep;
-                    //ClientData.NoiDung = decodedContent;
-                    //ClientData.IsBaiVietNoiBat = true;
                     //ClientData.IsCongKhai = ClientData.IsCongKhai;
                     //ClientData.CbLoaiBaiDang = ClientData.CbLoaiBaiDang;
                     //ClientData.CbNhomBaiViet = ClientData.CbNhomBaiViet;
+                    ClientData.NoiDung = decodedContent;
+                    ClientData.IsBaiVietNoiBat = true;
                     ClientData.NguoiTao = User.Identity.Name;
                     ClientData.ThoiGianTao = DateTime.Now;
                     db.WebDichVus.Add(ClientData);

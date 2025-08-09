@@ -413,21 +413,16 @@
     .mobile-mt-10 {
         margin-top: 10px !important;
     }
-    .social-icons {
-        display: flex;
-        gap: 20px;
-        -webkit-justify-content: center;
-        justify-content: center;
-        background: #efffff; /* nền nhẹ màu xanh */
-        padding: 0px;
-    }
-    .orange-top {
+    .social-float-buttons {
         display: none;
     }
 
-    .orange-bottom {
+    .orange-top {
+        background-size: contain;
+        left:1px;
         display: none;
     }
+
     .container-mobile {
         padding: 0 30px;
     }
