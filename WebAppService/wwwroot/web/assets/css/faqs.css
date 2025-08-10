@@ -166,9 +166,31 @@
     margin-top: 50px;
 }
 
-.rc-anchor-normal {
+.md-mt-120 {
+    margin-top: 90px !important;
 }
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .md-mt-120 {
+        margin-top: 30px !important;
+    }
+    .doctor-overlay {
+        display: none;
+        width: 250px;
+        object-fit: contain;
+    }
 
+    .tranform-x {
+        transform: translateX(0px);
+        white-space: nowrap;
+    }
+
+    .btn-submit-lien-he {
+        padding: 20px 67px !important;
+        font-weight: 700;
+        font-family: 'Montserrat'
+    }
+}
 @media screen and (max-width: 768px) {
     .tranform-x {
         transform: translateX(0px);

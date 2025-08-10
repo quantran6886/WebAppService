@@ -19,11 +19,13 @@
     font-size: 0.9vw;
     font-family: 'Inter';
 }
-.btn-lien-he:hover {
-    color: white !important;
-    background-color: red;
-    transition: 0.3s all;
-}
+
+    .btn-lien-he:hover {
+        color: white !important;
+        background-color: red;
+        transition: 0.3s all;
+    }
+
 .btn-orrange {
     background-color: #F26522;
     color: white !important;
@@ -32,11 +34,11 @@
     font-weight: 500;
 }
 
-.btn-orrange:hover {
-    color: white !important;
-    background-color: red;
-    transition: 0.3s all;
-}
+    .btn-orrange:hover {
+        color: white !important;
+        background-color: red;
+        transition: 0.3s all;
+    }
 
 .fx-Montserrat {
     font-family: 'Montserrat', sans-serif !important;
@@ -95,31 +97,31 @@
     scrollbar-color: #00b5b8 transparent;
 }
 
-/* WebKit (Chrome, Edge, Safari) */
-.loop-list-style::-webkit-scrollbar {
-    width: 6px;
-}
+    /* WebKit (Chrome, Edge, Safari) */
+    .loop-list-style::-webkit-scrollbar {
+        width: 6px;
+    }
 
-.loop-list-style::-webkit-scrollbar-thumb {
-    background-color: #00b5b8;
-    border-radius: 10px;
-}
+    .loop-list-style::-webkit-scrollbar-thumb {
+        background-color: #00b5b8;
+        border-radius: 10px;
+    }
 
-.loop-list-style::-webkit-scrollbar-track {
-    background: transparent;
-}
+    .loop-list-style::-webkit-scrollbar-track {
+        background: transparent;
+    }
 
-.loop-list-style::-webkit-scrollbar-button:single-button {
-    display: none;
-    height: 0;
-    width: 0;
-}
+    .loop-list-style::-webkit-scrollbar-button:single-button {
+        display: none;
+        height: 0;
+        width: 0;
+    }
 
-.loop-list-style::-webkit-scrollbar-button {
-    display: none !important;
-    width: 0;
-    height: 0;
-}
+    .loop-list-style::-webkit-scrollbar-button {
+        display: none !important;
+        width: 0;
+        height: 0;
+    }
 
 .bagde-c-1 {
     background: #F26522;
@@ -153,7 +155,7 @@
 
 .text-c-3 {
     color: #302f2f !important;
-    font-size: 16px;
+    font-size: 1vw;
     font-weight: bolder;
 }
 
@@ -244,40 +246,41 @@
         transition: 0.4s;
     }
 
-    /* Toggle trạng thái "active" */
-    .header-colored {
-        background-color: #009f9c;
-        transition: background-color 0.3s ease;
-    }
-    .menu-icon.active span:nth-child(1) {
-        transform: rotate(45deg) translate(7px, 4px);
-        color: white !important;
-        background: white;
-        width: 18px;
-    }
+/* Toggle trạng thái "active" */
+.header-colored {
+    background-color: #009f9c;
+    transition: background-color 0.3s ease;
+}
 
-    .menu-icon.active span:nth-child(2) {
-        opacity: 0;
-    }
+.menu-icon.active span:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 4px);
+    color: white !important;
+    background: white;
+    width: 18px;
+}
 
-    .menu-icon.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(8px, -6px);
-        width: 18px;
-        color: white !important;
-        background: white;
-    }
+.menu-icon.active span:nth-child(2) {
+    opacity: 0;
+}
 
-    .menu-icon span:nth-child(1) {
-        width: 30px;
-    }
+.menu-icon.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(8px, -6px);
+    width: 18px;
+    color: white !important;
+    background: white;
+}
 
-    .menu-icon span:nth-child(2) {
-        width: 30px;
-    }
+.menu-icon span:nth-child(1) {
+    width: 30px;
+}
 
-    .menu-icon span:nth-child(3) {
-        width: 20px;
-    }
+.menu-icon span:nth-child(2) {
+    width: 30px;
+}
+
+.menu-icon span:nth-child(3) {
+    width: 20px;
+}
 
 .social-icons {
     display: flex;
@@ -327,7 +330,7 @@
     z-index: 0;
 }
 
-.btn-search-home{
+.btn-search-home {
     width: 120px !important;
 }
 
@@ -409,18 +412,29 @@
     }
 }
 
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .text-c-3 {
+        color: #302f2f !important;
+        font-size: 1.7vw;
+        font-weight: bolder;
+        text-align:justify-all;
+    }
+}
+
 /*///////////////////*/
 @media screen and (max-width: 768px) {
     .mobile-mt-10 {
         margin-top: 10px !important;
     }
+
     .social-float-buttons {
         display: none;
     }
 
     .orange-top {
         background-size: contain;
-        left:1px;
+        left: 1px;
         display: none;
     }
 
@@ -606,5 +620,14 @@
         width: 500px;
         opacity: 0.9;
         z-index: 0;
+    }
+    .btn-lien-he {
+        background-color: #F26522;
+        color: white !important;
+        border-radius: 3px;
+        padding: 0.3vw 0.9vw;
+        font-weight: 500;
+        font-size: 0.6vw;
+        font-family: 'Inter';
     }
 }

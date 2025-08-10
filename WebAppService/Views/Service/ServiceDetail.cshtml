@@ -4,6 +4,7 @@
 }
 <link href="~/web/assets/css/service_detail.css" rel="stylesheet" />
 <link href="~/web/assets/css/service.css" rel="stylesheet" />
+<link href="~/web/tiny-css/tiny.css" rel="stylesheet" />
 @section Scripts {
     <script>
         function scrollSlider(direction) {
@@ -36,7 +37,7 @@
                         </div>
                     </div>
                     <div class="loop-list-style-3 fx-Inter">
-                        <div class="col-lg-12 col-md-12" style="font-family:Inter !important">
+                        <div class="col-lg-12 col-md-12"  id="tiny-css">
                             @Html.Raw(Model.Record.NoiDung)
                         </div>
                     </div>

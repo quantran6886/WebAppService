@@ -200,7 +200,7 @@
                         Chúng tôi tự hào với đội ngũ y bác sĩ chuyên môn cao, giàu y đức cùng hệ thống trang thiết bị hiện đại, luôn sẵn sàng ứng dụng các phương pháp điều trị tiên tiến. Mỗi dịch vụ đều được thực hiện với tinh thần tận tụy và lấy người bệnh làm trung tâm.
                     </div>
                     <div class="btn_sv mt-20">
-                        <a href="#" class="main-menu d-lg-inline btn-orrange">Xem thêm</a>
+                        <a href="/about-us" class="main-menu d-lg-inline btn-orrange">Xem thêm</a>
                     </div>
                   
                     <img src="~/src/image_figma/Vector_1.png" class="dot-right" alt="dot-right" />
@@ -225,7 +225,7 @@
         <div class="row" id="sp_sv">
         </div>
         <div class="for-more pagination-area mb-30" style="color:#234A6B; font-family:Manrope;font-weight:700">
-            <a href="/Service/ServiceList">Xem thêm ></a>
+            <a href="/dich-vu-dac-biet">Xem thêm ></a>
         </div>
     </div>
 </div>
@@ -475,7 +475,7 @@
                     </div>
                 </div>
             </div>
-            <div class="for-more"><a href="/Blog/Blog">Xem thêm ></a></div>
+            <div class="for-more"><a href="/tin-tuc">Xem thêm ></a></div>
         </div>
     </div>
 </div>
@@ -507,6 +507,8 @@
     {{ for(var i = 0; i < it.newsList.length; i++) { }}
           <article class="col-lg-4 col-6">
                 <div class="service-card service-card-c bg-hover-green">
+                    <span class="corner tl"></span>
+                    <span class="corner br"></span>
                     <div class="post-thumb d-flex mb-15 img-hover-scale justify-content-center">
                         <a href="/Service/ServiceDetail/{{=it.newsList[i].idDichVu}}" class="service-img-wrapper">
                             <img class="border-radius-15" src="{{=it.newsList[i].tieuDeNgan || '/root/6388000.png'}}" width="50" height="50" alt="">

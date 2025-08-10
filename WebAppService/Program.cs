@@ -86,7 +86,55 @@ app.MapControllerRoute(
 );
 
 app.MapControllerRoute(
+    name: "AboutUs",
+    pattern: "about-us",
+    defaults: new { controller = "AboutUs", action = "AboutUs" }
+);
+
+app.MapControllerRoute(
+    name: "Service",
+    pattern: "chuyen-khoa",
+    defaults: new { controller = "Service", action = "ServiceList" }
+);
+
+app.MapControllerRoute(
+    name: "DichVuDacBiet",
+    pattern: "dich-vu-dac-biet",
+    defaults: new { controller = "DichVuDacBiet", action = "DichVuDacBiet" }
+);
+
+app.MapControllerRoute(
+    name: "Blog",
+    pattern: "tin-tuc",
+    defaults: new { controller = "Blog", action = "Blog" }
+);
+
+app.MapControllerRoute(
+    name: "BlogList",
+    pattern: "bai-viet",
+    defaults: new { controller = "Blog", action = "BlogList" }
+);
+
+app.MapControllerRoute(
+    name: "LienHe",
+    pattern: "lien-he",
+    defaults: new { controller = "LienHe", action = "LienHe" }
+);
+
+app.MapControllerRoute(
+    name: "FAQ",
+    pattern: "cau-hoi-thuong-gap",
+    defaults: new { controller = "FAQ", action = "Index" }
+);
+
+app.MapControllerRoute(
+    name: "Home",
+    pattern: "sunmedical",
+    defaults: new { controller = "Home", action = "Index" }
+);
+
+app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=GioiThieu}/{action=GioiThieu}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

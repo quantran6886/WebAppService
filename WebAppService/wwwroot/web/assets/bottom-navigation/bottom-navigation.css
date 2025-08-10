@@ -56,10 +56,9 @@
             position: absolute;
             top: 0;
             left: 0;
-            border: 1px solid #2bc0d1;
             width: 100%;
-            height: 3px; /* độ dày viền */
-            background: linear-gradient(90deg, #189995, #15fff8, #189995, #32fff9, #189995, #189995, #189995);
+            height: 5px; /* độ dày viền */
+            background: linear-gradient(90deg, #189995, #15fff8, #189995, #32fff9, #ff0c0c, #189995, #d17f00);
             background-size: 300% 100%;
             animation: gradientMove 3s linear infinite;
             border-radius: 5px 5px 0 0;
@@ -141,18 +140,21 @@
         --indicator-brdr-size: 0.25rem;
         position: absolute;
         height: 100%;
+        border-bottom: 10px solid #f96417;
         aspect-ratio: 1;
-        background: #fff7f7;
+        background: #ffffff;
+        fill-opacity: 0.2;
+        background-size: cover;
         border-radius: 50%;
         left: var(--menu-padding-left);
         top: -50%;
         transform: translateX(calc(((var(--item-width) - 100%) / 2) + (var(--gap, 1rem) + var(--item-width)) * var(--item, 0)));
         transition: all 300ms ease;
-        overflow: hidden; /* để sóng không tràn ra ngoài */
+        overflow: hidden;
     }
 
         /* Tạo sóng nước gradient */
-        .bottom-nav .indicator::after {
+        /*.bottom-nav .indicator::after {
             content: "";
             position: absolute;
             bottom: 0;
@@ -166,10 +168,10 @@
       </svg>") repeat-x;
             -webkit-mask-size: 50% 100%;
             animation: waveMove 5s linear infinite, waveColor 8s ease-in-out infinite;
-        }
+        }*/
 
     /* Di chuyển sóng */
-    @keyframes waveMove {
+    /*@keyframes waveMove {
         0% {
             transform: translateX(0);
         }
@@ -177,10 +179,10 @@
         100% {
             transform: translateX(-25%);
         }
-    }
+    }*/
 
     /* Đổi màu sóng từ từ */
-    @keyframes waveColor {
+    /*@keyframes waveColor {
         0% {
             background: linear-gradient(90deg, #008c8cd4, #00bcd4d4, #4dd0e1d4);
         }
@@ -192,7 +194,7 @@
         100% {
             background: linear-gradient(90deg, #008c8cd4, #00bcd4d4, #4dd0e1d4);
         }
-    }
+    }*/
 
        /* .bottom-nav .indicator::before,
         .bottom-nav .indicator::after {
@@ -218,7 +220,7 @@
             border-top-left-radius: 100%;
         }*/
     /* Áp dụng cho thẻ a.active bên trong menu */
-    .bottom-nav-menu li a.active {
+    .bottom-nav-menu li a.active2 {
         animation: shake 1.2s infinite; /* chạy lặp vô hạn */
         display: inline-block; /* cần để transform hoạt động tốt */
     }
@@ -249,5 +251,27 @@
             transform: translate(0, 0) rotate(0deg);
         }
     }
+    #btn-top {
+    
+        /* Animation */
+        animation: bounce 1.2s infinite;
+    }
+
+        #btn-top img {
+            width: 24px;
+            height: 24px;
+        }
+
+    /* Keyframes cho nhún nhảy */
+    @keyframes bounce {
+        0%, 100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-6px);
+        }
+    }
+
 
 }

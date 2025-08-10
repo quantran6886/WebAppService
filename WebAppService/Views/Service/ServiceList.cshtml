@@ -108,7 +108,7 @@
                     <input type="text" class="form-control w-100 border-0 pb-0" id="txtSearh" placeholder="Tìm dịch vụ ..." name="x" value="" />
                 </div>
                 <div class="col-4 " style="padding:15px 0px">
-                    <a href="#" class="main-menu btn-sm btn-orrange font-weight-bold w-100" id="btnSearch"><i class="fa fa-search"></i> <span>Tìm</span> </a>
+                    <a href="#" class="main-menu btn-sm btn-orrange w-100" id="btnSearch"><i class="ti ti-search" style="font-size:12px"></i> <span class="hide-on-mobile">Tìm</span></a>
                 </div>
             </div>
         </div>
@@ -127,15 +127,14 @@
     </div>
 </div>
 <!-- Câu chuyện của khách hàng -->
-<!-- Câu chuyện của khách hàng -->
 <div class="message-client">
     <div class="container px-30 py-2 container-mobile">
-        <div class="archive-header text-center mb-30 mt-10">
+        <div class="archive-header text-center mb-20 mt-0">
             <div class="container">
                 <div>
                     <span class="text-head-breadcrumb text-ic-5"><span class="text-primary">Câu chuyện</span> của khách hàng</span>
                 </div>
-                <p class="text-muted mb-4 text-center">
+                <p class="text-muted mb-4 text-center" style="font-size:14px">
                     Khám phá sự khác biệt mà chúng tôi tạo ra thông qua tiếng nói của những người chúng tôi đã phục vụ.
                 </p>
             </div>
@@ -146,7 +145,7 @@
                 <button class="nav-button nav-right" onclick="scrollSlider(1)">❯</button>
                 <div class="slider-container" id="slider">
                     <div class="service-card justify-items-center">
-                        <a href="single.html" class="client-img-wrapper img-client-boder">
+                        <a href="#" class="client-img-wrapper img-client-boder">
                             <img src="/root/img-client.png" class="img-client-boder" alt="">
                         </a>
                         <div class="service-content text-center">
@@ -165,7 +164,7 @@
                     </div>
                     <!-- 1 -->
                     <div class="service-card justify-items-center">
-                        <a href="single.html" class="client-img-wrapper img-client-boder">
+                        <a href="#" class="client-img-wrapper img-client-boder">
                             <img src="/root/img-client2.png" class="img-client-boder" alt="">
                         </a>
                         <div class="service-content text-center">
@@ -184,7 +183,7 @@
                     </div>
                     <!-- 1 -->
                     <div class="service-card justify-items-center">
-                        <a href="single.html" class="client-img-wrapper img-client-boder">
+                        <a href="#" class="client-img-wrapper img-client-boder">
                             <img src="/root/img-client3.png" class="img-client-boder" alt="">
                         </a>
                         <div class="service-content text-center">
@@ -203,7 +202,7 @@
                     </div>
                     <!-- 1 -->
                     <div class="service-card justify-items-center">
-                        <a href="single.html" class="client-img-wrapper img-client-boder">
+                        <a href="#" class="client-img-wrapper img-client-boder">
                             <img src="~/root/img-client.png" class="img-client-boder" alt="">
                         </a>
                         <div class="service-content text-center">
@@ -228,7 +227,7 @@
             <div class="">
                 <!-- 1 -->
                 <div class="service-card justify-items-center">
-                    <a href="single.html" class="client-img-wrapper img-client-boder">
+                    <a href="#" class="client-img-wrapper img-client-boder">
                         <img src="/root/img-client.png" class="img-client-boder" alt="">
                     </a>
                     <div class="service-content text-center">
@@ -247,7 +246,7 @@
                 </div>
                 <!-- 1 -->
                 <div class="service-card justify-items-center">
-                    <a href="single.html" class="client-img-wrapper img-client-boder">
+                    <a href="#" class="client-img-wrapper img-client-boder">
                         <img src="/root/img-client2.png" class="img-client-boder" alt="">
                     </a>
                     <div class="service-content text-center">
@@ -266,7 +265,7 @@
                 </div>
                 <!-- 1 -->
                 <div class="service-card justify-items-center">
-                    <a href="single.html" class="client-img-wrapper img-client-boder">
+                    <a href="#" class="client-img-wrapper img-client-boder">
                         <img src="/root/img-client3.png" class="img-client-boder" alt="">
                     </a>
                     <div class="service-content text-center">
@@ -287,6 +286,7 @@
         </div>
     </div>
 </div>
+
 <script id="news-template" type="text/x-dot-template">
     {{ for(var i = 0; i < it.newsList.length; i++) { }}
          <article class="col-lg-4 col-6 mb-4 psi-1 wow fadeIn animated" style="visibility: visible; animation-name: fadeIn;">

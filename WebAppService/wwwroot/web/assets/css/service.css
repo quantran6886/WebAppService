@@ -52,6 +52,7 @@ h2 {
 }
 
 .text-limit-c-row {
+    text-align: left;
     overflow: hidden !important;
     display: -webkit-box !important;
     -webkit-line-clamp: 3 !important;
@@ -63,11 +64,11 @@ h2 {
     color: #ffffff !important;
 }
 
-.card-hover:hover a,
-.card-hover:hover p,
-.card-hover:hover .post-title {
-    color: #ffffff !important;
-}
+    .card-hover:hover a,
+    .card-hover:hover p,
+    .card-hover:hover .post-title {
+        color: #ffffff !important;
+    }
 
 .text-c-cckh {
     font-family: 'Montserrat', sans-serif;
@@ -120,8 +121,18 @@ h2 {
 }
 
 .service-card {
+    background: #ffffff;
+    border-radius: 25.91px;
+    padding: 40px 10px;
+    margin-bottom: 10px;
+    box-shadow: 7px 0px 40px rgb(193 147 147 / 5%);
+}
+
+.service-card {
     flex: 0 0 300px;
-    background: #fff;
+    background: #FFFFFF;
+    border-radius: 24px;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
 
@@ -174,6 +185,7 @@ h2 {
 .slider-container::-webkit-scrollbar {
     display: none;
 }
+
 .text-ic-5 {
     font-family: 'Montserrat', sans-serif;
     color: #2F4848;
@@ -192,15 +204,25 @@ h2 {
     display: block;
     margin: 0 auto;
 }
+
 .text-primary {
     background: linear-gradient(90deg, #009688, #00BCD4);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
 }
+
 .fa {
     color: #FF7F22;
 }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .img-respone-service {
+        height: auto;
+        width: 100%;
+    }
+}
+
 @media (max-width: 768px) {
     .text-ic-5 {
         font-family: 'Montserrat', sans-serif;
@@ -208,17 +230,20 @@ h2 {
         font-size: 20px;
         font-weight: 700;
     }
+
     .container-mobile {
         padding-left: 15px;
         padding-right: 15px;
         text-align: justify;
     }
+
     .text-c-cckh {
         font-family: 'Montserrat', sans-serif;
         font-size: 20px;
         color: #2F4848;
         font-weight: 700;
     }
+
     .text-detailkh-1 {
         margin-top: 10px;
         font-family: 'Manrope', sans-serif;
@@ -226,6 +251,7 @@ h2 {
         font-size: 12px;
         font-weight: 600;
     }
+
     .pxs-3 {
         padding-left: 0rem;
         padding-right: 0rem;
@@ -249,6 +275,7 @@ h2 {
     }
 
     .text-limit-c-row {
+        text-align: left;
         margin: 0px;
         overflow: hidden !important;
         display: -webkit-box !important;

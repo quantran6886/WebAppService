@@ -31,9 +31,9 @@ namespace clinic_website.Controllers
             }
 
             var listData = db.WebDichVus
-                            .Where(c => c.IdDichVu != record.IdDichVu && c.IsBaiVietNoiBat != true && c.IsCongKhai == true)
+                            .Where(c => c.IdDichVu != record.IdDichVu && c.IsBaiVietNoiBat != true && c.CbLoaiBaiDang == record.CbLoaiBaiDang && c.IsCongKhai == true)
                             .OrderByDescending(x => x.ThoiGianTao)
-                            .Take(5)
+                            .Take(25)
                             .ToList();
 
             var viewModel = new DichVuDetailViewModel
