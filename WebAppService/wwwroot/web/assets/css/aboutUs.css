@@ -106,12 +106,58 @@
     color-interpolation: inherit;
 }
 .titile-heading {
-    font-size: 25px;
+    font-size: 1.7vw;
     font-weight: 600;
     font-family: Montserrat;
-    margin: 0
+    margin: 0;
 }
+.titlle-main {
+    font-family: Inter;
+    font-size: 13px;
+    margin-bottom: 0px;
+    line-height: 1.7;
+    text-align: justify;
+}
+.padingbottom-100 {
+    padding-bottom: 100px;
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .titile-heading {
+        font-size: 2vw;
+        font-weight: 600;
+        font-family: Montserrat;
+        margin: 0;
+    }
+    .titlle-main {
+        font-family: Inter;
+        font-size: 1.2vw;
+        margin-bottom: 0px;
+        line-height: 1.7;
+        text-align: justify;
+    }
+    .padingbottom-100 {
+        padding-bottom: 0px !important;
+    }
+    .form-section-wrapper {
+        position: relative;
+        background-color: #e0f7fa;
+        width: 100%;
+        background-image: linear-gradient(101deg, #FFFFFF, #E4FFFE);
+        height Specifies the height of the content area, padding area or border area (depending on 'box-sizing');
+        border-radius: 10px;
+        border: 2px solid #ffeee6;
+        box-shadow: 1px 1px 5px -2px #343a4094;
+    }
+    .tranform-x {
+        transform: translateX(100%);
+        white-space: nowrap;
+    }
+}
+
 @media (max-width: 768px) {
+    .padingbottom-100 {
+        padding-bottom: 30px !important;
+    }
     .titile-heading {
         font-size: 17px;
         line-height: 1.5;
@@ -119,22 +165,27 @@
         font-family: Montserrat;
         margin: 0;
     }
+
     .container-mobile {
         padding-left: 30px;
         padding-right: 30px;
     }
+
     .aboutUsContent {
         margin-top: 10px;
     }
+
     .img-mobile {
         width: 554px !important;
         height: 500px !important;
     }
+
     .text-ics-5 {
         font-family: 'Inter', sans-serif;
         color: #000000;
         font-size: 11px;
     }
+
     .text-ic-5 {
         font-family: 'Montserrat', sans-serif;
         color: #2F4848;

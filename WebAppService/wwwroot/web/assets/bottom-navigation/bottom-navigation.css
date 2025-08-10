@@ -32,23 +32,48 @@
     }
 
     a {
-        color: inherit;
         text-decoration: none;
         -webkit-tap-highlight-color: transparent;
     }
 
     .bottom-nav {
+        display: block !important;
         position: fixed;
         inset: auto 0 0 0;
         z-index: 100;
         max-width: 500px;
         margin: 0 auto;
-        border-top: 2px solid #b60000;
         background-color: #ffffff;
         border-radius: 5px 5px 0 0;
         isolation: isolate;
         user-select: none;
         --bg-clr-bhind: var(--background-color);
+        /* Trick: bỏ border-top cũ, dùng pseudo-element */
+    }
+
+        .bottom-nav::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            border: 1px solid #2bc0d1;
+            width: 100%;
+            height: 3px; /* độ dày viền */
+            background: linear-gradient(90deg, #189995, #15fff8, #189995, #32fff9, #189995, #189995, #189995);
+            background-size: 300% 100%;
+            animation: gradientMove 3s linear infinite;
+            border-radius: 5px 5px 0 0;
+        }
+
+    /* Animation cho gradient chạy ngang */
+    @keyframes gradientMove {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        100% {
+            background-position: 100% 50%;
+        }
     }
 
     .menu {
@@ -117,17 +142,59 @@
         position: absolute;
         height: 100%;
         aspect-ratio: 1;
-        border-bottom: 3px solid #93a1a1d4;
-        aspect-ratio: 1;
         background: #fff7f7;
         border-radius: 50%;
         left: var(--menu-padding-left);
         top: -50%;
         transform: translateX(calc(((var(--item-width) - 100%) / 2) + (var(--gap, 1rem) + var(--item-width)) * var(--item, 0)));
         transition: all 300ms ease;
+        overflow: hidden; /* để sóng không tràn ra ngoài */
     }
 
-        .bottom-nav .indicator::before,
+        /* Tạo sóng nước gradient */
+        .bottom-nav .indicator::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 50%;
+            background: linear-gradient(90deg, #008c8cd4, #00bcd4d4, #4dd0e1d4);
+            -webkit-mask: url("data:image/svg+xml;utf8,\
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 28' preserveAspectRatio='none'>\
+        <path d='M0 17 Q30 24 60 17 T120 17 V30 H0 Z' fill='white'/>\
+      </svg>") repeat-x;
+            -webkit-mask-size: 50% 100%;
+            animation: waveMove 5s linear infinite, waveColor 8s ease-in-out infinite;
+        }
+
+    /* Di chuyển sóng */
+    @keyframes waveMove {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-25%);
+        }
+    }
+
+    /* Đổi màu sóng từ từ */
+    @keyframes waveColor {
+        0% {
+            background: linear-gradient(90deg, #008c8cd4, #00bcd4d4, #4dd0e1d4);
+        }
+
+        50% {
+            background: linear-gradient(90deg, #4dd0e1d4, #80deead4, #00bcd4d4);
+        }
+
+        100% {
+            background: linear-gradient(90deg, #008c8cd4, #00bcd4d4, #4dd0e1d4);
+        }
+    }
+
+       /* .bottom-nav .indicator::before,
         .bottom-nav .indicator::after {
             --size: 1rem;
             --shadow-y: calc(var(--size) / 2 * -1);
@@ -149,7 +216,7 @@
         .bottom-nav .indicator::after {
             left: 100%;
             border-top-left-radius: 100%;
-        }
+        }*/
     /* Áp dụng cho thẻ a.active bên trong menu */
     .bottom-nav-menu li a.active {
         animation: shake 1.2s infinite; /* chạy lặp vô hạn */

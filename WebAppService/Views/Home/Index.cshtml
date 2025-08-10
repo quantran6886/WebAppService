@@ -178,7 +178,7 @@
                 <div class="t_mb2 d-block d-sm-none text-left">Hành Trình Vì Sức Khỏe Cộng Đồng</div>
                 <div class="img_avt2 col-sm-5 mb-30 text-center d-flex">
                     <div class="avatar2" style="width:453.98px;height:443.88px;z-index:1">
-                        <a href="author.html"><img src="/root/group 4.png" alt=""></a>
+                        <a href="#"><img src="/root/group 4.png" alt=""></a>
                     </div>
                     <img src="~/src/image_figma/Vector.png" class="dot-left" alt="dot-left" />
                 </div>
@@ -187,7 +187,7 @@
                     <h3 class="d-none d-sm-block">
                         <span class="vcard author">
                             <span class="fn">
-                                <a href="author.html" title="" rel="author" style="font-size:35px;font-family:Montserrat">Dịch vụ đặc biệt tại Sun Medical</a>
+                                <a href="#" title="" rel="author" class="txt-layout-2">Dịch vụ đặc biệt tại Sun Medical</a>
                             </span>
                         </span>
                     </h3>
@@ -299,7 +299,7 @@
 </div>
 
 <!-- Câu chuyện của khách hàng -->
-<div class="message-client" style="margin-top:-20px">
+<div class="message-client">
     <div class="container px-30 py-2 container-mobile">
         <div class="archive-header text-center mb-20 mt-0">
             <div class="container">
@@ -468,9 +468,9 @@
                 </div>
             </div>
             <div class="row mt-30">
-                <div class="col-lg-5 hide-on-mobile p-0" id="list_bai_viet0">
+                <div class="col-lg-5 col-md-5 hide-on-mobile p-0" id="list_bai_viet0">
                 </div>
-                <div class="swiper1 mySwiper1 col-lg-7 row" style="overflow:hidden;padding-left:0px">
+                <div class="swiper1 mySwiper1 col-lg-7 col-md-7 row" style="overflow:hidden;padding-left:0px">
                     <div class="swiper-wrapper" id="original-articles">
                     </div>
                 </div>
@@ -489,11 +489,11 @@
                 </div>
             </div>
             <div class="row mt-30">
-                <div class="col-lg-6">
-                    <div class="slider-single col-12 p-0 position-relative" id="list_bai_viet1">
+                <div class="col-lg-6 col-md-8">
+                    <div class="slider-single col-12 p-0 position-relative md-mb-15" id="list_bai_viet1">
                     </div>
                 </div>
-                <div class="col-lg-6 row" id="original-article1">
+                <div class="col-lg-6  col-md-4 row" id="original-article1">
                 </div>
 
                 <div class="for-more pagination-area mb-20 mt-30">
@@ -552,7 +552,7 @@
 
 <script id="news-templatex" type="text/x-dot-template">
     {{ for(var i = 0; i < it.newsListx.length; i++) { }}
-         <article class="swiper-slide col-lg-4 col-sm-12 wow fadeIn  animated  p-1" style="visibility: visible; animation-name: fadeIn;">
+         <article class="swiper-slide col-lg-4 col-md-6 col-sm-12 wow fadeIn  animated  p-1" style="visibility: visible; animation-name: fadeIn;">
             <div class="border-radius-10 p-0 mb-30">
                 <div class="post-thumb d-flex mb-15 border-radius-5 img-hover-scale">
                     <a href="/Blog/BlogDetail/{{=it.newsListx[i].idBaiViet}}">
@@ -599,10 +599,10 @@
 
 <script id="news-templatevx" type="text/x-dot-template">
     {{ for(var i = 0; i < it.newsListvx.length; i++) { }}
-            <div class="item_vd col-lg-12">
-                <article class="p-0 border-radius-10 mb-15 mr-15 wow fadeIn animated">
+            <div class="item_vd col-lg-12 p-0">
+                <article class="p-0 border-radius-10 mb-15 mr-md-0 wow fadeIn animated">
                     <div class="sub_video d-flex">
-                        <div class="post-thumb2 d-flex border-radius-5 p-0 img-hover-scale col-sm-6">
+                        <div class="post-thumb2 d-flex border-radius-5 p-0 img-hover-scale col-lg-6 col-md-12 col-6">
                             <div class="img-hover-scale border-radius-10 position-relative overflow-hidden" id="img_dv">
                                 <a href="#">
                                     <img class="border-radius-10 w-100" src="{{=it.newsListvx[i].urlImage || '/root/6388000.png'}}" height="150px" style="width:100%" alt="post-slider">
@@ -615,9 +615,14 @@
                                     </div>
                                     </a>
                                 </div>
+                                <div class="video-caption position-absolute bottom-0 start-0 w-100 text-white px-3 py-2 is-thumber-video">
+                                    <p class="mb-0 fw-semibold text-white text-limit-2-row">
+                                        {{=it.newsListvx[i].tieuDeBaiViet}}
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                        <div class="post-content media-body col-sm-6 p-0">
+                        <div class="post-content media-body col-sm-6 p-0  is-text-video">
                             <small class="post-title font-weight-500 text-limit-2-row"><a href="#" class="text-c-4">{{=it.newsListvx[i].tieuDeBaiViet}}</a></small>
                             <div class="entry-meta meta-1 flex-column font-x-small text-capitalize mb-10">
                                 <span class="mr-1 ml-1 text-c-2  text-limit-3-row ">{{=it.newsListvx[i].moTaNgan || ''}}</span>
@@ -626,6 +631,5 @@
                     </div>
                 </article>
             </div>
-
     {{ } }}
 </script>

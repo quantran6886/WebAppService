@@ -14,10 +14,10 @@
     background-color: #F26522;
     color: white !important;
     border-radius: 3px;
-    padding: 8px 20px;
+    padding: 0.6vw 1vw;
     font-weight: 500;
-    font-size: 12.5px;
-    font-family: 'Inter'
+    font-size: 0.9vw;
+    font-family: 'Inter';
 }
 .btn-lien-he:hover {
     color: white !important;
@@ -163,6 +163,7 @@
     font-weight: 400;
     font-size: 13px;
     line-height: 1.5;
+    text-align: justify;
 }
 
 .text-c-4 {
