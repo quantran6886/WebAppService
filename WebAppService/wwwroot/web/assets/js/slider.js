@@ -32,10 +32,10 @@
     }
 }
 
-if (window.matchMedia("(min-width: 768px)").matches) {
+if (window.matchMedia("(min-width: 768px) and (max-width: 1023px)").matches) {
+    createSlider('.is-tablet .slide');
+} else if (window.matchMedia("(min-width: 1024px)").matches) {
     createSlider('.is-web .slide');
-}
-
-if (window.matchMedia("(max-width: 767px)").matches) {
+} else {
     createSlider('.is-mobile .slide');
 }

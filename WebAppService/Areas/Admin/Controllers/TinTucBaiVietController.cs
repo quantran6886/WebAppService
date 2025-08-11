@@ -192,6 +192,7 @@ namespace WebAppService.Areas.Admin.Controllers
                     x.MoTaNgan,
                     x.CbLoaiBaiDang,
                     x.TieuDeNgan,
+                    x.SeoUrl,
                 }).ToList().Select(x => new
                 {
                     x.IdBaiViet,
@@ -206,6 +207,7 @@ namespace WebAppService.Areas.Admin.Controllers
                     x.MoTaNgan,
                     x.CbLoaiBaiDang,
                     x.TieuDeNgan,
+                    x.SeoUrl,
                 }).FirstOrDefault();
 
                 return new JsonResult(new
@@ -236,6 +238,18 @@ namespace WebAppService.Areas.Admin.Controllers
             if (!string.IsNullOrEmpty(ClientData.NoiDung))
             {
                 decodedContent = HttpUtility.UrlDecode(ClientData.NoiDung);
+            }
+            if (!string.IsNullOrEmpty(ClientData.SeoUrl))
+            {
+                var check = db.WebTinTucBaiViets.FirstOrDefault(c => (ClientData.IdBaiViet == Guid.Empty && c.SeoUrl.Trim() == ClientData.SeoUrl.Trim()) || (c.SeoUrl.Trim() == ClientData.SeoUrl.Trim() && c.IdBaiViet != ClientData.IdBaiViet));
+                if (check != null)
+                {
+                    return Json(new
+                    {
+                        message = "Đường dẫn SEO đã tồn tại, vui lòng nhập đường dẫn khác.",
+                        status = false
+                    });
+                }
             }
             try
             {
@@ -272,15 +286,7 @@ namespace WebAppService.Areas.Admin.Controllers
                         ClientData.UrlImage = "/" + duong_dan_tai_lieu.Replace("\\", "/");
                         ClientData.NameImage = ten_file;
                     }
-                    //ClientData.TieuDeNgan = ClientData.TieuDeNgan;
-                    //ClientData.TieuDeBaiViet= ClientData.TieuDeBaiViet;
-                    //ClientData.MoTaNgan = ClientData.MoTaNgan;
-                    //ClientData.SapXep = ClientData.SapXep;
-                    //ClientData.NoiDung = decodedContent;
-                    //ClientData.IsBaiVietNoiBat = ClientData.IsBaiVietNoiBat;
-                    //ClientData.IsCongKhai = ClientData.IsCongKhai;
-                    //ClientData.CbLoaiBaiDang = ClientData.CbLoaiBaiDang;
-                    //ClientData.CbNhomBaiViet = ClientData.CbNhomBaiViet;
+                    ClientData.NoiDung = decodedContent;
                     ClientData.NguoiTao = User.Identity.Name;
                     ClientData.ThoiGianTao = DateTime.Now;  
                     ClientData.ThoiGianCapNhap = DateTime.Now;

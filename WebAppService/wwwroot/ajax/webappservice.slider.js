@@ -169,6 +169,7 @@ $(document).on('change', '.cbGiaoDienSelect', function () {
         },
         success: function (response) {
             if (response.status) {
+                myScripts.LoadTable();
                 toastr.success("Cập nhật phân loại thiết bị thành công", "Thành Công");
             } else {
                 toastr.error(response.message, "Lỗi");
@@ -293,6 +294,7 @@ function fm_CbGiaoDien(e, value, row, index) {
         '<select class="form-control cbGiaoDienSelect" data-maTrang="' + value.maTrang + '" data-sapXep="' + value.sapXep + '" data-txtCard1="' + value.txtCard1 + '">',
         '<option value="">Chọn phân loại</option>',
         '<option value="Máy tính"' + (value.cbGiaoDien === 'Máy tính' ? ' selected' : '') + '>Máy tính</option>',
+        '<option value="Máy tính bảng"' + (value.cbGiaoDien === 'Máy tính bảng' ? ' selected' : '') + '>Máy tính bảng</option>',
         '<option value="Điện thoại"' + (value.cbGiaoDien === 'Điện thoại' ? ' selected' : '') + '>Điện thoại</option>',
         '</select>'
     ].join('');

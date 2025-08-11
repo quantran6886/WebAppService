@@ -49,6 +49,16 @@ var myScripts = {
             $("#CbNhomBaiViet1").val("").trigger('chosen:updated');
         });
 
+        $("#btnAutoCode").on("click", function () {
+            var title = $("#TieuDeBaiViet").val();
+            if (title.trim() === "") {
+                alert("Vui lòng nhập tiêu đề trước!");
+                return;
+            }
+            var slug = toSlug(title);
+            var finalSlug = slug + "-" + randomCode(4);
+            $("#SeoUrl").val(finalSlug);
+        });
     },
 
     LoadData: function () {
@@ -123,6 +133,7 @@ var myScripts = {
                             $("#MoTaNgan").val(lstData.moTaNgan);
                             $("#IsCongKhai").prop("checked", lstData.isCongKhai);
                             $("#IsBaiVietNoiBat").prop("checked", lstData.isBaiVietNoiBat);
+                            $("#SeoUrl").val(lstData.seoUrl);
                             if (lstData.cbLoaiBaiDang == "1") {
                                 $("#CbNhomBaiViet1").val(lstData.cbNhomBaiViet).trigger('chosen:updated');
                                 $("#CbNhomBaiViet2").val("").trigger('chosen:updated');
@@ -169,6 +180,7 @@ var myScripts = {
         $("#TieuDeBaiViet").val("");
         $("#MoTaNgan").val("");
         $("#CbLoaiBaiDang").val("");
+        $("#SeoUrl").val("");
         $("#CbNhomBaiViet1").val("").trigger('chosen:updated');
         $("#CbNhomBaiViet2").val("").trigger('chosen:updated');
         $("#IsBaiVietNoiBat").prop("checked", false);
@@ -185,6 +197,7 @@ var myScripts = {
         var CbLoaiBaiDang = $("#CbLoaiBaiDang").val();
         var CbNhomBaiViet1 = $("#CbNhomBaiViet1").val();
         var CbNhomBaiViet2 = $("#CbNhomBaiViet2").val();
+        var SeoUrl = $("#SeoUrl").val();
         var IsBaiVietNoiBat = $("#IsBaiVietNoiBat").prop("checked");
         var IsCongKhai = $("#IsCongKhai").prop("checked");
         var editor = encodeURIComponent(tinymce.get('editor').getContent());
@@ -198,7 +211,11 @@ var myScripts = {
             toastr.error("Bạn chưa chọn phân loại dịch vụ", "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
             return;
         }
-
+        if (SeoUrl == "" || SeoUrl == undefined) {
+            toastr.error("Bạn chưa nhập đường dẫn seo url", "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+            $("#SeoUrl").focus();
+            return;
+        }
         var objdata = {
             IdDichVu: IdDichVu != 0 ? IdDichVu : '00000000-0000-0000-0000-000000000000',
             TieuDeBaiViet: TieuDeBaiViet,
@@ -208,6 +225,7 @@ var myScripts = {
             IsBaiVietNoiBat: IsBaiVietNoiBat,
             IsCongKhai: IsCongKhai,
             NoiDung: editor,
+            SeoUrl: SeoUrl,
         }
         if (files != undefined && files.length > 0) {
             if (window.FormData !== undefined) {
@@ -368,3 +386,20 @@ function fm_editData(e, value, row, index) {
         '</div>'
     ].join('');
 };
+function toSlug(str) {
+    str = str.toLowerCase();
+    str = str.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+    str = str.replace(/đ/g, 'd');
+    str = str.replace(/[^a-z0-9\s-]/g, '');
+    str = str.trim().replace(/\s+/g, '-');
+    str = str.replace(/-+/g, '-');
+    return str;
+}
+function randomCode(length) {
+    var chars = '0123456789';
+    var result = '';
+    for (var i = 0; i < length; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+}

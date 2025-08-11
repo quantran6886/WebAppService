@@ -592,7 +592,7 @@
     }
 }
 
-@media (min-width: 1920px) {
+@media (min-width: 1570px) {
     .social-float-buttons {
         position: fixed;
         top: 65%;
@@ -625,9 +625,25 @@
         background-color: #F26522;
         color: white !important;
         border-radius: 3px;
-        padding: 0.3vw 0.9vw;
+        padding: 0.5vw 0.9vw;
         font-weight: 500;
         font-size: 0.6vw;
         font-family: 'Inter';
+    }
+    .main-header .main-nav ul li a {
+        position: relative;
+        color: #171616;
+        font-weight: 700;
+        padding: 0;
+        display: block;
+        font-size: 14px;
+        -webkit-transition: all .2s ease-out 0s;
+        -moz-transition: all .2s ease-out 0s;
+        -ms-transition: all .2s ease-out 0s;
+        -o-transition: all .2s ease-out 0s;
+        transition: all .2s ease-out 0s;
+        font-family: 'Nunito', sans-serif;
+        line-height: 1.5;
+        line-height: 60px;
     }
 }

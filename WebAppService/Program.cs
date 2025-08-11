@@ -128,6 +128,13 @@ app.MapControllerRoute(
 );
 
 app.MapControllerRoute(
+    name: "DanhSachVideo",
+    pattern: "video",
+    defaults: new { controller = "DanhSachVideo", action = "DanhSachVideo" }
+);
+
+
+app.MapControllerRoute(
     name: "Home",
     pattern: "sunmedical",
     defaults: new { controller = "Home", action = "Index" }

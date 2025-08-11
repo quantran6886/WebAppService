@@ -47,6 +47,7 @@
                                 <th data-field="tieuDeBaiViet" data-sortable="true">Tên tiêu đề</th>
                                 <th data-field="cbNhomBaiViet" data-sortable="true">Nhóm bài viết</th>
                                 <th data-field="cbLoaiBaiDang" data-sortable="true">Danh mục</th>
+                                <th data-field="seoUrl" data-sortable="true">Seo Url</th>
                                 <th data-field="thoiGianTao" data-sortable="true">Ngày tạo</th>
                                 <th data-field="isBaiVietNoiBat" data-width="8" data-formatter="fm_editBVNB" data-sortable="true">Nổi bật</th>
                                 <th data-field="isCongKhai" data-width="8" data-formatter="fm_editBVCK" data-sortable="true">Công khai</th>
@@ -113,8 +114,16 @@
                                                 <input type="text" class="form-control" placeholder="" id="TieuDeNgan" value="" disabled>
                                             </div>
                                             <div class="col-sm-12 mb-2">
-                                                <label class="fs-2 form-label m-0">Đường dẫn mẫu (vi) :</label>
-                                                <input type="text" class="form-control" placeholder="sun-medical" id="SeoUrl" value="">
+                                                <label class="fs-2 form-label m-0">Đường dẫn mẫu (vi):<font class="text-danger">*</font></label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" placeholder="sun-medical" id="SeoUrl" value="">
+                                                    <button class="btn btn-danger" id="btnAutoCode" type="button">
+                                                        <div class="d-flex align-items-center">
+                                                            <i class="ti ti-link me-1 fs-4"></i>
+                                                            Lấy tự động
+                                                        </div>
+                                                    </button>
+                                                </div>
                                             </div>
                                             <div class="col-sm-12 mb-2">
                                                 <label class="fs-2 form-label m-0">Mô tả:</label>

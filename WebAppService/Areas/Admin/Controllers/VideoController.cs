@@ -188,6 +188,18 @@ namespace WebAppService.Areas.Admin.Controllers
             string duong_dan_video = "";
             string ten_video = "";
             var ClientData = System.Text.Json.JsonSerializer.Deserialize<WebVideo>(strData);
+            if (!string.IsNullOrEmpty(ClientData.SeoUrl))
+            {
+                var check = db.WebVideos.FirstOrDefault(c => (ClientData.IdVideo == Guid.Empty && c.SeoUrl.Trim() == ClientData.SeoUrl.Trim()) || (c.SeoUrl.Trim() == ClientData.SeoUrl.Trim() && c.IdVideo != ClientData.IdVideo));
+                if (check != null)
+                {
+                    return Json(new
+                    {
+                        message = "Đường dẫn SEO đã tồn tại, vui lòng nhập đường dẫn khác.",
+                        status = false
+                    });
+                }
+            }
             try
             {
                 if (files != null && files.Count > 0)
@@ -223,13 +235,6 @@ namespace WebAppService.Areas.Admin.Controllers
                         ClientData.UrlImage = "/" + duong_dan_tai_lieu.Replace("\\", "/");
                         ClientData.NameImage = ten_file;
                     }
-                    //ClientData.UrlVideo = ClientData.UrlVideo;
-                    //ClientData.TieuDeNgan = ClientData.TieuDeNgan;
-                    //ClientData.TieuDeBaiViet = ClientData.TieuDeBaiViet;
-                    //ClientData.MoTaNgan = ClientData.MoTaNgan;
-                    //ClientData.SapXep = ClientData.SapXep;
-                    //ClientData.IsVideoNoiBat = ClientData.IsVideoNoiBat;
-                    //ClientData.IsCongKhai = ClientData.IsCongKhai;
                     ClientData.NguoiTao = User.Identity.Name;
                     ClientData.ThoiGianTao = DateTime.Now;
                     db.WebVideos.Add(ClientData);

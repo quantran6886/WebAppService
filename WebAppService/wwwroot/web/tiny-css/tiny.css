@@ -3,9 +3,12 @@
     font-family: 'Inter', sans-serif !important;
     line-height: 1.6;
     font-size: 16px;
-    color: #333;
+    /*color: #333;*/
     word-wrap: break-word;
 }
+    #tiny-css * {
+        color: inherit; /* kế thừa màu từ phần tử cha hoặc inline style */
+    }
 
     #tiny-css p {
         margin: 0 0 1em;
@@ -18,21 +21,40 @@
     #tiny-css h5,
     #tiny-css h6 {
         text-align: left;
-        text-justify: inter-word; /* dàn khoảng trắng hợp lý hơn */
-        word-spacing: 0;
         font-family: 'Inter', sans-serif !important;
-        margin: 1.2em 0 0.6em;
+        margin-top: 0.6em; /* giảm khoảng cách trên */
+        margin-bottom: 0.4em; /* giảm khoảng cách dưới */
         font-weight: bold;
-        line-height: 1.3;
+        line-height: 1.25; /* vừa đủ, không quá cao */
+        word-spacing: normal; /* bỏ giãn chữ */
+        text-justify: auto; /* bỏ ép justify */
     }
-
+    #tiny-css p {
+        margin-top: 0;
+        margin-bottom: 0.6em; /* giảm bớt để không bị cách quá xa */
+        line-height: 1.5; /* dễ đọc, không quá dày */
+    }
     #tiny-css img {
         max-width: 100%;
         height: auto;
         display: block;
         margin: 0 auto;
     }
+    #tiny-css figure.image {
+        display: table;
+        margin: 0 auto;
+    }
 
+    #tiny-css figure.image img {
+        display: block;
+        margin: 0 auto;
+    }
+
+    #tiny-css figure.image figcaption {
+        text-align: center;
+        font-size: 0.9em;
+        color: #666;
+    }
     #tiny-css table {
         width: 100%;
         border-collapse: collapse;
@@ -94,11 +116,19 @@
     }
 
         #tiny-css h1 {
-            font-size: 1.5em;
+            font-size: 1.3em;
         }
-
+        #tiny-css h2 {
+            font-size: 1.2em;
+        }
+        #tiny-css h3 {
+            font-size: 1.1em;
+        }
         #tiny-css blockquote {
             font-size: 0.95em;
+        }
+        #tiny-css p {
+            font-size: 1em;
         }
 }
 
@@ -108,7 +138,13 @@
     }
 
         #tiny-css h1 {
-            font-size: 2em;
+            font-size: 1.6em;
+        }
+        #tiny-css h2 {
+            font-size: 1.5em;
+        }
+        #tiny-css h3 {
+            font-size: 1.4em;
         }
 }
 
@@ -118,6 +154,6 @@
     }
 
         #tiny-css h1 {
-            font-size: 2.2em;
+            font-size: 2em;
         }
 }

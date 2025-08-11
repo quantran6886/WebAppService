@@ -53,6 +53,16 @@ var myScripts = {
                 }
             }
         });
+        $("#btnAutoCode").on("click", function () {
+            var title = $("#TieuDeBaiViet").val();
+            if (title.trim() === "") {
+                alert("Vui lòng nhập tiêu đề trước!");
+                return;
+            }
+            var slug = toSlug(title);
+            var finalSlug = slug + "-" + randomCode(4);
+            $("#SeoUrl").val(finalSlug);
+        });
     },
 
     LoadData: function () {
@@ -117,6 +127,7 @@ var myScripts = {
                             $("#TieuDeBaiViet").val(lstData.tieuDeBaiViet);
                             $("#MoTaNgan").val(lstData.moTaNgan);
                             $("#UrlVideo").val(lstData.urlVideo);
+                            $("#SeoUrl").val(lstData.seoUrl);
                             $("#IsCongKhai").prop("checked", lstData.isCongKhai);
                             $("#IsVideoNoiBat").prop("checked", lstData.isVideoNoiBat);
                             $("#CbNhomBaiViet").val(lstData.CbNhomBaiViet).trigger('chosen:updated');
@@ -162,6 +173,7 @@ var myScripts = {
         $("#MoTaNgan").val("");
         $("#ten_file_video").html("");
         $("#UrlVideo").val("");
+        $("#SeoUrl").val("");
         $("#CbNhomBaiViet").val("").trigger('chosen:updated');
         $("#IsVideoNoiBat").prop("checked", false);
         $("#IsCongKhai").prop("checked", false);
@@ -178,6 +190,7 @@ var myScripts = {
         var CbNhomBaiViet = $("#CbNhomBaiViet").val();
         var CbNhomBaiViet = $("#CbNhomBaiViet").val();
         var UrlVideo = $("#UrlVideo").val();
+        var SeoUrl = $("#SeoUrl").val();
         var IsVideoNoiBat = $("#IsVideoNoiBat").prop("checked");
         var IsCongKhai = $("#IsCongKhai").prop("checked");
         var editor = encodeURIComponent(tinymce.get('editor').getContent());
@@ -188,6 +201,11 @@ var myScripts = {
             return;
         }
 
+        if (SeoUrl == "" || SeoUrl == undefined) {
+            toastr.error("Bạn chưa nhập đường dẫn seo url", "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+            $("#SeoUrl").focus();
+            return;
+        }
         var objdata = {
             IdVideo: IdVideo != 0 ? IdVideo : '00000000-0000-0000-0000-000000000000',
             TieuDeBaiViet: TieuDeBaiViet,
@@ -197,6 +215,7 @@ var myScripts = {
             IsCongKhai: IsCongKhai,
             NoiDung: editor,
             UrlVideo: UrlVideo,
+            SeoUrl: SeoUrl,
         }
         if ((files != undefined && files.length > 0) || (videos != undefined && videos.length > 0)) {
             if (window.FormData !== undefined) {
@@ -363,3 +382,20 @@ function fm_editData(e, value, row, index) {
         '</div>'
     ].join('');
 };
+function toSlug(str) {
+    str = str.toLowerCase();
+    str = str.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+    str = str.replace(/đ/g, 'd');
+    str = str.replace(/[^a-z0-9\s-]/g, '');
+    str = str.trim().replace(/\s+/g, '-');
+    str = str.replace(/-+/g, '-');
+    return str;
+}
+function randomCode(length) {
+    var chars = '0123456789';
+    var result = '';
+    for (var i = 0; i < length; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+}

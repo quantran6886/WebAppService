@@ -113,6 +113,9 @@
     .is-mobile {
         display: none;
     }
+    .is-tablet {
+        display: none;
+    }
 }
 
 /* ==== TABLET (768px - 1023px) ==== */
@@ -124,11 +127,14 @@
     }
 
     .is-web {
-        display: block;
+        display: none;
     }
 
     .is-mobile {
         display: none;
+    }
+    .is-tablet {
+        display: block;
     }
 }
 
@@ -148,7 +154,9 @@
     .is-web {
         display: none;
     }
-
+    .is-tablet {
+        display: none;
+    }
     .is-mobile {
         display: block;
     }

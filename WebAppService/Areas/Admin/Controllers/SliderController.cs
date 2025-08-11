@@ -30,7 +30,7 @@ namespace WebAppService.Areas.Admin.Controllers
                     c.CbGiaoDien,
                     c.IsCongKhai,
                     c.IsCard1,
-                }).ToList();
+                }).OrderBy(c => c.SapXep).ToList();
 
                 return new JsonResult(new
                 {

@@ -205,6 +205,18 @@ namespace WebAppService.Areas.Admin.Controllers
             {
                 decodedContent = HttpUtility.UrlDecode(ClientData.NoiDung);
             }
+            if (!string.IsNullOrEmpty(ClientData.SeoUrl))
+            {
+                var check = db.WebDichVus.FirstOrDefault(c => (ClientData.IdDichVu == Guid.Empty && c.SeoUrl.Trim() == ClientData.SeoUrl.Trim()) || (c.SeoUrl.Trim() == ClientData.SeoUrl.Trim() && c.IdDichVu != ClientData.IdDichVu));
+                if (check != null)
+                {
+                    return Json(new
+                    {
+                        message = "Đường dẫn SEO đã tồn tại, vui lòng nhập đường dẫn khác.",
+                        status = false
+                    });
+                }
+            }
             try
             {
                 if (files != null && files.Count > 0)
@@ -240,17 +252,7 @@ namespace WebAppService.Areas.Admin.Controllers
                         ClientData.UrlImage = "/" + duong_dan_tai_lieu.Replace("\\", "/");
                         ClientData.NameImage = ten_file;
                     }
-                    //ClientData.TieuDeNgan = ClientData.TieuDeNgan;
-                    //ClientData.TieuDeBaiViet= ClientData.TieuDeBaiViet;
-                    //ClientData.MoTaNgan = ClientData.MoTaNgan;
-                    //ClientData.SapXep = ClientData.SapXep;
-                    //ClientData.NoiDung = decodedContent;
-                    //ClientData.IsBaiVietNoiBat = ClientData.IsBaiVietNoiBat;
-                    //ClientData.IsCongKhai = ClientData.IsCongKhai;
-                    //ClientData.CbLoaiBaiDang = ClientData.CbLoaiBaiDang;
-                    //ClientData.CbNhomBaiViet = ClientData.CbNhomBaiViet;
-                    //ClientData.SeoTittile = ClientData.SeoUrl;
-                    //ClientData.NguoiTao = User.Identity.Name;
+                    ClientData.NoiDung = decodedContent;
                     ClientData.ThoiGianTao = DateTime.Now;  
                     ClientData.ThoiGianCapNhap = DateTime.Now;
                     db.WebDichVus.Add(ClientData);
