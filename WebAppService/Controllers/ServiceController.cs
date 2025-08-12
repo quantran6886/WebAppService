@@ -17,6 +17,7 @@ namespace clinic_website.Controllers
         }
 
         [HttpGet]
+        [Route("dich-vu/{id?}")]
         public IActionResult ServiceDetail(string? id)
         {
             if (string.IsNullOrWhiteSpace(id))
@@ -24,7 +25,7 @@ namespace clinic_website.Controllers
                 return RedirectToAction("NotFound", "NotFound");
             }
 
-            var record = db.WebDichVus.FirstOrDefault(c => c.IdDichVu.ToString() == id);
+            var record = db.WebDichVus.FirstOrDefault(c => c.SeoUrl.ToString() == id);
             if (record == null)
             {
                 return RedirectToAction("NotFound", "NotFound");

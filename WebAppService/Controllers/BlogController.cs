@@ -33,6 +33,8 @@ namespace clinic_website.Controllers
         {
             return View();
         }
+        [HttpGet]
+        [Route("chi-tiet-bai-viet/{id?}")]
         public IActionResult BlogDetail(string? id)
         {
             if (string.IsNullOrWhiteSpace(id))
@@ -40,7 +42,7 @@ namespace clinic_website.Controllers
                 return BadRequest("Không tìm thấy thông tin.");
             }
 
-            var record = db.WebTinTucBaiViets.FirstOrDefault(c => c.IdBaiViet.ToString() == id);
+            var record = db.WebTinTucBaiViets.FirstOrDefault(c => c.SeoUrl.ToString() == id);
             if (record == null)
             {
                 return NotFound("Không tìm thấy dịch vụ.");
