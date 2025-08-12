@@ -4,11 +4,11 @@
 }
 <link href="~/web/assets/css/home.css" rel="stylesheet" />
 <link href="~/web/assets/css/slider.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/dot/doT.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 @section Scripts {
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="~/web/assets/js/slider.js"></script>
+    <script src="~/web/assets/js/dot.js"></script>
+    <script src="~/web/assets/js/swiper-bundle.min.js"></script>
+    <script src="~/web/assets/js/axios.js"></script>
     <script>
         function scrollSlider(direction) {
             const slider = document.getElementById('slider');
@@ -39,9 +39,8 @@
         var myClient = {
             init: function () {
                 myClient.LoadData();
+            },
                 @* myClient.LoadData2(); *@
-                       },
-
                        @* LoadData: function () {
                    $.ajax({
                         url: '/Home/LoadDataBefore',
@@ -102,65 +101,119 @@
                     });
                 }, *@
 
-                LoadData:async function() {
-                    try {
-                        var response = await axios.get('/api/get-data-home');
+                    LoadData: async function () {
+                        try {
+                            var response = await axios.get('/api/get-data-home');
+                            if (response.status) {
+                                // ====== Xử lý listBaoChi ======
+                                if (response.data.listBaoChi.length > 0) {
+                                    var baiNoiBat = response.data.listBaoChi.find(item => item.isBaiVietNoiBat === true)
+                                        || response.data.listBaoChi[0];
 
-                        if(response.status)
-                        {
-                            
+                                    var template1 = doT.template($("#news-templatem").html());
+                                    $("#list_bai_viet0").html(template1({ newsListm: [baiNoiBat] }));
+
+                                    var cacBaiConLai = response.data.listBaoChi.filter(item => item.idBaiViet !== baiNoiBat.idBaiViet);
+
+                                    if (cacBaiConLai.length > 0) {
+                                        var template2 = doT.template($("#news-templatex").html());
+                                        $("#original-articles").html(template2({ newsListx: cacBaiConLai }));
+                                    }
+                                }
+                                // ====== Xử lý listVideo ======
+                                if (response.data.listVideo.length > 0) {
+                                    var firstVideo = [response.data.listVideo[0]];
+                                    var template1 = doT.template($("#news-templatevm").html());
+                                    $("#list_bai_viet1").html(template1({ newsListvm: firstVideo }));
+                                }
+
+                                if (response.data.listVideo.length > 1) {
+                                    var remainingVideos = response.data.listVideo.slice(1);
+                                    var template2 = doT.template($("#news-templatevx").html());
+                                    $("#original-article1").html(template2({ newsListvx: remainingVideos }));
+                                }
+                                // ====== Xử lý listHome (slider) ======
+                                if (response.data.listHome.length > 0) {
+                                    var data = response.data.listHome;
+                                    // 1. Render HTML
+                                    function renderSliderHTML(sliderClass, images) {
+                                        var html = `<div class="animated-slider ${sliderClass}">`;
+                                        images.forEach((item, index) => {
+                                            var activeClass = index === 0 ? 'active' : '';
+                                            html += `
+                                                <div class="slide ${activeClass}">
+                                                    <img src="${item.txtCard1 || '~/root/6388000.pngg'}" />
+                                                    <div class="caption ${index === 0 ? 'zoom-in' : 'slide-left'}"></div>
+                                                </div>
+                                            `;
+                                        });
+                                        html += `</div>`;
+                                        return html;
+                                    }
+                                    var mayTinh = data.filter(x => x.cbGiaoDien === "Máy tính");
+                                    var mayTinhBang = data.filter(x => x.cbGiaoDien === "Máy tính bảng");
+                                    var dienThoai = data.filter(x => x.cbGiaoDien === "Điện thoại");
+                                    var htmlLayout = '';
+                                    htmlLayout += renderSliderHTML('is-web', mayTinh);
+                                    htmlLayout += renderSliderHTML('is-tablet', mayTinhBang);
+                                    htmlLayout += renderSliderHTML('is-mobile', dienThoai);
+                                    $('#_layout1').html(htmlLayout);
+                                    // 2. Khởi tạo slider sau khi DOM đã gắn vào
+                                    function initSlider(selector) {
+                                        const slides = document.querySelectorAll(selector);
+                                        if (!slides || slides.length === 0) {
+                                            console.warn("Không tìm thấy slide:", selector);
+                                            return;
+                                        }
+
+                                        let current = 0;
+
+                                        function showSlide(index) {
+                                            slides.forEach((slide) => {
+                                                slide.classList.remove('active');
+                                                const caption = slide.querySelector('.caption');
+                                                if (caption) caption.style.opacity = 0;
+                                            });
+
+                                            const currentSlide = slides[index];
+                                            currentSlide.classList.add('active');
+
+                                            const caption = currentSlide.querySelector('.caption');
+                                            if (caption && caption.classList.length > 1) {
+                                                const animClass = caption.classList[1];
+                                                caption.classList.remove(animClass);
+                                                void caption.offsetWidth; // force reflow
+                                                caption.classList.add(animClass);
+                                                caption.style.opacity = 1;
+                                            }
+                                        }
+                                        function nextSlide() {
+                                            current = (current + 1) % slides.length;
+                                            showSlide(current);
+                                        }
+
+                                        setInterval(nextSlide, 6000);
+                                    }
+                                    // 3. Gọi initSlider theo kích thước màn hình
+                                    if (window.matchMedia("(min-width: 768px) and (max-width: 1023px)").matches) {
+                                        initSlider('.is-tablet .slide');
+                                    } else if (window.matchMedia("(min-width: 1024px)").matches) {
+                                        initSlider('.is-web .slide');
+                                    } else {
+                                        initSlider('.is-mobile .slide');
+                                    }
+                                }
+                            }
+                        } catch (error) {
+                            console.error("Lỗi khi gọi API:", error);
                         }
-
-                    } catch (error) {
-                        console.error("Lỗi khi gọi API:", error);
-                    }
-                }
-
+                    },
             };
         myClient.init();
     </script>
 }
 
-@* <div id="_layout1"></div> *@
-<div class="animated-slider is-web">
-    <div class="slide active">
-        <img src="~/src/slide/Slide-web.png" />
-        <div class="caption zoom-in"></div>
-    </div>
-    <div class="slide">
-        <img src="~/src/slide/Medical-01.png" />
-        <div class="caption slide-left"></div>
-    </div>
-    <div class="slide">
-        <img src="~/src/slide/Medical-02.png" />
-        <div class="caption slide-left"></div>
-    </div>
-</div>
-<div class="animated-slider is-tablet">
-    <div class="slide active">
-        <img src="~/src/slide/Medical table-05.png" />
-        <div class="caption zoom-in"></div>
-    </div>
-    <div class="slide">
-        <img src="~/src/slide/Medical table-06.png" />
-        <div class="caption slide-left"></div>
-    </div>
-</div>
-<div class="animated-slider is-mobile">
-    <div class="slide active">
-        <img src="~/src/slide/Slide-mobile.png" />
-        <div class="caption zoom-in"></div>
-    </div>
-    <div class="slide">
-        <img src="~/src/slide/Medical-03.png" />
-        <div class="caption slide-left"></div>
-    </div>
-    <div class="slide">
-        <img src="~/src/slide/Medical-04.png" />
-        <div class="caption slide-left"></div>
-    </div>
-</div>
-@* <img src="~/src/slide/bg-sun.png" /> *@
+<div id="_layout1"></div>
 <!-- Hộp nổi dịch vụ -->
 <div class="floating-box-wrapper">
     <div class="floating-box container col-12 row">
@@ -178,7 +231,7 @@
         <div class="box-item col-sm-4 d-flex p-0">
             <div class="icon_box col-sm-4 ml-0 p-0  mobile-icon">
                 <img src="~/src/image_figma/Frame 48095620.png" class="icon_mobile" width="25.263671875px"
-                    height="24px" />
+                     height="24px" />
             </div>
             <div class="col-sm-8 box_item_text p-0 pr-sm-3">
                 <h5>Đặt lịnh khám</h5>
@@ -188,7 +241,7 @@
         <div class="box-item col-sm-4 d-flex p-0">
             <div class="icon_box col-sm-4 ml-0 p-0  mobile-icon">
                 <img src="~/src/image_figma/Frame 48095621.png" class="icon_mobile" width="19.550012588500977px"
-                    height="23px" />
+                     height="23px" />
             </div>
             <div class="col-sm-8 box_item_text p-0 pr-sm-3">
                 <h5>Tra cứu kết quả </h5>
@@ -202,7 +255,7 @@
     <div class="position-relative layout-home-white">
         <div class="container p-0 mt-5">
             <div class="author-bio border-radius-10 p-30 mtauthordv mt-sm-60 mb-0 d-flex flex-column flex-md-row"
-                id="author-bio_bt">
+                 id="author-bio_bt">
                 <div class="t_mb d-block d-sm-none text-left">Về chúng tôi</div>
                 <div class="t_mb2 d-block d-sm-none text-left">Hành Trình Vì Sức Khỏe Cộng Đồng</div>
                 <div class="img_avt2 col-sm-5 mb-30 text-center d-flex">
@@ -216,8 +269,10 @@
                     <h3 class="d-none d-sm-block">
                         <span class="vcard author">
                             <span class="fn">
-                                <a href="#" title="" rel="author" class="txt-layout-2">Dịch vụ đặc biệt tại Sun
-                                    Medical</a>
+                                <a href="#" title="" rel="author" class="txt-layout-2">
+                                    Dịch vụ đặc biệt tại Sun
+                                    Medical
+                                </a>
                             </span>
                         </span>
                     </h3>
@@ -271,7 +326,6 @@
         </div>
     </div>
 </div>
-
 <!-- tại sao chọn chúng tôi -->
 <div class="question-doctor" style="background:#F9FCFF">
     <div class="container pt-30 pb-30 pl-30 pl-md-0">
@@ -279,8 +333,12 @@
             <!-- Bên trái: nội dung lý do -->
             <div class="col-md-12">
                 <div class="text-center mb-2">
-                    <span class="text-head-breadcrumb text-ic-5">Tại sao <span class="text-primary-grd">chọn chúng
-                            tôi</span></span>
+                    <span class="text-head-breadcrumb text-ic-5">
+                        Tại sao <span class="text-primary-grd">
+                            chọn chúng
+                            tôi
+                        </span>
+                    </span>
                 </div>
                 <p class="text-muted mb-4 text-center text-inter">
                     Chúng tôi tự hào là nơi hội tụ đội ngũ y bác sĩ tận tâm, trang thiết bị hiện đại và quy trình chăm
@@ -293,7 +351,9 @@
                 <div class="d-flex mb-4">
                     <div class="me-3">
                         <div class="rounded-circle bg-info text-white fw-bold d-flex justify-content-center align-items-center bg-info-gradient"
-                            style="width: 40px; height: 40px;">1</div>
+                             style="width: 40px; height: 40px;">
+                            1
+                        </div>
                     </div>
                     <div>
                         <h5 class="fw-bold mb-1 text-Montserrat">Đội ngũ y bác sĩ chuyên môn cao, tận tâm</h5>
@@ -307,7 +367,9 @@
                 <div class="d-flex mb-4">
                     <div class="me-3">
                         <div class="rounded-circle bg-info text-white fw-bold d-flex justify-content-center align-items-center bg-info-gradient"
-                            style="width: 40px; height: 40px;">2</div>
+                             style="width: 40px; height: 40px;">
+                            2
+                        </div>
                     </div>
                     <div>
                         <h5 class="fw-bold mb-1 text-Montserrat">Trang thiết bị hiện đại, công nghệ tiên tiến</h5>
@@ -321,7 +383,9 @@
                 <div class="d-flex">
                     <div class="me-3">
                         <div class="rounded-circle bg-info text-white fw-bold d-flex justify-content-center align-items-center bg-info-gradient"
-                            style="width: 40px; height: 40px;">3</div>
+                             style="width: 40px; height: 40px;">
+                            3
+                        </div>
                     </div>
                     <div>
                         <h5 class="fw-bold mb-1 text-Montserrat">Y tế toàn diện, lấy bệnh nhân làm trung tâm</h5>
@@ -339,8 +403,7 @@
                         <img src="@Url.Content("~/root/hometsc.png")" alt="Doctor" class="doctor-overlay">
                     </div>
 
-                    <div
-                        class="position-absolute z-100 bottom-0 border-radius-10 start-0 mb-md-3 ms-md-3 bg-white px-3 py-2 d-flex align-items-center shadow-sm tranform-x">
+                    <div class="position-absolute z-100 bottom-0 border-radius-10 start-0 mb-md-3 ms-md-3 bg-white px-3 py-2 d-flex align-items-center shadow-sm tranform-x">
                         <span class="color-orrange fw-bold me-2"><i class="fa fa-star"></i></span>
                         <span class="color-orrange fw-bold small">Best Certified Team of Specialists</span>
                     </div>
@@ -349,15 +412,16 @@
         </div>
     </div>
 </div>
-
 <!-- Câu chuyện của khách hàng -->
 <div class="message-client">
     <div class="container px-30 py-2 container-mobile">
         <div class="archive-header text-center mb-20 mt-0">
             <div class="container">
                 <div>
-                    <span class="text-head-breadcrumb text-ic-5"><span class="text-primary">Câu chuyện</span> của khách
-                        hàng</span>
+                    <span class="text-head-breadcrumb text-ic-5">
+                        <span class="text-primary">Câu chuyện</span> của khách
+                        hàng
+                    </span>
                 </div>
                 <p class="text-muted mb-4 text-center" style="font-size:14px">
                     Khám phá sự khác biệt mà chúng tôi tạo ra thông qua tiếng nói của những người chúng tôi đã phục vụ.
@@ -377,8 +441,10 @@
                             <div class="bottom-line mb-10">
                                 <h3>Linda Ngo</h3>
                             </div>
-                            <p>“Sau ca phẫu thuật đầu gối, sự tiện lợi của dịch vụ tư vấn trực tuyến đã giúp quá trình
-                                hồi phục của tôi diễn ra suôn sẻ hơn tôi tưởng.”</p>
+                            <p>
+                                “Sau ca phẫu thuật đầu gối, sự tiện lợi của dịch vụ tư vấn trực tuyến đã giúp quá trình
+                                hồi phục của tôi diễn ra suôn sẻ hơn tôi tưởng.”
+                            </p>
                             <div class="">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -397,8 +463,10 @@
                             <div class="bottom-line mb-10">
                                 <h3>Crystal Maiden</h3>
                             </div>
-                            <p>“Việc kiểm soát các bệnh mãn tính như bệnh tiểu đường đòi hỏi rất nhiều sự cảnh giác,
-                                nhưng hệ thống nạp thuốc đã đơn giản hóa cuộc sống của tôi.”</p>
+                            <p>
+                                “Việc kiểm soát các bệnh mãn tính như bệnh tiểu đường đòi hỏi rất nhiều sự cảnh giác,
+                                nhưng hệ thống nạp thuốc đã đơn giản hóa cuộc sống của tôi.”
+                            </p>
                             <div class="">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -417,8 +485,10 @@
                             <div class="bottom-line mb-10">
                                 <h3>Crystal Maiden</h3>
                             </div>
-                            <p>“Hệ thống nạp đơn thuốc là một bước ngoặt trong việc kiểm soát bệnh tiểu đường của tôi.
-                                Nó thực sự hiệu quả và hoàn toàn không rắc rối.”</p>
+                            <p>
+                                “Hệ thống nạp đơn thuốc là một bước ngoặt trong việc kiểm soát bệnh tiểu đường của tôi.
+                                Nó thực sự hiệu quả và hoàn toàn không rắc rối.”
+                            </p>
                             <div class="">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -437,8 +507,10 @@
                             <div class="bottom-line mb-10">
                                 <h3>Linda Ngo</h3>
                             </div>
-                            <p>“Sau ca phẫu thuật đầu gối, sự tiện lợi của dịch vụ tư vấn trực tuyến đã giúp quá trình
-                                hồi phục của tôi diễn ra suôn sẻ hơn tôi tưởng.”</p>
+                            <p>
+                                “Sau ca phẫu thuật đầu gối, sự tiện lợi của dịch vụ tư vấn trực tuyến đã giúp quá trình
+                                hồi phục của tôi diễn ra suôn sẻ hơn tôi tưởng.”
+                            </p>
                             <div class="">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -463,8 +535,10 @@
                         <div class="bottom-line mb-10">
                             <h3>Linda Ngo</h3>
                         </div>
-                        <p>“Sau ca phẫu thuật đầu gối, sự tiện lợi của dịch vụ tư vấn trực tuyến đã giúp quá trình hồi
-                            phục của tôi diễn ra suôn sẻ hơn tôi tưởng.”</p>
+                        <p>
+                            “Sau ca phẫu thuật đầu gối, sự tiện lợi của dịch vụ tư vấn trực tuyến đã giúp quá trình hồi
+                            phục của tôi diễn ra suôn sẻ hơn tôi tưởng.”
+                        </p>
                         <div class="">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -483,8 +557,10 @@
                         <div class="bottom-line mb-10">
                             <h3>Crystal Maiden</h3>
                         </div>
-                        <p>“Việc kiểm soát các bệnh mãn tính như bệnh tiểu đường đòi hỏi rất nhiều sự cảnh giác, nhưng
-                            hệ thống nạp thuốc đã đơn giản hóa cuộc sống của tôi.”</p>
+                        <p>
+                            “Việc kiểm soát các bệnh mãn tính như bệnh tiểu đường đòi hỏi rất nhiều sự cảnh giác, nhưng
+                            hệ thống nạp thuốc đã đơn giản hóa cuộc sống của tôi.”
+                        </p>
                         <div class="">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -503,8 +579,10 @@
                         <div class="bottom-line mb-10">
                             <h3>Crystal Maiden</h3>
                         </div>
-                        <p>“Hệ thống nạp đơn thuốc là một bước ngoặt trong việc kiểm soát bệnh tiểu đường của tôi. Nó
-                            thực sự hiệu quả và hoàn toàn không rắc rối.”</p>
+                        <p>
+                            “Hệ thống nạp đơn thuốc là một bước ngoặt trong việc kiểm soát bệnh tiểu đường của tôi. Nó
+                            thực sự hiệu quả và hoàn toàn không rắc rối.”
+                        </p>
                         <div class="">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -518,14 +596,17 @@
         </div>
     </div>
 </div>
-
 <div class="about-sunmedical" style="background:#E7E7E7">
     <div class="container pt-30 pb-20">
         <div class="row align-items-center">
             <div class="col-md-12">
                 <div class="text-start">
-                    <span class="text-head-breadcrumb text-ic-5">Báo chí <span class="text-primary">nói gì về Sun
-                            Medical</span></span>
+                    <span class="text-head-breadcrumb text-ic-5">
+                        Báo chí <span class="text-primary">
+                            nói gì về Sun
+                            Medical
+                        </span>
+                    </span>
                 </div>
             </div>
             <div class="row mt-30">
@@ -587,7 +668,6 @@
             </article>
     {{ } }}
 </script>
-
 <script id="news-templatem" type="text/x-dot-template">
     {{ for(var i = 0; i < it.newsListm.length; i++) { }}
             <article class="col-lg-12 wow fadeIn  animated" style="visibility: visible; animation-name: fadeIn;">
@@ -612,7 +692,6 @@
             </article>
     {{ } }}
 </script>
-
 <script id="news-templatex" type="text/x-dot-template">
     {{ for(var i = 0; i < it.newsListx.length; i++) { }}
          <article class="swiper-slide col-lg-4 col-md-6 col-sm-12 wow fadeIn  animated  p-1" style="visibility: visible; animation-name: fadeIn;">
@@ -659,7 +738,6 @@
          </div>
     {{ } }}
 </script>
-
 <script id="news-templatevx" type="text/x-dot-template">
     {{ for(var i = 0; i < it.newsListvx.length; i++) { }}
             <div class="item_vd col-lg-12 p-0">
