@@ -45,7 +45,9 @@
     },
 
     bindEvents: function () {
-        $('.translate-btn').on('click', function () {
+        $(document).off('click', '.translate-btn').on('click', '.translate-btn', function (e) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
             var lang = $(this).data('lang');
             mySettingHome.fcTranslate(lang);
         });

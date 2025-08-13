@@ -2,6 +2,7 @@
 .service-card-y {
     position: inherit;
     top: -54px;
+    z-index: 2;
 }
 
 .question-doctor {
@@ -586,7 +587,8 @@
 @media (min-width: 768px) and (max-width: 1024px) {
     .service-card-y {
         position: inherit;
-        top: -150px !important
+        top: -150px !important;
+        z-index: 2;
     }
 
     .question-doctor {
@@ -741,6 +743,7 @@
     .service-card-y {
         position: inherit;
         top: -23px;
+        z-index: 2;
     }
 
     .dot-left {
