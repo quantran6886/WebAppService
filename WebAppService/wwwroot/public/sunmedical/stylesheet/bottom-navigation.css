@@ -1,0 +1,277 @@
+﻿@import url("https://fonts.googleapis.com/css?family=Quicksand|Montserrat");
+.bottom-nav {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    :root {
+        /*--background-color: rgb(10, 10, 11);*/
+        --indicator-clr: rgb(0, 255, 170);
+        --menu-clr: white;
+        --items-icons-clr: black;
+        --items-text-clr: black;
+        --menu-padding-left: 1.6rem;
+        --menu-padding-right: var(--menu-padding-left, 1.6rem);
+        --menu-padding-top: 1rem;
+        --menu-padding-bottom: var(--menu-padding-top, 0);
+        --item-width: 4rem;
+    }
+
+    *,
+    *::before,
+    *::after {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        min-height: 100vh;
+        background-color: var(--background-color);
+        overflow: hidden;
+    }
+
+    a {
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .bottom-nav {
+        display: block !important;
+        position: fixed;
+        inset: auto 0 0 0;
+        z-index: 100;
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border-radius: 5px 5px 0 0;
+        isolation: isolate;
+        user-select: none;
+        --bg-clr-bhind: var(--background-color);
+        /* Trick: bỏ border-top cũ, dùng pseudo-element */
+    }
+
+        .bottom-nav::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px; /* độ dày viền */
+            background: linear-gradient(90deg, #189995, #15fff8, #189995, #32fff9, #ff0c0c, #189995, #d17f00);
+            background-size: 300% 100%;
+            animation: gradientMove 3s linear infinite;
+            border-radius: 5px 5px 0 0;
+        }
+
+    /* Animation cho gradient chạy ngang */
+    @keyframes gradientMove {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        100% {
+            background-position: 100% 50%;
+        }
+    }
+
+    .menu {
+        text-transform: uppercase;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 var(--menu-padding-left);
+        list-style: none;
+        /* overflow: hidden; */
+        text-overflow: clip;
+    }
+
+    .bottom-nav-menu li a {
+        display: inline-block;
+        min-height: 100%;
+        width: var(--item-width);
+        padding: 1em;
+        position: relative;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-user-drag: none;
+    }
+
+        .bottom-nav-menu li a .icon {
+            display: block;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            color: var(--items-icons-clr, black);
+            font-size: 1.4em;
+            font-family: "Montserrat", "Quicksand", sans-serif;
+            font-weight: 100;
+            transition: transform 300ms ease;
+        }
+
+        .bottom-nav-menu li a.active .icon {
+            transform: translateY(calc(-50% - var(--menu-padding-top, 1em)));
+        }
+
+        .bottom-nav-menu li a .text {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 100%;
+            opacity: 0;
+            font-size: 0.7em;
+            color: var(--items-text-clr, black);
+            transition: opacity 300ms, transform 300ms ease;
+            transition-duration: 300ms;
+            transition-delay: 40ms;
+            font-family: "Quicksand", sans-serif;
+            /* color: aliceblue; */
+        }
+
+        .bottom-nav-menu li a.active .text {
+            opacity: 1;
+            transform: translateY(calc(-50% - var(--menu-padding-top, 1em))) translateX(-50%);
+        }
+
+    .bottom-nav .indicator {
+        --indicator-brdr-size: 0.25rem;
+        position: absolute;
+        height: 100%;
+        border-bottom: 10px solid #f96417;
+        aspect-ratio: 1;
+        background: #ffffff;
+        fill-opacity: 0.2;
+        background-size: cover;
+        border-radius: 50%;
+        left: var(--menu-padding-left);
+        top: -50%;
+        transform: translateX(calc(((var(--item-width) - 100%) / 2) + (var(--gap, 1rem) + var(--item-width)) * var(--item, 0)));
+        transition: all 300ms ease;
+        overflow: hidden;
+    }
+
+        /* Tạo sóng nước gradient */
+        /*.bottom-nav .indicator::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 50%;
+            background: linear-gradient(90deg, #008c8cd4, #00bcd4d4, #4dd0e1d4);
+            -webkit-mask: url("data:image/svg+xml;utf8,\
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 28' preserveAspectRatio='none'>\
+        <path d='M0 17 Q30 24 60 17 T120 17 V30 H0 Z' fill='white'/>\
+      </svg>") repeat-x;
+            -webkit-mask-size: 50% 100%;
+            animation: waveMove 5s linear infinite, waveColor 8s ease-in-out infinite;
+        }*/
+
+    /* Di chuyển sóng */
+    /*@keyframes waveMove {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-25%);
+        }
+    }*/
+
+    /* Đổi màu sóng từ từ */
+    /*@keyframes waveColor {
+        0% {
+            background: linear-gradient(90deg, #008c8cd4, #00bcd4d4, #4dd0e1d4);
+        }
+
+        50% {
+            background: linear-gradient(90deg, #4dd0e1d4, #80deead4, #00bcd4d4);
+        }
+
+        100% {
+            background: linear-gradient(90deg, #008c8cd4, #00bcd4d4, #4dd0e1d4);
+        }
+    }*/
+
+       /* .bottom-nav .indicator::before,
+        .bottom-nav .indicator::after {
+            --size: 1rem;
+            --shadow-y: calc(var(--size) / 2 * -1);
+            content: "";
+            position: absolute;
+            width: var(--size);
+            height: var(--size);
+            top: 50%;
+            background-color: transparent;
+            box-shadow: 0 var(--shadow-y) 0 var(--bg-clr-bhind);
+            z-index: -1;
+        }
+
+        .bottom-nav .indicator::before {
+            right: 100%;
+            border-top-right-radius: 100%;
+        }
+
+        .bottom-nav .indicator::after {
+            left: 100%;
+            border-top-left-radius: 100%;
+        }*/
+    /* Áp dụng cho thẻ a.active bên trong menu */
+    .bottom-nav-menu li a.active2 {
+        animation: shake 1.2s infinite; /* chạy lặp vô hạn */
+        display: inline-block; /* cần để transform hoạt động tốt */
+    }
+
+    /* Hiệu ứng rung */
+    @keyframes shake {
+        0% {
+            transform: translate(0, 0) rotate(0deg);
+        }
+
+        20% {
+            transform: translate(-2px, 0) rotate(-5deg);
+        }
+
+        40% {
+            transform: translate(2px, 0) rotate(5deg);
+        }
+
+        60% {
+            transform: translate(-2px, 0) rotate(-5deg);
+        }
+
+        80% {
+            transform: translate(2px, 0) rotate(5deg);
+        }
+
+        100% {
+            transform: translate(0, 0) rotate(0deg);
+        }
+    }
+    #btn-top {
+    
+        /* Animation */
+        animation: bounce 1.2s infinite;
+    }
+
+        #btn-top img {
+            width: 24px;
+            height: 24px;
+        }
+
+    /* Keyframes cho nhún nhảy */
+    @keyframes bounce {
+        0%, 100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-6px);
+        }
+    }
+
+
+}

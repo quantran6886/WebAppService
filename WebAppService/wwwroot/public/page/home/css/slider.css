@@ -1,0 +1,163 @@
+﻿/* ==== SLIDER CHUNG ==== */
+.animated-slider {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease;
+    transform: translateX(100%);
+}
+
+    .slide.active {
+        opacity: 1;
+        z-index: 1;
+        transform: translateX(0);
+    }
+
+    .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        animation: kenburns 10s ease-in-out infinite;
+    }
+
+.caption {
+    background: rgba(255, 255, 255, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(4px);
+}
+
+.slide.active .caption {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==== ANIMATIONS ==== */
+.zoom-in {
+    animation: zoomIn 1s ease forwards;
+}
+
+.slide-left {
+    animation: slideLeft 1s ease forwards;
+}
+
+.fade-in {
+    animation: fadeIn 1s ease forwards;
+}
+
+/* ==== KEYFRAMES ==== */
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideLeft {
+    0% {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes kenburns {
+    0% {
+        transform: scale(1) translate(0, 0);
+    }
+
+    100% {
+        transform: scale(1.05) translate(-1%, -1%);
+    }
+}
+/* ==== DESKTOP (>= 1024px) ==== */
+@media (min-width: 1024px) {
+    .caption {
+        width: 500px;
+        font-size: 32px;
+        bottom: 60%;
+        left: 16%;
+    }
+
+    .is-web {
+        display: block;
+    }
+
+    .is-mobile {
+        display: none;
+    }
+    .is-tablet {
+        display: none;
+    }
+}
+
+/* ==== TABLET (768px - 1023px) ==== */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .caption {
+        font-size: 22px;
+        top: 16%;
+        left: 4%;
+    }
+
+    .is-web {
+        display: none;
+    }
+
+    .is-mobile {
+        display: none;
+    }
+    .is-tablet {
+        display: block;
+    }
+}
+
+/* ==== MOBILE (< 768px) ==== */
+@media (max-width: 767px) {
+    .caption {
+        font-size: 22px;
+        top: 20%;
+        left: 4%;
+    }
+
+    .animated-slider {
+        height: 480px;
+        margin-top: 60px;
+    }
+
+    .is-web {
+        display: none;
+    }
+    .is-tablet {
+        display: none;
+    }
+    .is-mobile {
+        display: block;
+    }
+}
