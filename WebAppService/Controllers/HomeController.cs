@@ -153,21 +153,21 @@ namespace clinic_website.Controllers
                 {
                     c.ThuTuTg,
                     c.TenGoi,
-                    link = "/Service/ServiceList/?cb=" + c.TenGoi + "&dm=1",
+                    link = "/chuyen-khoa/?cb=" + c.TenGoi + "&dm=1",
                 }).OrderBy(c => c.ThuTuTg).ToList();
 
                 var lstDichVuDacBiet = db.WebDichVus.Where(c => c.IsBaiVietNoiBat == true).Select(c => new
                 {
                     c.IdDichVu,
                     TenGoi = c.TieuDeBaiViet,
-                    link = "/Service/ServiceDetail/" + c.IdDichVu,
+                    link = "/dich-vu/" + c.SeoUrl,
                 }).ToList();
 
                 var lstBaiViet = dbLoad.Where(c => c.LoaiDanhMuc == "Danh mục nhóm bài viết").Select(c => new
                 {
                     c.ThuTuTg,
                     c.TenGoi,
-                    link = "/Blog/BlogList/?cb=" + c.TenGoi,
+                    link = "/bai-viet/?cb=" + c.TenGoi,
                 }).OrderBy(c => c.ThuTuTg).ToList();
 
                 return new JsonResult(new

@@ -386,6 +386,12 @@ function fm_editData(e, value, row, index) {
         '</div>'
     ].join('');
 };
+
+function fm_MoTaNgan(e, value, row, index) {
+    if (!value.moTaNgan) return '';
+    return `<div  data-bs-toggle="tooltip" data-bs-placement="top" class="text-limit-2" title="${value.moTaNgan.replace(/"/g, '&quot;')}">${value.moTaNgan}</div>`;
+}
+
 function toSlug(str) {
     str = str.toLowerCase();
     str = str.normalize('NFD').replace(/[\u0300-\u036f]/g, "");

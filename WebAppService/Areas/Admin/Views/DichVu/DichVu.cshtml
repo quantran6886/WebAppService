@@ -32,15 +32,16 @@
                            data-toggle="table"
                            data-flat="true"
                            data-search="true"
+                           data-height="550"
                            data-pagination="true"
                            data-page-size="10"
-                           data-page-list="[5, 10, 15, all]" data-url="">
+                           data-page-list="[20, 25, 50, all]">
                         <thead>
                             <tr>
                                 <th data-formatter="fm_editData" data-sortable="true" data-width="5"  class="text-center">Chức năng</th>
                                 <th data-field="urlImage" data-width="8" data-formatter="fm_Image" data-sortable="true">Ảnh</th>
                                 <th data-field="tieuDeBaiViet" data-sortable="true">Tên tiêu đề</th>
-                                <th data-field="moTaNgan" data-sortable="true">Mô tả ngắn</th>
+                                <th data-field="moTaNgan" data-sortable="true" data-formatter="fm_MoTaNgan">Mô tả ngắn</th>
                                 <th data-field="seoUrl" data-sortable="true">Seo Url</th>
                                 <th data-field="cbLoaiBaiDang" data-sortable="true" data-width="8">Phân loại dịch vụ</th>
                                 <th data-field="cbNhomBaiViet" data-sortable="true">Nhóm dịch vụ</th>

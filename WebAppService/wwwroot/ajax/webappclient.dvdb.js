@@ -365,7 +365,7 @@ $(document).on('change', '.isTrangchuCheckbox', function () {
 function fm_Image(e, value, row, index) {
     if (value.urlImage != "") {
         return [
-            '<div style="width:40px;justify-self: center;" class="">',
+            '<div style="width:100px;justify-self: center;" class="">',
             '<a class="image-popup-vertical-fit" target="_blank" href="' + value.urlImage + '">',
             ' <img class="d-block position-relative w-100" src="' + value.urlImage + '" width="100" />',
             ' </a>',
@@ -406,7 +406,10 @@ function fm_SeoTittile(e, value, row, index) {
     </div>
     `;
 }
-
+function fm_MoTaNgan(e, value, row, index) {
+    if (!value.moTaNgan) return '';
+    return `<div  data-bs-toggle="tooltip" data-bs-placement="top" class="text-limit-2" title="${value.moTaNgan.replace(/"/g, '&quot;')}">${value.moTaNgan}</div>`;
+}
 function fm_editBVNB(e, value, row, index) {
     if (value.isBaiVietNoiBat == true) {
         return [

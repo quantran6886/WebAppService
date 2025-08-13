@@ -13,7 +13,7 @@
             });
         }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/dot/doT.min.js"></script>
+    <script src="~/web/assets/js/dot.js"></script>
     <script>
         var myClient = {
             currentPage: 1,
@@ -292,13 +292,13 @@
          <article class="col-lg-4 col-6 mb-4 psi-1 wow fadeIn animated" style="visibility: visible; animation-name: fadeIn;">
             <div class="background-white p-0 pb-10 mb-5 box-shadow-img card-hover card-active">
                 <div class="post-thumb d-flex mb-15 img-hover-scale">
-                    <a href="/Service/ServiceDetail/{{=it.newsList[i].idDichVu}}">
+                    <a href="/dich-vu/{{=it.newsList[i].seoUrl}}">
                         <img src="{{=it.newsList[i].urlImage}}" class="img-fluid img-respone-service" alt="" />
                     </a>
                 </div>
                 <div class="pl-10 pr-10">
                     <div class="post-title mb-5 text-limit-c-row">
-                        <a href="/Service/ServiceDetail/{{=it.newsList[i].idDichVu}}" class="text-c-3">{{=it.newsList[i].tieuDeBaiViet}}</a>
+                        <a href="/dich-vu/{{=it.newsList[i].seoUrl}}" class="text-c-3">{{=it.newsList[i].tieuDeBaiViet}}</a>
                     </div>
                     <div class="">
                         <p class="post-exerpt text-c-2 text-limit-c-row">{{=it.newsList[i].moTaNgan}}</p>

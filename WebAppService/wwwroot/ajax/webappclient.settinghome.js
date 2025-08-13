@@ -1,1 +1,86 @@
-﻿function _0xf71a(_0x31fd0c, _0x5068f5) { var _0x229227 = _0x2292(); return _0xf71a = function (_0xf71a6e, _0x298624) { _0xf71a6e = _0xf71a6e - 0x9a; var _0x33b9f4 = _0x229227[_0xf71a6e]; return _0x33b9f4; }, _0xf71a(_0x31fd0c, _0x5068f5); } function _0x2292() { var _0x111f4a = ['style', '.slicknav_menu', '<li><a\x20class=\x22sub-menu-lst\x22\x20href=\x22', 'lstChuyenKhoa', 'GET', '\x22\x20style=\x22font-weight:\x20500\x20!important;\x20font-family:\x20Inter;\x22>', '3560940DUKbok', '.slicknav_nav\x20>\x20li:contains(\x22Dịch\x20Vụ\x20Đặc\x20Biệt\x22)\x20ul.sub-menu', '5012124Icdsuv', 'html', 'cookie', 'forEach', '8BvQpXn', '#navigation', '<li><a\x20class=\x22sub-menu-lst-mb\x22\x20href=\x22', '6775118hEzVUZ', 'json', 'click', 'status', 'fcTranslate', '.main-header-navigation', ';\x20domain=', '#menuChuyenKhoa', '#navigation\x20ul', 'lang', 'removeAttr', '<li><a\x20class=\x22sub-menu-lst\x22\x20href=\x22/Service/ServiceList\x22\x20\x20style=\x22font-weight:\x20500\x20!important;\x20font-family:\x20Inter;\x22>Tất\x20cả</a></li>', '5968035XTPDdY', 'googtrans=/', 'hide', 'ready', '<li><a\x20class=\x22sub-menu-lst\x22\x20href=\x22/DichVuDacBiet/DichVuDacBiet\x22\x20\x20style=\x22font-weight:\x20500\x20!important;\x20font-family:\x20Inter;\x22>Tất\x20cả</a></li>', '4JEznVZ', '.slicknav_nav\x20>\x20li:contains(\x22Chuyên\x20Khoa\x22)\x20ul.sub-menu', 'googtrans=;\x20expires=Thu,\x2001\x20Jan\x201970\x2000:00:00\x20UTC;\x20domain=', '10xvBbAB', '11zmWszp', 'init', 'ajax', 'tenGoi', '6vgxLvi', 'link', '#menuBaiViet', ';\x20path=/;', '956848uGABZp', 'data', '4143528NiSLRa', 'location', 'hostname', 'lstDichVuDacBiet', 'show', 'googtrans=;\x20expires=Thu,\x2001\x20Jan\x201970\x2000:00:00\x20UTC;\x20path=/;', '</a></li>', 'bindEvents', '441120pLttwk', 'LoadMenu']; _0x2292 = function () { return _0x111f4a; }; return _0x2292(); } var _0x5455f9 = _0xf71a; (function (_0x55af4f, _0x19fa9d) { var _0x5a0c7d = _0xf71a, _0x36fcb3 = _0x55af4f(); while (!![]) { try { var _0x1b814e = -parseInt(_0x5a0c7d(0xab)) / 0x1 * (parseInt(_0x5a0c7d(0xcd)) / 0x2) + parseInt(_0x5a0c7d(0xb5)) / 0x3 + parseInt(_0x5a0c7d(0xa1)) / 0x4 * (parseInt(_0x5a0c7d(0xd0)) / 0x5) + -parseInt(_0x5a0c7d(0x9d)) / 0x6 * (parseInt(_0x5a0c7d(0xbc)) / 0x7) + -parseInt(_0x5a0c7d(0xb9)) / 0x8 * (-parseInt(_0x5a0c7d(0xc8)) / 0x9) + parseInt(_0x5a0c7d(0xb3)) / 0xa * (-parseInt(_0x5a0c7d(0xd1)) / 0xb) + parseInt(_0x5a0c7d(0xa3)) / 0xc; if (_0x1b814e === _0x19fa9d) break; else _0x36fcb3['push'](_0x36fcb3['shift']()); } catch (_0x20b8b5) { _0x36fcb3['push'](_0x36fcb3['shift']()); } } }(_0x2292, 0xe8425)); var mySettingHome = { 'init': function () { var _0x597a61 = _0xf71a; this[_0x597a61(0xac)](), this[_0x597a61(0xaa)](); }, 'LoadMenu': function () { var _0x3f5a1f = _0xf71a; $[_0x3f5a1f(0x9b)]({ 'url': '/Home/LoadMenu', 'type': _0x3f5a1f(0xb1), 'dataType': _0x3f5a1f(0xbd), 'success': function (_0x20411b) { var _0x1c548b = _0x3f5a1f; if (_0x20411b[_0x1c548b(0xbf)] === !![]) { var _0x6f02b9 = '', _0x5e46bb = _0x1c548b(0xc7), _0x2e7fd7 = '', _0x424a82 = _0x1c548b(0xcc), _0x45e735 = '', _0x1f05bc = '<li><a\x20class=\x22sub-menu-lst\x22\x20href=\x22/Blog/Blog\x22\x20\x20style=\x22font-weight:\x20500\x20!important;\x20font-family:\x20Inter;\x22>Tất\x20cả</a></li>'; _0x20411b[_0x1c548b(0xb0)][_0x1c548b(0xb8)](function (_0x3f0dd4) { var _0x5a766e = _0x1c548b; _0x6f02b9 += _0x5a766e(0xaf) + _0x3f0dd4[_0x5a766e(0x9e)] + '\x22>' + _0x3f0dd4['tenGoi'] + '</a></li>', _0x5e46bb += _0x5a766e(0xbb) + _0x3f0dd4[_0x5a766e(0x9e)] + '\x22\x20style=\x22font-weight:\x20500\x20!important;\x20font-family:\x20Inter;\x22>' + _0x3f0dd4[_0x5a766e(0x9c)] + _0x5a766e(0xa9); }), _0x20411b[_0x1c548b(0xa6)][_0x1c548b(0xb8)](function (_0x14d480) { var _0x54dd0e = _0x1c548b; _0x2e7fd7 += '<li><a\x20class=\x22sub-menu-lst\x22\x20href=\x22' + _0x14d480[_0x54dd0e(0x9e)] + '\x22>' + _0x14d480[_0x54dd0e(0x9c)] + _0x54dd0e(0xa9), _0x424a82 += _0x54dd0e(0xbb) + _0x14d480[_0x54dd0e(0x9e)] + _0x54dd0e(0xb2) + _0x14d480[_0x54dd0e(0x9c)] + _0x54dd0e(0xa9); }), _0x20411b['lstBaiViet'][_0x1c548b(0xb8)](function (_0x5037ee) { var _0x3c632c = _0x1c548b; _0x45e735 += _0x3c632c(0xaf) + _0x5037ee['link'] + '\x22>' + _0x5037ee[_0x3c632c(0x9c)] + _0x3c632c(0xa9), _0x1f05bc += '<li><a\x20class=\x22sub-menu-lst-mb\x22\x20href=\x22' + _0x5037ee[_0x3c632c(0x9e)] + _0x3c632c(0xb2) + _0x5037ee[_0x3c632c(0x9c)] + _0x3c632c(0xa9); }), $(_0x1c548b(0xc3))[_0x1c548b(0xb6)](_0x6f02b9), $('#menuDichVuDacBiet')['html'](_0x2e7fd7), $(_0x1c548b(0x9f))[_0x1c548b(0xb6)](_0x45e735), $(_0x1c548b(0xce))[_0x1c548b(0xb6)](_0x5e46bb), $(_0x1c548b(0xb4))[_0x1c548b(0xb6)](_0x424a82), $('.slicknav_nav\x20>\x20li:contains(\x22Tin\x20Tức\x22)\x20ul.sub-menu')[_0x1c548b(0xb6)](_0x1f05bc), reInitSlickNav(); } }, 'error': function () { console['warn']('Lỗi\x20khi\x20tải\x20menu'); } }); }, 'bindEvents': function () { var _0x58b1c9 = _0xf71a; $('.translate-btn')['on'](_0x58b1c9(0xbe), function () { var _0x4b2f7e = _0x58b1c9, _0x26a970 = $(this)[_0x4b2f7e(0xa2)](_0x4b2f7e(0xc5)); mySettingHome[_0x4b2f7e(0xc0)](_0x26a970); }); }, 'fcTranslate': function (_0x3dbe87) { var _0x452c79 = _0xf71a, _0xee2772 = 'vi', _0x18f825 = _0x3dbe87; _0x18f825 === 'vi' ? (document['cookie'] = _0x452c79(0xa8), document['cookie'] = _0x452c79(0xcf) + window[_0x452c79(0xa4)][_0x452c79(0xa5)] + _0x452c79(0xa0), setTimeout(function () { location['reload'](); }, 0x12c)) : (document[_0x452c79(0xb7)] = _0x452c79(0xc9) + _0xee2772 + '/' + _0x18f825 + _0x452c79(0xa0), document[_0x452c79(0xb7)] = 'googtrans=/' + _0xee2772 + '/' + _0x18f825 + _0x452c79(0xc2) + window['location'][_0x452c79(0xa5)] + _0x452c79(0xa0), setTimeout(function () { location['reload'](); }, 0x12c)); } }; $(document)[_0x5455f9(0xcb)](function () { var _0x40a0c8 = _0x5455f9; mySettingHome[_0x40a0c8(0x9a)](); }); function reInitSlickNav() { var _0x62c418 = _0x5455f9; $(_0x62c418(0xae))[_0x62c418(0xca)](), $(_0x62c418(0xba))['removeAttr'](_0x62c418(0xad))[_0x62c418(0xa7)](), $(_0x62c418(0xc4))[_0x62c418(0xc6)](_0x62c418(0xad)), $(_0x62c418(0xba))['slicknav']({ 'label': '', 'prependTo': _0x62c418(0xc1) }), $(_0x62c418(0xae))[_0x62c418(0xa7)](); }
+﻿var mySettingHome = {
+    init: function () {
+        this.LoadMenu();
+        this.bindEvents();
+    },
+
+    LoadMenu: function () {
+        $.ajax({
+            url: '/Home/LoadMenu',
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                if (data.status === true) {
+                    var htmlChuyenKhoa = '';
+                    var htmlChuyenKhoamoblie = '<li><a class="sub-menu-lst" href="/chuyen-khoa"  style="font-weight: 500 !important; font-family: Inter;">Tất cả</a></li>';
+                    var htmlDichVu = '';
+                    var htmlDichVumoblie = '<li><a class="sub-menu-lst" href="/dich-vu-dac-biet"  style="font-weight: 500 !important; font-family: Inter;">Tất cả</a></li>';
+                    var htmlBaiViet = '';
+                    var htmlBaiVietmoblie = '<li><a class="sub-menu-lst" href="/tin-tuc"  style="font-weight: 500 !important; font-family: Inter;">Tất cả</a></li>';
+                    data.lstChuyenKhoa.forEach(function (item) {
+                        htmlChuyenKhoa += '<li><a class="sub-menu-lst" href="' + item.link + '">' + item.tenGoi + '</a></li>';
+                        htmlChuyenKhoamoblie += '<li><a class="sub-menu-lst-mb" href="' + item.link + '" style="font-weight: 500 !important; font-family: Inter;">' + item.tenGoi + '</a></li>';
+                    });
+                    data.lstDichVuDacBiet.forEach(function (item) {
+                        htmlDichVu += '<li><a class="sub-menu-lst" href="' + item.link + '">' + item.tenGoi + '</a></li>';
+                        htmlDichVumoblie += '<li><a class="sub-menu-lst-mb" href="' + item.link + '" style="font-weight: 500 !important; font-family: Inter;">' + item.tenGoi + '</a></li>';
+                    });
+                    data.lstBaiViet.forEach(function (item) {
+                        htmlBaiViet += '<li><a class="sub-menu-lst" href="' + item.link + '">' + item.tenGoi + '</a></li>';
+                        htmlBaiVietmoblie += '<li><a class="sub-menu-lst-mb" href="' + item.link + '" style="font-weight: 500 !important; font-family: Inter;">' + item.tenGoi + '</a></li>';
+                    });
+                    $('#menuChuyenKhoa').html(htmlChuyenKhoa);
+                    $('#menuDichVuDacBiet').html(htmlDichVu);
+                    $('#menuBaiViet').html(htmlBaiViet);
+                    $('.slicknav_nav > li:contains("Chuyên Khoa") ul.sub-menu').html(htmlChuyenKhoamoblie);
+                    $('.slicknav_nav > li:contains("Dịch Vụ Đặc Biệt") ul.sub-menu').html(htmlDichVumoblie);
+                    $('.slicknav_nav > li:contains("Tin Tức") ul.sub-menu').html(htmlBaiVietmoblie);
+                    reInitSlickNav();
+                }
+            },
+            error: function () {
+                console.warn("Lỗi khi tải menu");
+            }
+        });
+    },
+
+    bindEvents: function () {
+        $('.translate-btn').on('click', function () {
+            var lang = $(this).data('lang');
+            mySettingHome.fcTranslate(lang);
+        });
+    },
+
+    fcTranslate: function (lang) {
+        var fromLang = 'vi';
+        var toLang = lang;
+
+        if (toLang === 'vi') {
+            document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=" + window.location.hostname + "; path=/;";
+            setTimeout(function () { location.reload(); }, 300);
+        } else {
+            document.cookie = "googtrans=/" + fromLang + "/" + toLang + "; path=/;";
+            document.cookie = "googtrans=/" + fromLang + "/" + toLang + "; domain=" + window.location.hostname + "; path=/;";
+            setTimeout(function () { location.reload(); }, 300);
+        }
+    }
+
+};
+
+$(document).ready(function () {
+    mySettingHome.init();
+});
+function reInitSlickNav() {
+    // Xóa slicknav cũ nếu có
+    $('.slicknav_menu').hide();
+    $('#navigation').removeAttr('style').show();
+    $('#navigation ul').removeAttr('style');
+
+    // Gọi lại slicknav
+    $('#navigation').slicknav({
+        label: '',
+        prependTo: ".main-header-navigation"
+    });
+    $('.slicknav_menu').show();
+}

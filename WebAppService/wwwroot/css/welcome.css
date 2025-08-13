@@ -13,7 +13,7 @@
     z-index: 9999;
     display: grid;
     place-items: center;
-    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.02), transparent 40%), linear-gradient(135deg, #3d3e42, #8c8c8c7a);
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.02), transparent 40%), linear-gradient(135deg, #047278, #8c8c8c7a);
     overflow: hidden;
     animation: fadeIn .5s ease both;
 }

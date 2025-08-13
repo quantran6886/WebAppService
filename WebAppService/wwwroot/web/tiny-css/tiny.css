@@ -124,6 +124,17 @@
         #tiny-css h3 {
             font-size: 1.1em;
         }
+        #tiny-css h4 {
+            font-size: 0.9em;
+        }
+
+        #tiny-css h5 {
+            font-size: 0.8em;
+        }
+
+        #tiny-css h6 {
+            font-size: 0.7em;
+        }
         #tiny-css blockquote {
             font-size: 0.95em;
         }
@@ -146,6 +157,17 @@
         #tiny-css h3 {
             font-size: 1.4em;
         }
+        #tiny-css h4 {
+            font-size: 1.2em;
+        }
+
+        #tiny-css h5 {
+            font-size: 1em;
+        }
+
+        #tiny-css h6 {
+            font-size: 0.9em;
+        }
 }
 
 @media screen and (min-width: 1024px) {
@@ -155,5 +177,20 @@
 
         #tiny-css h1 {
             font-size: 2em;
+        }
+        #tiny-css h2 {
+            font-size: 1.7em;
+        }
+        #tiny-css h3 {
+            font-size: 1.4em;
+        }
+        #tiny-css h4 {
+            font-size: 1.2em;
+        }
+        #tiny-css h5 {
+            font-size: 1em;
+        }
+        #tiny-css h6 {
+            font-size: 0.9em;
         }
 }

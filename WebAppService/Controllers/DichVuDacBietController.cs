@@ -44,6 +44,7 @@ namespace WebAppService.Controllers
                     x.IsBaiVietNoiBat,
                     x.TieuDeNgan,
                     x.ThoiGianTao,
+                    x.SeoUrl,
                 }).Skip((page - 1) * pageSize)
                     .Take(pageSize)
                     .ToList();

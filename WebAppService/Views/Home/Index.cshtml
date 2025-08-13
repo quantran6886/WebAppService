@@ -40,71 +40,11 @@
             init: function () {
                 myClient.LoadData();
             },
-                @* myClient.LoadData2(); *@
-                       @* LoadData: function () {
-                   $.ajax({
-                        url: '/Home/LoadDataBefore',
-                       type: "GET",
-                       dataType: "json",
-                       success: function (data) {
-                           if (data.status == true) {
-                               var lstData = data.viewModel;
-                               // if(lstData.record != null)
-                               // {
-                               //     $('#_layout1').html(lstData.record.noiDung);
-                               // }
-                               // if(lstData.record2 != null)
-                               // {
-                               //     $('#_layout2').html(lstData.record2.noiDung);
-                               // }
-                                if (lstData.listData != null) {
-                                    var template = doT.template($("#news-template").html());
-                                    $("#sp_sv").html(template({ newsList: lstData.listData }));
-                                }
-                           }
-                       }
-                   });
-               },
-               LoadData2: function () {
-                    $.ajax({
-                        url: '/Home/LoadDataAfter',
-                        type: "GET",
-                        dataType: "json",
-                        success: function (data) {
-                            if (data.status == true) {
-                                 var lstData = data.viewModel;
-                                 if (lstData.record3.length > 0) {
-                                    var template = doT.template($("#news-templatem").html());
-                                    $("#list_bai_viet0").html(template({ newsListm: lstData.record3 }));
-                                }
-                                if (lstData.record4.length > 0) {
-                                    var template = doT.template($("#news-templatex").html());
-                                    $("#original-articles").html(template({ newsListx: lstData.record4 }));
-                                }
-                                 if (lstData.record5.length > 0) {
-                                    var template = doT.template($("#news-templatevm").html());
-                                    $("#list_bai_viet1").html(template({ newsListvm: lstData.record5 }));
-                                }
-                                if (lstData.record6.length > 0) {
-                                    var template = doT.template($("#news-templatevx").html());
-                                    $("#original-article1").html(template({ newsListvx: lstData.record6 }));
-                                }
-                                $('.play-video').magnificPopup({
-                                       type: "iframe",
-                                        mainClass: "mfp-fade",
-                                        removalDelay: 160,
-                                        preloader: true,
-                                        fixedContentPos: false
-                                });
-                            }
-                        }
-                    });
-                }, *@
-
                     LoadData: async function () {
                         try {
                             var response = await axios.get('/api/get-data-home');
                             if (response.status) {
+
                                 // ====== Xử lý listBaoChi ======
                                 if (response.data.listBaoChi.length > 0) {
                                     var baiNoiBat = response.data.listBaoChi.find(item => item.isBaiVietNoiBat === true)
@@ -126,7 +66,6 @@
                                     var template1 = doT.template($("#news-templatevm").html());
                                     $("#list_bai_viet1").html(template1({ newsListvm: firstVideo }));
                                 }
-
                                 if (response.data.listVideo.length > 1) {
                                     var remainingVideos = response.data.listVideo.slice(1);
                                     var template2 = doT.template($("#news-templatevx").html());
@@ -153,12 +92,12 @@
                                     var mayTinh = data.filter(x => x.cbGiaoDien === "Máy tính");
                                     var mayTinhBang = data.filter(x => x.cbGiaoDien === "Máy tính bảng");
                                     var dienThoai = data.filter(x => x.cbGiaoDien === "Điện thoại");
+                                    var layout2 = data.filter(x => x.cbGiaoDien === "2");
                                     var htmlLayout = '';
                                     htmlLayout += renderSliderHTML('is-web', mayTinh);
                                     htmlLayout += renderSliderHTML('is-tablet', mayTinhBang);
                                     htmlLayout += renderSliderHTML('is-mobile', dienThoai);
                                     $('#_layout1').html(htmlLayout);
-                                    // 2. Khởi tạo slider sau khi DOM đã gắn vào
                                     function initSlider(selector) {
                                         const slides = document.querySelectorAll(selector);
                                         if (!slides || slides.length === 0) {
@@ -194,7 +133,6 @@
 
                                         setInterval(nextSlide, 6000);
                                     }
-                                    // 3. Gọi initSlider theo kích thước màn hình
                                     if (window.matchMedia("(min-width: 768px) and (max-width: 1023px)").matches) {
                                         initSlider('.is-tablet .slide');
                                     } else if (window.matchMedia("(min-width: 1024px)").matches) {
@@ -202,7 +140,19 @@
                                     } else {
                                         initSlider('.is-mobile .slide');
                                     }
+                                 $('#_layout2').html(layout2[0].noiDung);
                                 }
+                                 if (response.data.listDichVu.length != null) {
+                                    var template = doT.template($("#news-template").html());
+                                    $("#sp_sv").html(template({ newsList: response.data.listDichVu }));
+                                }
+                                 $('.play-video').magnificPopup({
+                                       type: "iframe",
+                                        mainClass: "mfp-fade",
+                                        removalDelay: 160,
+                                        preloader: true,
+                                        fixedContentPos: false
+                                });
                             }
                         } catch (error) {
                             console.error("Lỗi khi gọi API:", error);
@@ -250,62 +200,7 @@
         </div>
     </div>
 </div>
-@* <div id="_layout2"></div> *@
-<div class="entry-header entry-header-2 mb-0 text-center" id="LayoutHome2">
-    <div class="position-relative layout-home-white">
-        <div class="container p-0 mt-5">
-            <div class="author-bio border-radius-10 p-30 mtauthordv mt-sm-60 mb-0 d-flex flex-column flex-md-row"
-                 id="author-bio_bt">
-                <div class="t_mb d-block d-sm-none text-left">Về chúng tôi</div>
-                <div class="t_mb2 d-block d-sm-none text-left">Hành Trình Vì Sức Khỏe Cộng Đồng</div>
-                <div class="img_avt2 col-sm-5 mb-30 text-center d-flex">
-                    <div class="avatar2" style="width:453.98px;height:443.88px;z-index:1">
-                        <a href="#"><img src="/root/group 4.png" alt=""></a>
-                    </div>
-                    <img src="~/src/image_figma/Vector.png" class="dot-left" alt="dot-left" />
-                </div>
-                <div class="title_sv col-sm-7 author-info d-flex flex-column justify-content-center d-none d-sm-block">
-                    <span class="no-arrow text-c-0 d-none d-sm-block">Sun Medical</span>
-                    <h3 class="d-none d-sm-block">
-                        <span class="vcard author">
-                            <span class="fn">
-                                <a href="#" title="" rel="author" class="txt-layout-2">
-                                    Dịch vụ đặc biệt tại Sun
-                                    Medical
-                                </a>
-                            </span>
-                        </span>
-                    </h3>
-                    <div class="author-info-small-text d-none d-sm-block">
-                        Tại Sun Medical, chúng tôi không ngừng mở rộng và nâng tầm dịch vụ nhằm đáp ứng nhu cầu chăm sóc
-                        sức khỏe toàn diện và chuyên sâu cho từng khách hàng. Bên cạnh các dịch vụ khám chữa bệnh thông
-                        thường, Sun Medical đặc biệt chú trọng phát triển các lĩnh vực y tế cao cấp như nha khoa thẩm
-                        mỹ, da liễu thẩm mỹ và lưu trữ tế bào gốc – những dịch vụ tiên tiến kết hợp giữa công nghệ hiện
-                        đại và tiêu chuẩn quốc tế.
-                        Với đội ngũ chuyên gia giàu kinh nghiệm cùng hệ thống trang thiết bị tiên tiến, các dịch vụ đặc
-                        biệt tại Sun Medical không chỉ mang lại hiệu quả điều trị vượt trội mà còn đảm bảo tính cá nhân
-                        hóa cao, phù hợp với từng thể trạng và nhu cầu riêng biệt của khách hàng. Chúng tôi tự hào là
-                        điểm đến đáng tin cậy cho những ai đang tìm kiếm giải pháp chăm sóc sức khỏe kết hợp giữa y học
-                        hiện đại và yếu tố thẩm mỹ tinh tế.
-                    </div>
-                    <div class="author-info-small-text d-block d-sm-none author-info-mobile">
-                        Từ những ngày đầu thành lập, chúng tôi đã xác định sứ mệnh cốt lõi là phục vụ và chăm sóc sức
-                        khỏe cộng đồng một cách toàn diện, tận tâm và bền vững. Không chỉ là nơi khám chữa bệnh, bệnh
-                        viện còn là điểm tựa tinh thần – nơi bệnh nhân và người nhà tìm thấy sự an tâm và hy vọng.
-                        Chúng tôi tự hào với đội ngũ y bác sĩ chuyên môn cao, giàu y đức cùng hệ thống trang thiết bị
-                        hiện đại, luôn sẵn sàng ứng dụng các phương pháp điều trị tiên tiến. Mỗi dịch vụ đều được thực
-                        hiện với tinh thần tận tụy và lấy người bệnh làm trung tâm.
-                    </div>
-                    <div class="btn_sv mt-20">
-                        <a href="/about-us" class="main-menu d-lg-inline btn-orrange">Xem thêm</a>
-                    </div>
-
-                    <img src="~/src/image_figma/Vector_1.png" class="dot-right" alt="dot-right" />
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<div id="_layout2"></div>
 <!-- Danh sách dịch vụ -->
 <div class="service-card-y" style="background:#F5FFFFCC">
     <div class="container px-30 py-2 container-mobile">
@@ -652,7 +547,7 @@
                     <span class="corner tl"></span>
                     <span class="corner br"></span>
                     <div class="post-thumb d-flex mb-15 img-hover-scale justify-content-center">
-                        <a href="/Service/ServiceDetail/{{=it.newsList[i].idDichVu}}" class="service-img-wrapper">
+                        <a href="/dich-vu/{{=it.newsList[i].seoUrl}}" class="service-img-wrapper">
                             <img class="border-radius-15" src="{{=it.newsList[i].tieuDeNgan || '/root/6388000.png'}}" width="50" height="50" alt="">
                         </a>
                     </div>
@@ -673,19 +568,19 @@
             <article class="col-lg-12 wow fadeIn  animated" style="visibility: visible; animation-name: fadeIn;">
                     <div class="border-radius-10 p-0 mb-30">
                         <div class="post-thumb d-flex mb-15 border-radius-5 img-hover-scale">
-                            <a href="/Blog/BlogDetail/{{=it.newsListm[i].idBaiViet}}">
+                            <a href="/chi-tiet-bai-viet/{{=it.newsListm[i].seoUrl}}">
                                 <img class="border-radius-5" src="{{=it.newsListm[i].urlImage || '/root/6388000.png'}}" alt="">
                             </a>
                         </div>
                         <div class="pl-10 pr-10">
                             <div class="post-title mb-10 text-limit-2-row">
-                                <a href="/Blog/BlogDetail/{{=it.newsListm[i].idBaiViet}}" class="text-c-3">{{=it.newsListm[i].tieuDeBaiViet}}</a>
+                                <a href="/chi-tiet-bai-viet/{{=it.newsListm[i].seoUrl}}" class="text-c-3">{{=it.newsListm[i].tieuDeBaiViet}}</a>
                             </div>
                             <div class="">
                                 <p class="post-exerpt text-c-2 text-limit-3-row">{{=it.newsListm[i].moTaNgan}}</p>
                             </div>
                             <div>
-                                <a href="#" class="read-more">Xem thêm ></a>
+                                <a href="/chi-tiet-bai-viet/{{=it.newsListm[i].seoUrl}}" class="read-more">Xem thêm ></a>
                             </div>
                         </div>
                     </div>
@@ -697,19 +592,19 @@
          <article class="swiper-slide col-lg-4 col-md-6 col-sm-12 wow fadeIn  animated  p-1" style="visibility: visible; animation-name: fadeIn;">
             <div class="border-radius-10 p-0 mb-30">
                 <div class="post-thumb d-flex mb-15 border-radius-5 img-hover-scale">
-                    <a href="/Blog/BlogDetail/{{=it.newsListx[i].idBaiViet}}">
+                    <a href="/chi-tiet-bai-viet/{{=it.newsListx[i].seoUrl}}">
                         <img class="border-radius-5 bcsm-image" src="{{=it.newsListx[i].urlImage || '/root/6388000.png'}}" alt="">
                     </a>
                 </div>
                 <div class="pl-10 pr-10">
                     <div class="post-title mb-10 text-limit-2-row">
-                        <a href="/Blog/BlogDetail/{{=it.newsListx[i].idBaiViet}}" class="text-c-3">{{=it.newsListx[i].tieuDeBaiViet}}</a>
+                        <a href="/chi-tiet-bai-viet/{{=it.newsListx[i].seoUrl}}" class="text-c-3">{{=it.newsListx[i].tieuDeBaiViet}}</a>
                     </div>
                     <div class="">
                         <p class="post-exerpt text-c-2 text-limit-2-row">{{=it.newsListx[i].moTaNgan}}</p>
                     </div>
                     <div>
-                        <a href="#" class="read-more">Xem thêm</a>
+                        <a href="/chi-tiet-bai-viet/{{=it.newsListx[i].seoUrl}}" class="read-more">Xem thêm</a>
                     </div>
                 </div>
             </div>

@@ -12,7 +12,9 @@
         margin-right: 10px;
     }
 </style>
+<link rel="stylesheet" href="~/assets/libs/magnific-popup/dist/magnific-popup.css">
 @section Scripts {
+    <script src="~/assets/libs/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
     <script src="~/ajax/webappservice.faqs.js?v=1.2"></script>
 }
 
@@ -26,15 +28,17 @@
                 <div class="card-body p-2 pt-0">
                     <table id="tableCauHoi"
                            data-toggle="table"
+                           data-flat="true"
+                           data-search="true"
+                           data-height="550"
                            data-pagination="true"
                            data-page-size="10"
-                           data-page-list="[5, 10, 15, all]"
-                           data-search="true">
+                           data-page-list="[20, 25, 50, all]">
                         <thead>
                             <tr>
                                 <th data-field="soThuTu" data-sortable="true">Thứ tự</th>
                                 <th data-field="cauHoi" data-sortable="true">Câu hỏi</th>
-                                <th data-field="cauTraLoi" data-sortable="true">Câu trả lời</th>
+                                <th data-field="cauTraLoi" data-sortable="true" data-formatter="fm_cauTraLoi">Câu trả lời</th>
                                 <th data-field="ghiChu" data-sortable="true">Ghi chú</th>
                             </tr>
                         </thead>

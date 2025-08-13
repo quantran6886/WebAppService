@@ -27,6 +27,7 @@ namespace clinic_website.Controllers
                     c.SapXep,
                     c.CbGiaoDien,
                     c.TxtCard1,
+                    c.NoiDung,
                 }).OrderBy(c=> c.SapXep).ToList();
 
                 var ListVideo = db.WebVideos.AsNoTracking().Where(x => x.IsCongKhai == true)
@@ -37,18 +38,20 @@ namespace clinic_website.Controllers
                         c.MoTaNgan,
                         c.SeoUrl,
                         c.UrlImage,
+                        c.UrlVideo,
                         c.IsVideoNoiBat
                     }).Take(3).OrderBy(c=> c.IsVideoNoiBat == true).Take(3).ToList();
 
-                var ListDichVu = db.WebDichVus.AsNoTracking().Where(x => x.IsCongKhai == true && x.IsBaiVietNoiBat == true).Select(c => new
+                var ListDichVu = db.WebDichVus.AsNoTracking().Where(x => x.IsCongKhai == true && x.IsBaiVietNoiBat == true &&  !string.IsNullOrEmpty(x.TieuDeNgan) && x.SeoTittile == "1" ).Select(c => new
                 {
                     c.TieuDeBaiViet,
                     c.IdDichVu,
                     c.SeoUrl,
                     c.CbNhomBaiViet,
                     c.CbLoaiBaiDang,
-                    c.MoTaNgan
-                }).ToList();
+                    c.MoTaNgan,
+                    c.TieuDeNgan,
+                }).Take(20).ToList();
 
                 var ListBaoChi = db.WebTinTucBaiViets.AsNoTracking().Where(x => x.IsCongKhai == true && x.CbLoaiBaiDang == "Báo chí")
                     .Select(c => new

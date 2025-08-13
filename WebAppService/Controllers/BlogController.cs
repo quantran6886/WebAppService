@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebAppService.Areas.Admin._Helper;
 using WebAppService.Models;
 
@@ -42,13 +43,13 @@ namespace clinic_website.Controllers
                 return BadRequest("Không tìm thấy thông tin.");
             }
 
-            var record = db.WebTinTucBaiViets.FirstOrDefault(c => c.SeoUrl.ToString() == id);
+            var record = db.WebTinTucBaiViets.AsNoTracking().FirstOrDefault(c => c.SeoUrl.ToString() == id);
             if (record == null)
             {
                 return NotFound("Không tìm thấy dịch vụ.");
             }
 
-            var listData = db.WebTinTucBaiViets
+            var listData = db.WebTinTucBaiViets.AsNoTracking()
                            .Where(c => c.IdBaiViet != record.IdBaiViet && c.IsCongKhai == true)
                            .ToList()
                            .Select(c => new BaiVietItemViewModel
@@ -82,7 +83,7 @@ namespace clinic_website.Controllers
         {
             try
             {
-                var ListAllData = db.WebTinTucBaiViets.Where(c => c.IsCongKhai == true).Select(c => new
+                var ListAllData = db.WebTinTucBaiViets.AsNoTracking().Where(c => c.IsCongKhai == true).Select(c => new
                 {
                     c.IdBaiViet,
                     c.UrlImage,
@@ -93,6 +94,7 @@ namespace clinic_website.Controllers
                     CbNhomBaiViet = string.IsNullOrEmpty(c.CbNhomBaiViet) ? "" : c.CbNhomBaiViet,
                     CbLoaiBaiDang = string.IsNullOrEmpty(c.CbLoaiBaiDang) ? "" : c.CbLoaiBaiDang,
                     c.TieuDeNgan,
+                    c.SeoUrl,
                     ThoiGianCapNhap = c.ThoiGianCapNhap != null ? c.ThoiGianCapNhap : DateTime.Now,
                 }).ToList();
 
@@ -122,6 +124,7 @@ namespace clinic_website.Controllers
                     c.CbNhomBaiViet,
                     c.CbLoaiBaiDang,
                     c.TieuDeNgan,
+                    c.SeoUrl,
                     NgayDang = c.ThoiGianCapNhap?.ToString("dd/MM/yyyy"),
                     ThoiGianCapNhap = TimeAgo.GetTime(c.ThoiGianCapNhap ?? DateTime.Now)
                 }).ToList();
@@ -137,6 +140,7 @@ namespace clinic_website.Controllers
                     c.CbNhomBaiViet,
                     c.CbLoaiBaiDang,
                     c.TieuDeNgan,
+                    c.SeoUrl,
                     NgayDang = c.ThoiGianCapNhap?.ToString("dd/MM/yyyy"),
                     ThoiGianCapNhap = TimeAgo.GetTime(c.ThoiGianCapNhap.Value)
                 }).Take(20).ToList();
@@ -154,6 +158,7 @@ namespace clinic_website.Controllers
                     c.CbNhomBaiViet,
                     c.CbLoaiBaiDang,
                     c.TieuDeNgan,
+                    c.SeoUrl,
                     NgayDang = c.ThoiGianCapNhap?.ToString("dd/MM/yyyy"),
                     ThoiGianCapNhap = TimeAgo.GetTime(c.ThoiGianCapNhap.Value)
                 })
@@ -188,7 +193,7 @@ namespace clinic_website.Controllers
             {
                 var keyword = (txtSearh ?? "").ToLower().Trim();
 
-                var allData = db.WebTinTucBaiViets
+                var allData = db.WebTinTucBaiViets.AsNoTracking()
                     .Where(c =>
                         c.IsCongKhai == true &&
                         (string.IsNullOrEmpty(keyword) || c.TieuDeBaiViet.ToLower().Trim().Contains(keyword)) &&
@@ -209,6 +214,7 @@ namespace clinic_website.Controllers
                     x.IsBaiVietNoiBat,
                     x.TieuDeNgan,
                     x.ThoiGianTao,
+                    x.SeoUrl,
                 }).Skip((page - 1) * pageSize)
                     .Take(pageSize)
                     .ToList();
