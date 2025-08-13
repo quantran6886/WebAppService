@@ -291,8 +291,77 @@ var myScripts = {
             alert("Bạn chưa chọn bản ghi nào để xóa");
         }
     },
+    deleteUrl: function (IdDichVu) {
+        if (!confirm("Bạn có chắc muốn xóa ảnh không?")) return;
+
+        $.ajax({
+            url: '/Admin/DichVuDacBiet/DeleteFile',
+            type: 'POST',
+            dataType: 'json',
+            data: { IdDichVu: IdDichVu },
+            success: function (res) {
+                if (res.status) {
+                    myScripts.LoadTable();
+                    toastr.success("Xóa ảnh thành công", "Thành Công");
+                } else {
+                    toastr.error(res.message, "Lỗi");
+                }
+            },
+            error: function () {
+                toastr.error("Lỗi khi xóa ảnh", "Lỗi");
+            }
+        });
+    },
 };
 myScripts.init();
+
+$(document).on('change', 'input[type="file"]', function () {
+    var fileInput = this;
+    var idDichVu = $(this).attr('id').split('_')[1];
+    var formData = new FormData();
+    formData.append('files', fileInput.files[0]);
+    formData.append('IdDichVu', idDichVu);
+
+    $.ajax({
+        url: '/Admin/DichVuDacBiet/UploadFile',
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        data: formData,
+        success: function (response) {
+            if (response.status) {
+                myScripts.LoadTable();
+                toastr.success("Tải ảnh thành công");
+            } else {
+                toastr.error(response.message || "Lỗi khi tải ảnh");
+            }
+        }
+    });
+});
+
+$(document).on('change', '.isTrangchuCheckbox', function () {
+    const $this = $(this);
+    const isChecked = $this.is(':checked');
+    const IdDichVu = $this.data('iddichvu');
+
+    $.ajax({
+        url: '/Admin/DichVuDacBiet/SaveDataCongKhai',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            IdDichVu: IdDichVu,
+            IsTrangchu: isChecked,
+        },
+        success: function (response) {
+            if (response.status) {
+                toastr.success("Cập nhật trạng thái thành công", "Thành Công");
+            } else {
+                toastr.error(response.message, "Lỗi");
+            }
+        }
+    });
+});
+
 function fm_Image(e, value, row, index) {
     if (value.urlImage != "") {
         return [
@@ -310,6 +379,33 @@ function fm_Image(e, value, row, index) {
         ].join('');
     }
 };
+function fm_UrlFile(e, value, row, index) {
+    if (value.tieuDeNgan != "" && value.tieuDeNgan != null) {
+        return [
+            '<div style="margin-bottom:0px;width:200px">',
+            '<a style="margin-left:5px" title="Tải về" href="' + value.tieuDeNgan + '" download="">Đã có ảnh <i class="fa fa-download"></i></a>',
+            '<a style="margin-left:5px;color:red;" title="Xóa tệp đính kèm" href="javascript:myScripts.deleteUrl(\'' + value.idDichVu + '\')"><i class="ti ti-trash"></i></a>',
+            '</div>'
+        ].join('');
+    } else {
+        return [
+            '<div class="input-group" style="margin-bottom:0px;width:200px">',
+            '<input type="file" class="form-control" id="tieuDeNgan_' + value.idDichVu + '" />',
+            '</div>'
+        ].join('');
+    }
+}
+
+function fm_SeoTittile(e, value, row, index) {
+    return `
+    <div class="form-check form-switch text-center">
+        <input type="checkbox" class="form-check-input text-center isTrangchuCheckbox"
+               ${value.isTrangchu ? 'checked' : ''}
+               data-iddichvu="${value.idDichVu}"
+               />
+    </div>
+    `;
+}
 
 function fm_editBVNB(e, value, row, index) {
     if (value.isBaiVietNoiBat == true) {

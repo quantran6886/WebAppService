@@ -253,8 +253,8 @@ function fm_UrlFile(e, value, row, index) {
         ].join('');
     } else {
         return [
-            '<div class="input-group" style="margin-bottom:0px;width:200px">',
-            '<input type="file" class="btn-outline-info btn-sm waves-effect waves-light upload-file" id="txtCard1_' + value.maTrang + '" />',
+            '<div class="input-group" style="margin-bottom:0px;width:350px">',
+            '<input type="file" class="form-control" id="txtCard1_' + value.maTrang + '" />',
             '</div>'
         ].join('');
     }

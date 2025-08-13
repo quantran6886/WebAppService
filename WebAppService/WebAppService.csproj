@@ -10,15 +10,19 @@
     <Compile Remove="Areas\Admin\Data\**" />
     <Compile Remove="wwwroot\assets\libs\datatables.net-bs5\node_modules\**" />
     <Compile Remove="wwwroot\FilesUploads\**" />
+    <Compile Remove="wwwroot\Uploads\**" />
     <Content Remove="Areas\Admin\Data\**" />
     <Content Remove="wwwroot\assets\libs\datatables.net-bs5\node_modules\**" />
     <Content Remove="wwwroot\FilesUploads\**" />
+    <Content Remove="wwwroot\Uploads\**" />
     <EmbeddedResource Remove="Areas\Admin\Data\**" />
     <EmbeddedResource Remove="wwwroot\assets\libs\datatables.net-bs5\node_modules\**" />
     <EmbeddedResource Remove="wwwroot\FilesUploads\**" />
+    <EmbeddedResource Remove="wwwroot\Uploads\**" />
     <None Remove="Areas\Admin\Data\**" />
     <None Remove="wwwroot\assets\libs\datatables.net-bs5\node_modules\**" />
     <None Remove="wwwroot\FilesUploads\**" />
+    <None Remove="wwwroot\Uploads\**" />
   </ItemGroup>
 
   <ItemGroup>

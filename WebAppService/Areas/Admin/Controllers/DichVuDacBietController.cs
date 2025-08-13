@@ -75,9 +75,11 @@ namespace WebAppService.Areas.Admin.Controllers
                     x.ThoiGianTao,
                     x.SeoUrl,
                     x.SeoTittile,
+                    x.SapXep,
                 }).ToList().Select(x => new
                 {
                     x.IdDichVu,
+                    x.SapXep,
                     x.UrlImage,
                     x.NameImage,
                     x.TieuDeBaiViet,
@@ -89,6 +91,7 @@ namespace WebAppService.Areas.Admin.Controllers
                     x.TieuDeNgan,
                     x.SeoUrl,
                     x.SeoTittile,
+                    IsTrangchu = x.SeoTittile == "1" ? true : false,
                     ThoiGianTao = x.ThoiGianTao != null ? string.Format("{0:dd-MM-yyyy}", x.ThoiGianTao) : "",
                 });
 
@@ -291,6 +294,106 @@ namespace WebAppService.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 return Json(new
+                {
+                    message = ex.Message,
+                    status = false
+                });
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UploadFile(List<IFormFile> files, Guid IdDichVu)
+        {
+            try
+            {
+                if (files == null || files.Count == 0)
+                    return Json(new { status = false, message = "Không có file nào được gửi lên." });
+
+                var file = files[0]; // Lấy file đầu tiên
+
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Uploads", "Icons");
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
+
+                var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(file.FileName);
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                // Cập nhật DB
+                var fileUrl = "/Uploads/Icons/" + uniqueFileName;
+
+                var record = db.WebDichVus.FirstOrDefault(x => x.IdDichVu == IdDichVu);
+                if (record != null)
+                {
+                    record.TieuDeNgan = fileUrl;
+                    await db.SaveChangesAsync();
+                }
+
+                return Json(new { status = true, fileUrl });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { status = false, message = ex.Message });
+            }
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteFile(Guid IdDichVu)
+        {
+            try
+            {
+                var record = db.WebDichVus.FirstOrDefault(x => x.IdDichVu == IdDichVu);
+                if (record != null && !string.IsNullOrEmpty(record.TieuDeNgan))
+                {
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", record.TieuDeNgan.TrimStart('/'));
+                    if (System.IO.File.Exists(filePath))
+                    {
+                        System.IO.File.Delete(filePath);
+                    }
+
+                    record.TieuDeNgan = null;
+                    await db.SaveChangesAsync();
+
+                    return Json(new { status = true });
+                }
+
+                return Json(new { status = false, message = "Không tìm thấy dữ liệu" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { status = false, message = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        public IActionResult SaveDataCongKhai(Guid IdDichVu, bool? IsTrangchu)
+        {
+            try
+            {
+                var find_data = db.WebDichVus.Find(IdDichVu);
+
+                if (find_data != null)
+                {
+                    find_data.SeoTittile = IsTrangchu == true ? "1" : "0";
+                }
+                db.SaveChanges();
+
+                return new JsonResult(new
+                {
+                    status = true
+                });
+            }
+            catch (Exception ex)
+            {
+
+                return new JsonResult(new
                 {
                     message = ex.Message,
                     status = false
