@@ -100,7 +100,7 @@
     font-family: 'Montserrat', sans-serif;
 }
 .text-primary-grd {
-    background: linear-gradient(to right, #00B9B5, #9EFFFD);
+    background: linear-gradient(to right, #00B9B5, #00B9B5);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     color-interpolation: inherit;

@@ -1,4 +1,34 @@
-﻿<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+﻿@{
+    var currentUrl = $"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}";
+    var seo = ViewData["Seo"] as clinic_website.Controllers.SeoViewModel;
+}
+
+<meta name="description" content="@seo?.SeoDescription" />
+<meta name="keywords" content="@seo?.SeoKeywords" />
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Sun Medical" />
+<meta property="og:title" content="@seo?.SeoTitle" />
+<meta property="og:description" content="@seo?.SeoDescription" />
+<meta property="og:url" content="@currentUrl" />
+<meta property="og:image" content="@seo?.Image" />
+<meta property="og:image:alt" content="Sun Medical" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="660" />
+<meta property="og:image:height" content="495" />
+<!-- Open Graph -->
+<meta name="zalo:card" content="summary_large_image" />
+<meta name="zalo:title" content="@seo?.SeoTitle" />
+<meta name="zalo:description" content="@seo?.SeoDescription" />
+<meta name="zalo:image" content="@seo?.Image" />
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="@seo?.SeoTitle" />
+<meta name="twitter:description" content="@seo?.SeoDescription" />
+<meta name="twitter:image" content="@seo?.Image" />
+
+<link rel="canonical" href="@currentUrl" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">

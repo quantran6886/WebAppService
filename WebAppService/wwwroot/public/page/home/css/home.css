@@ -150,7 +150,7 @@
 
 
 .author-img-circle {
-    background: #009f9c;
+    background: #00B9B5;
     border-radius: 50%;
     width: 454px;
     height: 444px;
@@ -196,7 +196,7 @@
 }
 /* tại sao chọn chúng tôi*/
 .bg-info-gradient {
-    background: linear-gradient(101deg, #D2FFFE, #009F9C);
+    background: linear-gradient(101deg, #D2FFFE, #00B9B5);
     color: #ffffff;
 }
 
@@ -378,7 +378,7 @@
     }
 
 .bg-hover-green:hover {
-    background: #009F9C;
+    background: #00B9B5;
     color: #ffffff;
     cursor: pointer;
 }

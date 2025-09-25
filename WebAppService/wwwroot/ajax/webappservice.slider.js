@@ -155,8 +155,6 @@ $(document).on('change', '.cbGiaoDienSelect', function () {
     const sapXep = $this.data('sapxep');
     const txtCard1 = $this.data('txtcard1');
 
-    console.log("Đã chọn: ", selectedValue, maTrang, sapXep, txtCard1); // debug
-
     $.ajax({
         url: '/Admin/Slider/SaveData',
         type: 'POST',
@@ -170,6 +168,33 @@ $(document).on('change', '.cbGiaoDienSelect', function () {
         success: function (response) {
             if (response.status) {
                 myScripts.LoadTable();
+                toastr.success("Cập nhật phân loại thiết bị thành công", "Thành Công");
+            } else {
+                toastr.error(response.message, "Lỗi");
+            }
+        }
+    });
+});
+
+$(document).on('change', '.txtCard21Select', function () {
+    const $this = $(this);
+    const selectedValue = $this.val();
+    const maTrang = $this.data('matrang');
+    const sapXep = $this.data('sapxep');
+    const txtCard1 = $this.data('txtcard1');
+
+    $.ajax({
+        url: '/Admin/Slider/SaveData2',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            MaTrang: maTrang,
+            TxtCard21: selectedValue,
+            SapXep: sapXep,
+            TxtCard1: txtCard1,
+        },
+        success: function (response) {
+            if (response.status) {
                 toastr.success("Cập nhật phân loại thiết bị thành công", "Thành Công");
             } else {
                 toastr.error(response.message, "Lỗi");
@@ -291,7 +316,7 @@ function fm_SapXep(e, value, row, index) {
 
 function fm_CbGiaoDien(e, value, row, index) {
     return [
-        '<select class="form-control cbGiaoDienSelect" data-maTrang="' + value.maTrang + '" data-sapXep="' + value.sapXep + '" data-txtCard1="' + value.txtCard1 + '">',
+        '<select class="form-control cbGiaoDienSelect" data-maTrang="' + value.maTrang + '" data-sapXep="' + value.sapXep + '" data-txtCard1="' + value.txtCard1 + '" data-txtCard21="' + value.txtCard21 + '">',
         '<option value="">Chọn phân loại</option>',
         '<option value="Máy tính"' + (value.cbGiaoDien === 'Máy tính' ? ' selected' : '') + '>Máy tính</option>',
         '<option value="Máy tính bảng"' + (value.cbGiaoDien === 'Máy tính bảng' ? ' selected' : '') + '>Máy tính bảng</option>',
@@ -299,3 +324,17 @@ function fm_CbGiaoDien(e, value, row, index) {
         '</select>'
     ].join('');
 }
+
+function fm_TxtCard21(e, value, row, index) {
+    return [
+        '<select class="form-control txtCard21Select" data-maTrang="' + value.maTrang + '" data-sapXep="' + value.sapXep + '" data-txtCard1="' + value.txtCard1 + '">',
+        '<option value="">Chọn ngôn ngữ</option>',
+        '<option value="vi"' + (value.txtCard21 === 'vi' ? ' selected' : '') + '>Vietnam</option>',
+        '<option value="ko"' + (value.txtCard21 === 'ko' ? ' selected' : '') + '>South Korea Flag</option>',
+        '<option value="ja"' + (value.txtCard21 === 'ja' ? ' selected' : '') + '>Japan</option>',
+        '<option value="zh"' + (value.txtCard21 === 'zh' ? ' selected' : '') + '>Chinese</option>',
+        '<option value="en"' + (value.txtCard21 === 'en' ? ' selected' : '') + '>English</option>',
+        '</select>'
+    ].join('');
+}
+

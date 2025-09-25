@@ -18,7 +18,8 @@
                                     <span class="badge text-bg-danger text-white fs-2 me-9 mt-2 px-2 fw-semibold">
                                         Quyền Admin
                                     </span>
-                                }else if (User.IsInRole("SuperAdmin"))
+                                }
+                                else if (User.IsInRole("SuperAdmin"))
                                 {
                                     <span class="badge text-bg-success text-white fs-2 me-9 mt-2 px-2 fw-semibold">
                                         Quyền Super Admin
@@ -49,37 +50,45 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
-                        <span class="d-flex">
-                            <iconify-icon icon="solar:home-2-linear" class="text-Dark" width="20px" height="20px"></iconify-icon>
+                    <a href="/Admin/Home/Index" class="sidebar-link">
+                        <span>
+                            <iconify-icon icon="solar:code-scan-broken" class="text-success" width="20px" height="20px"></iconify-icon>
                         </span>
-                        <span class="hide-menu">Cấu hình trang chính</span>
+                        <span class="hide-menu">DashBoard</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/Admin/DanhSachNhanSu/DanhSachNhanSu" id="get-url" aria-expanded="false">
+                        <span>
+                            <iconify-icon icon="solar:users-group-rounded-line-duotone" class="text-primary" width="20px" height="20px"></iconify-icon>
+                        </span>
+                        <span class="hide-menu">Danh sách nhân sự</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/Admin/TinTucBaiViet/TinTucBaiViet" id="get-url" aria-expanded="false">
+                        <span>
+                            <iconify-icon icon="solar:pen-new-square-broken" class="text-primary" width="20px" height="20px"></iconify-icon>
+                        </span>
+                        <span class="hide-menu">Tin tức,Bài viết</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/Admin/Video/Video" id="get-url" aria-expanded="false">
+                        <span>
+                            <iconify-icon icon="solar:video-frame-play-horizontal-linear" class="text-danger" width="20px" height="20px"></iconify-icon>
+                        </span>
+                        <span class="hide-menu">Quản lý Video</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
+                        <span>
+                            <iconify-icon icon="solar:maximize-square-3-linear" class="text-primary" width="20px" height="20px"></iconify-icon>
+                        </span>
+                        <span class="hide-menu">Dịch vụ</span>
                     </a>
                     <ul aria-expanded="false" class="collapse first-level">
-                        <li class="sidebar-item">
-                            <a href="/Admin/Slider/Slider" class="sidebar-link">
-                                <div class="round-16 d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-circle"></i>
-                                </div>
-                                <span class="hide-menu">Giao diện Slider</span>
-                            </a>
-                        </li>
-                    @*     <li class="sidebar-item">
-                            <a href="/Admin/Home/HomePage1" class="sidebar-link">
-                                <div class="round-16 d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-circle"></i>
-                                </div>
-                                <span class="hide-menu">Giao diện seo 1</span>
-                            </a>
-                        </li> *@
-                        <li class="sidebar-item">
-                            <a href="/Admin/Home/HomePage2" class="sidebar-link">
-                                <div class="round-16 d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-circle"></i>
-                                </div>
-                                <span class="hide-menu">Giao diện seo 2</span>
-                            </a>
-                        </li>
                         <li class="sidebar-item">
                             <a href="/Admin/DichVuDacBiet/DichVuDacBiet" class="sidebar-link">
                                 <div class="round-16 d-flex align-items-center justify-content-center">
@@ -89,69 +98,79 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="/Admin/Video/Video" class="sidebar-link">
+                            <a href="/Admin/DichVu/DichVu" class="sidebar-link">
                                 <div class="round-16 d-flex align-items-center justify-content-center">
                                     <i class="ti ti-circle"></i>
                                 </div>
-                                <span class="hide-menu">Video</span>
+                                <span class="hide-menu">Dịch vụ chuyên khoa</span>
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/Admin/DanhSachNhanSu/DanhSachNhanSu" id="get-url" aria-expanded="false">
+                    <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
                         <span>
-                            <iconify-icon icon="solar:users-group-rounded-line-duotone" class="text-Dark" width="20px" height="20px"></iconify-icon>
+                            <iconify-icon icon="solar:home-2-linear" class="text-primary" width="20px" height="20px"></iconify-icon>
                         </span>
-                        <span class="hide-menu">Danh sách nhân sự</span>
+                        <span class="hide-menu">Cấu hình trang</span>
                     </a>
+                    <ul aria-expanded="false" class="collapse first-level">
+                        <li class="sidebar-item">
+                            <a href="/Admin/SeoInfomation/SeoInfomation" class="sidebar-link">
+                                <div class="round-16 d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-circle"></i>
+                                </div>
+                                <span class="hide-menu">Thông tin trang web</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="/Admin/AboutUs/AboutUs" class="sidebar-link">
+                                <div class="round-16 d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-circle"></i>
+                                </div>
+                                <span class="hide-menu">Về chúng tôi</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="/Admin/Slider/Slider" class="sidebar-link">
+                                <div class="round-16 d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-circle"></i>
+                                </div>
+                                <span class="hide-menu">Quản lý slider</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="/Admin/Home/HomePage2" class="sidebar-link">
+                                <div class="round-16 d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-circle"></i>
+                                </div>
+                                <span class="hide-menu">Giao diện seo</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="/Admin/SeoHome/SeoHome" class="sidebar-link">
+                                <div class="round-16 d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-circle"></i>
+                                </div>
+                                <span class="hide-menu">Seo trang chủ</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="/Admin/PosterHome/PosterHome" class="sidebar-link">
+                                <div class="round-16 d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-circle"></i>
+                                </div>
+                                <span class="hide-menu">Quảng cáo</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="/Admin/TinTucBaiViet/TinTucBaiViet" id="get-url" aria-expanded="false">
-                        <span>
-                            <iconify-icon icon="solar:pen-new-square-broken" class="text-Dark" width="20px" height="20px"></iconify-icon>
-                        </span>
-                        <span class="hide-menu">Tin tức,Bài viết</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="/Admin/DichVu/DichVu" id="get-url" aria-expanded="false">
-                        <span>
-                            <iconify-icon icon="solar:maximize-square-3-linear" class="text-Dark" width="20px" height="20px"></iconify-icon>
-                        </span>
-                        <span class="hide-menu">Dịch vụ chuyên khoa</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="/Admin/FAQS/FAQS" id="get-url" aria-expanded="false">
-                        <span>
-                            <iconify-icon icon="solar:info-circle-broken" class="text-Dark" width="20px" height="20px"></iconify-icon>
-                        </span>
-                        <span class="hide-menu">FAQS</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="/Admin/AboutUs/AboutUs" id="get-url" aria-expanded="false">
-                        <span>
-                            <iconify-icon icon="solar:accessibility-outline" class="text-Dark" width="20px" height="20px"></iconify-icon>
-                        </span>
-                        <span class="hide-menu">Về chúng tôi</span>
-                    </a>
-                </li>
-                @* <li class="sidebar-item">
-					<a class="sidebar-link" href="/Admin/HoSoCanBo/HoSoCanBo" id="get-url" aria-expanded="false">
-						<span>
-							<i class="ti ti-user"></i>
-						</span>
-						<span class="hide-menu">Hồ sơ cán bộ</span>
-					</a>
-				</li> *@
                 <li class="sidebar-item">
                     <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
                         <span class="d-flex">
                             <iconify-icon icon="solar:settings-broken" class="text-danger" width="20px" height="20px"></iconify-icon>
                         </span>
-                        <span class="hide-menu">Cài đặt</span>
+                        <span class="hide-menu">Cấu hình danh mục</span>
                     </a>
                     <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
@@ -186,30 +205,25 @@
                                 <span class="hide-menu">Cấu hình Cơ Sở làm việc</span>
                             </a>
                         </li>
-                    @*     <li class="sidebar-item">
-                            <a href="../main/frontend-aboutpage.html" class="sidebar-link">
+                        <li class="sidebar-item">
+                            <a href="/Admin/Faqs/Faqs" class="sidebar-link">
                                 <div class="round-16 d-flex align-items-center justify-content-center">
                                     <i class="ti ti-circle"></i>
                                 </div>
-                                <span class="hide-menu">Tài khoản</span>
+                                <span class="hide-menu">Câu hỏi thường gặp</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a href="../main/frontend-contactpage.html" class="sidebar-link">
-                                <div class="round-16 d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-circle"></i>
-                                </div>
-                                <span class="hide-menu">Phân quyền truy cập</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="../main/frontend-blogpage.html" class="sidebar-link">
-                                <div class="round-16 d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-circle"></i>
-                                </div>
-                                <span class="hide-menu">Cấu hình hệ thống</span>
-                            </a>
-                        </li> *@
+                        @if (User.IsInRole("SuperAdmin"))
+                        {
+                            <li class="sidebar-item">
+                                <a href="/Admin/KhoaTaiKhoan/KhoaTaiKhoan" class="sidebar-link">
+                                    <div class="round-16 d-flex align-items-center justify-content-center">
+                                        <i class="ti ti-circle"></i>
+                                    </div>
+                                    <span class="hide-menu">Khóa phần mềm</span>
+                                </a>
+                            </li>
+                        }
                     </ul>
                 </li>
             </ul>

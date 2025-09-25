@@ -127,7 +127,7 @@ a {
 }
 
     a:hover {
-        color: #009f9c;
+        color: #00B9B5;
     }
 
     a:focus,
@@ -677,7 +677,7 @@ button.search-icon {
 
 /*Gradient*/
 .gradient-bg-1 {
-    background: #009f9c;
+    background: #00B9B5;
 }
 
 /*Header*/

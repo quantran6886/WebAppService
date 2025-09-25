@@ -6,11 +6,26 @@
     <meta name="google" content="notranslate">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sun Meidcal</title>
     <link rel="icon" type="image/x-icon" href="~/web/images/icon_Group.png" />
+    <title>Sun Medical</title>
     @await Html.PartialAsync("_StyleBundle")
+    <link href="~/web/css/poster.css" rel="stylesheet" />
 </head>
 <body>
+    <dialog id="posterDialog">
+        <div class="poster-hero">
+            <button class="close-btn" id="closeDialog">×</button>
+        </div>
+        <div class="poster-content"> 
+            
+            <h2 class="poster-title"><span class="txtposter-title"></span></h2>
+            <p class="poster-desc"></p>
+            <div class="poster-actions">
+                <button class="btn-primary" id="ctaRegister">Liên hệ ngay</button>
+                <button class="btn-ghost" id="dontShow">Bỏ qua quảng cáo</button>
+            </div>
+        </div>
+    </dialog>
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
@@ -47,10 +62,10 @@
         @await Html.PartialAsync("_NavigationBottom")
     </div>
     <div class="social-float-buttons">
-        <a href="https://www.facebook.com/SunMedicalCenterVN" target="_blank" class="social-btn messenger">
+        <a href="https://www.facebook.com/SunMedicalCenterVN" target="_blank" class="social-btn txtFacebook messenger">
             <img src="~/src/image_figma/message.png" alt="Messenger">
         </a>
-        <a href="https://zalo.me/0911572702" target="_blank" class="social-btn zalo">
+        <a href="https://zalo.me/0911572702" target="_blank" class="social-btn txtZalo zalo">
             <img src="~/src/image_figma/zalo.png" alt="Zalo">
         </a>
         <a href="tel:1800 8005" target="_blank" class="social-btn whatsapp">

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "DanhMucHeThong";
+    ViewData["Title"] = "Dịch vụ đặc biệt";
     Layout = "~/Areas/Admin/Views/Shared/_ViewAdmin.cshtml";
 }
 <link rel="stylesheet" href="~/assets/libs/magnific-popup/dist/magnific-popup.css">
@@ -11,10 +11,6 @@
     <script> tinymceSettings(['#editor'], 200); </script>
     <script src="~/ajax/webappclient.dvdb.js"></script>
 }
-
-<div class="card-header mt-2">
-    <h4 class="card-title">Dịch vụ đặc biệt</h4>
-</div>
 <div class="card-body">
     <div class="row">
         <div class="col-lg-12 d-flex align-items-stretch">
@@ -32,7 +28,8 @@
                            data-toggle="table"
                            data-flat="true"
                            data-search="true"
-                           data-height="550"
+                           data-height="600"
+                           data-toolbar="#btnNewForm"
                            data-pagination="true"
                            data-page-size="10"
                            data-page-list="[20, 25, 50, all]">

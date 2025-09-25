@@ -1,9 +1,12 @@
 ﻿using Dapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using System.Net.WebSockets;
 using WebAppService.Middlewares;
 using WebAppService.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace clinic_website.Controllers
 {
@@ -16,6 +19,13 @@ namespace clinic_website.Controllers
         public List<WebVideo>? Record5 { get; set; }
         public List<WebVideo>? Record6 { get; set; }
         public List<WebDichVu>? ListData { get; set; }
+    }
+    public class SeoViewModel
+    {
+        public string? SeoTitle { get; set; }
+        public string? SeoDescription { get; set; }
+        public string? SeoKeywords { get; set; }
+        public string? Image { get; set; }
     }
     public class HomeController : Controller
     {
@@ -31,9 +41,25 @@ namespace clinic_website.Controllers
 
         public IActionResult Index()
         {
+            var baseUrl = $"{Request.Scheme}://{Request.Host}";
+
+            var record = db.BrowerHomePages
+                .AsNoTracking()
+                .Where(c => c.IsBanerHome == true && c.SoThuTu == null)
+                .FirstOrDefault();
+
+            var loadSeo = record != null ? new SeoViewModel
+            {
+                SeoTitle = record.SeoTittile,
+                SeoDescription = record.PhanLoai,
+                SeoKeywords = record.SeoUrl,
+                Image = !string.IsNullOrEmpty(record.Link)
+                    ? (record.Link.StartsWith("http") ? record.Link : baseUrl + record.Link)
+                    : baseUrl + "/root/6388000.png"
+            } : null;
+            ViewData["Seo"] = loadSeo;
             return View();
         }
-
         [HttpGet]
         public async Task<IActionResult> LoadDataAfter()
         {
@@ -170,11 +196,42 @@ namespace clinic_website.Controllers
                     link = "/bai-viet/?cb=" + c.TenGoi,
                 }).OrderBy(c => c.ThuTuTg).ToList();
 
+                var lstConfig = db.BrowerTaiKhoanDangKies.AsNoTracking().Select(c => new
+                {
+                    c.IdTaiKhoan,
+                    c.Email,
+                    Hotline = c.TenToChuc,
+                    c.SoDienThoai,
+                    Zalo = c.ChucVu,
+                    Facebook = c.MaSoThue,
+                    Website = c.NoiCapMst,
+                    Fanpage = c.DiaChiDoanhNghiep,
+                    LocalMap = c.Ho,
+                    LinkMap = c.TenDem,
+                    DiaChiPhongKham = c.Ten,
+                    UrlMap = c.PasswordHash,
+                    UrlBaner = c.UrlTaiLieu,
+                    c.NameTaiLieu,
+                }).FirstOrDefault();
+
+                var loadPoster = db.BrowerHomePages.AsNoTracking().Where(c => c.IsBanerHome == true && c.SoThuTu != null).Select(c => new
+                {
+                    c.Id,
+                    SeoKeywords = c.SeoUrl,
+                    c.SeoTittile,
+                    Image = !string.IsNullOrEmpty(c.Link) ? c.Link : "/root/6388000.png",
+                    c.Link,
+                    SeoDescription = c.PhanLoai,
+                    c.IsBanerHome,
+                }).FirstOrDefault();
+
                 return new JsonResult(new
                 {
                     lstChuyenKhoa,
                     lstDichVuDacBiet,
                     lstBaiViet,
+                    lstConfig,
+                    loadPoster,
                     status = true
                 });
             }

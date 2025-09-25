@@ -2,7 +2,7 @@
 .service-card-y {
     position: inherit;
     top: -54px;
-    z-index: 2;
+    z-index:2;
 }
 
 .question-doctor {
@@ -151,7 +151,7 @@
 
 
 .author-img-circle {
-    background: #009f9c;
+    background: #00B9B5;
     border-radius: 50%;
     width: 454px;
     height: 444px;
@@ -197,7 +197,7 @@
 }
 /* tại sao chọn chúng tôi*/
 .bg-info-gradient {
-    background: linear-gradient(101deg, #D2FFFE, #009F9C);
+    background: linear-gradient(101deg, #D2FFFE, #00B9B5);
     color: #ffffff;
 }
 
@@ -261,7 +261,7 @@
 }
 
 .text-primary-grd {
-    background: linear-gradient(to right, #00B9B5, #9EFFFD);
+    background: linear-gradient(to right, #00B9B5, #00B9B5);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     color-interpolation: inherit;
@@ -379,7 +379,7 @@
     }
 
 .bg-hover-green:hover {
-    background: #009F9C;
+    background: #00B9B5;
     color: #ffffff;
     cursor: pointer;
 }
@@ -587,8 +587,8 @@
 @media (min-width: 768px) and (max-width: 1024px) {
     .service-card-y {
         position: inherit;
-        top: -150px !important;
-        z-index: 2;
+        top: -150px !important
+    	z-index:2;
     }
 
     .question-doctor {
@@ -743,7 +743,7 @@
     .service-card-y {
         position: inherit;
         top: -23px;
-        z-index: 2;
+    	z-index:2;
     }
 
     .dot-left {

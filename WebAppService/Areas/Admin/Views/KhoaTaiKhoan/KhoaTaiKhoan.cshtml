@@ -1,0 +1,116 @@
+﻿@{
+    ViewData["Title"] = "FAQS";
+    Layout = "~/Areas/Admin/Views/Shared/_ViewAdmin.cshtml";
+}
+<style>
+    .select,
+    #locale {
+        width: 100%;
+    }
+
+    .like {
+        margin-right: 10px;
+    }
+</style>
+<link rel="stylesheet" href="~/assets/libs/magnific-popup/dist/magnific-popup.css">
+@section Scripts {
+    <script src="~/assets/libs/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+    <script>
+                var files;
+        var myScripts = {
+            init: function () {
+                myScripts.LoadTable();
+            },
+
+            LoadTable: function () {
+                $.ajax({
+                    url: '/Admin/KhoaTaiKhoan/LoadTable',
+                    type: "GET",
+                    dataType: "json",
+                    data: {
+                    },
+                    success: function (response) {
+                        if (response.status == true) {
+                            var lstData = response.lstData;
+                            if (lstData != null && lstData.length > 0) {
+                                $("#tableKhoa").bootstrapTable('load', lstData);
+                            }
+                            else {
+                                $("#tableKhoa").bootstrapTable('removeAll');
+                            }
+                        }
+                    }
+                })
+            },
+
+        };
+        myScripts.init();
+
+        $(document).on('change', '.twoFactorEnabledCheckbox', function () {
+            const $this = $(this);
+            const isChecked = $this.is(':checked');
+            const Id = $this.data('id');
+
+            $.ajax({
+                url: '/Admin/KhoaTaiKhoan/SaveData',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    Id: Id,
+                    IsLock: isChecked,
+                },
+                success: function (response) {
+                    if (response.status) {
+                        myScripts.LoadTable();
+                        toastr.success("Cập nhật trạng thái thành công", "Thành Công");
+                    } else {
+                        toastr.error(response.message, "Lỗi");
+                    }
+                }
+            });
+        });
+
+        function fm_SeoTittile(e, value, row, index) {
+            return `
+            <div class="form-check form-switch text-center">
+                <input type="checkbox" class="form-check-input text-center twoFactorEnabledCheckbox"
+                       ${value.twoFactorEnabled ? 'checked' : ''}
+                       data-id="${value.id}"
+                       />
+            </div>
+            `;
+        }
+    </script>
+}
+
+<div class="card-header">
+    <h4 class="card-title">Khóa phần mềm</h4>
+</div>
+<div class="card-body">
+    <div class="row">
+        <div class="col-lg-12 d-flex align-items-stretch">
+            <div class="card w-100 border position-relative overflow-hidden">
+                <div class="card-body p-2">
+                    <table id="tableKhoa"
+                           data-toggle="table"
+                           data-flat="true"
+                           data-search="true"
+                           data-height="550"
+                           data-pagination="true"
+                           data-page-size="10"
+                           data-page-list="[20, 25, 50, all]">
+                        <thead>
+                            <tr>
+                                <th data-field="id" data-sortable="true">Id</th>
+                                <th data-field="userName" data-sortable="true">Tên tài khoản</th>
+                                <th data-field="passwordHash" data-sortable="true">PasswordHash</th>
+                                <th data-field="roles" data-sortable="true">Roles</th>
+                                <th data-field="seoTittile" data-width="8" data-sortable="true" data-formatter="fm_SeoTittile">Khóa</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -106,7 +106,7 @@ namespace WebAppService.Areas.Admin.Controllers
                                 };
                                 Response.Cookies.Append("SessUserId", user.Id, option);
 
-                                return !string.IsNullOrEmpty(returnUrl) ? LocalRedirect(returnUrl) : RedirectToAction("HomePage1", "Home");
+                                return !string.IsNullOrEmpty(returnUrl) ? LocalRedirect(returnUrl) : RedirectToAction("Index", "Home");
                             }
                             else
                             {

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "DanhMucHeThong";
+    ViewData["Title"] = "Tin tức bài viết";
     Layout = "~/Areas/Admin/Views/Shared/_ViewAdmin.cshtml";
 }
 <link rel="stylesheet" href="~/assets/libs/magnific-popup/dist/magnific-popup.css">
@@ -11,10 +11,6 @@
     <script> tinymceSettings(['#editor'], 700); </script>
     <script src="~/ajax/webappservice.tintuc.js"></script>
 }
-
-<div class="card-header mt-2">
-    <h4 class="card-title">Tin tức,bài viết</h4>
-</div>
 <div class="card-body">
     <div class="row">
         <div class="col-lg-12 d-flex align-items-stretch">
@@ -25,10 +21,6 @@
                                 data-bs-target="#bsBaiViet">
                             <i class="ti ti-plus fs-2"></i> Viết bài
                         </button>
-                     @*    <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#editer">
-                            <i class="ti ti-search fs-2"></i> Lọc dữ liệu
-                        </button> *@
                     </div>
                 </div>
                 <div class="card-body p-2">
@@ -36,7 +28,8 @@
                            data-toggle="table"
                            data-flat="true"
                            data-search="true"
-                           data-height="550"
+                           data-toolbar="#btnNewForm"
+                           data-height="600"
                            data-pagination="true"
                            data-page-size="10"
                            data-page-list="[20, 25, 50, all]">

@@ -27,6 +27,7 @@ namespace clinic_website.Controllers
                     c.SapXep,
                     c.CbGiaoDien,
                     c.TxtCard1,
+                    c.TxtCard21,
                     c.NoiDung,
                 }).OrderBy(c=> c.SapXep).ToList();
 

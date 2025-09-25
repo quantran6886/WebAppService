@@ -67,9 +67,24 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<WebVideo> WebVideos { get; set; }
 
+//    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+//        => optionsBuilder.UseSqlServer("Server=103.172.79.113,1434;Database=WebMedical;User Id=sa;Password=Admin123;TrustServerCertificate=True");
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=103.172.79.113,1434;Database=WebMedical;User Id=sa;Password=Admin123;TrustServerCertificate=True");
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            // Tạo configuration để đọc appsettings.json
+            var config = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            var connectionString = config.GetConnectionString("DefaultConnection");
+            optionsBuilder.UseSqlServer(connectionString);
+        }
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -134,7 +149,7 @@ public partial class AppDbContext : DbContext
 
             entity.Property(e => e.Link).HasColumnType("text");
             entity.Property(e => e.MoTaHienThi).HasColumnType("text");
-            entity.Property(e => e.PhanLoai).HasMaxLength(250);
+            entity.Property(e => e.PhanLoai).HasMaxLength(500);
             entity.Property(e => e.SeoTittile).HasMaxLength(250);
             entity.Property(e => e.SeoUrl).HasMaxLength(250);
             entity.Property(e => e.Tag).HasMaxLength(250);

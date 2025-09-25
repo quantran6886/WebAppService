@@ -1,7 +1,341 @@
 ﻿@{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Dashboard";
     Layout = "~/Areas/Admin/Views/Shared/_ViewAdmin.cshtml";
 }
 @section Scripts {
-    <script src="~/assets/plug/tinymce/js/tinymce/tinymce.min.js"></script>
+    <script src="~/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="~/ajax/webappservice.piachat.js"></script>
+    <script>
+        var myScripts = {
+            init: function () {
+                myScripts.LoadData();
+            },
+
+            LoadData: function () {
+                $.ajax({
+                    url: '/Admin/Home/LoadData',
+                    type: 'GET',
+                    datatype: 'json',
+                    success: function (response) {
+                        if (response.status) {
+                            var lstNhanSu = response.lstNhanSu;
+                            var lstTinTuc = response.lstTinTuc;
+                            var lstDichVuDacBiet = response.lstDichVuDacBiet;
+                            var lstVideo = response.lstVideo;
+                            if (lstNhanSu != null && lstNhanSu.length > 0) {
+                                $("#tableDanhSachNhanSu").bootstrapTable('load', lstNhanSu);
+                            }
+                            else {
+                                $("#tableDanhSachNhanSu").bootstrapTable('removeAll');
+                            }
+                            $("#numberNhanSu").text(lstNhanSu.length);
+
+                            if (lstTinTuc != null && lstTinTuc.length > 0) {
+                                $("#tableTinTuc").bootstrapTable('load', lstTinTuc);
+                            }
+                            else {
+                                $("#tableTinTuc").bootstrapTable('removeAll');
+                            }
+                            $("#numberTinTuc").text(lstTinTuc.length);
+
+                            if (lstDichVuDacBiet != null && lstDichVuDacBiet.length > 0) {
+                                $("#tableDichVuDacBiet").bootstrapTable('load', lstDichVuDacBiet);
+                            }
+                            else {
+                                $("#tableDichVuDacBiet").bootstrapTable('removeAll');
+                            }
+                            $("#numberDichVuDacbiet").text(lstDichVuDacBiet.length);
+
+                            var lstVideo = response.lstVideo;
+                            if (lstVideo != null && lstVideo.length > 0) {
+                                $("#tableVideo").bootstrapTable('load', lstVideo);
+                            }
+                            else {
+                                $("#tableVideo").bootstrapTable('removeAll');
+                            }
+                            $('[data-bs-toggle="tooltip"]').tooltip();
+                            $("#numberVideo").text(lstVideo.length);
+
+                            var dataPia31 = lstNhanSu.filter(item =>  item.tuoi > 30).length;
+                            var dataPia18 = lstNhanSu.filter(item => item.tuoi < 18).length;
+                            var dataPia1830 = lstNhanSu.filter(item => item.tuoi >= 18 && item.tuoi <= 30).length;
+                            const dataTinTuc = lstTinTuc.reduce((acc, item) => {
+                              acc[item.cbLoaiBaiDang] = (acc[item.cbLoaiBaiDang] || 0) + 1;
+                              return acc;
+                            }, {});
+                            const labels = Object.keys(dataTinTuc);
+                            const values = Object.values(dataTinTuc);
+                            var dataDichVuHienThi = lstDichVuDacBiet.filter(item =>  item.isCongKhai === true).length;
+                            var dataDichVuKHienThi = lstDichVuDacBiet.filter(item =>  item.isCongKhai !== true).length;
+                            createPieChart("#chartTinTuc", values, labels);
+                            createPieChart("#chartNhanSu", [dataPia18, dataPia1830,dataPia31], ["Dưới 18", "Từ 18 đến 30","Trên 30"]);
+                            createPieChart("#chartDichVuDacBiet", [dataDichVuHienThi,dataDichVuKHienThi], ["Công khai", "không công khai"]);
+                        }
+                    },
+
+                });
+            },
+        };
+        myScripts.init();
+        function fm_Image(e, value, row, index) {
+            if (value.urlImage != "") {
+                return [
+                    '<div style="width:40px;justify-self: center;" class="">',
+                    '<a class="image-popup-vertical-fit" target="_blank" href="' + value.tieuDeNgan + '">',
+                    ' <img class="d-block position-relative w-100" src="' + value.tieuDeNgan + '" width="100" />',
+                    ' </a>',
+                    '</div>'
+                ].join('');
+            } else {
+                return [
+                    '<div style="width: 100%">',
+
+                    '</div>'
+                ].join('');
+            }
+        };
+        function fm_editBVCK(e, value, row, index) {
+            if (value.isCongKhai == true) {
+                return [
+                    '<div style="width: 100%;text-align: center;">',
+                    '<iconify-icon icon="solar:verified-check-bold-duotone" class="text-success" width="35px" height="35px"></iconify-icon>',
+                    '</div>'
+                ].join('');
+            } else {
+                return [
+                    '<div style="width: 100%;text-align: center;">',
+                    '<iconify-icon icon="solar:close-circle-bold-duotone" class="text-danger" width="35px" height="35px"></iconify-icon>',
+                    '</div>'
+                ].join('');
+            }
+        };
+        function fm_ImageVD(e, value, row, index) {
+            if (value.urlImage != "") {
+                return [
+                    '<div style="width:100px;justify-self: center;" class="">',
+                    '<a class="image-popup-vertical-fit" target="_blank" href="' + value.urlImage + '">',
+                    ' <img class="d-block position-relative w-100" src="' + value.urlImage + '" width="100" />',
+                    ' </a>',
+                    '</div>'
+                ].join('');
+            } else {
+                return [
+                    '<div style="width: 100%">',
+
+                    '</div>'
+                ].join('');
+            }
+        };
+
+        function fm_editBVNBVD(e, value, row, index) {
+            if (value.isVideoNoiBat == true) {
+                return [
+                    '<div style="width: 100%;text-align: center;">',
+                    '<iconify-icon icon="solar:verified-check-bold-duotone" class="text-success" width="35px" height="35px"></iconify-icon>',
+                    '</div>'
+                ].join('');
+            } else {
+                return [
+                    '<div style="width: 100%;text-align: center;">',
+                    '<iconify-icon icon="solar:close-circle-bold-duotone" class="text-danger" width="35px" height="35px"></iconify-icon>',
+                    '</div>'
+                ].join('');
+            }
+        };
+
+        function fm_editBVCKVD(e, value, row, index) {
+            if (value.isCongKhai == true) {
+                return [
+                    '<div style="width: 100%;text-align: center;">',
+                    '<iconify-icon icon="solar:verified-check-bold-duotone" class="text-success" width="35px" height="35px"></iconify-icon>',
+                    '</div>'
+                ].join('');
+            } else {
+                return [
+                    '<div style="width: 100%;text-align: center;">',
+                    '<iconify-icon icon="solar:close-circle-bold-duotone" class="text-danger" width="35px" height="35px"></iconify-icon>',
+                    '</div>'
+                ].join('');
+            }
+        };
+    </script>
+
 }
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                    <div>
+                        <h4 class="card-title" id="numberNhanSu">0</h4>
+                        <p class="card-subtitle mb-1">Số nhân sự</p>
+                    </div>
+                    <div class="ms-auto">
+                        <span class="text-success display-6">
+                            <i class="ti ti-user"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="progress text-bg-light">
+                    <div class="progress-bar text-bg-success" role="progressbar" style="width: 100%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <div class="row">
+                    <a href="/Admin/DanhSachNhanSu/DanhSachNhanSu" class="btn btn-info btn-sm" id="btnNewForm">
+                        <i class="ti ti-link fs-2"></i> Truy cập
+                    </a>
+                    <div class="card-body col-sm-7 p-2">
+                        <table id="tableDanhSachNhanSu"
+                               data-toggle="table"
+                               data-flat="true"
+                               data-search="true"
+                               data-height="300"
+                               data-toolbar="#btnNewForm">
+                            <thead>
+                                <tr>
+                                    <th data-field="hoTen" data-sortable="true">Họ và tên</th>
+                                    <th data-field="chucDanh" data-sortable="true">Chức danh</th>
+                                    <th data-field="chucVu" data-sortable="true">Chuyên khoa</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="col-sm-5 d-flex align-items-center" id="chartNhanSu"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                    <div>
+                        <h4 class="card-title" id="numberTinTuc">0</h4>
+                        <p class="card-subtitle mb-1">Tin tức bài viết</p>
+                    </div>
+                    <div class="ms-auto">
+                        <span class="text-primary display-6">
+                            <i class="ti ti-cast"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="progress text-bg-light">
+                    <div class="progress-bar text-bg-primary" role="progressbar" style="width: 100%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <div class="row">
+                    <a href="/Admin/TinTucBaiViet/TinTucBaiViet" class="btn btn-info btn-sm" id="btnNewForm2">
+                        <i class="ti ti-link fs-2"></i> Truy cập
+                    </a>
+                    <div class="card-body col-sm-7 p-2">
+                        <table id="tableTinTuc"
+                               data-toggle="table"
+                               data-flat="true"
+                               data-search="true"
+                               data-height="300"
+                               data-toolbar="#btnNewForm2">
+                            <thead>
+                                <tr>
+                                    <th data-field="tieuDeBaiViet" data-sortable="true">Tiêu đề bài viết</th>
+                                    <th data-field="cbLoaiBaiDang" data-sortable="true">Loại bài đăng</th>
+                                    <th data-field="cbNhomBaiViet" data-sortable="true">Nhóm bài viết</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="col-sm-5 d-flex align-items-center" id="chartTinTuc"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                    <div>
+                        <h4 class="card-title" id="numberDichVuDacbiet">0</h4>
+                        <p class="card-subtitle mb-1">Dịch vụ đặc biệt</p>
+                    </div>
+                    <div class="ms-auto">
+                        <span class="text-warning display-6">
+                            <i class="ti ti-clipboard"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="progress text-bg-light">
+                    <div class="progress-bar text-bg-warning" role="progressbar" style="width: 100%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <div class="row">
+                    <a href="/Admin/DichVuDacBiet/DichVuDacBiet" class="btn btn-info btn-sm" id="btnNewForm3">
+                        <i class="ti ti-link fs-2"></i> Truy cập
+                    </a>
+                    <div class="card-body col-sm-7 p-2">
+                        <table id="tableDichVuDacBiet"
+                               data-toggle="table"
+                               data-flat="true"
+                               data-search="true"
+                               data-height="300"
+                               data-pagination="true"
+                               data-page-size="10"
+                               data-toolbar="#btnNewForm3"
+                               data-page-list="[20, 25, 50, all]">
+                            <thead>
+                                <tr>
+                                    <th data-field="urlImage" data-width="8" data-formatter="fm_Image" data-sortable="true">Ảnh Icon</th>
+                                    <th data-field="tieuDeBaiViet" data-sortable="true">Tên tiêu đề</th>
+                                    <th data-field="isCongKhai" data-width="8" data-formatter="fm_editBVCK" data-sortable="true">Công khai</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="col-sm-5 d-flex align-items-center" id="chartDichVuDacBiet"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                    <div>
+                        <h4 class="card-title" id="numberVideo">0</h4>
+                        <p class="card-subtitle mb-1">Video</p>
+                    </div>
+                    <div class="ms-auto">
+                        <span class="text-danger display-6">
+                            <i class="ti ti-video"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="progress text-bg-light">
+                    <div class="progress-bar text-bg-danger" role="progressbar" style="width: 100%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <div class="row">
+                    <a href="/Admin/Video/Video" class="btn btn-info btn-sm" id="btnNewForm4">
+                        <i class="ti ti-link fs-2"></i> Truy cập
+                    </a>
+                    <div class="card-body col-sm-12 p-2">
+                        <table id="tableVideo"
+                               data-toggle="table"
+                               data-flat="true"
+                               data-search="true"
+                               data-height="600"
+                               data-pagination="true"
+                               data-page-size="10"
+                               data-toolbar="#btnNewForm4"
+                               data-page-list="[20, 25, 50, all]">
+                            <thead>
+                                <tr>
+                                    <th data-field="urlImage" data-width="8" data-formatter="fm_ImageVD" data-sortable="true">Ảnh</th>
+                                    <th data-field="tieuDeBaiViet" data-sortable="true">Tên tiêu đề</th>
+                                    <th data-field="moTaNgan" data-sortable="true">Mô tả ngắn</th>
+                                    <th data-field="seoUrl" data-sortable="true">Seo Url</th>
+                                    <th data-field="IdVideo" data-width="8" data-formatter="fm_editBVNBVD" data-sortable="true">Nổi bật</th>
+                                    <th data-field="isCongKhai" data-width="8" data-formatter="fm_editBVCKVD" data-sortable="true">Công khai</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

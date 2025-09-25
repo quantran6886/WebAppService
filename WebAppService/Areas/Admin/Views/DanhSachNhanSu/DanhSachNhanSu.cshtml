@@ -1,17 +1,21 @@
 ﻿@{
-    ViewData["Title"] = "DanhMucHeThong";
+    ViewData["Title"] = "Danh sách nhân sự";
     Layout = "~/Areas/Admin/Views/Shared/_ViewAdmin.cshtml";
 }
+<style>
+    .space-between {
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+        font-size: 1.2rem;
+    }
+</style>
 @section Scripts {
     <script src="~/assets/plug/tinymce/js/tinymce/tinymce.min.js"></script>
     <script src="~/ajax/webappservice.tinymcesetting.js?v=1.2"></script>
     <script> tinymceSettings(['#editor'], 300); </script>
     <script src="~/ajax/webappservice.danhsachnhansu.js"></script>
 }
-
-<div class="card-header mt-2">
-    <h4 class="card-title">Danh sách nhân sự</h4>
-</div>
 <div class="card-body">
     <div class="row">
         <div class="col-lg-12 d-flex align-items-stretch">
@@ -21,7 +25,6 @@
                         <button type="button" class="btn btn-info btn-sm" id="btnNewForm" data-bs-toggle="modal" data-bs-target="#bsHoSoCanBo">
                             <i class="ti ti-plus fs-2"></i> Tạo mới bản ghi
                         </button>
-                  
                     </div>
                 </div>
                 <div class="card-body p-2">
@@ -29,9 +32,10 @@
                            data-toggle="table"
                            data-flat="true"
                            data-search="true"
-                           data-height="550"
+                           data-height="600"
                            data-pagination="true"
                            data-page-size="10"
+                           data-toolbar="#btnNewForm"
                            data-page-list="[20, 25, 50, all]">
                         <thead>
                             <tr>
@@ -74,12 +78,12 @@
                                             <div class="card w-100 border position-relative overflow-hidden">
                                                 <div class="card-body p-2">
                                                     <div class="text-center">
-                                                        <img src="~/root/Profile_avatar.png" id="imageHoSo" alt="ảnh đại diện" class="" width="150px" height="180px">
+                                                        <img src="~/root/Profile_avatar.png" id="imageHoSo" alt="ảnh đại diện" class="" width="150px" height="150px">
                                                         <input type="file" id="duong_dan_file" name="name" value="" hidden />
                                                         <input type="text" id="isThayDoi" hidden />
-                                                        <div class="d-flex align-items-center justify-content-center my-1 gap-1">
-                                                            <button class="btn bg-danger text-white" id="btnRemoveUpload"><i class="ti ti-trash"></i></button>
-                                                            <button class="btn btn-primary w-100" id="btnUpload"><i class="ti ti-upload"></i> Upload</button>
+                                                        <div class="d-flex space-between my-1 gap-1">
+                                                            <a class="text-danger" id="btnRemoveUpload"><i class="ti ti-trash"></i></a>
+                                                            <a class="text-primary" id="btnUpload"><i class="ti ti-upload"></i> </a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -113,14 +117,7 @@
                                                     <option value="">--Chọn Chuyên khoa--</option>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-6 mb-2">
-                                                <label class="fs-2 form-label m-0">Bằng cấp - Học vị:</label>
-                                                <textarea type="text" class="form-control" placeholder="Bằng cấp học vị ..." rows="2" id="BangCapHocVi" value=""></textarea>
-                                            </div>
-                                            <div class="col-sm-6 mb-2">
-                                                <label class="fs-2 form-label m-0">Ngôn ngữ:</label>
-                                                <textarea type="text" class="form-control" placeholder="Ngôn ngữ ..." rows="2" id="NgonNgu" value=""></textarea>
-                                            </div>
+
                                             <div class="col-sm-12 mb-2">
                                                 <label class="fs-2 form-label m-0">Đường dẫn mẫu (vi):<font class="text-danger">*</font></label>
                                                 <div class="input-group">
@@ -133,10 +130,20 @@
                                                     </button>
                                                 </div>
                                             </div>
+
+                                        </div>
+                                        <div class="col-sm-12 row">
+                                            <div class="col-sm-6 mb-2">
+                                                <label class="fs-2 form-label m-0">Bằng cấp - Học vị:</label>
+                                                <textarea type="text" class="form-control" placeholder="Bằng cấp học vị ..." rows="2" id="BangCapHocVi" value=""></textarea>
+                                            </div>
+                                            <div class="col-sm-6 mb-2">
+                                                <label class="fs-2 form-label m-0">Ngôn ngữ:</label>
+                                                <textarea type="text" class="form-control" placeholder="Ngôn ngữ ..." rows="2" id="NgonNgu" value=""></textarea>
+                                            </div>
                                             <div class="col-sm-12 mb-2">
                                                 <label class="fs-2 form-label m-0">Kinh nghiệm làm việc:</label>
                                                 <textarea id="editor"></textarea>
-                                                @* <textarea type="text" class="form-control" placeholder="Kinh nghiệm làm việc ..." rows="2" id="KinhNghiemLamViec" value=""></textarea> *@
                                             </div>
                                         </div>
                                     </div>
@@ -157,4 +164,3 @@
         </div>
     </div>
 </div>
-

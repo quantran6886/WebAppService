@@ -27,7 +27,9 @@ namespace WebAppService.Areas.Admin.Controllers
                     c.SapXep,
                     Image = !string.IsNullOrEmpty(c.TxtCard1) ? c.TxtCard1 : "/root/6388000.png",
                     c.TxtCard1,
+                    c.TxtCard21,
                     c.CbGiaoDien,
+                    groupGD = c.CbGiaoDien + " - " + c.TxtCard21,
                     c.IsCongKhai,
                     c.IsCard1,
                 }).OrderBy(c => c.SapXep).ToList();
@@ -61,6 +63,37 @@ namespace WebAppService.Areas.Admin.Controllers
                     find_data.SapXep = SapXep;
                     find_data.TxtCard1 = TxtCard1;
                     find_data.CbGiaoDien = CbGiaoDien;
+                }
+                db.SaveChanges();
+
+                return new JsonResult(new
+                {
+                    status = true
+                });
+            }
+            catch (Exception ex)
+            {
+
+                return new JsonResult(new
+                {
+                    message = ex.Message,
+                    status = false
+                });
+            }
+        }
+
+        [HttpPost]
+        public IActionResult SaveData2(Guid MaTrang, int? SapXep, string? TxtCard1, string? TxtCard21)
+        {
+            try
+            {
+                var find_data = db.WebCauHinhTrangs.Find(MaTrang);
+
+                if (find_data != null)
+                {
+                    find_data.SapXep = SapXep;
+                    find_data.TxtCard1 = TxtCard1;
+                    find_data.TxtCard21 = TxtCard21;
                 }
                 db.SaveChanges();
 

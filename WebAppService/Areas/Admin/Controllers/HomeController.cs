@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Web;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebAppService.Areas.Admin._Helper;
 using WebAppService.Models;
 
@@ -165,6 +166,110 @@ namespace WebAppService.Areas.Admin.Controllers
                 return new JsonResult(new
                 {
                     lstData,
+                    status = true
+                });
+            }
+            catch (Exception ex)
+            {
+
+                return new JsonResult(new
+                {
+                    message = ex.Message,
+                    status = false
+                });
+            }
+        }
+
+        [HttpGet]
+        public IActionResult LoadData()
+        {
+            try
+            {
+                var lstNhanSu = db.WebNhanSus.AsNoTracking().Select(c => new
+                {
+                    c.IdNhanSu,
+                    c.HoTen,
+                    c.ChucDanh,
+                    c.DonViKhoa,
+                    c.ChucVu,
+                    c.BangCapHocVi,
+                    c.NgonNgu,
+                    c.SeoUrl,
+                    tuoi = c.NgaySinh != null ? (DateTime.Now.Year - c.NgaySinh.Value.Year).ToString() : "",
+                }).ToList();
+
+                var lstTinTuc = db.WebTinTucBaiViets.AsNoTracking().Select(x => new
+                {
+                    x.IdBaiViet,
+                    x.TieuDeBaiViet,
+                    x.MoTaNgan,
+                    x.NguoiTao,
+                    x.IsCongKhai,
+                    x.IsBaiVietNoiBat,
+                    x.CbNhomBaiViet,
+                    x.CbLoaiBaiDang,
+                    x.SeoTittile,
+                    x.SeoUrl,
+                    x.TieuDeNgan,
+                    x.ThoiGianTao,
+                }).OrderByDescending(c => c.ThoiGianTao).ToList();
+
+                var lstDichVuDacBiet = db.WebDichVus.AsNoTracking().Where(c => c.IsBaiVietNoiBat == true).Select(x => new
+                {
+                    x.IdDichVu,
+                    x.UrlImage,
+                    x.NameImage,
+                    x.TieuDeBaiViet,
+                    x.MoTaNgan,
+                    x.NguoiTao,
+                    x.IsCongKhai,
+                    x.IsBaiVietNoiBat,
+                    x.CbLoaiBaiDang,
+                    x.TieuDeNgan,
+                    x.ThoiGianTao,
+                    x.SeoTittile,
+                }).ToList();
+
+                var lstVideo = db.WebVideos.OrderByDescending(x => x.ThoiGianTao).Select(x => new
+                {
+                    x.IdVideo,
+                    x.UrlImage,
+                    x.NameImage,
+                    x.UrlVideo,
+                    x.NameVideo,
+                    x.TieuDeBaiViet,
+                    x.MoTaNgan,
+                    x.NguoiTao,
+                    x.IsCongKhai,
+                    x.IsVideoNoiBat,
+                    x.SeoTittile,
+                    x.SeoUrl,
+                    x.TieuDeNgan,
+                    x.ThoiGianTao,
+                }).ToList().Select(x => new
+                {
+                    x.IdVideo,
+                    x.UrlImage,
+                    x.NameImage,
+                    x.UrlVideo,
+                    x.NameVideo,
+                    x.TieuDeBaiViet,
+                    x.MoTaNgan,
+                    x.NguoiTao,
+                    x.IsCongKhai,
+                    x.SeoTittile,
+                    x.SeoUrl,
+                    x.IsVideoNoiBat,
+                    x.TieuDeNgan,
+                    ThoiGianTao = x.ThoiGianTao != null ? string.Format("{0:dd-MM-yyyy}", x.ThoiGianTao) : "",
+                });
+
+                return new JsonResult(new
+                {
+                    lstNhanSu,
+                    lstTinTuc,
+                    lstDichVuDacBiet,
+                    lstVideo,
                     status = true
                 });
             }

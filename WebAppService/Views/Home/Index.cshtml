@@ -42,7 +42,8 @@
             },
                     LoadData: async function () {
                         try {
-                            var response = await axios.get('/api/get-data-home');
+                           var lang = mySettingHome.getLanguage();
+                           var response = await axios.get('/api/get-data-home');
                             if (response.status) {
 
                                 // ====== Xử lý listBaoChi ======
@@ -89,9 +90,9 @@
                                         html += `</div>`;
                                         return html;
                                     }
-                                    var mayTinh = data.filter(x => x.cbGiaoDien === "Máy tính");
-                                    var mayTinhBang = data.filter(x => x.cbGiaoDien === "Máy tính bảng");
-                                    var dienThoai = data.filter(x => x.cbGiaoDien === "Điện thoại");
+                                    var mayTinh = data.filter(x => x.cbGiaoDien === "Máy tính" && x.txtCard21 == lang);
+                                    var mayTinhBang = data.filter(x => x.cbGiaoDien === "Máy tính bảng" && x.txtCard21 == lang);
+                                    var dienThoai = data.filter(x => x.cbGiaoDien === "Điện thoại" && x.txtCard21 == lang);
                                     var layout2 = data.filter(x => x.cbGiaoDien === "2");
                                     var htmlLayout = '';
                                     htmlLayout += renderSliderHTML('is-web', mayTinh);
@@ -162,7 +163,6 @@
         myClient.init();
     </script>
 }
-
 <div id="_layout1"></div>
 <!-- Hộp nổi dịch vụ -->
 <div class="floating-box-wrapper">
@@ -180,21 +180,25 @@
         </div>
         <div class="box-item col-sm-4 d-flex p-0">
             <div class="icon_box col-sm-4 ml-0 p-0  mobile-icon">
-                <img src="~/src/image_figma/Frame 48095620.png" class="icon_mobile" width="25.263671875px"
-                     height="24px" />
+                <a href="/lien-he">
+                    <img src="~/src/image_figma/Frame 48095620.png" class="icon_mobile" width="25.263671875px"
+                         height="24px" />
+                </a>
             </div>
             <div class="col-sm-8 box_item_text p-0 pr-sm-3">
-                <h5>Đặt lịnh khám</h5>
+                <h5><a href="/lien-he">Đặt lịnh khám</a></h5>
                 <p>Đặt lịch khám trực tuyến dễ dàng, giúp quý khách chủ động chọn thời gian.</p>
             </div>
         </div>
         <div class="box-item col-sm-4 d-flex p-0">
             <div class="icon_box col-sm-4 ml-0 p-0  mobile-icon">
-                <img src="~/src/image_figma/Frame 48095621.png" class="icon_mobile" width="19.550012588500977px"
-                     height="23px" />
+                <a href="http://tracuukqonline.sunmedical.vn" target="_blank">
+                    <img src="~/src/image_figma/Frame 48095621.png" class="icon_mobile" width="19.550012588500977px"
+                         height="23px" />
+                </a>
             </div>
             <div class="col-sm-8 box_item_text p-0 pr-sm-3">
-                <h5>Tra cứu kết quả </h5>
+                <h5><a href="http://tracuukqonline.sunmedical.vn">Tra cứu kết quả</a></h5>
                 <p>Xem nhanh kết quả khám bệnh trực tuyến, mọi lúc mọi nơi.</p>
             </div>
         </div>

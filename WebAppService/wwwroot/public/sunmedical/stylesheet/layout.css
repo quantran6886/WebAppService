@@ -1,6 +1,6 @@
 ﻿
 .header-top {
-    background-color: #009F9C;
+    background-color: #00B9B5;
     color: white;
     padding: 10px 200px;
     font-family: 'Montserrat', sans-serif;
@@ -281,7 +281,7 @@
         display: none;
     }
     .background-sunmedical {
-        background: #009f9c !important;
+        background: #00B9B5 !important;
     }
     .slicknav_nav a {
         font-size: 15px !important;

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "DanhMucHeThong";
+    ViewData["Title"] = "Danh mục hệ thống";
     Layout = "~/Areas/Admin/Views/Shared/_ViewAdmin.cshtml";
 }
 <style>
@@ -15,10 +15,6 @@
 @section Scripts {
     <script src="~/ajax/webappservice.danhmuchethong.js?v=1.2"></script>
 }
-
-<div class="card-header">
-    <h4 class="card-title">Danh mục hệ thống</h4>
-</div>
 <div class="card-body">
     <div class="row">
         <div class="col-lg-6 d-flex align-items-stretch">
@@ -41,7 +37,7 @@
                            data-toggle="table"
                            data-flat="true"
                            data-search="true"
-                           data-height="550"
+                           data-height="600"
                            data-pagination="true"
                            data-page-size="10"
                            data-page-list="[20, 25, 50, all]">

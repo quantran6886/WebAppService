@@ -41449,7 +41449,7 @@ html[data-boxed-layout="boxed"] .container-xxl {
     .left-sidebar .scroll-sidebar {
         overflow-y: auto;
         padding: 0 24px;
-        height: calc(100vh - 175px);
+        height: calc(100vh - 75px);
         border-radius: 7px;
     }
 

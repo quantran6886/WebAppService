@@ -1,0 +1,388 @@
+﻿@{
+    ViewData["Title"] = "Quản lý seo page";
+    Layout = "~/Areas/Admin/Views/Shared/_ViewAdmin.cshtml";
+}
+@section Scripts {
+    <script>
+        var files;
+        var myScripts = {
+            init: function () {
+                myScripts.Event();
+                myScripts.LoadTable();
+            },
+
+            Event: function () {
+                $("#btnNewForm").off("click").on("click", function () {
+                    myScripts.SaveNewForm();
+                    toastr.success("Mời bạn nhập thông tin", "Thành công", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                });
+
+            },
+
+            SaveNewForm: function () {
+                $.ajax({
+                    type: 'Post',
+                    url: '/Admin/SeoHome/SaveNewForm',
+                    datatype: 'json',
+                    success: function (response) {
+                        if (response.status) {
+                            toastr.success("Cập nhập thành công", "Thành Công", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                            myScripts.LoadTable();
+                        }
+                        else {
+                            toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                        }
+                    },
+                });
+            },
+
+            LoadTable: function () {
+                $.ajax({
+                    url: '/Admin/SeoHome/LoadTable',
+                    type: "GET",
+                    dataType: "json",
+                    success: function (response) {
+                        if (response.status == true) {
+                            var lstData = response.lstData;
+                            if (lstData != null && lstData.length > 0) {
+                                $("#tableSeoHome").bootstrapTable('load', lstData);
+                            }
+                            else {
+                                $("#tableSeoHome").bootstrapTable('removeAll');
+                            }
+                            $.each(lstData, function (e,value) {
+                                $("#SeoUrl_" + value.id).val(value.seoUrl);
+                                $("#SeoTittile_" + value.id).val(value.seoTittile);
+                                $("#PhanLoai_" + value.id).val(value.phanLoai);
+                            });
+                        }
+                    }
+                })
+            },
+            DeleteData: function (Id) {
+                if (Id != "") {
+                    const swalWithBootstrapButtons = Swal.mixin({
+                        customClass: {
+                            confirmButton: "btn bg-secondary-subtle text-secondary",
+                            cancelButton: "me-6 btn bg-secondary-subtle text-secondary",
+                        },
+                        buttonsStyling: false,
+                    });
+                    swalWithBootstrapButtons
+                        .fire({
+                            title: "Xác nhận?",
+                            text: "Bạn có chắc chắn muốn xóa bản ghi này không?",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonText: "Đồng ý",
+                            cancelButtonText: "Hủy",
+                            reverseButtons: true,
+                        })
+                        .then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/Admin/SeoHome/DeleteData",
+                                    data: {
+                                        Id: Id,
+                                    },
+                                    success: function (response) {
+                                        if (response.status == true) {
+                                            myScripts.LoadTable();
+                                            toastr.success("Xóa thành công 1 bản ghi", "Thành công", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                                        } else {
+                                            toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                                        }
+                                    },
+                                    error: function (response) {
+                                        toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                                    }
+                                });
+                            }
+                        });
+                } else {
+                    alert("Bạn chưa chọn bản ghi nào để xóa");
+                }
+            },
+            deleteUrl: function (id) {
+                if (!confirm("Bạn có chắc muốn xóa ảnh không?")) return;
+
+                $.ajax({
+                    url: '/Admin/SeoHome/DeleteFile',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { id: id },
+                    success: function (res) {
+                        if (res.status) {
+                            myScripts.LoadTable();
+                            toastr.success("Xóa ảnh thành công", "Thành Công");
+                        } else {
+                            toastr.error(res.message, "Lỗi");
+                        }
+                    },
+                    error: function () {
+                        toastr.error("Lỗi khi xóa ảnh", "Lỗi");
+                    }
+                });
+            },
+        };
+        $(document).ready(function () {
+             myScripts.init();
+        });
+
+        window.ev_SeoTittile = {
+            'change textarea': function (e, value, row, index) {
+                row.seoTittile = $(e.target).val();
+                $.ajax({
+                    url: '/Admin/SeoHome/SaveData',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        Id: row.id,
+                        SeoTittile: row.seoTittile,
+                        SeoUrl: row.seoUrl,
+                        PhanLoai: row.phanLoai,
+                    },
+                    success: function (response) {
+                        if (response.status) {
+                            toastr.success("Cập nhập thành công", "Thành Công", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                        }
+                        else {
+                            toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                        }
+                    },
+                });
+            }
+        };
+
+          window.ev_SeoUrl = {
+            'change textarea': function (e, value, row, index) {
+                row.seoUrl = $(e.target).val();
+                $.ajax({
+                    url: '/Admin/SeoHome/SaveData',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        Id: row.id,
+                        SeoTittile: row.seoTittile,
+                        SeoUrl: row.seoUrl,
+                        PhanLoai: row.phanLoai,
+                    },
+                    success: function (response) {
+                        if (response.status) {
+                            toastr.success("Cập nhập thành công", "Thành Công", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                        }
+                        else {
+                            toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                        }
+                    },
+                });
+            }
+        };
+
+          window.ev_PhanLoai = {
+            'change textarea': function (e, value, row, index) {
+                row.phanLoai  = $(e.target).val();
+                $.ajax({
+                    url: '/Admin/SeoHome/SaveData',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        Id: row.id,
+                        SeoTittile: row.seoTittile,
+                        SeoUrl: row.seoUrl,
+                        PhanLoai: row.phanLoai,
+                    },
+                    success: function (response) {
+                        if (response.status) {
+                            toastr.success("Cập nhập thành công", "Thành Công", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                        }
+                        else {
+                            toastr.error(response.message, "Lỗi", { showMethod: "slideDown", hideMethod: "slideUp", timeOut: 1000 });
+                        }
+                    },
+                });
+            }
+        };
+
+        $(document).on('change', 'input[type="file"]', function () {
+            var fileInput = this;
+            var id = $(this).attr('id').split('_')[1];
+            var formData = new FormData();
+            formData.append('files', fileInput.files[0]);
+            formData.append('Id', id);
+
+            $.ajax({
+                url: '/Admin/SeoHome/UploadFile',
+                type: 'POST',
+                processData: false,
+                contentType: false,
+                data: formData,
+                success: function (response) {
+                    if (response.status) {
+                        myScripts.LoadTable();
+                        toastr.success("Tải ảnh thành công");
+                    } else {
+                        toastr.error(response.message || "Lỗi khi tải ảnh");
+                    }
+                }
+            });
+        });
+
+        $(document).on('change', '.IsBanerHomeCheckbox', function () {
+            const $this = $(this);
+            const isChecked = $this.is(':checked');
+            const id = $this.data('id');
+
+            $.ajax({
+                url: '/Admin/SeoHome/SaveDataCongKhai',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    Id: id,
+                    IsBanerHome: isChecked,
+                },
+                success: function (response) {
+                    if (response.status) {
+                        myScripts.LoadTable();
+                        toastr.success("Cập nhật trạng thái công khai thành công", "Thành Công");
+                    } else {
+                        toastr.error(response.message, "Lỗi");
+                    }
+                }
+            });
+        });
+
+        function fm_editData(e, value, row, index) {
+            return [
+                '<div style="width: 100%">',
+                '<a href="javascript:myScripts.DeleteData(' + "'" + value.id + "'" + ')" class="hvr-shrink" data-bs-toggle="tooltip" title="Xóa dữ liệu"><iconify-icon icon="solar:trash-bin-trash-outline" class="text-danger" width="25px" height="25px"></iconify-icon></a>' +
+                '</div>'
+            ].join('');
+        };
+
+        function fm_Image(e, value, row, index) {
+            return [
+                '<div style="width:80px;justify-self: center;" class="">',
+                '<a class="image-popup-vertical-fit" target="_blank" href="' + value.image + '">',
+                ' <img class="d-block position-relative w-100" src="' + value.image + '" width="100" />',
+                ' </a>',
+                '</div>'
+            ].join('');
+        };
+
+        function fm_UrlFile(e, value, row, index) {
+            if (value.link != "" && value.link != null) {
+                return [
+                    '<div style="margin-bottom:0px">',
+                    '<a style="margin-left:5px" title="Tải về" href="' + value.link + '" download="">Đã có ảnh <i class="fa fa-download"></i></a>',
+                    '<a style="margin-left:5px;color:red;" title="Xóa tệp đính kèm" href="javascript:myScripts.deleteUrl(\'' + value.id + '\')"><i class="ti ti-trash"></i></a>',
+                    '</div>'
+                ].join('');
+            } else {
+                return [
+                    '<div class="input-group" style="margin-bottom:0px;width:250px">',
+                    '<input type="file" class="form-control" id="link_' + value.id + '" />',
+                    '</div>'
+                ].join('');
+            }
+        }
+
+        function fm_IsBanerHome(e, value, row, index) {
+            return `
+            <div class="form-check form-switch text-center">
+                <input type="checkbox" class="form-check-input text-center IsBanerHomeCheckbox"
+                       ${value.isBanerHome ? 'checked' : ''}
+                       data-id="${value.id}" />
+            </div>
+            `;
+        }
+
+        function fm_SeoTittile(e, value, row, index) {
+            if (value.seoTittile != "" && value.seoTittile != null) {
+                return [
+                    '<div style="text-align:center">',
+                    ' <textarea class="form-control" rows="5" id="SeoTittile_' + value.id + '" value="' + value.seoTittile + '" ></textarea>',
+                    '</div>'
+                ].join('');
+            } else {
+                return [
+                    '<div style="text-align:center">',
+                    ' <textarea class="form-control" rows="5" id="SeoTittile_' + value.id + '" ></textarea>',
+                    '</div>'
+                ].join('');
+            }
+        }
+
+        function fm_SeoUrl(e, value, row, index) {
+            if (value.seoUrl != "" && value.seoUrl != null) {
+                return [
+                    '<div style="text-align:center">',
+                    ' <textarea class="form-control" rows="5" id="SeoUrl_' + value.id + '" value="' + value.seoUrl + '" ></textarea>',
+                    '</div>'
+                ].join('');
+            } else {
+                return [
+                    '<div style="text-align:center">',
+                    ' <textarea class="form-control" rows="5" id="SeoUrl_' + value.id + '" ></textarea>',
+                    '</div>'
+                ].join('');
+            }
+        }
+
+        function fm_PhanLoai(e, value, row, index) {
+            if (value.phanLoai != "" && value.phanLoai != null) {
+                return [
+                    '<div style="text-align:center">',
+                    ' <textarea class="form-control" rows="5" id="PhanLoai_' + value.id + '" value="' + value.phanLoai + '" ></textarea>',
+                    '</div>'
+                ].join('');
+            } else {
+                return [
+                    '<div style="text-align:center">',
+                    ' <textarea class="form-control" rows="5" id="PhanLoai_' + value.id + '" ></textarea>',
+                    '</div>'
+                ].join('');
+            }
+        }
+
+    </script>
+}
+<div class="card-body">
+    <div class="row">
+        <div class="col-lg-12 d-flex align-items-stretch">
+            <div class="card w-100 border position-relative overflow-hidden">
+                <div class="card-header p-1">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-info btn-sm" id="btnNewForm" data-bs-toggle="tooltip" data-bs-placement="top" title="Thêm mới SeoHome">
+                            <i class="ti ti-plus fs-2"></i> Tạo mới
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body p-2">
+                    <table id="tableSeoHome"
+                           data-search="true"
+                           data-height="600"
+                           data-pagination="true"
+                           data-page-size="10"
+                           data-page-list="[20, 25, 50, all]"
+                           data-toggle="table"
+                           data-toolbar="#btnNewForm">
+                        <thead>
+                            <tr>
+                                <th data-formatter="fm_editData" data-sortable="true" data-width="5">Xóa</th>
+                                <th data-field="" data-width="8" data-sortable="true" data-formatter="fm_Image">Ảnh Seo</th>
+                                <th data-field="seoTittile" data-formatter="fm_SeoTittile" data-events="ev_SeoTittile">SEO Title</th>
+                                <th data-field="seoUrl" data-formatter="fm_SeoUrl" data-events="ev_SeoUrl">SEO Keywords</th>
+                                <th data-field="phanLoai" data-formatter="fm_PhanLoai" data-events="ev_PhanLoai">SEO Description</th>
+                                <th data-field="link" data-width="8" data-sortable="true" data-formatter="fm_UrlFile">Đường dẫn ảnh</th>
+                                <th data-field="isBanerHome" data-width="8" data-sortable="true" data-formatter="fm_IsBanerHome">Seo</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

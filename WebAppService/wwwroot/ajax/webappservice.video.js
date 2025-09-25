@@ -328,7 +328,7 @@ myScripts.init();
 function fm_Image(e, value, row, index) {
     if (value.urlImage != "") {
         return [
-            '<div style="width:40px;justify-self: center;" class="">',
+            '<div style="width:100px;justify-self: center;" class="">',
             '<a class="image-popup-vertical-fit" target="_blank" href="' + value.urlImage + '">',
             ' <img class="d-block position-relative w-100" src="' + value.urlImage + '" width="100" />',
             ' </a>',

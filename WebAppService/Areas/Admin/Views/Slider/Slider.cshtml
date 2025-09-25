@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Slider";
+    ViewData["Title"] = "Quản lý slider";
     Layout = "~/Areas/Admin/Views/Shared/_ViewAdmin.cshtml";
 }
 <style>
@@ -16,9 +16,6 @@
     <script src="https://unpkg.com/bootstrap-table@1.24.0/dist/extensions/group-by-v2/bootstrap-table-group-by.min.js"></script>
     <script src="~/ajax/webappservice.slider.js"></script>
 }
-<div class="card-header mt-2">
-    <h4 class="card-title">Danh sách Slider</h4>
-</div>
 <div class="card-body">
     <div class="row">
         <div class="col-lg-12 d-flex align-items-stretch">
@@ -34,13 +31,13 @@
                     <table id="tableSlider"
                            data-search="true"
                            data-group-by="true"
-                           data-height="550"
+                           data-height="600"
                            data-pagination="true"
                            data-page-size="10"
                            data-page-list="[20, 25, 50, all]"
                            data-toggle="table"
-                           data-flat="true"
-                           data-group-by-field="cbGiaoDien">
+                           data-toolbar="#btnNewForm"
+                           data-group-by-field="groupGD">
                         <thead>
                             <tr>
                                 <th data-formatter="fm_editData" data-sortable="true" data-width="5">Xóa</th>
@@ -48,6 +45,7 @@
                                 <th data-field="SapXep" data-width="8" data-formatter="fm_SapXep" data-events="ev_SapXep">Số thứ tự</th>
                                 <th data-field="TxtCard1" data-sortable="true" data-formatter="fm_UrlFile">Đường dẫn ảnh</th>
                                 <th data-field="CbGiaoDien" data-sortable="true" data-formatter="fm_CbGiaoDien">Phân loại thiết bị</th>
+                                <th data-field="TxtCard21" data-sortable="true" data-formatter="fm_TxtCard21">Ngôn ngữ</th>
                                 <th data-field="IsCongKhai" data-width="8" data-sortable="true" data-formatter="fm_IsCongKhai">Công khai</th>
                             </tr>
                         </thead>
